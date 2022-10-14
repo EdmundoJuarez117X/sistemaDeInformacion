@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS  `nivelEducativo` (
     `id_nivelEducativo` int (3) NOT NULL AUTO_INCREMENT,
     `nombre_nivelEducativo` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `descripcion_nivelEducativo` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `estatus_nivelEdu` bit(1) DEFAULT (1) NOT NULL,
+    `estatus_nivelEdu` bit(1) DEFAULT 1 NOT NULL,
     `f_creacion_nivelEdu` datetime NOT NULL,
     `f_modificacion` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     PRIMARY KEY (`id_nivelEducativo`)
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `carrera` (
     `id_carrera` int(3) NOT NULL AUTO_INCREMENT,
     `nombre_carrera` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `nombre_corto_carrera` varchar(9) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `estatus_carrera` bit(1) DEFAULT (1) NOT NULL,
+    `estatus_carrera` bit(1) DEFAULT 1 NOT NULL,
     `f_creacion_carrera` datetime NOT NULL,
     `f_modificacion_carrera` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     PRIMARY KEY (`id_carrera`)
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `planEstudios` (
     `id_planEstudios` int(4) NOT NULL AUTO_INCREMENT,
     `nombre_planEstudios` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `nombre_corto_planE` varchar(9) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `estatus_planEstudios` bit(1) DEFAULT (1) NOT NULL,
+    `estatus_planEstudios` bit(1) DEFAULT 1 NOT NULL,
     `num_creditos_totales` tinyint NOT NULL,
     `num_creditos_min` tinyint NOT NULL,
     `num_creditos_max` tinyint NOT NULL,
@@ -291,13 +291,13 @@ CREATE TABLE IF NOT EXISTS `persona_telefono` (
     `nombre_persona` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `tipo_tel` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `lada_tel` varchar(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `numero_telefonico` int(10),
+    `numero_telefonico` int(10) NOT NULL,
     `f_creacion_persona_telefono` datetime NOT NULL,
     `f_modificacion_persona_telefono` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `id_persona` int(5) NOT NULL,
     `id_telefono` int(3) NOT NULL,
     PRIMARY KEY(`id_persona_telefono`),
-    FOREIGN KEY(`id_persona`) REFERENCES`persona`(`id_persona`),
+    FOREIGN KEY(`id_persona`) REFERENCES `persona`(`id_persona`),
     FOREIGN KEY(`id_telefono`) REFERENCES `telefono`(`id_telefono`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -341,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `escuela_nivelEducativo` (
     `id_nivelEducativo` int(3) NOT NULL,
     PRIMARY KEY(`id_escuela_nivelEducativo`),
     FOREIGN KEY (`id_escuela`) REFERENCES `escuela`(`id_escuela`),
-    FOREIGN KEY (`id_nivelEducativo`) REFERENCES`nivelEducativo`(`id_nivelEducativo`)
+    FOREIGN KEY (`id_nivelEducativo`) REFERENCES `nivelEducativo`(`id_nivelEducativo`)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- -------------------------------------------------------------------------------

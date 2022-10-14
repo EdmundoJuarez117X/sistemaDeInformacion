@@ -1,4 +1,5 @@
- <?php
-    require_once '../app/autoload.php';
+<?php
 
-    $init = new Core;
+require_once '../app/autoload.php';
+
+$init = new Core;
