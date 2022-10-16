@@ -55,11 +55,43 @@ form h2{
 }
 
 .input-div{
+    position: relative;
     display: grid;
     grid-template-columns: 7% 93%;
     margin: 25px 0;
     padding: 5px 0;
     border-bottom: 2px solid rgba(153, 221, 210, 0.6);
+}
+
+.input-div:after, .input-div:before{
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #38d39f;
+    transition: .3s;
+}
+
+.input-div:after{
+    right: 50%;
+}
+
+.input-div:before{
+    left: 50%;
+}
+
+.input-div.focus .i i{
+    color: #38d39f;
+}
+
+.input-div.focus div h5{
+    top: -5px;
+    font-size: 15px;
+}
+
+.input-div.focus:after, .input-div.focus:before{
+    width: 50%;
 }
 
 .input-div.one{
@@ -78,6 +110,7 @@ form h2{
 
 .i i{
     color:rgb(70, 152, 172);
+    transition: .3s;
 }
 
 .input-div > div{
@@ -87,12 +120,11 @@ form h2{
 
 .input-div > div h5{
     position: absolute;
-    left: 10px;
+    left: 10px; 
     top: 50%;
     transform: translateY(-50%);
     color: #999;
     font-size: 18px;
-    display: none;
     transition: .3s;
 }
 
@@ -117,7 +149,7 @@ a{
     text-decoration: none;
     color: #999;
     font-size: 0.9rem;
-    transition: .3s ;
+    transition: .3s;
 }
 
 a:hover{
@@ -132,7 +164,8 @@ a:hover{
     margin: 1rem 0;
     font-size: 1.2rem;
     outline:none;
-    background-image: linear-gradient(to right, #32b5be, #386ed3, #194fb3);
+    border: none;
+    background-image: linear-gradient(to right, #194fb3, #386ed3, #194fb3);
     cursor: pointer;
     color: #fff;
     text-transform: uppercase;
@@ -143,4 +176,38 @@ a:hover{
 
 .btn:hover{
     background-position: right;
+}
+
+@media screen and (max-width:1050px){
+    .container{
+        grid-gap: 2rem;
+    }
+}
+
+@media screen and (max-width:1000px){
+    form{
+        width:290px;
+    }
+    form h2{
+        font-size: 2.4rem;
+        margin: 8px 0;
+    }
+    .img img{
+        width: 388px;
+    }
+}
+
+@media screen and (max-width:900px){
+    .img{
+        display: none;
+    }
+    .container{
+        grid-template-columns: 1fr;
+    }
+    .wave{
+        display: none;
+    }
+    .login-container{
+        justify-content: center;
+    }
 }

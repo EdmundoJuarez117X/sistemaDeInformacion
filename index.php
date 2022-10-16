@@ -40,10 +40,11 @@
                     </div>
                 </div>
                 <a href="#">¿Olvidaste la contraseña?</a>
-                <input type="submit" class="btn" value="Login">
+                <input type="submit" class="btn" value="Iniciar Sesión">
             </form>
         </div>
     </div>
     <script type="text/javascript" src="js/main.js"></script>
+    
 </body>
 </html>
