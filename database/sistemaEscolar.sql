@@ -159,7 +159,7 @@ DROP TABLE IF EXISTS `rol`;
 
 CREATE TABLE IF NOT EXISTS `rol` (
     `id_rol` int(3) NOT NULL AUTO_INCREMENT,
-    `nombre_rol` varchar(30),
+    `nombre_rol` varchar(30) NOT NULL,
     `f_creacion_rol` datetime NOT NULL,
     `f_modificacion_rol` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     PRIMARY KEY (`id_rol`)
@@ -183,9 +183,9 @@ CREATE TABLE IF NOT EXISTS `rol` (
 --
 DROP TABLE IF EXISTS `persona`;
 CREATE TABLE IF NOT EXISTS `persona`(
-    `id_persona` int(5), 
+    `id_persona` int(5) NOT NULL AUTO_INCREMENT, 
     `nombre_persona` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `segundo_nombre` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `segundo_nombre` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
     `apellido_paterno` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `apellido_materno` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `genero` varchar(9) NOT NULL,
