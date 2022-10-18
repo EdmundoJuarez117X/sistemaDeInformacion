@@ -52,10 +52,6 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Segundo Nombre">
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
                         <input type="text" placeholder="Apellido Paterno" required>
                     </div>
                     <div class="input-field">
@@ -97,9 +93,8 @@
                     <h3>¿Aspirante o Padre de Familia?</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing 
                         elit. Pariatur voluptatibus numquam omnis, asperiores 
-                        est quia molestias vel error voluptatem maiores! 
-                        Voluptates quam nisi iusto placeat quasi repudiandae 
-                        veritatis ea debitis.</p>
+                        est quia molestias vel error voluptatem maiores!
+                    </p>
                     <button class="btn transparent" id="sign-up-btn">Registrarse</button>
                 </div>
                 <img src="img/altindeximages/log.svg" class="image" alt="">
