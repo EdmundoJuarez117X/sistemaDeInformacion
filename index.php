@@ -36,7 +36,7 @@
                 ?>
                 <div class="input-div one">
                     <div class="i">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-envelope"></i>
                     </div>
                     <div>
                         <h5>Correo Electrónico</h5>
@@ -57,6 +57,7 @@
             </form>
         </div>
     </div>
+    <!-- Script para controlar los inputs del formulario -->
     <script type="text/javascript" src="js/main.js"></script>
 
 </body>
