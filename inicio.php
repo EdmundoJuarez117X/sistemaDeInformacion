@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(empty($_SESSION["id_persona"])){
-        header("location:index.php");
+        header("location:altindex.php");
     }
 ?>  
 <!DOCTYPE html>

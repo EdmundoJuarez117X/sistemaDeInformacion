@@ -1,0 +1,30 @@
+<?php
+
+    //Preguntar si se ha presionado el boton de registrarse
+    if(!empty($_POST["btn_registrar"])){
+        //corroboramos que no estén vacios los campos
+        if (!empty($_POST["nombre_persona"] and !empty($_POST["apellido_paterno"]) and !empty($_POST["apellido_materno"]) and !empty($_POST["email_persona"]) and !empty($_POST["password_persona"]))) {
+            //Guardamos los datos proporcionados por el formulario
+            $nombre_persona = $_POST["nombre_persona"];
+            $apellido_paterno = $_POST["apellido_paterno"];
+            $apellido_materno = $_POST["apellido_materno"];
+            $correo = $_POST["email_persona"];
+            $password = $_POST["password_persona"];
+            //Ejecutamos la sentencia SQL
+            $sql = $connection->query("INSERT INTO persona where correo (nombre_persona, apellido_paterno, apellido_materno, email_persona, password_persona, id_rol)
+            VALUES('$nombre_persona', '$apellido_paterno', '$apellido_materno', '$correo', '$password', '1')
+            ");
+            //Obtenemos el registro de los datos y guardamos algunos para control de acceso
+            if ($datos=$sql === true) {
+                //Redireccionamos al inicio del sitio web (dashboard)
+                header("location:altindex.php");
+            } else {
+                echo "<script>alert('Algo salió mal usuario no registrado :(')</script>";
+            }
+            
+        } else {
+            //Campos vacíos
+            echo "Escriba sobre los campos su informacion";
+        }
+        
+    }

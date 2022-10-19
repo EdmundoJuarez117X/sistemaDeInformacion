@@ -19,7 +19,6 @@
                 //Redireccionamos al inicio del sitio web (dashboard)
                 header("location:inicio.php");
             } else {
-                //Correo o contraseña no validos 
                 echo "<div class='alert alert-danger'>Correo o Contraseña incorrectos</div>";
             }
             
