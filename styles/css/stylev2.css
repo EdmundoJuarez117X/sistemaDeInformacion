@@ -336,11 +336,11 @@ form.sign-in-form {
   }
 
   .container:before {
-    width: 1500px;
-    height: 1500px;
+    width: 1300px;
+    height: 1300px;
     transform: translateX(-50%);
-    left: 30%;
-    bottom: 68%;
+    left: initial;
+    bottom: 66%;
     right: initial;
     top: initial;
     transition: 2s ease-in-out;

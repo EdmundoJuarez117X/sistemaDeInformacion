@@ -11,13 +11,13 @@
             $correo = $_POST["email_persona"];
             $password = $_POST["password_persona"];
             //Ejecutamos la sentencia SQL
-            $sql = $connection->query("INSERT INTO persona where correo (nombre_persona, apellido_paterno, apellido_materno, email_persona, password_persona, id_rol)
+            $sql = $connection->query("INSERT INTO persona (nombre_persona, apellido_paterno, apellido_materno, email_persona, password_persona, id_rol)
             VALUES('$nombre_persona', '$apellido_paterno', '$apellido_materno', '$correo', '$password', '1')
             ");
             //Obtenemos el registro de los datos y guardamos algunos para control de acceso
             if ($datos=$sql === true) {
                 //Redireccionamos al inicio del sitio web (dashboard)
-                header("location:altindex.php");
+                header("location:index.php");
             } else {
                 echo "<script>alert('Algo salió mal usuario no registrado :(')</script>";
             }

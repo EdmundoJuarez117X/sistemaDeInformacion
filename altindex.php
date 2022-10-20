@@ -1,131 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-mx">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- FontAwesome API -->
-    <script src="https://kit.fontawesome.com/64d58efce2.js" cossorigin="anonymous"></script>
+    <!-- Google Fonts API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <!-- Bootstrap -->
     <!-- CSS only -->
-    <link rel="stylesheet" href="styles/css/stylev2.css">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- CSS only -->
+    <link rel="stylesheet" type="text/css" href="styles/css/style.css">
+    <title>Inicio de Sesión</title>
 </head>
 
 <body>
+    <img class="wave" src="img/altindeximages/wave.jpg" alt="">
     <div class="container">
-        <div class="forms-container">
-            <div class="signin-signup">
-                <!-- Formulario de inicio de sesion -->
-                <form method="post" action="altindex.php" class="sign-in-form">
-                    <h2 class="title">Iniciar Sesión</h2>
-                    <?php
-                    // Conexión a la base de datos
-                    include "model/connection.php";
-                    // Controlador para acceder al login
-                    include "controllers/controller_login.php";
-                    ?>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Correo Electrónico" name="email" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Contraseña" name="password" required>
-                    </div>
-                    <input type="submit" name="btn_ingresar" value="Iniciar Sesión" class="btn solid">
-
-                    <p class="social-text">O acceder con una red social</p>
-                    <div class="social-media">
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-google"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </form>
-                <!-- Formulario de registro -->
-                <form method="post" action="altindex.php" class="sign-up-form">
-                    <h2 class="title">Registrarse</h2>
-                    <?php
-                    // Conexión a la base de datos
-                    include "model/connection.php";
-                    // Controlador para acceder al login
-                    include "controllers/controller_signup.php";
-                    ?>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Nombre" name="nombre_persona" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Apellido Paterno" name="apellido_paterno" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Apellido Materno" name="apellido_materno" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-envelope"></i>
-                        <input type="text" placeholder="Correo electrónico" name="email_persona" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Contraseña" name="password_persona" required>
-                    </div>
-                    <input type="submit" name="btn_registrar" value="Registrarse"  class="btn solid">
-
-                    <p class="social-text">O acceder con una red social</p>
-                    <div class="social-media">
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-google"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </form>
-
-            </div>
+        <div class="img">
+            <img src="img/altindeximages/welcoming.svg" alt="">
         </div>
-        <div class="panels-container">
-            <div class="panel left-panel">
-                <div class="content">
-                    <h3>¿Aspirante o Padre de Familia?</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Pariatur voluptatibus numquam omnis, asperiores
-                        est quia molestias vel error voluptatem maiores!
-                    </p>
-                    <button class="btn transparent" id="sign-up-btn">Registrarse</button>
+        <div class="login-container">
+            <form method="post" action="index.php">
+                <img class="avatar" src="img/altindeximages/avatar.svg" alt="login avatar">
+                <h2>Bienvenido</h2>
+                <?php
+                // Conexión a la base de datos
+                include "model/connection.php";
+                // Controlador para acceder al login
+                include "controllers/controller_login.php";
+                ?>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h5>Correo Electrónico</h5>
+                        <input class="input" name="email" type="text">
+                    </div>
                 </div>
-                <img src="img/altindeximages/log.svg" class="image" alt="">
-            </div>
-            <div class="panel right-panel">
-                <div class="content">
-                    <h3>¿Ya tienes una cuenta?</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit.</p>
-                    <button class="btn transparent" id="sign-in-btn">Iniciar Sesión</button>
+                <div class="input-div two">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                        <h5>Contraseña</h5>
+                        <input class="input" name="password" type="password">
+                    </div>
                 </div>
-                <img src="img\altindeximages\register.svg" class="image" alt="">
-            </div>
+                <a href="#">¿Olvidaste la contraseña?</a>
+                <input name="btn_ingresar" type="submit" class="btn" value="Iniciar Sesión">
+            </form>
         </div>
     </div>
-    <!-- Script para controlar los efectos visuales-->
-    <script src="js/app.js"></script>
+    <!-- Script para controlar los inputs del formulario -->
+    <script type="text/javascript" src="js/main.js"></script>
+
 </body>
 
 </html>

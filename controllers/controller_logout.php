@@ -4,5 +4,5 @@
 
     session_destroy();
 
-    header("location:../altindex.php");
+    header("location:../index.php");
 ?>
