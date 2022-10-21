@@ -10,9 +10,10 @@
             $apellido_materno = $_POST["apellido_materno"];
             $correo = $_POST["email_persona"];
             $password = $_POST["password_persona"];
+            $date = date("Y-m-d H:i:s"); 
             //Ejecutamos la sentencia SQL
-            $sql = $connection->query("INSERT INTO persona (nombre_persona, apellido_paterno, apellido_materno, email_persona, password_persona, id_rol)
-            VALUES('$nombre_persona', '$apellido_paterno', '$apellido_materno', '$correo', '$password', '1')
+            $sql = $connection->query("INSERT INTO persona (nombre_persona, apellido_paterno, apellido_materno, email_persona, password_persona, f_creacion_persona, id_rol)
+            VALUES('$nombre_persona', '$apellido_paterno', '$apellido_materno', '$correo', '$password','$date', '1')
             ");
             //Obtenemos el registro de los datos y guardamos algunos para control de acceso
             if ($datos=$sql === true) {
