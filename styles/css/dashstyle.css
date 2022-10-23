@@ -52,7 +52,7 @@ body{
     color: var(--color-dark);
 }
 
-.container{
+.contenedor{
     display: grid;
     width: 96%;
     margin: 0 auto;
@@ -127,7 +127,7 @@ aside{
     height: 100vh;   
 }
 
-aside .top{
+aside .topClass{
     background: white;
     display: flex;
     align-items: center;
@@ -146,7 +146,7 @@ aside .logo img{
     height: 3rem;
 } */
 
-aside .close{
+aside .closeClassBtn{
     display: none;
 }
 
@@ -172,6 +172,7 @@ aside .sidebar a{
     position: relative;
     height: 3.3rem;
     transition: all 300ms ease;
+    text-decoration: none;
 }
 
 aside .sidebar a span{
@@ -179,33 +180,84 @@ aside .sidebar a span{
     transition: all 300ms ease-in-out;
 }
 
-aside .sidebar a:last-child{
+
+aside .sidebar ul ul{
+    display: none;
+    
+}
+
+aside .sidebar ul .dropdown-menu.show{
+    display: block;
+}
+
+aside .sidebar ul li ul li a{
+    position: relative;
+    padding-left: 30px;
+    transition: all 300ms ease;
+}
+
+aside .sidebar ul li a span.arrow_down{
+    position:absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 22px;
+    transition: transform 0.4s;
+}
+
+aside .sidebar ul li a span.arrow_down.rotate{
+    transform: translateY(-50%) rotate(-180deg);
+}
+
+aside .sidebar li.CloseSession:last-child{
     position: absolute;
     bottom: 2rem;
     width: 100%;
 }
 
-aside .sidebar a.active{
+aside .sidebar li.active a{
     background: var(--color-light);
+    text-decoration: none;
     color: var(--color-primary);
     margin-left: 0;
 }
 
-aside .sidebar a.active:before{
+.sidebar ul li.active ul li a,
+.sidebar ul li.active ul li span
+{
+    background: transparent;
+    color: var(--color-info-dark);
+}
+
+.sidebar ul li.active ul li a:before{
+   
+    
+    width: 0;
+ }
+
+
+ 
+ .sidebar ul li.active ul li a:hover,
+ .sidebar ul li.active ul li span:hover{
+ 
+    color: var(--color-primary);
+ }
+ 
+
+aside .sidebar li.active a:before{
     content: '';
     width: 6px;
     height: 100%;
     background:var(--color-primary);
 }
 
-aside .sidebar a.active span{
+aside .sidebar li.active a span{
     color: var(--color-primary);
     margin-left: calc(1rem -3px);
 }
 
 aside .sidebar a:hover{
     color: var(--color-primary);
-
 }
 
 aside .sidebar a:hover span{
@@ -252,7 +304,6 @@ main .insights > div{
     box-shadow: var(--box-shadow);
     transition: all 300ms ease;
     /*cursor: pointer;  /* Activa el cursor para seleccionar la tarjeta */
-    
 }
 
 main .insights >div:hover{
@@ -382,13 +433,13 @@ main .recent-orders a{
     margin-top: 1.4rem;
 }
 
-.right .top{
+.right .topClass{
     display: flex;
     justify-content: end;
     gap: 2rem;
 }
 
-.right .top button{
+.right .topClass button{
     display: none;
 }
 

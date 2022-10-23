@@ -1,9 +1,9 @@
 <!-- <?php
-session_start();
-if (empty($_SESSION["id_persona"])) {
-    header("location:index.php");
-}
-?> -->
+        session_start();
+        if (empty($_SESSION["id_persona"])) {
+            header("location:index.php");
+        }
+        ?> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,72 +11,103 @@ if (empty($_SESSION["id_persona"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS STYLESHEET-->
-    <link rel="stylesheet" href="styles/css/dashstyle.css">
     <!-- Material Icons CDN -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <!-- CSS STYLESHEET-->
+    <link rel="stylesheet" href="styles/css/dashstyle.css">
+    
+    <!-- FOR NAVBAR SUBMENUS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
     <title>Responsive Dashboard Using HTML CSS and Javascript</title>
 
 
 </head>
 
 <body>
-    <div class="container">
+    <div class="contenedor">
         <aside>
-            <div class="top">
+            <!-- LOGOTYPE DIV -->
+            <div class="topClass">
                 <div class="logo">
                     <!-- <img src="img/dashimgs/graduation.svg" alt="logotype"> -->
                     <span class="material-icons-sharp logo">school</span>
                     <h2>SIS<span class="primary">ESCOLAR</span></h2>
                 </div>
-                <div class="close" id="close-btn">
+                <div class="closeClassBtn" id="close-btn">
                     <span class="material-icons-sharp">close</span>
                 </div>
             </div>
+            <!-- END OF LOGOTYPE DIV -->
+            <!-- SIDEBAR / NAVBAR CODE -->
             <div class="sidebar">
-                <a href="#" class="active">
-                    <span class="material-icons-sharp">grid_view</span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="#" class="">
-                    <span class="material-icons-sharp">person</span>
-                    <h3>Clientes</h3>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">receipt_long</span>
-                    <h3>Ordenes</h3>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">insights</span>
-                    <h3>Analytics</h3>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">message</span>
-                    <h3>Mensajes</h3>
-                    <span class="message-count">26</span>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">inventory</span>
-                    <h3>Productos</h3>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">report</span>
-                    <h3>Reportes</h3>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">settings</span>
-                    <h3>Ajustes</h3>
-                </a>
-                <a href="#">
-                    <span class="material-icons-sharp">add</span>
-                    <h3>Agregar Producto</h3>
-                </a>
-                
-                <a href="controllers/controller_logout.php">
-                    <span class="material-icons-sharp">logout</span>
-                    <h3>Cerrar Sesión</h3>
-                </a>
+                <ul class="">
+                    <li class="active">
+                        <a class="" href="#">
+                            <span class="material-icons-sharp">grid_view</span>
+                            <h3>Dashboard</h3>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="" href="#">
+                            <span class="material-icons-sharp">person</span>
+                            <h3>Clientes</h3>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="" href="#">
+                            <span class="material-icons-sharp">report</span>
+                            <h3>Reportes</h3>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="" href="#">
+                            <span class="material-icons-sharp">add</span>
+                            <h3>Agregar Producto</h3>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="" href="#">
+                            <span class="material-icons-sharp">settings</span>
+                            <h3>Ajustes</h3>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="dropdown-toggle" href="#">
+                            <span class="material-icons-sharp">paid</span>
+                            <h3>Pagos</h3>
+                            <span class="material-icons-sharp arrow_down first-arrow">keyboard_arrow_down</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <span class="material-icons-sharp">credit_card</span>
+                                    <h3>Tarjeta de Crédito</h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <span class="material-icons-sharp">local_atm</span>
+                                    <h3>Efectivo</h3>
+                                </a>
+                            </li>
+                            
+                            <!-- <li>
+                                <hr class="dropdown-divider">
+                            </li> -->
+                            
+                        </ul>
+                    </li>
+                    <li class="CloseSession">
+                        <a href="controllers/controller_logout.php">
+                            <span class="material-icons-sharp">logout</span>
+                            <h3>Cerrar Sesión</h3>
+                        </a>
+                    </li>
+                </ul>
             </div>
+            <!-- END OF SIDEBAR / NAVBAR -->
         </aside>
         <!------------------- END OF ASIDE ---------------->
         <main>
@@ -93,7 +124,7 @@ if (empty($_SESSION["id_persona"])) {
                             <h1>3600</h1>
                         </div>
                         <div class="progress">
-                            <svg>
+                            <svg class="svgCircle">
                                 <circle cx='38' cy="38" r='36'></circle>
                             </svg>
                             <div class="number">
@@ -112,7 +143,7 @@ if (empty($_SESSION["id_persona"])) {
                             <h1>300</h1>
                         </div>
                         <div class="progress">
-                            <svg>
+                            <svg class="svgCircle">
                                 <circle cx='38' cy="38" r='36'></circle>
                             </svg>
                             <div class="number">
@@ -131,7 +162,7 @@ if (empty($_SESSION["id_persona"])) {
                             <h1>1369</h1>
                         </div>
                         <div class="progress">
-                            <svg>
+                            <svg class="svgCircle">
                                 <circle cx='38' cy="38" r='36'></circle>
                             </svg>
                             <div class="number">
@@ -200,7 +231,7 @@ if (empty($_SESSION["id_persona"])) {
         <!---------------------------- END OF MAIN ------------------->
 
         <div class="right">
-            <div class="top">
+            <div class="topClass">
                 <button id="menu-btn">
                     <span class="material-icons-sharp">menu</span>
                 </button>
@@ -210,7 +241,9 @@ if (empty($_SESSION["id_persona"])) {
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b><!-- <?php echo '<h1>' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . '</h1>';?> --></b></p>
+                        <p>Hey, <b>
+                                <!-- <?php echo '<h1>' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . '</h1>'; ?> -->
+                            </b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
@@ -218,7 +251,7 @@ if (empty($_SESSION["id_persona"])) {
                     </div>
                 </div>
             </div>
-            <!------------------------------- END OF TOP  ------------------------>
+            <!------------------------------- END OF top / topClass ------------------------>
             <div class="recent-updates">
                 <h2>Recent Updates</h2>
                 <div class="updates">
@@ -227,7 +260,7 @@ if (empty($_SESSION["id_persona"])) {
                             <img src="./img/altindeximages/welcoming.svg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of 
+                            <p><b>Myke Tyson</b> Received his order of
                                 Night lion tech GPS drone.</p>
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
@@ -237,7 +270,7 @@ if (empty($_SESSION["id_persona"])) {
                             <img src="./img/altindeximages/teaching.svg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of 
+                            <p><b>Myke Tyson</b> Received his order of
                                 Night lion tech GPS drone.</p>
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
@@ -247,7 +280,7 @@ if (empty($_SESSION["id_persona"])) {
                             <img src="./img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of 
+                            <p><b>Myke Tyson</b> Received his order of
                                 Night lion tech GPS drone.</p>
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
@@ -257,7 +290,7 @@ if (empty($_SESSION["id_persona"])) {
                             <img src="./img/altindeximages/welcoming.svg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of 
+                            <p><b>Myke Tyson</b> Received his order of
                                 Night lion tech GPS drone.</p>
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
@@ -267,7 +300,7 @@ if (empty($_SESSION["id_persona"])) {
                             <img src="./img/altindeximages/avatar.svg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of 
+                            <p><b>Myke Tyson</b> Received his order of
                                 Night lion tech GPS drone.</p>
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
@@ -276,6 +309,16 @@ if (empty($_SESSION["id_persona"])) {
             </div>
         </div>
     </div>
+    <!-- Script for navbar arrows and show the elements -->
+    <script>
+        $('.dropdown-toggle').click(function(){
+            $('aside .sidebar ul .dropdown-menu').toggleClass("show");
+            $('aside .sidebar ul .first-arrow').toggleClass("rotate");
+        });
+        $('aside .sidebar ul li').click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+        
+    </script>
 </body>
-
 </html>
