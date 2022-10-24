@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Material Icons CDN -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+
     <!-- CSS STYLESHEET-->
     <link rel="stylesheet" href="styles/css/dashstyle.css">
     
@@ -26,16 +27,16 @@
 </head>
 
 <body>
-    <div class="contenedor">
+    <div class="container">
         <aside>
             <!-- LOGOTYPE DIV -->
-            <div class="topClass">
+            <div class="top">
                 <div class="logo">
                     <!-- <img src="img/dashimgs/graduation.svg" alt="logotype"> -->
-                    <span class="material-icons-sharp logo">school</span>
+                    <span class="material-icons-sharp">school</span>
                     <h2>SIS<span class="primary">ESCOLAR</span></h2>
                 </div>
-                <div class="closeClassBtn" id="close-btn">
+                <div class="close" id="close-btn">
                     <span class="material-icons-sharp">close</span>
                 </div>
             </div>
@@ -98,6 +99,13 @@
                             </li> -->
                             
                         </ul>
+                    </li>
+                    <li class="">
+                        <a class="" href="#">
+                            <span class="material-icons-sharp">mail_outline</span>
+                            <h3>Mensajes</h3>
+                            <span class="message-count">26</span>
+                        </a>
                     </li>
                     <li class="CloseSession">
                         <a href="controllers/controller_logout.php">
@@ -176,19 +184,19 @@
             </div>
             <!--------------------- END OF INSIGHTS ---------------------->
             <div class="recent-orders">
-                <h2>Recent Oders</h2>
+                <h2>Pedidos Recientes</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Product Name</th>
-                            <th>Product number</th>
-                            <th>Payment</th>
-                            <th>Status</th>
+                            <th>Nombre del Producto</th>
+                            <th>Número del producto</th>
+                            <th>Método de Pago</th>
+                            <th>Estado</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <td>Foldable Mini Drone</td>
                             <td>8564</td>
                             <td>Due</td>
@@ -222,7 +230,7 @@
                             <td>Due</td>
                             <td class="warning">Pending</td>
                             <td class="primary">Details</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <a href="">Show All</a>
@@ -231,18 +239,18 @@
         <!---------------------------- END OF MAIN ------------------->
 
         <div class="right">
-            <div class="topClass">
+            <div class="top">
                 <button id="menu-btn">
                     <span class="material-icons-sharp">menu</span>
                 </button>
                 <div class="theme-toggler">
-                    <span class="material-icons-sharp">light_mode</span>
+                    <span class="material-icons-sharp active">light_mode</span>
                     <span class="material-icons-sharp">dark_mode</span>
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>
-                                <!-- <?php echo '<h1>' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . '</h1>'; ?> -->
+                        <p>Hola, <b>
+                        <?php echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
                             </b></p>
                         <small class="text-muted">Admin</small>
                     </div>
@@ -251,9 +259,9 @@
                     </div>
                 </div>
             </div>
-            <!------------------------------- END OF top / topClass ------------------------>
+            <!------------------------------- END OF top / top ------------------------>
             <div class="recent-updates">
-                <h2>Recent Updates</h2>
+                <h2>Actualizaciones Recientes</h2>
                 <div class="updates">
                     <div class="update">
                         <div class="profile-photo">
@@ -285,25 +293,54 @@
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
                     </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./img/altindeximages/welcoming.svg" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of
-                                Night lion tech GPS drone.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
+                </div>
+            </div>
+            <!-- END OF RECENT UPDATES -->
+            <div class="sales-analytics">
+                <h2>Metricas de Ventas</h2>
+                <div class="item online">
+                    <div class="icon">
+                        <span class="material-icons-sharp">shopping_cart</span>
                     </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./img/altindeximages/avatar.svg" alt="">
+                    <div class="right">
+                        <div class="info">
+                            <h3>Pedidos en línea</h3>
+                            <small class="text-muted">Last 24 Hours</small>
                         </div>
-                        <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of
-                                Night lion tech GPS drone.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
+                        <h5 class="success">+39%</h5>
+                        <h3>3849</h3>
+                    </div>
+                </div>
+                <div class="item offline">
+                    <div class="icon">
+                        <span class="material-icons-sharp">local_mall</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Pedidos presenciales</h3>
+                            <small class="text-muted">Last 24 Hours</small>
                         </div>
+                        <h5 class="danger">+17%</h5>
+                        <h3>1100</h3>
+                    </div>
+                </div>
+                <div class="item customers">
+                    <div class="icon">
+                        <span class="material-icons-sharp">person</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Nuevos clientes</h3>
+                            <small class="text-muted">Last 24 Hours</small>
+                        </div>
+                        <h5 class="success">+25%</h5>
+                        <h3>849</h3>
+                    </div>
+                </div>
+                <div class="item add-product">
+                    <div>
+                        <span class="material-icons-sharp">add</span>
+                        <h3>Agregar Producto</h3>
                     </div>
                 </div>
             </div>
@@ -320,5 +357,8 @@
         });
         
     </script>
+    <!-- SCRIPT JS -->
+    <script src="./js/dashboard/orders.js"></script>
+    <script src="./js/dashboard/inicio.js"></script>    
 </body>
 </html>
