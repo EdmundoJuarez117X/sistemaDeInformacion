@@ -17,9 +17,10 @@
                 $_SESSION["nombre_persona"]=$datos->nombre_persona;
                 $_SESSION["apellido_paterno"]=$datos->apellido_paterno;
                 //Redireccionamos al inicio del sitio web (dashboard)
-                header("location:inicio.php");
+                header("location:./views/dashboard/inicio.php");
             } else {
                 echo "<div class='alert alert-danger'>Correo o Contraseña incorrectos</div>";
+                session_destroy();
             }
             
         } else {

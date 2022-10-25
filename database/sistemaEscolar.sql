@@ -109,8 +109,8 @@ DROP TABLE IF EXISTS `telefono`;
 
 CREATE TABLE IF NOT EXISTS `telefono` (
     `id_telefono` int(3) NOT NULL AUTO_INCREMENT,
-    `lada_tel` varchar(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `numero_telefonico` int(10) NOT NULL,
+    `lada_tel` varchar(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '+52' NOT NULL ,
+    `numero_telefonico` varchar(10) NOT NULL,
     `f_creacion_tel` datetime NOT NULL,
     `f_modificacion_tel` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     PRIMARY KEY (`id_telefono`)
@@ -188,9 +188,9 @@ CREATE TABLE IF NOT EXISTS `persona`(
     `segundo_nombre` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
     `apellido_paterno` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `apellido_materno` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `edad_persona` int(3) NOT NULL,
     `genero` varchar(9) NOT NULL,
     `fecha_nacimiento` date NOT NULL,
-    `direccion_persona` varchar(300) NOT NULL,
     `email_persona` varchar(64) NOT NULL,
     `password_persona` varchar(32) NOT NULL,
     `fotoPerfil_persona` BLOB,
@@ -246,6 +246,26 @@ CREATE TABLE IF NOT EXISTS `movimiento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- -------------------------------------------------------------------------------
+--
+-- Estructura de tabla para la tabla `direccionPersona`
+--
+DROP TABLE IF EXISTS `direccionPersona`;
+CREATE TABLE IF NOT EXISTS `direccionPersona`(
+    `id_direccionPersona` int(5) NOT NULL AUTO_INCREMENT,
+    `callePersona` varchar(160) NOT NULL,
+    `numeroCallePersona` int(5) NOT NULL,
+    `coloniaPersona` varchar(160) NOT NULL,
+    `estadoPersona` varchar(130) NOT NULL,
+    `ciudadPersona` varchar(130) NOT NULL,
+    `codPostalPersona` int(6) NOT NULL,
+    `f_creacion_DirPersona` datetime NOT NULL,
+    `f_modificacion_DirPersona` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `id_persona` int(5) NOT NULL,
+    PRIMARY KEY(`id_direccionPersona`),
+    FOREIGN KEY(`id_persona`) REFERENCES`persona`(`id_persona`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- -------------------------------------------------------------------------------
 
 
 
@@ -289,10 +309,8 @@ DROP TABLE IF EXISTS `persona_telefono`;
 
 CREATE TABLE IF NOT EXISTS `persona_telefono` (
     `id_persona_telefono` int(5) NOT NULL AUTO_INCREMENT,
-    `nombre_persona` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `tipo_tel` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `lada_tel` varchar(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `numero_telefonico` int(10) NOT NULL,
+    `numero_telefonico` varchar(10) NOT NULL,
     `f_creacion_persona_telefono` datetime NOT NULL,
     `f_modificacion_persona_telefono` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `id_persona` int(5) NOT NULL,
@@ -312,10 +330,7 @@ DROP TABLE IF EXISTS `escuela_Telefono`;
 
 CREATE TABLE IF NOT EXISTS `escuela_Telefono` (
     `id_escuela_telefono` int(4) NOT NULL AUTO_INCREMENT,
-    `nombre_escuela` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `departamento_escuela` varchar(50) CHARACTER SET utf8 COLLAte utf8_unicode_ci NOT NULL,
-    `lada_tel` varchar(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `numero_telefonico` int(10) NOT NULL,
     `f_creacion_escuela_telefono` datetime NOT NULL,
     `f_modificacion_escuela_telefono` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `id_escuela` int(4) NOT NULL,

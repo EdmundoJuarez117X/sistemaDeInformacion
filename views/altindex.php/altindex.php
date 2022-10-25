@@ -14,7 +14,7 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- CSS only -->
-    <link rel="stylesheet" type="text/css" href="styles/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../styles/css/style.css">
     <title>Inicio de Sesión</title>
 </head>
 
@@ -22,17 +22,17 @@
     <img class="wave" src="img/altindeximages/wave.jpg" alt="">
     <div class="container">
         <div class="img">
-            <img src="img/altindeximages/welcoming.svg" alt="">
+            <img src="./../../img/altindeximages/welcoming.svg" alt="">
         </div>
         <div class="login-container">
             <form method="post" action="index.php">
-                <img class="avatar" src="img/altindeximages/avatar.svg" alt="login avatar">
+                <img class="avatar" src="./../../img/altindeximages/avatar.svg" alt="login avatar">
                 <h2>Bienvenido</h2>
                 <?php
                 // Conexión a la base de datos
-                include "model/connection.php";
+                include "./../../model/connection.php";
                 // Controlador para acceder al login
-                include "controllers/controller_login.php";
+                include "./../../controllers/controller_login.php";
                 ?>
                 <div class="input-div one">
                     <div class="i">

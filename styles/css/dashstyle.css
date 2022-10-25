@@ -208,6 +208,10 @@ aside .sidebar ul .dropdown-menu.show{
     display: block;
 }
 
+aside .sidebar ul .dropdown-menuCursos.show{
+    display: block;
+}
+
 aside .sidebar ul li ul li a{
     position: relative;
     padding-left: 30px;
@@ -458,7 +462,7 @@ main .recent-orders a{
 }
 
 .right .theme-toggler{
-    background: var(--color-light);
+    background: var(--color-info-light);
     display: flex;
     justify-content: space-between;
     align-items: center;
