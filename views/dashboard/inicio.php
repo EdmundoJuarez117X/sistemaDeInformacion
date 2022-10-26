@@ -133,6 +133,12 @@ if (empty($_SESSION["id_persona"])) {
                             <span class="message-count">26</span>
                         </a>
                     </li>
+                    <li class="">
+                        <a class="" href="./../panelSeg/segAsp.php">
+                            <span class="material-icons-sharp">admin_panel_settings</span>
+                            <h3>Panel de Seguimiento</h3>
+                        </a>
+                    </li>
                     <li class="CloseSession">
                         <a href="./../../controllers/controller_logout.php">
                             <span class="material-icons-sharp">logout</span>
@@ -249,7 +255,7 @@ if (empty($_SESSION["id_persona"])) {
                                         <p>Hola, <b>
                                                 <?php echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
                                             </b></p>
-                                        <small class="text-muted">Admin</small>
+                                        <small class="text-muted">ROL</small>
                                     </div>
                                     <div class="profile-photo">
                                         <img src="./../../img/altindeximages/avatar.svg" alt="">
