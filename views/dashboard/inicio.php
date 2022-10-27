@@ -102,28 +102,29 @@ if (empty($_SESSION["id_persona"])) {
                     </li>
                     <li class="">
                         <a class="dropdown-toggleCursos" href="#">
-                            <span class="material-icons-sharp">paid</span>
+                            <span class="material-icons-sharp">import_contacts</span>
                             <h3>Cursos</h3>
                             <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
                         </a>
                         <ul class="dropdown-menuCursos">
                             <li>
-                                <a class="dropdown-item" href="#">
-                                    <span class="material-icons-sharp">credit_card</span>
-                                    <h3>Curriculares</h3>
+                                <a class="dropdown-item" href="../cursos-eventos/nuevo-curso.php">
+                                    <span class="material-icons-sharp">add</span>
+                                    <h3>Nuego Curso</h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="../cursos-eventos/historial.php">
+                                    <span class="material-icons-sharp">history</span>
+                                    <h3>Historial</h3>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">
-                                    <span class="material-icons-sharp">local_atm</span>
-                                    <h3>Extracurriculares</h3>
+                                    <span class="material-icons-sharp">receipt_long</span>
+                                    <h3>Reportes</h3>
                                 </a>
                             </li>
-
-                            <!-- <li>
-                                <hr class="dropdown-divider">
-                            </li> -->
-
                         </ul>
                     </li>
                     <li class="">
