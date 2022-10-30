@@ -77,19 +77,19 @@ if (empty($_SESSION["id_persona"])) {
                                 </a>
                                 <ul class="dropdown-menuCursos">
                                     <li>
-                                        <a class="dropdown-item" href="../cursos-eventos/nuevo-curso.php">
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/nuevo-curso.php">
                                             <span class="material-icons-sharp">add</span>
                                             <h3>Nuego Curso</h3>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="../cursos-eventos/historial.php">
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/historial.php">
                                             <span class="material-icons-sharp">history</span>
                                             <h3>Historial</h3>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/reporte.php">
                                             <span class="material-icons-sharp">receipt_long</span>
                                             <h3>Reportes</h3>
                                         </a>
@@ -190,19 +190,19 @@ if (empty($_SESSION["id_persona"])) {
                                 </a>
                                 <ul class="dropdown-menuCursos">
                                     <li>
-                                        <a class="dropdown-item" href="../cursos-eventos/nuevo-curso.php">
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/nuevo-curso.php">
                                             <span class="material-icons-sharp">add</span>
                                             <h3>Nuego Curso</h3>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="../cursos-eventos/historial.php">
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/historial.php">
                                             <span class="material-icons-sharp">history</span>
                                             <h3>Historial</h3>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/reporte.php">
                                             <span class="material-icons-sharp">receipt_long</span>
                                             <h3>Reportes</h3>
                                         </a>
