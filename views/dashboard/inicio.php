@@ -44,37 +44,219 @@ if (empty($_SESSION["id_persona"])) {
             <!-- SIDEBAR / NAVBAR CODE -->
             <div class="sidebar">
                 <ul class="">
+                    <!--
+                        THE FOLLOWING CODE IS THE SAME AS THE PHP CODE INSERTION
+
                     <li class="active">
                         <a class="" href="inicio.php">
                             <span class="material-icons-sharp">grid_view</span>
                             <h3>Dashboard</h3>
                         </a>
-                    </li>
-                    <li class="">
+                    </li> -->
+                    <?php
+                        include("./../../controllers/controller_idRol.php");
+                        if ($_SESSION["id_rol"] == 4 or $_SESSION["id_rol"]==5) {
+                            echo '
+                            <li class="active">
+                                <a class="" href="inicio.php">
+                                    <span class="material-icons-sharp">grid_view</span>
+                                    <h3>Dashboard</h3>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="" href="../stripeInscrip/public/checkout.php">
+                                    <span class="material-icons-sharp">person</span>
+                                    <h3>Inscripciones</h3>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="dropdown-toggleCursos" href="#">
+                                    <span class="material-icons-sharp">import_contacts</span>
+                                    <h3>Cursos</h3>
+                                    <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
+                                </a>
+                                <ul class="dropdown-menuCursos">
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/nuevo-curso.php">
+                                            <span class="material-icons-sharp">add</span>
+                                            <h3>Nuego Curso</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/historial.php">
+                                            <span class="material-icons-sharp">history</span>
+                                            <h3>Historial</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="material-icons-sharp">receipt_long</span>
+                                            <h3>Reportes</h3>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">mail_outline</span>
+                                    <h3>Mensajes</h3>
+                                    <span class="message-count">26</span>
+                                </a>
+                            </li>
+                            
+                            <li class="CloseSession">
+                                <a href="./../../controllers/controller_logout.php">
+                                    <span class="material-icons-sharp">logout</span>
+                                    <h3>Cerrar Sesión</h3>
+                                </a>
+                            </li>
+                            ';
+                        }else{
+                            echo '
+                            <li class="active">
+                                <a class="" href="inicio.php">
+                                    <span class="material-icons-sharp">grid_view</span>
+                                    <h3>Dashboard</h3>
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">person</span>
+                                    <h3>Incripciones</h3>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">person</span>
+                                    <h3>Clientes</h3>
+                                </a>
+                            </li>
+                            
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">report</span>
+                                    <h3>Reportes</h3>
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">add</span>
+                                    <h3>Agregar Producto</h3>
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">settings</span>
+                                    <h3>Ajustes</h3>
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a class="dropdown-toggle" href="#">
+                                    <span class="material-icons-sharp">paid</span>
+                                    <h3>Pagos</h3>
+                                    <span class="material-icons-sharp arrow_down first-arrow">keyboard_arrow_down</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="material-icons-sharp">credit_card</span>
+                                            <h3>Tarjeta de Crédito</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="material-icons-sharp">local_atm</span>
+                                            <h3>Efectivo</h3>
+                                        </a>
+                                    </li>
+
+                                    <!-- <li>
+                                        <hr class="dropdown-divider">
+                                    </li> -->
+
+                                </ul>
+                            </li>
+
+                            <li class="">
+                                <a class="dropdown-toggleCursos" href="#">
+                                    <span class="material-icons-sharp">import_contacts</span>
+                                    <h3>Cursos</h3>
+                                    <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
+                                </a>
+                                <ul class="dropdown-menuCursos">
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/nuevo-curso.php">
+                                            <span class="material-icons-sharp">add</span>
+                                            <h3>Nuego Curso</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/historial.php">
+                                            <span class="material-icons-sharp">history</span>
+                                            <h3>Historial</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="material-icons-sharp">receipt_long</span>
+                                            <h3>Reportes</h3>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">mail_outline</span>
+                                    <h3>Mensajes</h3>
+                                    <span class="message-count">26</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="" href="./../panelSeg/segAsp.php">
+                                    <span class="material-icons-sharp">admin_panel_settings</span>
+                                    <h3>Panel de Seguimiento</h3>
+                                </a>
+                            </li>
+                            <li class="CloseSession">
+                                <a href="./../../controllers/controller_logout.php">
+                                    <span class="material-icons-sharp">logout</span>
+                                    <h3>Cerrar Sesión</h3>
+                                </a>
+                            </li>
+                            ';
+                        }
+                    ?>
+                    <!-- <li class="">
                         <a class="" href="#">
                             <span class="material-icons-sharp">person</span>
                             <h3>Clientes</h3>
                         </a>
-                    </li>
-                    <li class="">
+                    </li> -->
+                    <!-- <li class="">
                         <a class="" href="#">
                             <span class="material-icons-sharp">report</span>
                             <h3>Reportes</h3>
                         </a>
-                    </li>
-                    <li class="">
+                    </li> -->
+                    <!-- <li class="">
                         <a class="" href="#">
                             <span class="material-icons-sharp">add</span>
                             <h3>Agregar Producto</h3>
                         </a>
-                    </li>
-                    <li class="">
+                    </li> -->
+                    <!-- <li class="">
                         <a class="" href="#">
                             <span class="material-icons-sharp">settings</span>
                             <h3>Ajustes</h3>
                         </a>
-                    </li>
-                    <li class="">
+                    </li> -->
+                    <!-- <li class="">
                         <a class="dropdown-toggle" href="#">
                             <span class="material-icons-sharp">paid</span>
                             <h3>Pagos</h3>
@@ -94,13 +276,13 @@ if (empty($_SESSION["id_persona"])) {
                                 </a>
                             </li>
 
-                            <!-- <li>
+                            <li>
                                 <hr class="dropdown-divider">
-                            </li> -->
+                            </li> 
 
                         </ul>
-                    </li>
-                    <li class="">
+                    </li> -->
+                    <!-- <li class="">
                         <a class="dropdown-toggleCursos" href="#">
                             <span class="material-icons-sharp">import_contacts</span>
                             <h3>Cursos</h3>
@@ -126,8 +308,8 @@ if (empty($_SESSION["id_persona"])) {
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="">
+                    </li> -->
+                    <!-- <li class="">
                         <a class="" href="#">
                             <span class="material-icons-sharp">mail_outline</span>
                             <h3>Mensajes</h3>
@@ -145,7 +327,9 @@ if (empty($_SESSION["id_persona"])) {
                             <span class="material-icons-sharp">logout</span>
                             <h3>Cerrar Sesión</h3>
                         </a>
-                    </li>
+                    </li> 
+                
+                NAV BAR WITHOUT ROL CONTROL-->
                 </ul>
             </div>
             <!-- END OF SIDEBAR / NAVBAR -->
@@ -256,7 +440,23 @@ if (empty($_SESSION["id_persona"])) {
                                         <p>Hola, <b>
                                                 <?php echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
                                             </b></p>
-                                        <small class="text-muted">ROL</small>
+                                            <small class="text-muted">
+                                                <?php 
+                                                    if($_SESSION["id_rol"]==1){
+                                                        echo 'Admin';
+                                                    }elseif($_SESSION["id_rol"] == 2){
+                                                        echo 'Docente';
+                                                    }elseif($_SESSION["id_rol"] == 3){
+                                                        echo 'Alumno';
+                                                    }elseif($_SESSION["id_rol"] == 4){
+                                                        echo 'Padre de Familia';
+                                                    }elseif($_SESSION["id_rol"] == 5){
+                                                        echo 'Aspirante';
+                                                    }else{
+                                                        echo 'Rol Desconocido';
+                                                    }
+                                                ?>
+                                            </small>
                                     </div>
                                     <div class="profile-photo">
                                         <img src="./../../img/altindeximages/avatar.svg" alt="">
