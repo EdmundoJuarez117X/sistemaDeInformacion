@@ -1,10 +1,29 @@
 <?php
-    session_start();
+    /*session_start();
     if (empty($_SESSION["id_persona"])) {
         header("location:../../index.php");
-    }
+    }*/
     // inicio del objeto para guadar el contenido HTML en memoria
     ob_start();
+    // QUIENES ESTAN REGISTRADOS EN EL CURSO
+    $cso = $_GET['cso'];
+    require_once("../../model/connection.php");
+    $db = $connection;
+    // query para nombre de curso
+    $query_name = "SELECT cursos.nombre_curso FROM cursos WHERE id_curso = $cso;";
+    // ejecutamos
+    $response = $db->query($query_name);
+    // obtenemos el nombre del curso
+    while($name = $response->fetch_assoc()) {
+        $course = $name['nombre_curso'];
+    }
+    // query para mostrar los datos de los usuarios registrados
+    $query = "SELECT * 
+    FROM cursos INNER JOIN docente_curso ON cursos.id_curso = docente_curso.id_curso
+    INNER JOIN docente ON docente_curso.id_docente = docente.id_docente
+    WHERE docente_curso.id_curso = $cso;";
+    // ejecutamos
+    $result = $db->query($query);
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +33,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--<link rel="stylesheet" href="../../../styles/css/eventos-cursos/eventos-cursos.css">-->
-    <title>Usuarios Registrados</title>
+    <title>Docentes Registrados</title>
 </head>
 <style>
     body {
@@ -65,71 +84,38 @@
 <body>
     <div class="container-info-pdf">
         <h2>SIS<span class="primary">ESCOLAR</span></h2>
+        <p> <?= date("y-m-d") ?> </p>
             <div class="text-about-course">
-                <h1> Curso de Verano </h1>
-                <p>Personas que adquirieron el curso.</p>
+                <h1> <?= $course ?> </h1>
+                <p>Docentes que adquirieron el curso.</p>
             </div>
             <<table class="table-register-user">
                 <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Correo Electrónico</th>
+                    <th>ID Usuario</th>
+                    <th>Nombre(s)</th>
+                    <th>Apellido paterno</th>
+                    <th>Apellido paterno</th>
                     <th>Número telefónico</th>
                     <th>ID de compra</th>
                     <th>Estado de compra</th>
                 </tr>
+        <?php
+            if($result->num_rows > 0) {
+                while($datas = $result->fetch_assoc()) {
+        ?>
                 <tr>
-                    <td>1</td>
-                    <td>Alejandro</td>
-                    <td>Ramírez</td>
-                    <td>Tirado</td>
-                    <td>a.ramirezt@upam.edu.mx</td>
-                    <td>2213646439</td>
-                    <td>cg_564654fdfh_dfgf54df</td>
-                    <td>PAGADO</td>
+                    <td><?= $datas['id_docente'] ?></td>
+                    <td><?= $datas['nombre_docente']." ".$datas['segundo_nombreDocente'] ?></td>
+                    <td><?= $datas['apellido_paternoDocente'] ?></td>
+                    <td><?= $datas['apellido_maternoDocente'] ?></td>
+                    <td><?= $datas['numero_tel_Docente'] ?></td>
+                    <td><?= $datas['id_docente_curso'] ?></td>
+                    <td><?= $datas['descripcion_pago'] ?></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Daniel</td>
-                    <td>Ramírez</td>
-                    <td>Flores</td>
-                    <td>correo1@mail.com</td>
-                    <td>2213646439</td>
-                    <td>cg_56hdfjn_4df</td>
-                    <td>PAGADO</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>MArco</td>
-                    <td>Sánchez</td>
-                    <td>Rosas</td>
-                    <td>correo1@mail.com</td>
-                    <td>4578986532</td>
-                    <td>cg_safsdfh_dfgfsa4654sdf</td>
-                    <td>PAGADO</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Gerónimo</td>
-                    <td>Torres</td>
-                    <td>Prado</td>
-                    <td>correo3@mail.com</td>
-                    <td>2213545489</td>
-                    <td>cg_5fdg54fh_dsd64df</td>
-                    <td>PAGADO</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Manuel</td>
-                    <td>Matamoros</td>
-                    <td>Pérez</td>
-                    <td>correo4@mail.com</td>
-                    <td>2213545489</td>
-                    <td>cg_5fdg54fh_dsd64df</td>
-                    <td>PAGADO</td>
-                </tr>
+        <?php
+                }
+            }
+        ?>
             </table>
     </div>
 </body>

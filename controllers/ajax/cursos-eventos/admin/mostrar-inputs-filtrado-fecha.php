@@ -16,7 +16,7 @@
         </p>
     </div>
     <div class='fields-thirds third-thirds'>
-        <input type='button' class='btn-action-see' value='FILTRAR'>   
+        <input type='button' class='btn-action-see' id='btn-filter-dates' value='FILTRAR'>   
     </div>
     ";
 ?>

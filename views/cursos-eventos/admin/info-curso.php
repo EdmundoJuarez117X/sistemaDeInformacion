@@ -1,8 +1,15 @@
 <?php
-session_start();
-if (empty($_SESSION["id_persona"])) {
-    header("location:../../../index.php");
-}
+    /*session_start();
+    if (empty($_SESSION["id_persona"])) {
+        header("location:../../../index.php");
+    }*/
+    $cso = $_GET['cso'];
+    include('../../../model/connection.php');
+    $db = $connection;
+    $query = "SELECT * FROM cursos WHERE cursos.id_curso = $cso;";
+    $datas = $db->query($query);
+    if($datas->num_rows > 0) {
+        while($curso = $datas->fetch_assoc()) {
 ?>
 <!DOCTYPE html>
     <html lang="en">
@@ -121,6 +128,12 @@ if (empty($_SESSION["id_persona"])) {
                                             <h3>Reportes</h3>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="compras.php">
+                                            <span class="material-icons-sharp">paid</span>
+                                            <h3>Compras</h3>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="">
@@ -147,6 +160,7 @@ if (empty($_SESSION["id_persona"])) {
                     <!-- END OF SIDEBAR / NAVBAR -->
                 </aside>
                 <!------------------- END OF ASIDE ---------------->
+                
                 <main>
                     <h1>Acerca del curso...</h1>
                         <div class="insights-form">
@@ -154,70 +168,68 @@ if (empty($_SESSION["id_persona"])) {
                                 <span class="material-icons-sharp">info</span>
                                 <h1>Curso 1</h1>
                                 <p>Nombre:
-                                    <div><input type="text" value="Curso 1" readonly></div>
+                                    <div><input type="text" value="<?=$curso['nombre_curso']?>" readonly></div>
                                 </p>
                                 <p>Descripción:
-                                    <textarea cols="30" rows="10" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore magna aliqua.
-                                    </textarea>
+                                    <textarea cols="30" rows="10" readonly><?=$curso['descripcion_curso']?></textarea>
                                 </p>
                                 <div class="fields-middle first-middle">
                                     <p>Requisitos:
-                                        <textarea cols="30" rows="10" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        </textarea>
+                                        <textarea cols="30" rows="10" readonly><?=$curso['requisitos_curso']?></textarea>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Responsables:
-                                        <textarea cols="30" rows="10" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        </textarea>
+                                        <textarea cols="30" rows="10" readonly><?=$curso['responsables_curso']?></textarea>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Cantidad de participantes:
-                                        <input type="text" value="10" readonly>
+                                        <input type="text" value="<?=$curso['total_participantes']?>" readonly>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
-                                    <p>Participantes registrados (<a target="__blank" href="../../archivos-pdf-php/usuarios-registrados-pdf.php">VER</a>):
-                                        <input type="text" value="5" readonly>
+                                    <p>Participantes registrados (<a target="__blank" href="../../archivos-pdf-php/<?=$curso['rol_dirigido']?>s-registrados-pdf.php?cso='<?= $curso["id_curso"] ?>'">VER</a>):
+                                        <input type="text" value="<?=$curso['participantes_registrados']?>" readonly>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Costo unitario (MXN):
-                                        <input type="text" value="$50.00" readonly>
+                                        <input type="text" value="$<?=$curso['costo_unitario']?>" readonly>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Curso para:
-                                        <input type="text" value="Alumnos" readonly>
+                                        <input type="text" value="<?=$curso['rol_dirigido']?>" readonly>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Inicia el:
                                         <div class="date">
-                                            <input type="date" value="14/01/2022" readonly>
+                                            <input type="date" value="<?=$curso['fecha_inicio_curso']?>" readonly>
                                         </div>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Finaliza el:
                                         <div class="date">
-                                            <input type="date" value="16/02/2022" readonly>
+                                            <input type="date" value="<?=$curso['fecha_fin_curso']?>" readonly>
                                         </div>
                                     </p>
                                 </div>
                                 <p>Estado del curso:
-                                    <div><input type="text" value="Activo" readonly></div>
+                                    <div><input type="text" value="<?=$curso['estatus_curso']?>" readonly></div>
                                 </p>
                                 <div class="fields-middle third-middle">
                                     <p>
-                                        <a href="https://cdn.pixabay.com/photo/2017/01/24/09/20/learn-2004905_960_720.png" target="_blank">VER PORTADA</a>
+                                        <a href="data:image/jpeg;base64,<?= base64_encode($curso["portada_curso"]) ?>" target="_blank">VER PORTADA</a>
                                     </p>
                                 </div>
-                                <button class="btn-action-form"> <a href="actualizar-curso.php">EDITAR</a></button>
+                                <button class="btn-action-form"> <a href="actualizar-curso.php?cso='<?=$curso["id_curso"]?>'">EDITAR</a></button>
                             </div>
                         </div>
                 </main>
+                
                 <!---------------------------- END OF MAIN ------------------->
         
                 <div class="right">
@@ -232,7 +244,6 @@ if (empty($_SESSION["id_persona"])) {
                         <div class="profile">
                             <div class="info">
                                 <p>Hola, <b>
-                                <?php echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
                                     </b></p>
                                 <small class="text-muted">Admin</small>
                             </div>
@@ -351,3 +362,7 @@ if (empty($_SESSION["id_persona"])) {
             <script src="../../../js/dashboard/inicio.js"></script>  
         </body>
     </html>
+<?php
+        }
+    }
+?>

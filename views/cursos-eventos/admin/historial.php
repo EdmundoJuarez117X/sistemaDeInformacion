@@ -1,8 +1,9 @@
 <?php
+/*
 session_start();
 if (empty($_SESSION["id_persona"])) {
     header("location:../../../index.php");
-}
+}*/
 ?>
 <!DOCTYPE html>
     <html lang="en"> 
@@ -116,6 +117,12 @@ if (empty($_SESSION["id_persona"])) {
                                             <h3>Reportes</h3>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="compras.php">
+                                            <span class="material-icons-sharp">paid</span>
+                                            <h3>Compras</h3>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="">
@@ -144,29 +151,26 @@ if (empty($_SESSION["id_persona"])) {
                 <!------------------- END OF ASIDE ---------------->
                 <main>
                     <h1>Historial</h1>
-                    <p>Oprima sobre el nombre del curso para ver la información completa u oprima sobre
-                        el total de accesos registrados para ver los usuarios.
-                    </p>
-                    <!--------------------- END OF INSIGHTS ---------------------->
+                    <p>Presiona sobre el <strong>Nombre del curso</strong> para ver la información completa o
+                    puedes presionar sobre los <strong>Accesos registrados</strong> para observar la lista de ususarios.</p>
                     <!--------------------- HISTORIAL ---------------------->
-                    <!--<button id="showData" class="btnSeg">Mostrar todos los cursos</button>-->
                     <div class="insights-table">
-                            <table class="table-fixed">
-                                <thead>
-                                    <tr>
-                                        <th>Curso</th>
-                                        <th>Accesos <br> totales</th>
-                                        <th>Accesos <br> registrados</th>
-                                        <th>Costo <br> unitario</th>
-                                        <th>Estado</th>
-                                        <th>Editar</th>
-                                        <th>Activar<br>Desactivar</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-container">
-                                    <?php require_once '../../../controllers/ajax/cursos-eventos/show-datas-table.php' ?>
-                                </tbody>
-                            </table>
+                        <table class="table-fixed">
+                            <thead>
+                                <tr>
+                                    <th>Curso</th>
+                                    <th>Accesos <br> totales</th>
+                                    <th>Accesos <br> registrados</th>
+                                    <th>Costo <br> unitario</th>
+                                    <th>Estado</th>
+                                    <th>Editar</th>
+                                    <th>Activar<br>Desactivar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-container">
+                                    
+                            </tbody>
+                        </table>
                     </div>
                     <!--------------------- FIN HISTORIAL ---------------------->
                 </main>
@@ -183,7 +187,6 @@ if (empty($_SESSION["id_persona"])) {
                         <div class="profile">
                             <div class="info">
                                 <p>Hola, <b>
-                                <?php echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
                                     </b></p>
                                 <small class="text-muted">Admin</small>
                             </div>
@@ -252,5 +255,10 @@ if (empty($_SESSION["id_persona"])) {
             </script>
             <!-- SCRIPT JS -->
             <script src="../../../js/dashboard/inicio.js"></script>
+            <!--SCRIPT PARA SWEET ALERT-->
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <!--SCRIPT PARA LAS ACCIONES DE ADMINISTRADOR-->
+            <script src="../../../js/cursos-eventos/admin/actions-admin.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         </body>
     </html>

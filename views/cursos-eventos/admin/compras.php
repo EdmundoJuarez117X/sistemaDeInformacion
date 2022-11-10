@@ -6,7 +6,7 @@ if (empty($_SESSION["id_persona"])) {
 }*/
 ?>
 <!DOCTYPE html>
-    <html lang="en">        
+    <html lang="en"> 
         <head>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,12 +16,13 @@ if (empty($_SESSION["id_persona"])) {
         
             <!-- CSS STYLESHEET-->
             <link rel="stylesheet" href="../../../styles/css/eventos-cursos/eventos-cursos.css">
+            <!-- CSS only -->
             
             <!-- FOR NAVBAR SUBMENUS -->
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         
-            <title>Reportes</title>
+            <title>Compras</title>
         </head>
         <body>
             <div class="container">
@@ -90,11 +91,6 @@ if (empty($_SESSION["id_persona"])) {
                                             <h3>Efectivo</h3>
                                         </a>
                                     </li>
-
-                                    <!-- <li>
-                                        <hr class="dropdown-divider">
-                                    </li> -->
-
                                 </ul>
                             </li>
                             <li class="active">
@@ -117,7 +113,7 @@ if (empty($_SESSION["id_persona"])) {
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="reporte.php">
                                             <span class="material-icons-sharp">report</span>
                                             <h3>Reportes</h3>
                                         </a>
@@ -154,40 +150,31 @@ if (empty($_SESSION["id_persona"])) {
                     <!-- END OF SIDEBAR / NAVBAR -->
                 </aside>
                 <!------------------- END OF ASIDE ---------------->
-                <!-- ======================== FORMATO DE REPORTES ======================= -->
                 <main>
-                    <h1>Reportes</h1>
-                    <div class="insights-form">
-                        <div class="sales-form">
-                            <span class="material-icons-sharp">report</span>
-                            <h1>Acerca de los cursos</h1>
-                            <p class="p-instructions">Puede obtener información por periodos o por filtrado de fechas.</p>
-                            <div>
-                                <div class="fields-middle first-middle">
-                                    <p>Cursos por periodos:
-                                        <select name="report_period" id="report_period" required>
-                                            <option value="op1" selected>Último mes</option>
-                                            <option value="op2">Últimos seis meses</option>
-                                            <option value="op3">Último año</option>
-                                            <option value="op4">Por fecha</option>
-                                        </select>
-                                    </p>
-                                </div>
-                                <div class="fields-middle second-middle">
-                                    <button class="btn-action-see" id="btn-see-info">VER</button> 
-                                </div>
-                            </div>
-                            <!-- INPUTS DE FILTRADO POR FECHA -->
-                            <div id="show-inputs-data-filter"></div>
-                            <!-- CONTENEDOR DE REPORTES -->
-                            <div class='container-reportes-cursos' id="report-courses-info">
-                            </div>
-                            <!-- FIN -->
-                        </div>
+                    <h1>Todas las compras</h1>
+                    <button  class="btnSeg" id="btn-compras-alumnos">Alumnos</button>
+                    <button  class="btnSeg" id="btn-compras-docentes">Docentes</button>
+                    <!--------------------- HISTORIAL ---------------------->
+                    <div class="insights-table">
+                        <table class="table-fixed">
+                            <thead>
+                                <tr>
+                                    <th>ID Compra</th>
+                                    <th>ID usuario</th>
+                                    <th>ID Curso</th>
+                                    <th>Accesos comprados</th>
+                                    <th>Costo total</th>
+                                    <th>Fecha de compra</th>
+                                    <th>Ticket</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-container-compras">
+                                
+                            </tbody>
+                        </table>
                     </div>
                 </main>
-                <!-- ======================== FIN DE FORMATO DE REPORTES ======================= -->
-        
+                <!---------------------------- END OF MAIN ------------------->
                 <div class="right">
                     <div class="top">
                         <button id="menu-btn">
@@ -200,7 +187,6 @@ if (empty($_SESSION["id_persona"])) {
                         <div class="profile">
                             <div class="info">
                                 <p>Hola, <b>
-                                <?php // echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
                                     </b></p>
                                 <small class="text-muted">Admin</small>
                             </div>
@@ -209,7 +195,7 @@ if (empty($_SESSION["id_persona"])) {
                             </div>
                         </div>
                     </div>
-                    <!------------------------------- END OF top / top ------------------------>
+                    <!------------------------------- END OF top / top ------------------------> 
                     <div class="recent-updates">
                         <h2>Actualizaciones Recientes</h2>
                         <div class="updates">
@@ -244,56 +230,7 @@ if (empty($_SESSION["id_persona"])) {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- END OF RECENT UPDATES -->
-                    <div class="sales-analytics">
-                        <h2>Metricas de Ventas</h2>
-                        <div class="item online">
-                            <div class="icon">
-                                <span class="material-icons-sharp">shopping_cart</span>
-                            </div>
-                            <div class="right">
-                                <div class="info">
-                                    <h3>Pedidos en línea</h3>
-                                    <small class="text-muted">Last 24 Hours</small>
-                                </div>
-                                <h5 class="success">+39%</h5>
-                                <h3>3849</h3>
-                            </div>
-                        </div>
-                        <div class="item offline">
-                            <div class="icon">
-                                <span class="material-icons-sharp">local_mall</span>
-                            </div>
-                            <div class="right">
-                                <div class="info">
-                                    <h3>Pedidos presenciales</h3>
-                                    <small class="text-muted">Last 24 Hours</small>
-                                </div>
-                                <h5 class="danger">+17%</h5>
-                                <h3>1100</h3>
-                            </div>
-                        </div>
-                        <div class="item customers">
-                            <div class="icon">
-                                <span class="material-icons-sharp">person</span>
-                            </div>
-                            <div class="right">
-                                <div class="info">
-                                    <h3>Nuevos clientes</h3>
-                                    <small class="text-muted">Last 24 Hours</small>
-                                </div>
-                                <h5 class="success">+25%</h5>
-                                <h3>849</h3>
-                            </div>
-                        </div>
-                        <div class="item add-product">
-                            <div>
-                                <span class="material-icons-sharp">add</span>
-                                <h3>Agregar Producto</h3>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                   
                 </div>
             </div>
             <!-- Script for navbar arrows and show the elements -->
@@ -316,11 +253,10 @@ if (empty($_SESSION["id_persona"])) {
                     });
             </script>
             <!-- SCRIPT JS -->
-            <script src="../../../js/dashboard/inicio.js"></script>   
+            <script src="../../../js/dashboard/inicio.js"></script>
             <!-- Script de PARA USAR JAVASCRIPT-->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <!-- Script de visualizacion de gráfica -->
             <script src="../../../js/cursos-eventos/admin/actions-admin.js"></script>
-            <script src="../../../js/cursos-eventos/admin/descargar-reporte.js"></script>
         </body>
     </html>

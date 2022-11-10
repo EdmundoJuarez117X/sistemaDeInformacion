@@ -1,8 +1,9 @@
 <?php
+/*
 session_start();
 if (empty($_SESSION["id_persona"])) {
     header("location:../../../index.php");
-}
+}*/
 ?>
 <!DOCTYPE html>
     <html lang="en">
@@ -121,6 +122,12 @@ if (empty($_SESSION["id_persona"])) {
                                             <h3>Reportes</h3>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="compras.php">
+                                            <span class="material-icons-sharp">paid</span>
+                                            <h3>Compras</h3>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="">
@@ -149,30 +156,30 @@ if (empty($_SESSION["id_persona"])) {
                 <!------------------- END OF ASIDE ---------------->
                 <main>
                     <h1>Registrar Curso</h1>
-                    <form action="" method="">
+                    <form action="../../../controllers/ajax/cursos-eventos/admin/registrar-curso.php" method="POST">
                         <div class="insights-form">
                             <div class="sales-form">
                                 <span class="material-icons-sharp">post_add</span>
                                 <h1>Completa el formulario y registra</h1>
                                 <p>Nombre:
-                                    <div><input type="text" name="course_name" id="curso_name" required></div>
+                                    <div><input type="text" id="course_name" required></div>
                                 </p>
                                 <p>Descripción:
-                                    <textarea name="course_description" id="course_description" cols="30" rows="10" required></textarea>
+                                    <textarea id="course_description" cols="30" rows="10" required></textarea>
                                 </p>
                                 <div class="fields-middle first-middle">
                                     <p>Requisitos:
-                                        <textarea name="course_requirements" id="course_requirements" cols="30" rows="10" required></textarea>
+                                        <textarea id="course_requirements" cols="30" rows="10" required></textarea>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Responsables:
-                                        <textarea name="course_responsible" id="course_responsible" cols="30" rows="10" required></textarea>
+                                        <textarea id="course_responsible" cols="30" rows="10" required></textarea>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Cantidad de participantes:
-                                        <input type="number" placeholder="0" min="0" required>
+                                        <input type="number" id="total_participantes" placeholder="0" min="0" required>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
@@ -182,48 +189,45 @@ if (empty($_SESSION["id_persona"])) {
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Costo unitario (MXN):
-                                        <input type="number" placeholder="0.00" min="0" step=".01" required>
+                                        <input type="number" id="costo_unitario" placeholder="0.00" min="0" step=".01" required>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Curso para:
-                                        <select name="select_status" id="select_status" required>
-                                            <option value="administrador">Administrador</option>
+                                        <select id="select_user" required>
                                             <option value="docente">Docente</option>
                                             <option value="alumno" selected>Alumno</option>
-                                            <option value="padreFamilia">Padre de Familia</option>
-                                            <option value="aspirante">Aspirante</option>
                                           </select>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Inicia el:
                                         <div class="date">
-                                            <input type="date" name="course_date" id="course_date" required>
+                                            <input type="date" id="date_initial" required>
                                         </div>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Finaliza el:
                                         <div class="date">
-                                            <input type="date" name="course_date" id="course_date" required>
+                                            <input type="date" id="date_end" required>
                                         </div>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Estado del curso:
-                                        <select name="select_status" id="select_status" required>
-                                            <option value="active" selected>activo</option>
-                                            <option value="inactive">inactivo</option>
+                                        <select id="select_status" required>
+                                            <option value="activo" selected>activo</option>
+                                            <option value="inactivo">inactivo</option>
                                           </select>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Imágen de portada (jpeg, gif, png):
-                                        <input type="file" name="course_image" id="course_image" accept="image/png, image/gif, image/jpeg" required>
+                                        <input type="file" id="course_image" accept="image/png, image/gif, image/jpeg" required>
                                     </p>    
                                 </div>
-                                <input type="button" class="btn-action-form" value="REGISTRAR" onclick="">
+                                <input type="button" id="btn-register-course" class="btn-action-form" value="REGISTRAR">
                             </div>
                         </div>
                     </form>
@@ -242,7 +246,7 @@ if (empty($_SESSION["id_persona"])) {
                         <div class="profile">
                             <div class="info">
                                 <p>Hola, <b>
-                                <?php echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
+                                <?php //echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
                                     </b></p>
                                 <small class="text-muted">Admin</small>
                             </div>
@@ -358,6 +362,9 @@ if (empty($_SESSION["id_persona"])) {
                     });
             </script>
             <!-- SCRIPT JS -->
-            <script src="../../../js/dashboard/inicio.js"></script>   
+            <script src="../../../js/dashboard/inicio.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script src="../../../js/cursos-eventos/admin/actions-admin.js"></script>
         </body>
     </html>

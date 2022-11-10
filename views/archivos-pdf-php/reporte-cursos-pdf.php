@@ -1,25 +1,70 @@
 <?php
-    session_start();
+    /*session_start();
     if (empty($_SESSION["id_persona"])) {
         header("location:../../index.php");
-    }
+    }*/
 
+    require_once("../../model/connection.php");
+    $db = $connection;
+    // inicio del objeto para guadar el contenido HTML en memoria
+    ob_start();
+
+    // obtenemos la fecha actual
+    $fecha_actual = date("y-m-d");
     // obtenenmos el periodo que se seleccionó
     if(htmlspecialchars($_GET["pdo"]) == "op1") {
         $pdo = "Último mes";
+        // Generar la query de los cursos que se encuentren desde la fecha actual hasta el perido
+        $periodo = date("y-m-d",strtotime($fecha_actual."- 1 month"));
+        //$query = "SELECT * FROM cursos WHERE cursos.f_creacion_curso BETWEEN '$periodo 00:00:00' AND '$fecha_actual 23:59:59';";
+        $query = "SELECT * FROM cursos WHERE cursos.f_creacion_curso BETWEEN '$periodo 00:00:00' AND '$fecha_actual 23:59:59';";
     }
     if(htmlspecialchars($_GET["pdo"]) == "op2") {
         $pdo = "Últimos seis  meses";
+        // Generar la query de los cursos que se encuentren desde la fecha actual hasta el perido
+        $periodo = date("y-m-d",strtotime($fecha_actual."- 6 month"));
+        $query = "SELECT * FROM cursos WHERE cursos.f_creacion_curso BETWEEN '$periodo 00:00:00' AND '$fecha_actual 23:59:59';";
     }
     if(htmlspecialchars($_GET["pdo"]) == "op3") {
         $pdo = "Último año";
+        // Generar la query de los cursos que se encuentren desde la fecha actual hasta el perido
+        $periodo = date("y-m-d",strtotime($fecha_actual."- 1 year"));
+        $query = "SELECT * FROM cursos WHERE cursos.f_creacion_curso BETWEEN '$periodo 00:00:00' AND '$fecha_actual 23:59:59';";
     }
     if(htmlspecialchars($_GET["pdo"]) == "op4") {
         $pdo = htmlspecialchars($_GET["fchaI"]). " a ". htmlspecialchars($_GET["fchaF"]);
+        // obtenemos las fechas
+        $dInitial = $_GET['fchaI'];
+        $dFinal = $_GET["fchaF"];
+        // query mediante fechas filtradas
+        $query = "SELECT * FROM cursos WHERE cursos.f_creacion_curso BETWEEN '$dInitial 00:00:00' AND '$dFinal 23:59:59';";
     }
-
-    // inicio del objeto para guadar el contenido HTML en memoria
-    ob_start();
+    // ejecutar la query
+    $response = $db->query($query);
+    // se ha ejecutado?
+    if(!$response) {
+        die("No se pudo generar la consulta --->". mysqli_error($db));
+    }
+    // existen campos registrados?
+    if($response->num_rows > 0) {
+        $activos = 0; // almacena los cursos activos
+        $inactivos = 0; // almacena los cursos inactivos
+        $total = 0; // almacena el total de curso
+        while($datas = $response->fetch_assoc()) {
+            if($datas['estatus_curso'] == "activo") {
+                $activos ++;
+            } else if($datas['estatus_curso'] == "inactivo") {
+                $inactivos ++;
+            }
+            $total ++;
+        }
+    }
+    // ejeuctar para mostrar en contenedor
+    $result = $db->query($query);
+    // se ha ejecutado ?
+    if(!$result) {
+        die("Error de consulta --> ". mysqli_error($db));
+    }
 
 ?>
 <!DOCTYPE html>
@@ -58,6 +103,7 @@
         height: 1px;
         background: rgb(190, 190, 190);
         margin-top: 30px;
+        margin-bottom: 30px;
     }
     .container-info-pdf .text-about-course h1 {
         font-size: 35px;
@@ -72,7 +118,8 @@
         border-radius: 8px;
         padding: 5px 10px;
         font-size: 12px;
-        background: #eee;
+        background: #F9F9F9;
+        margin-bottom: 20px;
     }
     .container-reportes-cursos .p-courses-info {
         font-size: 18px;
@@ -112,142 +159,55 @@
             <div class='container-reportes-cursos'>
                 <div class='fields-middle third-middle'>
                     <p class='p-resume-course'>RESUMEN</p>
-                    <p>Cursos activos: <strong> 8 </strong></p>
-                    <p>Cursos finalizados: <strong> 10 </strong></p>
-                    <p>Cursos cancelados: <strong> 3 </strong></p>
+                    <p>Cursos activos: <strong> <?= $activos ?> </strong></p>
+                    <p>Cursos finalizados: <strong> <?= $inactivos ?> </strong></p>
+                    <p>Cantidad de cursos: <strong> <?= $total ?> </strong></p>
                 </div>
                 <div class="separator"></div>
                 <!-- ======================== CONTENEDOR DE CURSOS ACTIVOS ======================= -->
                 <div>
-                    <p class='p-courses-info'>CURSOS ACTIVOS</p>
+                    <p class='p-courses-info'>CURSOS</p>
                 </div>
+
+                <?php
+                //existen datos registrados?
+                if($result->num_rows > 0) {
+                    // imprime cada campo en...
+                    while($data = $result->fetch_assoc()) {
+                ?>
+
                 <div class='container-info-course'>
-                    <p class='p-name-course-info'> <strong> Curso de Verano </strong></p>
+                    <p class='p-name-course-info'> <strong> <?= $data['nombre_curso'] ?> </strong></p>
 
                     <div class='first-middle'>
                         <p class='first-date-info'>
-                            <strong>Inicia:</strong> 25/12/2022
+                            <strong>Inicia:</strong> <?= $data['fecha_inicio_curso'] ?>
                         </p>
                     </div>
                     <div class='second-middle'>
                         <p class='second-date-info'>
-                            <strong>Finaliza:</strong> 01/01/2023
+                            <strong>Finaliza:</strong> <?= $data['fecha_fin_curso'] ?>
                         </p>
                     </div>
 
-                    <p class='p-description-course-info'><strong>Descripción:</strong>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
-                    </p>
+                    <p class='p-description-course-info'><strong>Descripción:</strong> <?= $data['descripcion_curso'] ?> </p>
 
-                    <p class='p-description-course-info'><strong>Requisitos:</strong>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                        labore et dolore magna aliqua.
-                    </p>
+                    <p class='p-description-course-info'><strong>Requisitos:</strong> <?= $data['requisitos_curso'] ?> </p>
 
-                    <p class='p-description-course-info'><strong>Responsables:</strong>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                        labore et dolore magna aliqua.
-                    </p>
+                    <p class='p-description-course-info'><strong>Responsables:</strong> <?= $data['responsables_curso'] ?> </p>
                     
-                    <p class='p-description-course-info first-data'><strong>Curso exclusivamente para:</strong> Alumnos</p>
-                    <p class='p-description-course-info second-data'><strong>Estado del curso:</strong> activo</p>
-                    <p class='p-description-course-info'><strong>Cantidad de participantes:</strong> 32</p>
-                    <p class='p-description-course-info'><strong>Paticipantes registrados:</strong> 30</p>
-                    <p class='p-description-course-info'><strong>Costo unitario (MXN):</strong> $32.50</p>
-                    <p class='p-description-course-info'><strong>Monto generado (MXN):</strong> $975.00</p>
+                    <p class='p-description-course-info first-data'><strong>Curso exclusivamente para:</strong> <?= $data['rol_dirigido'] ?> </p>
+                    <p class='p-description-course-info second-data'><strong>Estado del curso:</strong> <?= $data['estatus_curso'] ?> </p>
+                    <p class='p-description-course-info'><strong>Cantidad de participantes:</strong> <?= $data['total_participantes'] ?> </p>
+                    <p class='p-description-course-info'><strong>Paticipantes registrados:</strong> <?= $data['participantes_registrados'] ?> </p>
+                    <p class='p-description-course-info'><strong>Costo unitario (MXN):</strong> $<?= $data['costo_unitario'] ?> </p>
+                    <p class='p-description-course-info'><strong>Monto generado (MXN):</strong> $<?= ($data['costo_unitario']) * ($data['participantes_registrados']) ?> </p>
                 </div>
-            <div class="separator"></div>
-                <!-- ======================== CONTENEDOR DE CURSOS INACTIVOS ======================= -->
-                <div>
-                    <p class='p-courses-info'>CURSOS FINALIZADOS</p>
-                </div>
-                <div class='container-info-course'>
-                    <p class='p-name-course-info'> <strong> Curso de Verano </strong></p>
-
-                    <div class='first-middle'>
-                        <p class='first-date-info'>
-                            <strong>Inicia:</strong> 25/12/2022
-                        </p>
-                    </div>
-                    <div class='second-middle'>
-                        <p class='second-date-info'>
-                            <strong>Finaliza:</strong> 01/01/2023
-                        </p>
-                    </div>
-
-                    <p class='p-description-course-info'><strong>Descripción:</strong>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
-                    </p>
-
-                    <p class='p-description-course-info'><strong>Requisitos:</strong>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                        labore et dolore magna aliqua.
-                    </p>
-
-                    <p class='p-description-course-info'><strong>Responsables:</strong>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                        labore et dolore magna aliqua.
-                    </p>
-                    
-                    <p class='p-description-course-info first-data'><strong>Curso exclusivamente para:</strong> Alumnos</p>
-                    <p class='p-description-course-info second-data'><strong>Estado del curso:</strong> Inactivo</p>
-                    <p class='p-description-course-info'><strong>Cantidad de participantes:</strong> 32</p>
-                    <p class='p-description-course-info'><strong>Paticipantes registrados:</strong> 30</p>
-                    <p class='p-description-course-info'><strong>Costo unitario (MXN):</strong> $32.50</p>
-                    <p class='p-description-course-info'><strong>Monto generado (MXN):</strong> $975.00</p>
-                </div>
-            <div class="separator"></div>
-                <!-- ======================== CONTENEDOR DE CURSOS CANCELADOS ======================= -->
-                <div>
-                    <p class='p-courses-info'>CURSOS CANCELADOS</p>
-                </div>
-                <div class='container-info-course'>
-                    <p class='p-name-course-info'> <strong> Curso de Verano </strong></p>
-
-                    <div class='first-middle'>
-                        <p class='first-date-info'>
-                            <strong>Inicia:</strong> 25/12/2022
-                        </p>
-                    </div>
-                    <div class='second-middle'>
-                        <p class='second-date-info'>
-                            <strong>Finaliza:</strong> 01/01/2023
-                        </p>
-                    </div>
-
-                    <p class='p-description-course-info'><strong>Descripción:</strong>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
-                    </p>
-
-                    <p class='p-description-course-info'><strong>Requisitos:</strong>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                        labore et dolore magna aliqua.
-                    </p>
-
-                    <p class='p-description-course-info'><strong>Responsables:</strong>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                        labore et dolore magna aliqua.
-                    </p>
-                    
-                    <p class='p-description-course-info first-data'><strong>Curso exclusivamente para:</strong> Alumnos</p>
-                    <p class='p-description-course-info second-data'><strong>Estado del curso:</strong> Cancelado</p>
-                    <p class='p-description-course-info'><strong>Cantidad de participantes:</strong> 32</p>
-                    <p class='p-description-course-info'><strong>Paticipantes registrados:</strong> 30</p>
-                    <p class='p-description-course-info'><strong>Costo unitario (MXN):</strong> $32.50</p>
-                    <p class='p-description-course-info'><strong>Monto generado (MXN):</strong> $975.00</p>
-                </div>
+                
+                <?php
+                    }
+                }
+                ?>
             </div>
     </div>
 </body>

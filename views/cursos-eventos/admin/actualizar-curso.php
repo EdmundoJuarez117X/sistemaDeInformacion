@@ -1,8 +1,16 @@
 <?php
-session_start();
-if (empty($_SESSION["id_persona"])) {
-    header("location:../../../index.php");
-}
+    /*session_start();
+    if (empty($_SESSION["id_persona"])) {
+        header("location:../../../index.php");
+    }*/
+
+    $cso = $_GET['cso'];
+    include('../../../model/connection.php');
+    $db = $connection;
+    $query = "SELECT * FROM cursos WHERE cursos.id_curso = $cso;";
+    $datas = $db->query($query);
+    if($datas->num_rows > 0) {
+        while($curso = $datas->fetch_assoc()) {
 ?>
 <!DOCTYPE html>
     <html lang="en">
@@ -121,6 +129,12 @@ if (empty($_SESSION["id_persona"])) {
                                             <h3>Reportes</h3>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="compras.php">
+                                            <span class="material-icons-sharp">paid</span>
+                                            <h3>Compras</h3>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="">
@@ -155,73 +169,72 @@ if (empty($_SESSION["id_persona"])) {
                                 <span class="material-icons-sharp">update</span>
                                 <h1>Edita los campos y guarda los cambios</h1>
                                 <p>Nombre:
-                                    <div><input type="text" name="course_name" id="curso_name" required></div>
+                                    <div><input type="text" id="course_name" value="<?=$curso['nombre_curso']?>" required></div>
+                                    <div><input type="text" id="id_course" class="input-id-curso" value="<?=$curso['id_curso']?>" required style="display:none"></div>
                                 </p>
                                 <p>Descripción:
-                                    <textarea name="course_description" id="course_description" cols="30" rows="10" required></textarea>
+                                    <textarea id="course_description" cols="30" rows="10" required><?=$curso['descripcion_curso']?></textarea>
                                 </p>
                                 <div class="fields-middle first-middle">
                                     <p>Requisitos:
-                                        <textarea name="course_requirements" id="course_requirements" cols="30" rows="10" required></textarea>
+                                        <textarea id="course_requirements" cols="30" rows="10" required><?=$curso['requisitos_curso']?></textarea>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Responsables:
-                                        <textarea name="course_responsible" id="course_responsible" cols="30" rows="10" required></textarea>
+                                        <textarea id="course_responsible" cols="30" rows="10" required><?=$curso['responsables_curso']?></textarea>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Cantidad de participantes:
-                                        <input type="number" placeholder="10" min="5" required>
+                                        <input type="number" id="total_participantes" value="<?=$curso['total_participantes']?>" min="<?=$curso['participantes_registrados']?>" required>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
-                                    <p>Participantes registrados (<a target="__blank" href="../../archivos-pdf-php/usuarios-registrados-pdf.php">VER</a>):
-                                        <input type="text" placeholder="5" readonly>
+                                    <p>Participantes registrados (<a target="__blank" href="../../archivos-pdf-php/<?=$curso['rol_dirigido']?>s-registrados-pdf.php?cso='<?= $curso["id_curso"] ?>'">VER</a>):
+                                        <input type="text" id="participantes_registrados" value="<?=$curso['participantes_registrados']?>" readonly>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Costo unitario (MXN):
-                                        <input type="number" placeholder="0.00" min="0" step=".01" required>
+                                        <input type="number" id="costo_unitario" value="<?=$curso['costo_unitario']?>" min="0" step=".01" required>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Curso para:
-                                        <select name="select_status" id="select_status" required>
-                                            <option value="administrador">Administrador</option>
+                                        <select id="select_user" required>
+                                            <option value="<?=$curso['rol_dirigido']?>" select><?=$curso['rol_dirigido']?></option>
                                             <option value="docente">Docente</option>
-                                            <option value="alumno" selected>Alumno</option>
-                                            <option value="padreFamilia">Padre de Familia</option>
-                                            <option value="aspirante">Aspirante</option>
+                                            <option value="alumno">Alumno</option>
                                           </select>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Inicia el:
                                         <div class="date">
-                                            <input type="date" name="course_date" id="course_date" required>
+                                            <input type="date" id="date_initial" value="<?=$curso['fecha_inicio_curso']?>" required>
                                         </div>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Finaliza el:
                                         <div class="date">
-                                            <input type="date" name="course_date" id="course_date" required>
+                                            <input type="date" id="date_end" value="<?=$curso['fecha_fin_curso']?>" required>
                                         </div>
                                     </p>
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Estado del curso:
-                                        <select name="select_status" id="select_status" required>
-                                            <option value="active" selected>activo</option>
-                                            <option value="inactive">inactivo</option>
-                                            <option value="inactive">cancelado</option>
+                                        <select id="select_status" required>
+                                        <option value="<?=$curso['estatus_curso']?>" select><?=$curso['estatus_curso']?></option>
+                                            <option value="activo">activo</option>
+                                            <option value="inactivo">inactivo</option>
                                           </select>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Imágen de portada (jpeg, gif, png):
-                                        <input type="file" name="course_image" id="course_image" accept="image/png, image/gif, image/jpeg" required>
+                                        <input type="file" id="course_image" accept="image/png, image/gif, image/jpeg" required>
                                     </p>    
                                 </div>
                                 <div class="fields-middle third-middle">
@@ -229,7 +242,8 @@ if (empty($_SESSION["id_persona"])) {
                                         <a href="https://cdn.pixabay.com/photo/2017/01/24/09/20/learn-2004905_960_720.png" target="_blank">VER PORTADA ACTUAL</a>
                                     </p>
                                 </div>
-                                <input type="button" class="btn-action-form" value="GUARDAR" onclick="">
+                                <button type="button" class="btn-action-form" id="btn-save-changes">GUARDAR</button>
+                                
                             </div>
                         </div>
                     </form>
@@ -248,7 +262,6 @@ if (empty($_SESSION["id_persona"])) {
                         <div class="profile">
                             <div class="info">
                                 <p>Hola, <b>
-                                <?php echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
                                     </b></p>
                                 <small class="text-muted">Admin</small>
                             </div>
@@ -364,6 +377,13 @@ if (empty($_SESSION["id_persona"])) {
                     });
             </script>
             <!-- SCRIPT JS -->
-            <script src="../../../js/dashboard/inicio.js"></script>  
+            <script src="../../../js/dashboard/inicio.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script src="../../../js/cursos-eventos/admin/actions-admin.js"></script>
         </body>
     </html>
+<?php
+        }
+    }
+?>
