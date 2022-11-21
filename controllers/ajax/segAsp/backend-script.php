@@ -5,7 +5,7 @@ $db=$connection;
 // fetch query
 function fetch_data(){
  global $db;
-  $query="SELECT persona.id_persona, persona.nombre_persona, persona.apellido_paterno, persona.edad_persona, persona.genero, persona.email_persona, persona.f_creacion_persona, persona_telefono.numero_telefonico FROM persona INNER JOIN persona_telefono ON persona.id_persona = persona_telefono.id_persona WHERE persona.id_rol = 5;";
+  $query="SELECT aspirante.id_aspirante, aspirante.nombre_aspirante, aspirante.apellido_paternoAspirante, aspirante.edad_Aspirante, aspirante.genero_Aspirante	, aspirante.email_aspirante, aspirante.f_creacion_Aspirante, aspirante.numero_tel_Aspirante FROM aspirante;";
   $exec=mysqli_query($db, $query);
   if(mysqli_num_rows($exec)>0){
     $row= mysqli_fetch_all($exec, MYSQLI_ASSOC);
@@ -37,15 +37,15 @@ function show_data($fetchData){
 
   echo "<tr>
           <td>".$sn."</td>
-          <td>".$data['nombre_persona']."</td>
-          <td>".$data['apellido_paterno']."</td>
-          <td>".$data['edad_persona']."</td>
-          <td>".$data['genero']."</td>
-          <td class='primary'>".$data['email_persona']."</td>
-          <td>".$data['numero_telefonico']."</td>
-          <td>".$data['f_creacion_persona']."</td>
-          <td><a href='crud-form.php?edit=".$data['id_persona']."'>Edit</a></td>
-          <td><a href='crud-form.php?delete=".$data['id_persona']."'>Delete</a></td>
+          <td>".$data['nombre_aspirante']."</td>
+          <td>".$data['apellido_paternoAspirante']."</td>
+          <td>".$data['edad_Aspirante']."</td>
+          <td>".$data['genero_Aspirante']."</td>
+          <td class='primary'>".$data['email_aspirante']."</td>
+          <td>".$data['numero_tel_Aspirante']."</td>
+          <td>".$data['f_creacion_Aspirante']."</td>
+          <td><a href='crud-form.php?edit=".$data['id_aspirante']."'>Edit</a></td>
+          <td><a href='crud-form.php?delete=".$data['id_aspirante']."'>Delete</a></td>
    </tr>";
        
   $sn++; 

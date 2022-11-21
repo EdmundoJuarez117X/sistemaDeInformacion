@@ -1,8 +1,8 @@
 <?php
-// session_start();
-// if (empty($_SESSION["id_persona"])) {
-//     header("location:index.php");
-// }
+session_start();
+if (empty($_SESSION["subMat"])) {
+    header("location:index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +32,10 @@
                     // Controlador para acceder al login
                     include "../../controllers/controller_completeProfile.php";
                     ?>
-                    
+                    <div class="input-field">
+                        <i class="material-icons-sharp">person</i>
+                        <input type="text" placeholder="Segundo Nombre (Opcional)" name="seg_nombre_persona" autocomplete="off">
+                    </div>
                     <div class="input-field">
                         <i class="material-icons-sharp">signpost</i>
                         <input type="text" placeholder="Calle" name="callePersona" required autocomplete="off">
@@ -70,14 +73,6 @@
                             <option value="">Selecciona tu Género</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
-                        </select>
-                    </div>
-                    <div class="input-field">
-                        <i class="material-icons-sharp">person</i>
-                        <select class="input-field"name="rol" required>
-                            <option value="">¿Aspirante o Padre de Familia?</option>
-                            <option value="5">Aspirante</option>
-                            <option value="4">Padre de Familia</option>
                         </select>
                     </div>
                     <div class="input-field">

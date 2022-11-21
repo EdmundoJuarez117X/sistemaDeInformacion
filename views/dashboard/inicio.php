@@ -1,11 +1,11 @@
 <?php
 session_start();
-if (empty($_SESSION["id_persona"])) {
+if (empty($_SESSION["subMat"])) {
     header("location:./../../index.php");
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 
 <head>
     <meta charset="UTF-8">
@@ -54,8 +54,7 @@ if (empty($_SESSION["id_persona"])) {
                         </a>
                     </li> -->
                     <?php
-                        include("./../../controllers/controller_idRol.php");
-                        if ($_SESSION["id_rol"] == 4 or $_SESSION["id_rol"]==5) {
+                        if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"]=="DOC" ) {
                             echo '
                             <li class="active">
                                 <a class="" href="inicio.php">
@@ -64,7 +63,7 @@ if (empty($_SESSION["id_persona"])) {
                                 </a>
                             </li>
                             <li class="">
-                                <a class="" href="../stripeInscrip/public/checkout.php">
+                                <a class="" href="../stripeInscrip/pago/index.php">
                                     <span class="material-icons-sharp">person</span>
                                     <h3>Inscripciones</h3>
                                 </a>
@@ -112,7 +111,37 @@ if (empty($_SESSION["id_persona"])) {
                                 </a>
                             </li>
                             ';
-                        }else{
+                        }else if($_SESSION["subMat"] == "PF"){
+                            echo '
+                            <li class="active">
+                                <a class="" href="inicio.php">
+                                    <span class="material-icons-sharp">grid_view</span>
+                                    <h3>Dashboard</h3>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="" href="../stripeInscrip/pago/index.php">
+                                    <span class="material-icons-sharp">person</span>
+                                    <h3>Inscripciones</h3>
+                                </a>
+                            </li>                            
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">mail_outline</span>
+                                    <h3>Mensajes</h3>
+                                    <span class="message-count">26</span>
+                                </a>
+                            </li>
+                            
+                            <li class="CloseSession">
+                                <a href="./../../controllers/controller_logout.php">
+                                    <span class="material-icons-sharp">logout</span>
+                                    <h3>Cerrar Sesión</h3>
+                                </a>
+                            </li>
+                            ';
+                        }
+                        else{
                             echo '
                             <li class="active">
                                 <a class="" href="inicio.php">
@@ -122,7 +151,7 @@ if (empty($_SESSION["id_persona"])) {
                             </li>
 
                             <li class="">
-                                <a class="" href="#">
+                                <a class="" href="../stripeInscrip/public/checkout.php">
                                     <span class="material-icons-sharp">person</span>
                                     <h3>Incripciones</h3>
                                 </a>
@@ -406,7 +435,7 @@ if (empty($_SESSION["id_persona"])) {
                     <thead>
                         <tr>
                             <th>Nombre del Producto</th>
-                            <th>Número del producto</th>
+                            <th>Número del Producto</th>
                             <th>Método de Pago</th>
                             <th>Estado</th>
                             <th></th>
@@ -438,20 +467,38 @@ if (empty($_SESSION["id_persona"])) {
                                 <div class="profile">
                                     <div class="info">
                                         <p>Hola, <b>
-                                                <?php echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
+                                                <?php 
+                                                if($_SESSION["subMat"]=="ASP"){
+                                                    echo '' . $_SESSION["nombre_aspirante"] . " " . $_SESSION["apellido_paternoAspirante"] . '';
+                                                }elseif($_SESSION["subMat"] == "Al"){
+                                                    echo '' . $_SESSION["nombre_alumno"] . " " . $_SESSION["apellido_paternoAlumno"] . '';
+                                                }elseif($_SESSION["subMat"] == "PF"){
+                                                    echo '' . $_SESSION["nombre_padreDeFam"] . " " . $_SESSION["apellido_paternopadreDeFam"] . '';
+                                                }elseif($_SESSION["subMat"] == "DOC"){
+                                                    echo '' . $_SESSION["nombre_docente"] . " " . $_SESSION["apellido_paternoDocente"] . '';
+                                                }elseif($_SESSION["subMat"] == "ADM"){
+                                                    echo '' . $_SESSION["nombre_admin"] . " " . $_SESSION["apellido_paternoAdmin"] . '';
+                                                }elseif($_SESSION["subMat"] == "MST"){
+                                                    echo '' . $_SESSION["nombre_master"] . " " . $_SESSION["apellido_paternoMaster"] . '';
+                                                }else{
+                                                    echo 'Rol Desconocido';
+                                                }
+                                                 ?>
                                             </b></p>
                                             <small class="text-muted">
                                                 <?php 
-                                                    if($_SESSION["id_rol"]==1){
-                                                        echo 'Admin';
-                                                    }elseif($_SESSION["id_rol"] == 2){
-                                                        echo 'Docente';
-                                                    }elseif($_SESSION["id_rol"] == 3){
-                                                        echo 'Alumno';
-                                                    }elseif($_SESSION["id_rol"] == 4){
-                                                        echo 'Padre de Familia';
-                                                    }elseif($_SESSION["id_rol"] == 5){
+                                                    if($_SESSION["subMat"]=="ASP"){
                                                         echo 'Aspirante';
+                                                    }elseif($_SESSION["subMat"] == "Al"){
+                                                        echo 'Alumno';
+                                                    }elseif($_SESSION["subMat"] == "PF"){
+                                                        echo 'Padre de Fam';
+                                                    }elseif($_SESSION["subMat"] == "DOC"){
+                                                        echo 'Docente';
+                                                    }elseif($_SESSION["subMat"] == "ADM"){
+                                                        echo 'Administrador';
+                                                    }elseif($_SESSION["subMat"] == "MST"){
+                                                        echo 'MASTER';
                                                     }else{
                                                         echo 'Rol Desconocido';
                                                     }
@@ -521,7 +568,7 @@ if (empty($_SESSION["id_persona"])) {
                                     </div>
                                     <div class="right">
                                         <div class="info">
-                                            <h3>Pedidos presenciales</h3>
+                                            <h3>Pedidos Presenciales</h3>
                                             <small class="text-muted">Last 24 Hours</small>
                                         </div>
                                         <h5 class="danger">+17%</h5>
