@@ -1,22 +1,23 @@
 <?php
 
-session_start();
 
-if (empty($_SESSION["id_persona"])) {
+if (empty($_SESSION["subMat"])) {
     header("location:../../index.php");
 }
+$Autorizacion = false;
 
 //Preguntar si se ha presionado el boton de registarse
 if (!empty($_POST["btn_completarPerfil"])) {
     //corroboramos que NO estén vacios los campos
     if (
-        !empty($_POST["callePersona"]) and !empty($_POST["numeroCallePersona"])
-        and !empty($_POST["coloniaPersona"]) and !empty($_POST["estadoPersona"])
-        and !empty($_POST["ciudadPersona"]) and !empty($_POST["codPostalPersona"])
-        and !empty($_POST["fecha_nacimiento"]) and !empty($_POST["genero"])
-        and !empty($_POST["rol"]) and !empty($_POST["numero_telefonico"])
+        !empty($_POST["callePersona"]) 
+        and !empty($_POST["numeroCallePersona"]) and !empty($_POST["coloniaPersona"]) 
+        and !empty($_POST["estadoPersona"]) and !empty($_POST["ciudadPersona"]) 
+        and !empty($_POST["codPostalPersona"]) and !empty($_POST["fecha_nacimiento"]) 
+        and !empty($_POST["genero"]) and !empty($_POST["numero_telefonico"])
     ) {
         //Obtenemos los datos del formulario
+        $seg_nombre_persona = $_POST["seg_nombre_persona"];
         $callePersona = $_POST["callePersona"];
         $numeroCallePersona = $_POST["numeroCallePersona"];
         $coloniaPersona = $_POST["coloniaPersona"];
@@ -25,13 +26,12 @@ if (!empty($_POST["btn_completarPerfil"])) {
         $codPostalPersona = $_POST["codPostalPersona"];
         $fecha_nacimiento = $_POST["fecha_nacimiento"];
         $genero = $_POST["genero"];
-        $rol = $_POST["rol"];
         $numero_telefonico = $_POST["numero_telefonico"];
         
 
-        //Obtenemos el id de la persona con la session activa
-        $id_persona = $_SESSION["id_persona"];
-
+        //Obtenemos la submatrícula de la persona con la session activa
+        $subMat = $_SESSION["subMat"];
+        
         //Calculamos la edad con la fecha de nacimiento proporcionada
         $fecha_nacimientoE = new DateTime($fecha_nacimiento); //Convertimos las fechas a un formato reconocible por php
         $ahora = new DateTime(date("Y-m-d H:i:s"));
@@ -39,65 +39,60 @@ if (!empty($_POST["btn_completarPerfil"])) {
         $edad = $diferencia->format("%y");
 
         $f_creacion = date("Y-m-d H:i:s");
-        //Ejecutamos la sentencia SQL para insertar los datos de Domicilio
-        $sql = $connection->query("INSERT INTO direccionPersona (callePersona, numeroCallePersona, coloniaPersona, estadoPersona, ciudadPersona, codPostalPersona, f_creacion_DirPersona, id_persona )
-            VALUES('$callePersona', '$numeroCallePersona', '$coloniaPersona', '$estadoPersona', '$ciudadPersona','$codPostalPersona', '$f_creacion', '$id_persona')");
-        //Si los datos se envian entonces
-        if ($datos = $sql === true) {
-            sleep(1);
-            //Ejecutamos la sentencia SQL para insertar los datos de Telefono
-            $sql = $connection->query("INSERT INTO telefono (numero_telefonico, f_creacion_tel)
-            VALUES('$numero_telefonico', '$f_creacion')");
-            echo "<script>alert('$numero_telefonico')</script>";
 
-            //Si los datos se envian entonces
-            if ($datos = $sql === true) {
-                sleep(1);
-                //Obtenemos el ID del telefono
-                //Ejecutamos una consulta para obtener los datos para la session
-                $sql = $connection->query("SELECT * FROM telefono WHERE numero_telefonico = '$numero_telefonico'");
+        //Analizamos el tipo de usuario
+        if($subMat == "ASP"){
+            //Obtenemos el correo de la persona para hacer movimientos de tipo crud
+            $email_aspirante = $_SESSION["email_aspirante"];
 
-                if ($datos = $sql->fetch_object()) {
-                    //Obtenemos el numero de telefono de la consulta
-                    $id_telefono = $datos->id_telefono;
-                    
-                    //Ejecutamos la sentencia SQL para insertar los datos de TelefonoPersona
-                    $sql = $connection->query("INSERT INTO persona_telefono (tipo_tel, numero_telefonico, f_creacion_persona_telefono, id_persona, id_telefono)
-                    VALUES('Móvil','$numero_telefonico', '$f_creacion','$id_persona','$id_telefono')");
+            //Ejecutamos una sentencia SQL para obtener el id de la persona (Aspirante)
+            $sqlAspID = $connection->query("SELECT * FROM aspirante WHERE email_aspirante='$email_aspirante'");
+            if ($datos = $sqlAspID->fetch_object()) {
+                //Obtenemos el numero de telefono de la consulta
+                $id_aspirante  = $datos->id_aspirante;
 
-                    //Si los datos se envian entonces
-                    if ($datos = $sql === true) {
-                        sleep(1);
-                        //Ejecutamos la sentencia SQL para actualizar los datos de persona
-                        $sql = $connection->query("UPDATE `persona` SET `edad_persona` = '$edad', `genero` = '$genero', `fecha_nacimiento` = '$fecha_nacimiento', `id_rol` = '$rol' WHERE `persona`.`id_persona` = '$id_persona';");
-                         
-                        //Si los datos se envian entonces
-                         if($datos = $sql === true){
-                            echo "<div class='alert alert-danger'>Bienvenido</div>";
-                            //Redireccionamos al inicio del sitio web (dashboard)
-                            header("location:../dashboard/inicio.php");
-                         }else{
-                            echo "<div class='alert alert-danger'>Algo salió mal persona</div>";
-                            session_destroy();
-                         }
-                    } else {
-                        echo "<div class='alert alert-danger'>Algo salió mal </div>";
-                        session_destroy();
-                    }
-                } else {
-                    echo "<div class='alert alert-danger'>Algo salió mal Telefono ID</div>";
-                    session_destroy();
+                //Ejecutamos la sentencia SQL para insertar los datos de Domicilio
+                $sql = $connection->query("INSERT INTO direccionaspirante (calleAspirante, numeroCalleAspirante, coloniaAspirante, estadoAspirante, ciudadAspirante	, codPostalAspirante, f_creacion_DirAspirante, id_aspirante)
+                VALUES('$callePersona', '$numeroCallePersona', '$coloniaPersona', '$estadoPersona', '$ciudadPersona','$codPostalPersona', '$f_creacion', '$id_aspirante')");
+                //Si los datos se envian entonces
+                if ($datos = $sql === true) {
+                    sleep(1);
+                    //Ejecutamos la sentencia SQL para actualizar los datos del Aspirante
+                    $sql = $connection->query("UPDATE `aspirante` SET `segundo_nombreAspirante`='$seg_nombre_persona', `edad_Aspirante`='$edad',`genero_Aspirante`='$genero',`numero_tel_Aspirante`='$numero_telefonico',`fecha_nacimientoAspirante`='$fecha_nacimiento',`f_modificacion_Aspirante`='$f_creacion' WHERE `id_aspirante`='$id_aspirante'");
+                    if($datos = $sql === true){
+                        //Autorizamos la redireccion a otro sitio (Dashboard)
+                        $Autorizacion = true;
+                     }
                 }
-            } else {
-                echo "<script>alert('Algo salió mal perfil no completado :(')</script>";
-                session_destroy();
+
             }
-        } else {
-            echo "<script>alert('Algo salió mal perfil no completado :(')</script>";
-            session_destroy();
+        //Si los datos se envian entoncesid_persona
+        }else{
+            if($subMat == "PF"){
+                    //Obtenemos el correo de la persona para hacer movimientos de tipo crud
+                $email_padreDeFam = $_SESSION["email_padreDeFam"];
+
+                //Ejecutamos una sentencia SQL para obtener el id de la persona (Aspirante)
+                $sqlPFID = $connection->query("SELECT * FROM padredefamilia WHERE email_padreDeFam='$email_padreDeFam'");
+                if ($datos = $sqlPFID->fetch_object()) {
+                    //Obtenemos el ID del usuario
+                    $id_padreDeFamilia   = $datos->id_padreDeFamilia ;
+
+                   
+                        //Ejecutamos la sentencia SQL para actualizar los datos del Padre de Familia
+                        $sql = $connection->query("UPDATE `padredefamilia` SET `segundo_nombrepadreDeFam`='$seg_nombre_persona', `edad_padreDeFam`='$edad',`genero_padreDeFam`='$genero',`numero_tel_padreDeFam`='$numero_telefonico',`fecha_nacimientopadreDeFam`='$fecha_nacimiento',`f_modificacion_padreDeFam`='$f_creacion' WHERE `id_padreDeFamilia`='$id_padreDeFamilia'");
+                        if($datos = $sql === true){
+                            //Autorizamos la redireccion a otro sitio (Dashboard)
+                            $Autorizacion = true;
+                        }
+                }
+            }
         }
     } else {
         //Campos vacíos
         echo "Se detectan campos vacíos, corrobora tu información :(";
+    }
+    if($Autorizacion == true){
+        header("location:../dashboard/inicio.php");
     }
 }
