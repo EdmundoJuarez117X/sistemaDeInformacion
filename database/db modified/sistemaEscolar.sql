@@ -427,6 +427,21 @@ CREATE TABLE IF NOT EXISTS `notificacion_curso` (
 
 -- -------------------------------------------------------------------------------
 --
+-- Estructura de tabla para la tabla `notificacion_curso`
+--
+
+DROP TABLE IF EXISTS `notificacion_curso`;
+
+CREATE TABLE IF NOT EXISTS `notificacion_curso` (
+    `id_notificacion_curso` int(5) NOT NULL AUTO_INCREMENT,
+    `descripcion_notificacion` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `id_curso` int(5) NOT NULL,
+    PRIMARY KEY (`id_notificacion_curso`),
+    FOREIGN KEY (`id_curso`) REFERENCES `cursos`(`id_curso`)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- -------------------------------------------------------------------------------
+--
 -- Estructura de tabla para la tabla `escuela_modalidadEscolar`
 --
 

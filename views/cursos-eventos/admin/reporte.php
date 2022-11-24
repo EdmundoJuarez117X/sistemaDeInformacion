@@ -70,11 +70,7 @@ if (empty($_SESSION["subMat"])) {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="../../cursos-eventos/users/mis-cursos.php">
                                                     <span class="material-icons-sharp">history</span>
-                                                    <h3>Mis cursos</h3>
-                                                </a>
-                                            </li>
                                         </ul>
                                     </li>
                                     

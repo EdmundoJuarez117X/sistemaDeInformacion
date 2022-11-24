@@ -69,6 +69,7 @@ if (!empty($_POST["btn_ingresar"])) {
                         $_SESSION['LAST_ACTIVITY'] = time();
 
                         $Autorizacion = true;
+                        $url = 'dashboard/inicio.php';
                     } else {
                         //Ejecutamos la sentencia SQL
                         $sql = $connection->query("SELECT * FROM administrador WHERE email_admin	='$email' AND password_admin='$password'");
@@ -84,6 +85,7 @@ if (!empty($_POST["btn_ingresar"])) {
                             $Autorizacion = true;
                             //Redireccionamos al inicio del sitio web (dashboard)
                             header("location:./views/dashboard/inicio.php");
+                            
                         } else {
                             //Ejecutamos la sentencia SQL
                             $sql = $connection->query("SELECT * FROM master WHERE email_master	='$email' AND password_master='$password'");
