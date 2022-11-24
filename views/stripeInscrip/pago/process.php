@@ -33,6 +33,7 @@ if($charge->status=="succeeded"){
 	VALUES ('$total','$charge[status]', NOW())");
 		//pago_cita(referencia_pago,transacción_saldo,descripcion,monto,moneda,status_pago,cliente,fecha)
     //VALUES ('$charge[id]','$charge[balance_transaction]','$charge[description]','$total','$charge[currency]','$charge[status]','$email',NOW())
+	
 }else{
 	echo "<script>alert('Error al pagar!');</script>";
 	Core::alert("Error al realizar el pago!");	

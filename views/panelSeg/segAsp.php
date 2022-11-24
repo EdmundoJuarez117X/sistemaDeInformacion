@@ -44,10 +44,10 @@ session_start();
             <!-- SIDEBAR / NAVBAR CODE -->
             <div class="sidebar">
                 <ul class="">
-                <!-- NAV BAR WITH ROL CONTROL -->
-                <?php
-                        if ($_SESSION["subMat"] == "ADM" ) {
-                            echo '
+                    <!-- NAV BAR WITH ROL CONTROL -->
+                    <?php
+                if ($_SESSION["subMat"] == "ADM") {
+                    echo '
                             <li class="">
                                 <a class="" href="./../dashboard/inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
@@ -85,6 +85,18 @@ session_start();
                                             <h3>Reportes</h3>
                                         </a>
                                     </li>
+                                    <li>
+                                    <a class="dropdown-item" href="../cursos-eventos/admin/compras.php">
+                                        <span class="material-icons-sharp">paid</span>
+                                        <h3>Compras</h3>
+                                    </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/actividad.php">
+                                            <span class="material-icons-sharp">trending_up</span>
+                                            <h3>Actividad</h3>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             
@@ -103,8 +115,8 @@ session_start();
                                 </a>
                             </li>
                             ';
-                        }else if($_SESSION["subMat"]=="MST"){
-                            echo '
+                } else if ($_SESSION["subMat"] == "MST") {
+                    echo '
                             <li class="">
                                 <a class="" href="./../dashboard/inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
@@ -198,6 +210,18 @@ session_start();
                                             <h3>Reportes</h3>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/compras.php">
+                                            <span class="material-icons-sharp">paid</span>
+                                            <h3>Compras</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/actividad.php">
+                                            <span class="material-icons-sharp">trending_up</span>
+                                            <h3>Actividad</h3>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             
@@ -221,8 +245,8 @@ session_start();
                                 </a>
                             </li>
                             ';
-                        }
-                    ?>
+                }
+                ?>
                     <!-- <li class="">
                         <a class="" href="./../dashboard/inicio.php">
                             <span class="material-icons-sharp">grid_view</span>
@@ -371,28 +395,28 @@ session_start();
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hola, 
+                        <p>Hola,
                             <b>
-                                <?php 
-                                    if($_SESSION["subMat"]=="ADM"){
-                                            echo '' . $_SESSION["nombre_admin"] . " " . $_SESSION["apellido_paternoAdmin"] . '';
-                                        }elseif($_SESSION["subMat"] == "MST"){
-                                            echo '' . $_SESSION["nombre_master"] . " " . $_SESSION["apellido_paternoMaster"] . '';
-                                        }else{
-                                            echo 'Rol Desconocido';
-                                        }
-                                 ?>    
+                                <?php
+                                if ($_SESSION["subMat"] == "ADM") {
+                                    echo '' . $_SESSION["nombre_admin"] . " " . $_SESSION["apellido_paternoAdmin"] . '';
+                                } elseif ($_SESSION["subMat"] == "MST") {
+                                    echo '' . $_SESSION["nombre_master"] . " " . $_SESSION["apellido_paternoMaster"] . '';
+                                } else {
+                                    echo 'Rol Desconocido';
+                                }
+                                ?>
                             </b>
                         </p>
                         <small class="text-muted">
-                            <?php 
-                                if($_SESSION["subMat"] == "ADM"){
-                                    echo 'Administrador';
-                                    }elseif($_SESSION["subMat"] == "MST"){
-                                    echo 'MASTER';
-                                    }else{
-                                    echo 'Rol Desconocido';
-                                }
+                            <?php
+                            if ($_SESSION["subMat"] == "ADM") {
+                                echo 'Administrador';
+                            } elseif ($_SESSION["subMat"] == "MST") {
+                                echo 'MASTER';
+                            } else {
+                                echo 'Rol Desconocido';
+                            }
                             ?>
                         </small>
                     </div>
@@ -491,22 +515,22 @@ session_start();
     <!-- Script for navbar arrows and show the elements -->
 
     <script>
-        $('.dropdown-toggle').click(function() {
+        $('.dropdown-toggle').click(function () {
             $('aside .sidebar ul .dropdown-menu').toggleClass("show");
 
             $('aside .sidebar ul .first-arrow').toggleClass("rotate");
         });
-        $('aside .sidebar ul li').click(function() {
+        $('aside .sidebar ul li').click(function () {
             $(this).addClass("active").siblings().removeClass("active");
         });
     </script>
 
     <script>
-        $('.dropdown-toggleCursos').click(function() {
+        $('.dropdown-toggleCursos').click(function () {
             $('aside .sidebar ul .dropdown-menuCursos').toggleClass("show");
             $('aside .sidebar ul .second-arrow').toggleClass("rotate");
         });
-        $('aside .sidebar ul li').click(function() {
+        $('aside .sidebar ul li').click(function () {
             $(this).addClass("active").siblings().removeClass("active");
         });
     </script>

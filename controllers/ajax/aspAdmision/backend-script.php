@@ -1,5 +1,4 @@
 <?php
-
 include("./../../../model/connection.php");
 $db=$connection;
 // fetch query
@@ -54,9 +53,10 @@ function show_data($fetchData){
           <td>".$data['nombre_periodoE']."</td>
           <td>".$data['nombre_modalidad']."</td>
           <td>$1,000</td>
-          <td><a class='primary tableAspOf' href='backPeregistro-script.php?edit=".$data['id_escuela']."'>Preinscribirme</a></td>
+          <td><a class='primary tableAspOf' href='./../../controllers/ajax/aspAdmision/backPeregistro-script.php?id_escuela=".$data['id_escuela']."&nombre_escuela=".$data['nombre_escuela']."&nombre_nivelEducativo=".$data['nombre_nivelEducativo']."'>Preinscribirme</a></td>
           
    </tr>";
+   //&id_aspirante=".$_SESSION['id_aspirante']."
 //    <td><a href='crud-form.php?delete=".$data['id_escuela']."'>Delete</a></td>
   $sn++; 
      }

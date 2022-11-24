@@ -10,7 +10,7 @@ function fetch_data(){
  $periodoE = $_POST['periodoE'];
  $modalidadE = $_POST['modalidadE'];
 
-  $query = "SELECT escuela.id_escuela, escuela.nombre_escuela, escuela.direccion_escuela, escuela.sector_escuela, escuela_niveleducativo.nombre_nivelEducativo, escuela_periodoescolar.nombre_periodoE,escuela_modalidadescolar.nombre_modalidad, escuela_telefono.numero_telefonico, escuela_facultad.nombre_facultad, facultad_carrera.nombre_carrera FROM escuela INNER JOIN escuela_niveleducativo on escuela_niveleducativo.id_escuela = escuela.id_escuela INNER JOIN escuela_periodoescolar on escuela_periodoescolar.id_escuela = escuela.id_escuela INNER JOIN escuela_modalidadescolar on escuela_modalidadescolar.id_escuela = escuela.id_escuela INNER JOIN escuela_telefono on escuela_telefono.id_escuela = escuela.id_escuela INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela.id_escuela INNER JOIN facultad_carrera on facultad_carrera.id_facultad = escuela_facultad.id_facultad
+  $query = "SELECT escuela.id_escuela, escuela.nombre_escuela, escuela.direccion_escuela, escuela.sector_escuela, escuela_niveleducativo.nombre_nivelEducativo, escuela_periodoescolar.nombre_periodoE,escuela_modalidadescolar.nombre_modalidad, escuela_telefono.numero_telefonico, escuela_facultad.nombre_facultad, facultad_carrera.nombre_carrera, facultad_carrera.id_carrera FROM escuela INNER JOIN escuela_niveleducativo on escuela_niveleducativo.id_escuela = escuela.id_escuela INNER JOIN escuela_periodoescolar on escuela_periodoescolar.id_escuela = escuela.id_escuela INNER JOIN escuela_modalidadescolar on escuela_modalidadescolar.id_escuela = escuela.id_escuela INNER JOIN escuela_telefono on escuela_telefono.id_escuela = escuela.id_escuela INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela.id_escuela INNER JOIN facultad_carrera on facultad_carrera.id_facultad = escuela_facultad.id_facultad
   WHERE escuela_niveleducativo.nombre_nivelEducativo = '$nivelEdu' AND escuela_periodoescolar.nombre_periodoE = '$periodoE' AND escuela_modalidadescolar.nombre_modalidad = '$modalidadE'";
 
   $exec=mysqli_query($db, $query);
@@ -54,7 +54,7 @@ function show_data($fetchData){
           <td>".$data['nombre_modalidad']."</td>
           <td>".$data['nombre_carrera']."</td>
           <td>$1,000</td>
-          <td><a class='primary tableAspOf' href='backPeregistro-script.php?edit=".$data['id_escuela']."'>Preinscribirme</a></td>
+          <td><a class='primary tableAspOf' href='./../../controllers/ajax/aspAdmision/backPeregistro-script.php?id_escuela=".$data['id_escuela']."&nombre_escuela=".$data['nombre_escuela']."&nombre_nivelEducativo=".$data['nombre_nivelEducativo']."&nombre_facultad=".$data['nombre_facultad']."&nombre_carrera=".$data['nombre_carrera']."&id_carrera=".$data['id_carrera']."'>Preinscribirme</a></td>
           
    </tr>";
   
@@ -80,7 +80,7 @@ function fetch_dataEsp(){
  $periodoE = $_POST['periodoE'];
  $modalidadE = $_POST['modalidadE'];
 
-  $query = "SELECT escuela.id_escuela, escuela.nombre_escuela, escuela.direccion_escuela, escuela.sector_escuela, escuela_niveleducativo.nombre_nivelEducativo, escuela_periodoescolar.nombre_periodoE,escuela_modalidadescolar.nombre_modalidad, escuela_telefono.numero_telefonico, escuela_facultad.nombre_facultad, facultad_especializacion.nombre_esp FROM escuela INNER JOIN escuela_niveleducativo on escuela_niveleducativo.id_escuela = escuela.id_escuela INNER JOIN escuela_periodoescolar on escuela_periodoescolar.id_escuela = escuela.id_escuela INNER JOIN escuela_modalidadescolar on escuela_modalidadescolar.id_escuela = escuela.id_escuela INNER JOIN escuela_telefono on escuela_telefono.id_escuela = escuela.id_escuela INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela.id_escuela INNER JOIN facultad_especializacion on facultad_especializacion.id_facultad = escuela_facultad.id_facultad
+  $query = "SELECT escuela.id_escuela, escuela.nombre_escuela, escuela.direccion_escuela, escuela.sector_escuela, escuela_niveleducativo.nombre_nivelEducativo, escuela_periodoescolar.nombre_periodoE,escuela_modalidadescolar.nombre_modalidad, escuela_telefono.numero_telefonico, escuela_facultad.nombre_facultad, facultad_especializacion.nombre_esp, facultad_especializacion.id_especializacion FROM escuela INNER JOIN escuela_niveleducativo on escuela_niveleducativo.id_escuela = escuela.id_escuela INNER JOIN escuela_periodoescolar on escuela_periodoescolar.id_escuela = escuela.id_escuela INNER JOIN escuela_modalidadescolar on escuela_modalidadescolar.id_escuela = escuela.id_escuela INNER JOIN escuela_telefono on escuela_telefono.id_escuela = escuela.id_escuela INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela.id_escuela INNER JOIN facultad_especializacion on facultad_especializacion.id_facultad = escuela_facultad.id_facultad
   WHERE escuela_niveleducativo.nombre_nivelEducativo = '$nivelEdu' AND escuela_periodoescolar.nombre_periodoE = '$periodoE' AND escuela_modalidadescolar.nombre_modalidad = '$modalidadE'";
 
   $exec=mysqli_query($db, $query);
@@ -124,7 +124,7 @@ function show_dataEsp($fetchDataEsp){
           <td>".$dataEsp['nombre_modalidad']."</td>
           <td>".$dataEsp['nombre_esp']."</td>
           <td>$1,000</td>
-          <td><a class='primary tableAspOf' href='backPeregistro-script.php?edit=".$dataEsp['id_escuela']."'>Preinscribirme</a></td>
+          <td><a class='primary tableAspOf' href='./../../controllers/ajax/aspAdmision/backPeregistro-script.php?id_escuela=".$dataEsp['id_escuela']."&nombre_escuela=".$dataEsp['nombre_escuela']."&nombre_nivelEducativo=".$dataEsp['nombre_nivelEducativo']."&nombre_facultad=".$dataEsp['nombre_facultad']."&nombre_esp=".$dataEsp['nombre_esp']."&id_especializacion=".$dataEsp['id_especializacion']."'>Preinscribirme</a></td>
           
    </tr>";
   

@@ -51,7 +51,7 @@ function show_data($fetchData){
           <td>".$data['nombre_periodoE']."</td>
           <td>".$data['nombre_modalidad']."</td>
           <td>$1,000</td>
-          <td><a class='primary tableAspOf' href='backPeregistro-script.php?id_escuela=".$data['id_escuela']."?nombre_nivelEducativo=".$data['nombre_nivelEducativo']."'>Preinscribirme</a></td>
+          <td><a class='primary tableAspOf' href='./../../controllers/ajax/aspAdmision/backPeregistro-script.php?id_escuela=".$data['id_escuela']."&nombre_escuela=".$data['nombre_escuela']."&nombre_nivelEducativo=".$data['nombre_nivelEducativo']."'>Preinscribirme</a></td>
           
    </tr>";
   

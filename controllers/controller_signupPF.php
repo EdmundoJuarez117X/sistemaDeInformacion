@@ -39,7 +39,7 @@ if ($_POST['type'] == 1) {
 				//Obtenemos el registro de los datos y guardamos algunos para control de acceso
 				if ($datosID = $sqlToGetID->fetch_object()) {
 					$_SESSION["id_padreDeFamilia"] = $datosID->id_padreDeFamilia;
-					$_SESSION["estatus_padreDeFam"] = $datosID->estatus_padreDeFam;
+					$_SESSION["estatus_persona"] = $datosID->estatus_padreDeFam;
 					$_SESSION["subMat"] = "PF";
 					$_SESSION["nombre_padreDeFam"] = $nombre_persona;
 					$_SESSION["apellido_paternopadreDeFam"] = $apellido_paterno;

@@ -53,7 +53,6 @@
                         <p class="p-resume-course-cantidad">Cursos activos: <strong>'. $activos .'</strong></p>
                         <p class="p-resume-course-cantidad">Cursos finalizados: <strong> '. $inactivos .' </strong></p>
                         <p class="p-resume-course-cantidad">Cantidad de cursos: <strong> '. $total_cursos .' </strong></p>
-                        <p><a href="grafica_reportes.php" target="_blank">Ver Gráfica</a></p>
                     </div>
                     <!-- ======================== CONTENEDOR DE CURSOS ACTIVOS ======================= -->
                     <div class="fields-middle third-middle">

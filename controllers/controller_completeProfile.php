@@ -1,11 +1,12 @@
 <?php
 
 
+// session_start();
+
 if (empty($_SESSION["subMat"])) {
     header("location:../../index.php");
 }
 $Autorizacion = false;
-
 //Preguntar si se ha presionado el boton de registarse
 if (!empty($_POST["btn_completarPerfil"])) {
     //corroboramos que NO estén vacios los campos
@@ -27,6 +28,7 @@ if (!empty($_POST["btn_completarPerfil"])) {
         $fecha_nacimiento = $_POST["fecha_nacimiento"];
         $genero = $_POST["genero"];
         $numero_telefonico = $_POST["numero_telefonico"];
+        
         
 
         //Obtenemos la submatrícula de la persona con la session activa
@@ -62,6 +64,9 @@ if (!empty($_POST["btn_completarPerfil"])) {
                     if($datos = $sql === true){
                         //Autorizamos la redireccion a otro sitio (Dashboard)
                         $Autorizacion = true;
+                        
+                        include '../../controllers/phpMailer/enviarCorreo.php';
+
                      }
                 }
 
@@ -84,6 +89,7 @@ if (!empty($_POST["btn_completarPerfil"])) {
                         if($datos = $sql === true){
                             //Autorizamos la redireccion a otro sitio (Dashboard)
                             $Autorizacion = true;
+                            include '../../controllers/phpMailer/enviarCorreo.php';
                         }
                 }
             }

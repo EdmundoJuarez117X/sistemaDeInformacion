@@ -1,5 +1,6 @@
 <?php
 include '../model/connection.php';
+
 session_start();
 if ($_POST['type'] == 1) {
 	$nombre_persona = $_POST['nombre_persona'];
@@ -36,11 +37,12 @@ if ($_POST['type'] == 1) {
 				//Obtenemos el registro de los datos y guardamos algunos para control de acceso
 				if ($datosID = $sqlToGetID->fetch_object()) {
 					$_SESSION["id_aspirante"] = $datosID->id_aspirante;
-					$_SESSION["estatus_Aspirante"] = $datosID->estatus_Aspirante;
+					$_SESSION["estatus_persona"] = $datosID->estatus_Aspirante;
 					$_SESSION["subMat"] = "ASP";
 					$_SESSION["nombre_aspirante"] = $nombre_persona;
 					$_SESSION["apellido_paternoAspirante"] = $apellido_paterno;
 					$_SESSION["email_aspirante"] = $email;
+					$_SESSION["enviar_correo"] = "ENV";
 				}
 
 				echo json_encode(array("statusCode" => 200));

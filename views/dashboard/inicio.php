@@ -1,7 +1,74 @@
 <?php
+//Control de acceso por roles
+$Autorizacion = false;
 session_start();
+$url = '';
 if (empty($_SESSION["subMat"])) {
-    header("location:./../../index.php");
+    $Autorizacion = true;
+    $url = '../index.php';
+} else if ($_SESSION["subMat"] == "ASP") {
+    if ($_SESSION["estatus_persona"] == "ACTIVO") {
+
+        if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+            // last request was more than 30 minutes ago
+            session_unset(); // unset $_SESSION variable for the run-time 
+            session_destroy(); // destroy session data in storage
+            $Autorizacion = true;
+            $url = '../index.php';
+        } else {
+            $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+            $Autorizacion = true;
+            $url = 'aspOfertaAcadem/index.php';
+        }
+
+    } else if ($_SESSION["estatus_persona"] == "PROCADM") {
+        if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+            // last request was more than 30 minutes ago
+            session_unset(); // unset $_SESSION variable for the run-time 
+            session_destroy(); // destroy session data in storage
+            $Autorizacion = true;
+            $url = '../index.php';
+        } else {
+            $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+            $Autorizacion = true;
+            $url = 'stripeInscrip/pago/index.php';
+        }
+
+    }
+} else if ($_SESSION["subMat"] == "PF") {
+
+} else if ($_SESSION["subMat"] == "Al") {
+
+    if ($_SESSION["estatus_persona"] == "ACTIVO") {
+
+        if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+            // last request was more than 30 minutes ago
+            session_unset(); // unset $_SESSION variable for the run-time 
+            session_destroy(); // destroy session data in storage
+            $Autorizacion = true;
+            $url = '../index.php';
+        } else {
+            $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+            // $Autorizacion = true;
+            // $url = 'aspOfertaAcadem/index.php';
+        }
+
+    } else if ($_SESSION["estatus_persona"] == /*Cambiar ese status por el deseado*/ "PROCADM") {
+        //Agregar que sucede 
+        // $Autorizacion = true;
+        // $url = 'stripeInscrip/pago/index.php';
+    }
+
+} else if ($_SESSION["subMat"] == "DOC") {
+
+} else if ($_SESSION["subMat"] == "ADM") {
+
+} else if ($_SESSION["subMat"] == "MST") {
+
+}
+if ($Autorizacion == true) {
+    //                   ./Views/
+    header("location:./../$url");
 }
 ?>
 <!DOCTYPE html>
@@ -54,8 +121,8 @@ if (empty($_SESSION["subMat"])) {
                         </a>
                     </li> -->
                     <?php
-                        if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"]=="DOC" ) {
-                            echo '
+                    if ($_SESSION["subMat"] == "ASP") {
+                        echo '
                             <li class="active">
                                 <a class="" href="inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
@@ -111,8 +178,8 @@ if (empty($_SESSION["subMat"])) {
                                 </a>
                             </li>
                             ';
-                        }else if($_SESSION["subMat"] == "PF"){
-                            echo '
+                    } else if ($_SESSION["subMat"] == "PF") {
+                        echo '
                             <li class="active">
                                 <a class="" href="inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
@@ -140,9 +207,61 @@ if (empty($_SESSION["subMat"])) {
                                 </a>
                             </li>
                             ';
-                        }
-                        else{
-                            echo '
+                    } else if ($_SESSION["subMat"] == "DOC") {
+
+                    } else if ($_SESSION["subMat"] == "Al") {
+                        echo '
+                            <li class="active">
+                                <a class="" href="inicio.php">
+                                    <span class="material-icons-sharp">grid_view</span>
+                                    <h3>Dashboard</h3>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="" href="../stripeInscrip/pago/index.php">
+                                    <span class="material-icons-sharp">person</span>
+                                    <h3>Inscripciones</h3>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="dropdown-toggleCursos">
+                                    <span class="material-icons-sharp">import_contacts</span>
+                                        <h3>Cursos</h3>
+                                    <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
+                                </a>
+                                <ul class="dropdown-menuCursos">
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/users/cursos.php">
+                                            <span class="material-icons-sharp">import_contacts</span>
+                                            <h3>Cursos</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/users/mis-cursos.php">
+                                            <span class="material-icons-sharp">history</span>
+                                            <h3>Mis cursos</h3>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">mail_outline</span>
+                                    <h3>Mensajes</h3>
+                                    <span class="message-count">26</span>
+                                </a>
+                            </li>
+                            
+                            <li class="CloseSession">
+                                <a href="./../../controllers/controller_logout.php">
+                                    <span class="material-icons-sharp">logout</span>
+                                    <h3>Cerrar Sesión</h3>
+                                </a>
+                            </li>
+                            ';
+                    } else {
+                        echo '
                             <li class="active">
                                 <a class="" href="inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
@@ -236,6 +355,18 @@ if (empty($_SESSION["subMat"])) {
                                             <h3>Reportes</h3>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/compras.php">
+                                            <span class="material-icons-sharp">paid</span>
+                                            <h3>Compras</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/actividad.php">
+                                            <span class="material-icons-sharp">trending_up</span>
+                                            <h3>Actividad</h3>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             
@@ -259,7 +390,7 @@ if (empty($_SESSION["subMat"])) {
                                 </a>
                             </li>
                             ';
-                        }
+                    }
                     ?>
                     <!-- <li class="">
                         <a class="" href="#">
@@ -442,7 +573,8 @@ if (empty($_SESSION["subMat"])) {
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <tr>
+                        <!--Example but now with js file
+                             <tr>
                             <td>Foldable Mini Drone</td>
                             <td>8564</td>
                             <td>Due</td>
@@ -455,174 +587,174 @@ if (empty($_SESSION["subMat"])) {
             </div>
         </main>
         <!---------------------------- END OF MAIN ------------------->
-             <div class="right">
-                            <div class="top">
-                                <button id="menu-btn">
-                                    <span class="material-icons-sharp">menu</span>
-                                </button>
-                                <div class="theme-toggler">
-                                    <span class="material-icons-sharp active">light_mode</span>
-                                    <span class="material-icons-sharp">dark_mode</span>
-                                </div>
-                                <div class="profile">
-                                    <div class="info">
-                                        <p>Hola, <b>
-                                                <?php 
-                                                if($_SESSION["subMat"]=="ASP"){
-                                                    echo '' . $_SESSION["nombre_aspirante"] . " " . $_SESSION["apellido_paternoAspirante"] . '';
-                                                }elseif($_SESSION["subMat"] == "Al"){
-                                                    echo '' . $_SESSION["nombre_alumno"] . " " . $_SESSION["apellido_paternoAlumno"] . '';
-                                                }elseif($_SESSION["subMat"] == "PF"){
-                                                    echo '' . $_SESSION["nombre_padreDeFam"] . " " . $_SESSION["apellido_paternopadreDeFam"] . '';
-                                                }elseif($_SESSION["subMat"] == "DOC"){
-                                                    echo '' . $_SESSION["nombre_docente"] . " " . $_SESSION["apellido_paternoDocente"] . '';
-                                                }elseif($_SESSION["subMat"] == "ADM"){
-                                                    echo '' . $_SESSION["nombre_admin"] . " " . $_SESSION["apellido_paternoAdmin"] . '';
-                                                }elseif($_SESSION["subMat"] == "MST"){
-                                                    echo '' . $_SESSION["nombre_master"] . " " . $_SESSION["apellido_paternoMaster"] . '';
-                                                }else{
-                                                    echo 'Rol Desconocido';
-                                                }
-                                                 ?>
-                                            </b></p>
-                                            <small class="text-muted">
-                                                <?php 
-                                                    if($_SESSION["subMat"]=="ASP"){
-                                                        echo 'Aspirante';
-                                                    }elseif($_SESSION["subMat"] == "Al"){
-                                                        echo 'Alumno';
-                                                    }elseif($_SESSION["subMat"] == "PF"){
-                                                        echo 'Padre de Fam';
-                                                    }elseif($_SESSION["subMat"] == "DOC"){
-                                                        echo 'Docente';
-                                                    }elseif($_SESSION["subMat"] == "ADM"){
-                                                        echo 'Administrador';
-                                                    }elseif($_SESSION["subMat"] == "MST"){
-                                                        echo 'MASTER';
-                                                    }else{
-                                                        echo 'Rol Desconocido';
-                                                    }
-                                                ?>
-                                            </small>
-                                    </div>
-                                    <div class="profile-photo">
-                                        <img src="./../../img/altindeximages/avatar.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <!------------------------------- END OF top / top ------------------------>
-                            <div class="recent-updates">
-                                <h2>Actualizaciones Recientes</h2>
-                                <div class="updates">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="./../../img/altindeximages/welcoming.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="./../../img/altindeximages/teaching.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="./../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END OF RECENT UPDATES -->
-                            <div class="sales-analytics">
-                                <h2>Metricas de Ventas</h2>
-                                <div class="item online">
-                                    <div class="icon">
-                                        <span class="material-icons-sharp">shopping_cart</span>
-                                    </div>
-                                    <div class="right">
-                                        <div class="info">
-                                            <h3>Pedidos en línea</h3>
-                                            <small class="text-muted">Last 24 Hours</small>
-                                        </div>
-                                        <h5 class="success">+39%</h5>
-                                        <h3>3849</h3>
-                                    </div>
-                                </div>
-                                <div class="item offline">
-                                    <div class="icon">
-                                        <span class="material-icons-sharp">local_mall</span>
-                                    </div>
-                                    <div class="right">
-                                        <div class="info">
-                                            <h3>Pedidos Presenciales</h3>
-                                            <small class="text-muted">Last 24 Hours</small>
-                                        </div>
-                                        <h5 class="danger">+17%</h5>
-                                        <h3>1100</h3>
-                                    </div>
-                                </div>
-                                <div class="item customers">
-                                    <div class="icon">
-                                        <span class="material-icons-sharp">person</span>
-                                    </div>
-                                    <div class="right">
-                                        <div class="info">
-                                            <h3>Nuevos clientes</h3>
-                                            <small class="text-muted">Last 24 Hours</small>
-                                        </div>
-                                        <h5 class="success">+25%</h5>
-                                        <h3>849</h3>
-                                    </div>
-                                </div>
-                                <div class="item add-product">
-                                    <div>
-                                        <span class="material-icons-sharp">add</span>
-                                        <h3>Agregar Producto</h3>
-                                    </div>
-                                </div>
-                            </div>
-             </div>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hola, <b>
+                                <?php
+                                if ($_SESSION["subMat"] == "ASP") {
+                                    echo '' . $_SESSION["nombre_aspirante"] . " " . $_SESSION["apellido_paternoAspirante"] . '';
+                                } elseif ($_SESSION["subMat"] == "Al") {
+                                    echo '' . $_SESSION["nombre_alumno"] . " " . $_SESSION["apellido_paternoAlumno"] . '';
+                                } elseif ($_SESSION["subMat"] == "PF") {
+                                    echo '' . $_SESSION["nombre_padreDeFam"] . " " . $_SESSION["apellido_paternopadreDeFam"] . '';
+                                } elseif ($_SESSION["subMat"] == "DOC") {
+                                    echo '' . $_SESSION["nombre_docente"] . " " . $_SESSION["apellido_paternoDocente"] . '';
+                                } elseif ($_SESSION["subMat"] == "ADM") {
+                                    echo '' . $_SESSION["nombre_admin"] . " " . $_SESSION["apellido_paternoAdmin"] . '';
+                                } elseif ($_SESSION["subMat"] == "MST") {
+                                    echo '' . $_SESSION["nombre_master"] . " " . $_SESSION["apellido_paternoMaster"] . '';
+                                } else {
+                                    echo 'Rol Desconocido';
+                                }
+                                ?>
+                            </b></p>
+                        <small class="text-muted">
+                            <?php
+                            if ($_SESSION["subMat"] == "ASP") {
+                                echo 'Aspirante';
+                            } elseif ($_SESSION["subMat"] == "Al") {
+                                echo 'Alumno';
+                            } elseif ($_SESSION["subMat"] == "PF") {
+                                echo 'Padre de Fam';
+                            } elseif ($_SESSION["subMat"] == "DOC") {
+                                echo 'Docente';
+                            } elseif ($_SESSION["subMat"] == "ADM") {
+                                echo 'Administrador';
+                            } elseif ($_SESSION["subMat"] == "MST") {
+                                echo 'MASTER';
+                            } else {
+                                echo 'Rol Desconocido';
+                            }
+                            ?>
+                        </small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="./../../img/altindeximages/avatar.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <!------------------------------- END OF top / top ------------------------>
+            <div class="recent-updates">
+                <h2>Actualizaciones Recientes</h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./../../img/altindeximages/welcoming.svg" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Myke Tyson</b> Received his order of
+                                Night lion tech GPS drone.</p>
+                            <small class="text-muted">2 Minutes Ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./../../img/altindeximages/teaching.svg" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Myke Tyson</b> Received his order of
+                                Night lion tech GPS drone.</p>
+                            <small class="text-muted">2 Minutes Ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Myke Tyson</b> Received his order of
+                                Night lion tech GPS drone.</p>
+                            <small class="text-muted">2 Minutes Ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF RECENT UPDATES -->
+            <div class="sales-analytics">
+                <h2>Metricas de Ventas</h2>
+                <div class="item online">
+                    <div class="icon">
+                        <span class="material-icons-sharp">shopping_cart</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Pedidos en línea</h3>
+                            <small class="text-muted">Last 24 Hours</small>
+                        </div>
+                        <h5 class="success">+39%</h5>
+                        <h3>3849</h3>
+                    </div>
+                </div>
+                <div class="item offline">
+                    <div class="icon">
+                        <span class="material-icons-sharp">local_mall</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Pedidos Presenciales</h3>
+                            <small class="text-muted">Last 24 Hours</small>
+                        </div>
+                        <h5 class="danger">+17%</h5>
+                        <h3>1100</h3>
+                    </div>
+                </div>
+                <div class="item customers">
+                    <div class="icon">
+                        <span class="material-icons-sharp">person</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Nuevos clientes</h3>
+                            <small class="text-muted">Last 24 Hours</small>
+                        </div>
+                        <h5 class="success">+25%</h5>
+                        <h3>849</h3>
+                    </div>
+                </div>
+                <div class="item add-product">
+                    <div>
+                        <span class="material-icons-sharp">add</span>
+                        <h3>Agregar Producto</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-            <!-- Script for navbar arrows and show the elements -->
+    <!-- Script for navbar arrows and show the elements -->
 
-            <script>
-                $('.dropdown-toggle').click(function() {
-                    $('aside .sidebar ul .dropdown-menu').toggleClass("show");
+    <script>
+        $('.dropdown-toggle').click(function () {
+            $('aside .sidebar ul .dropdown-menu').toggleClass("show");
 
-                    $('aside .sidebar ul .first-arrow').toggleClass("rotate");
-                });
-                $('aside .sidebar ul li').click(function() {
-                    $(this).addClass("active").siblings().removeClass("active");
-                });
-            </script>
+            $('aside .sidebar ul .first-arrow').toggleClass("rotate");
+        });
+        $('aside .sidebar ul li').click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+    </script>
 
-            <script>
-                $('.dropdown-toggleCursos').click(function() {
-                    $('aside .sidebar ul .dropdown-menuCursos').toggleClass("show");
-                    $('aside .sidebar ul .second-arrow').toggleClass("rotate");
-                });
-                $('aside .sidebar ul li').click(function() {
-                    $(this).addClass("active").siblings().removeClass("active");
-                });
-            </script>
+    <script>
+        $('.dropdown-toggleCursos').click(function () {
+            $('aside .sidebar ul .dropdown-menuCursos').toggleClass("show");
+            $('aside .sidebar ul .second-arrow').toggleClass("rotate");
+        });
+        $('aside .sidebar ul li').click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+    </script>
 
-            <!-- SCRIPT JS -->
-            <script src="../../js/dashboard/orders.js"></script>
-            <script src="../../js/dashboard/inicio.js"></script>
+    <!-- SCRIPT JS -->
+    <script src="../../js/dashboard/orders.js"></script>
+    <script src="../../js/dashboard/inicio.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,9 @@
 <?php
+// include '../controllers/phpMailer/enviarCorreo.php';
+
+
+
+
 include("./../../model/connection.php");
 $id_persona = $_SESSION["id_persona"];
 $sql = $connection->query("SELECT persona.id_rol FROM persona WHERE persona.id_persona = '$id_persona'");
