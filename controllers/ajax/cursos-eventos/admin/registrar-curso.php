@@ -1,6 +1,7 @@
 <?php
-
-    include('../../../../model/connection.php');
+    // Base de datos
+    require_once "../../../../model/connection.php";
+    // variables de conexion DB
     $db = $connection;
     // condicionamos si los campos no están vacíos
     if(!empty($_POST['nam']) and !empty($_POST['des']) 
@@ -20,7 +21,6 @@
         $dInitial = $_POST['dIni'];
         $dEnd = $_POST['dEnd'];
         $status = $_POST['stus'];
-        $image = $_POST['img'];
         $date = date("y-m-d H:i:s");
 
         // Definimos la fecha actual con formato UNIX previamente formateada con date() y obtenida con time()
@@ -32,23 +32,25 @@
         // condicionamos si las fechas de registro son mayores a la fecha actual
         if($fecha_inicio >= $fecha_actual and $fecha_cierra >= $fecha_actual) {
             
-            // preparamos y ejecutamos la consulta para insertar los datos
-            $sql = $db->query("INSERT INTO cursos (id_curso, nombre_curso, descripcion_curso, portada_curso, fecha_inicio_curso, fecha_fin_curso, requisitos_curso, responsables_curso, total_participantes, costo_unitario, estatus_curso, f_creacion_curso, rol_dirigido) 
-                            VALUES (NULL, '$name', '$description', '$image', '$dInitial', '$dEnd', '$requirements', '$responsible', '$participantes', '$costo', '$status', '$date', '$user');"
-                            );
+/*--------------------------- --------- preparamos y ejecutamos la consulta para insertar los datos ---------- ---------------------*/
+            $query = "INSERT INTO 
+            cursos (id_curso, nombre_curso, descripcion_curso, fecha_inicio_curso, fecha_fin_curso, requisitos_curso, responsables_curso, total_participantes, costo_unitario, estatus_curso, f_creacion_curso, rol_dirigido) 
+            VALUES (NULL, '$name', '$description', '$dInitial', '$dEnd', '$requirements', '$responsible', '$participantes', '$costo', '$status', '$date', '$user')";
+            // ejecutamos la query
+            $sql = $db->query($query);
             //condicionamos si se ha registrado exitosamente
             if($sql == true) {
-                echo 1; // transacción exitosa
+                echo "OK";
             } else {
-                echo 2; // transacción fallida
+                echo "FAILED"; // transacción fallida
             }
-
+            /*------------- Fin de inserción de datos --------------*/
         } else {
-            echo 3; // fechas no válidas
+            echo "BAD_DATES"; // fechas no válidas
         }
-
+        // fin de condicionales de fechas
     } else {
-        echo 4; // campos incompletos
+        echo "INCOMPLET"; // campos incompletos
     }
 
 ?>

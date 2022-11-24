@@ -1,8 +1,8 @@
 <?php
-    /*session_start();
-    if (empty($_SESSION["id_persona"])) {
+    session_start();
+    if (empty($_SESSION["subMat"])) {
         header("location:../../index.php");
-    }*/
+    }
     // inicio del objeto para guadar el contenido HTML en memoria
     ob_start();
     // QUIENES ESTAN REGISTRADOS EN EL CURSO
@@ -88,28 +88,24 @@
                 <h1> <?= $course ?> </h1>
                 <p>Alumnos que adquirieron el curso.</p>
             </div>
-            <<table class="table-register-user">
+            <table class="table-register-user">
                 <tr>
-                    <th>ID Usuario</th>
-                    <th>Nombre(s)</th>
-                    <th>Apellido paterno</th>
-                    <th>Apellido paterno</th>
-                    <th>Número telefónico</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
                     <th>ID de compra</th>
-                    <th>Estado de compra</th>
+                    <th>Accesos comprados</th>
+                    <th>Fecha de compra</th>
                 </tr>
         <?php
             if($result->num_rows > 0) {
                 while($datas = $result->fetch_assoc()) {
         ?>
                 <tr>
-                    <td><?= $datas['id_alumno'] ?></td>
-                    <td><?= $datas['nombre_alumno']." ".$datas['segundo_nombreAlumno'] ?></td>
-                    <td><?= $datas['apellido_paternoAlumno'] ?></td>
-                    <td><?= $datas['apellido_maternoAlumno'] ?></td>
-                    <td><?= $datas['numero_tel_Alumno'] ?></td>
+                    <td><?= $datas['nombre_alumno']." ".$datas['segundo_nombreAlumno']." ".$datas['apellido_paternoAlumno']." ".$datas['apellido_maternoAlumno']?></td>
+                    <td><?= $datas['email_alumno'] ?></td>
                     <td><?= $datas['id_alumno_curso'] ?></td>
-                    <td><?= $datas['descripcion_pago'] ?></td>
+                    <td><?= $datas['cantidad_boletines'] ?></td>
+                    <td><?= $datas['f_creacion_al_cur']?></td>
                 </tr>
         <?php
                 }
@@ -130,18 +126,13 @@
     // instanciamos y usamos la clase de DOMPDF
     $dompdf = new Dompdf();
 
-    // en caso de imprimir imágenes, habilitar el siguiente código
-    /*$options = $dompdf->getOptions();
-    $options->set(array('isRemoteEnabled' => true));
-    $dompdf->setOptions($options);*/
-
     // asignamos el html en memoria para convertirlo en PDF
     $dompdf->loadHtml($html);
 
     /* --------- Configurar el tamaño y la orientación del papel ----------- */
     // lo guardamos para mostrarlo verticalmente
     $dompdf->setPaper('letter');
-    //$dompdf->setPaper('A4', 'landscape');  // ---> funcional para documentos horizontales
+
 
     // Renderizar el HTML como PDF
     $dompdf->render();

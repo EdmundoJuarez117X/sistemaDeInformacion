@@ -1,8 +1,8 @@
 <?php
-    /*session_start();
-    if (empty($_SESSION["id_persona"])) {
+    session_start();
+    if (empty($_SESSION["subMat"])) {
         header("location:../../index.php");
-    }*/
+    }
     // inicio del objeto para guadar el contenido HTML en memoria
     ob_start();
 
@@ -88,11 +88,15 @@
                 <?= $compra['nombre_docente']." ".$compra['segundo_nombreDocente']." ".$compra['apellido_paternoDocente']." ".$compra['apellido_maternoDocente'] ?>
             </p>
 
+            <p>Correo: <?= $compra['email_docente'] ?></p>
+
             <p>Teléfono: <?= $compra['numero_tel_Docente'] ?></p>
 
             <div class="separator"></div>
 
-            <p>Costo unitario de curso (MXM): $<?= $compra['costo_unitario'] ?></p>
+            <p>Fecha de compra: <?= $compra['f_creacion_doc_cur'] ?></p>
+
+            <p>Costo unitario de curso (MXN): $<?= $compra['costo_unitario'] ?></p>
 
             <p>Total de compras: <?= $compra['cantidad_boletines'] ?></p>
 

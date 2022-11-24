@@ -22,7 +22,7 @@
         $dInitial = $_POST['dIni'];
         $dEnd = $_POST['dEnd'];
         $status = $_POST['stus'];
-        $image = $_POST['img'];
+        //$image = $_POST['img'];
         $date = date("y-m-d H:i:s");
 
         // Definimos la fecha actual con formato UNIX previamente formateada con date() y obtenida con time()
@@ -33,17 +33,43 @@
 
         // condicionamos si las fechas de registro son mayores a la fecha actual
         if($fecha_inicio <= $fecha_actual || $fecha_inicio >= $fecha_actual and $fecha_cierra >= $fecha_actual) {
-            // preparamos y ejecutamos la consulta para insertar los datos
-            $sql = $db->query("UPDATE cursos SET nombre_curso = '$name', descripcion_curso = '$description', portada_curso = '$image', 
-            fecha_inicio_curso = '$dInitial', fecha_fin_curso = '$dEnd', requisitos_curso = '$requirements', 
-            responsables_curso = '$responsible', total_participantes = '$participantes', costo_unitario = '$costo', 
-            estatus_curso = '$status', f_modificacion_curso = '$date', rol_dirigido = '$user' WHERE cursos.id_curso = '$id';");
-            //condicionamos si se ha registrado exitosamente
-            if($sql == true) {
-                echo 1; // transacción exitosa
-            } else {
-                echo 2; // transacción fallida
+
+            // conoces si el tipo de usuario se ha actualizado
+            $query = $db->query("SELECT cursos.rol_dirigido FROM cursos WHERE cursos.id_curso = $id");
+            if(!$query) {
+                die("Error al obtener el rol registrado. Error: ". mysqli_error($db));
             }
+            $rol = $query->fetch_assoc();
+            $rol_dirigido = $rol['rol_dirigido'];
+
+            // si no hay cambios en el destino del curso
+            if($user == $rol_dirigido) {
+                // preparamos y ejecutamos la consulta para insertar los datos
+                $sql = $db->query("UPDATE cursos SET nombre_curso = '$name', descripcion_curso = '$description', 
+                fecha_inicio_curso = '$dInitial', fecha_fin_curso = '$dEnd', requisitos_curso = '$requirements', 
+                responsables_curso = '$responsible', total_participantes = '$participantes', costo_unitario = '$costo', 
+                estatus_curso = '$status', f_modificacion_curso = '$date', rol_dirigido = '$user' WHERE cursos.id_curso = '$id';");
+                //condicionamos si se ha registrado exitosamente
+                if($sql == true) {
+                    echo 1; // transacción exitosa
+                } else {
+                    echo 2; // transacción fallida
+                }
+            // si se ha actualizado del tipo de usuario
+            } else {
+                // preparamos y ejecutamos la consulta para insertar los datos
+                $sql = $db->query("UPDATE cursos SET nombre_curso = '$name', descripcion_curso = '$description', 
+                fecha_inicio_curso = '$dInitial', fecha_fin_curso = '$dEnd', requisitos_curso = '$requirements', 
+                responsables_curso = '$responsible', total_participantes = '$participantes', costo_unitario = '$costo', 
+                estatus_curso = '$status', f_modificacion_curso = '$date', rol_dirigido = '$user' WHERE cursos.id_curso = '$id';");
+                //condicionamos si se ha registrado exitosamente
+                if($sql == true) {
+                    echo "OK"; // transacción exitosa
+                } else {
+                    echo 2; // transacción fallida
+                }
+            }
+            
         } else {
             echo 3; // fechas inválidas
         }

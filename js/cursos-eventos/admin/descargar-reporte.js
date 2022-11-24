@@ -18,6 +18,6 @@ function descargar_reporte() {
         var date2 = document.getElementById("course_date_final").value;
 
         //console.log("../../archivos-pdf-php/reporte-cursos-pdf.php?fchaI="+date1+"&fchaF="+date2);
-        window.open("../../archivos-pdf-php/reporte-cursos-pdf.php?pdo="+report_period+"&fchaI="+date1+"&fchaF="+date2, '_blank');        
+        window.open("../../archivos-pdf-php/reporte-cursos-pdf.php?pdo="+report_period+"&fchaI="+date1+"&fchaF="+date2, '_blank');
     }
 }

@@ -2,6 +2,7 @@ $(function() {
 
     // al iniciar la interfaz, carga los datos dela tabla de cursos
     mostrarCursos();
+    mostrarNotificaciones();
     // ====================== REGISTRAR CURSO ======================== //
     $('#btn-register-course').click(function(){
         // obtenemos el contenido de las IDs
@@ -15,7 +16,6 @@ $(function() {
         var dInitial = document.getElementById('date_initial').value;
         var dEnd = document.getElementById('date_end').value;
         var status = document.getElementById('select_status').value;
-        var image = document.getElementById('course_image').value;
         
         // condicionamos si todos los campos contienen información
         if(name == "" || description == "" || requirements == "" || responsible == "" || participantes == "" || costo == "" || dInitial == "" 
@@ -23,7 +23,7 @@ $(function() {
             swal("Datos incompletos", "Asegúrese de llenar todos los campos", "warning");
         } else {
             // grupo de datos a enviar en la URL
-            var datas = "nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status+"&img="+image;
+            var datas = "nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;
             // prepramos el envío para php
             $.ajax({
                 url: '../../../controllers/ajax/cursos-eventos/admin/registrar-curso.php',
@@ -31,28 +31,67 @@ $(function() {
                 data: datas,
                 success: function(data) {
                     // verficamos y condicionamos la respuesta desde registrar-curso.php
-                    if(data == 4) {
+                    if(data == "INCOMPLET") {
                         // advertencia
                         swal("Datos incompletos", "Asegúrese de llenar todos los campos", "warning");
-                    } else if(data == 3) {
+                    } else if(data == "BAD_DATES") {
                         // error de fechas
                         swal("Fechas incorrectas", "Debe agregar una fecha mayor o igual a la actual", "warning");
-                    } else if(data == 1) {
-                        // éxito
-                        swal("", "Curso registrado exitosamente", "success");
-                        // limpiamos los campos
-                        document.getElementById('course_name').value = "";
-                        document.getElementById('course_description').value = "";
-                        document.getElementById('course_requirements').value = "";
-                        document.getElementById('course_responsible').value = "";
-                        document.getElementById('total_participantes').value = "";
-                        document.getElementById('costo_unitario').value = "";
-                        document.getElementById('date_initial').value = "";
-                        document.getElementById('date_end').value = "";
-                        document.getElementById('course_image').value = "";
-                    }else if(data == 2) {
+                    } else if(data == "FAILED") {
                         // error de transacción
                         swal("Algo salió mal", "Inténtalo más tarde", "error");
+                    } else if(data == "OK") {
+                        // éxito
+                        swal({
+                            title: "Curso registrado exitosamente",
+                            text: "¿Desea notificar el nuevo curso?",
+                            icon: "success",
+                            buttons: true,
+                            true: true,
+                        })
+                        .then((willNotify) => {
+                            if (willNotify) {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '../../../controllers/ajax/cursos-eventos/admin/enviar-notificacion.php',
+                                    data: "user="+user+"&cso="+name+"&des="+description,
+                                    success: function(response) {
+                                        swal(response);
+                                        mostrarNotificaciones();
+                                        name = document.getElementById('course_name').value = "";
+                                        document.getElementById('course_description').value = "";
+                                        document.getElementById('course_requirements').value = "";
+                                        document.getElementById('course_responsible').value = "";
+                                        document.getElementById('total_participantes').value = "";
+                                        document.getElementById('costo_unitario').value = "";
+                                        document.getElementById('date_initial').value = "";
+                                        document.getElementById('date_end').value = "";
+                                    }
+                                });
+                                
+                            } else {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '../../../controllers/ajax/cursos-eventos/admin/agregar-notificacion.php',
+                                    data: "user="+user+"&cso="+name,
+                                    success: function(response) {
+                                        if(response == 1) {
+                                            mostrarNotificaciones();
+                                            name = document.getElementById('course_name').value = "";
+                                            document.getElementById('course_description').value = "";
+                                            document.getElementById('course_requirements').value = "";
+                                            document.getElementById('course_responsible').value = "";
+                                            document.getElementById('total_participantes').value = "";
+                                            document.getElementById('costo_unitario').value = "";
+                                            document.getElementById('date_initial').value = "";
+                                            document.getElementById('date_end').value = "";
+                                        }else {
+                                            swal("No pudo crear notificacion","Los datos estan vacíos","error");
+                                        }
+                                    }
+                                });
+                            }
+                        });
                     }
                 }
             });
@@ -74,7 +113,7 @@ $(function() {
         var dInitial = document.getElementById('date_initial').value;
         var dEnd = document.getElementById('date_end').value;
         var status = document.getElementById('select_status').value;
-        var image = document.getElementById('course_image').value;
+        //var image = document.getElementById('course_image').value;
 
         // condicionamos si todos los campos contienen información
         if(name == "" || description == "" || requirements == "" || responsible == "" || participantes == "" || costo == "" || dInitial == "" 
@@ -84,10 +123,10 @@ $(function() {
             // verificamos el estado del curso
             if(status == "activo") {
                 // grupo de datos a enviar en la URL
-                var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status+"&img="+image;
+                var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;//+"&img="+image;
                 // llamamos la funcion de actualizacion
-                enviarActualizacion(datas);
-
+                enviarActualizacion(datas, name, description, user);
+                
             } else if(status == "inactivo") {
                 // si existen usuarios registrados
                 if(registrados > 0) {
@@ -102,9 +141,10 @@ $(function() {
                     .then((willDelete) => {
                         if (willDelete) {
                             // grupo de datos a enviar en la URL
-                            var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status+"&img="+image;
+                            var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;//+"&img="+image;
                             // si se acepta la condicion llamamos la funcion y enviamos los datos
-                            enviarActualizacion(datas);
+                            enviarActualizacion(datas, name, description, user);
+                            
                         } else {
                             swal("Se descartaron los cambios");
                         }
@@ -113,15 +153,16 @@ $(function() {
                 // si no existen usuarios registrados
                 else {
                     // grupo de datos a enviar en la URL
-                    var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status+"&img="+image;
+                    var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;//+"&img="+image;
                     // si se acepta la condicion llamamos la funcion y enviamos los datos
-                    enviarActualizacion(datas);
+                    enviarActualizacion(datas, name, description, user);
+                    
                 }
             }
         }
     });
     // ====================== FUNCION PARA ENVIAR DATOS DE ACTUALIZACIÓN ======================== //UALIZACION
-    function enviarActualizacion(data) {
+    function enviarActualizacion(data, name, description, user) {
         // prepramos el envío para php
         $.ajax({
             url: '../../../controllers/ajax/cursos-eventos/admin/actualizar-curso.php',
@@ -135,12 +176,48 @@ $(function() {
                 } else if(reponse == 3) {
                     // error de fechas
                     swal("Fechas caducadas", "Debe agregar fechas mayor o igual a la actual", "warning");
-                } else if(reponse == 1) {
-                    // éxito
-                    swal("", "Cambios guardados exitosamente", "success");
-                }else if(reponse == 2) {
+                } else if(reponse == 2) {
                     // error de transacción
                     swal("Algo salió mal", "Inténtalo más tarde", "error");
+                }else if(reponse == 1) {
+                    // éxito
+                    swal("", "Cambios guardados exitosamente", "success");
+                } else if(reponse == "OK") {
+                    // éxito con cambio de usuario de destino
+                    swal({
+                        title: "Cambios guardados exitosamente",
+                        text: "Se cambió el usuario de destino ¿Desea notificar a los usuarios?",
+                        icon: "success",
+                        buttons: true,
+                        true: true,
+                    })
+                    .then((willNotify) => {
+                        if (willNotify) {
+                            $.ajax({
+                                type: 'POST',
+                                url: '../../../controllers/ajax/cursos-eventos/admin/enviar-notificacion.php',
+                                data: "user="+user+"&cso="+name+"&des="+description,
+                                success: function(response) {
+                                    swal(response);
+                                    mostrarNotificaciones();
+                                }
+                            });
+                            
+                        } else {
+                            $.ajax({
+                                type: 'POST',
+                                url: '../../../controllers/ajax/cursos-eventos/admin/agregar-notificacion.php',
+                                data: "user="+user+"&cso="+name,
+                                success: function(response) {
+                                    if(response == 1) {
+                                        mostrarNotificaciones();
+                                    }else {
+                                        swal("No pudo crear notificacion","Los datos estan vacíos","error");
+                                    }
+                                }
+                            });
+                        }
+                    });
                 }
             }
         });
@@ -227,7 +304,11 @@ $(function() {
                     }]
                 },
                 options: {
-                    indexAxis: 'y',
+                    scales: {
+                        y: {
+                            stacked: true
+                        }
+                    }
                 }
             });
             
@@ -379,8 +460,30 @@ $(function() {
         $.ajax({    
             type: "GET",
             url: "../../../controllers/ajax/cursos-eventos/admin/compras-alumnos.php",                
-            success: function(response){                    
-                $("#table-container-compras").html(response);
+            success: function(response){
+                if(response == "No se encontraron compras") {
+                    $("#table-container-compras").html(response);
+                } else {
+                    let compras = JSON.parse(response);
+                    let template = '';
+
+                    compras.forEach(com => {
+                        template += `
+                        <tr>
+                            <td> ${com.idac} </td>
+                            <td> ${com.ida} </td>
+                            <td>${com.idc}</td>
+                            <td>${com.cb}</td>
+                            <td>$${(com.cb) * (com.costo)}</td>
+                            <td>${com.fcac}</td>
+                            <td><a href='../../archivos-pdf-php/ticket-alumno.php?cra=${com.idac}' target='_blank'>
+                                <span class='material-icons-sharp'>description</span>
+                            </a></td>
+                        </tr>
+                        `;
+                    });
+                    $("#table-container-compras").html(template);
+                }
             }
         });
     });
@@ -390,10 +493,106 @@ $(function() {
         $.ajax({    
             type: "GET",
             url: "../../../controllers/ajax/cursos-eventos/admin/compras-docentes.php",                
-            success: function(response){                    
-                $("#table-container-compras").html(response); 
+            success: function(response){
+                if(response == "No se encontraron compras") {
+                    $("#table-container-compras").html(response);
+                } else {
+                    let compras = JSON.parse(response);
+                    let template = '';
+
+                    compras.forEach(com => {
+                        template += `
+                        <tr>
+                            <td> ${com.idac} </td>
+                            <td> ${com.ida} </td>
+                            <td>${com.idc}</td>
+                            <td>${com.cb}</td>
+                            <td>$${(com.cb) * (com.costo)}</td>
+                            <td>${com.fcac}</td>
+                            <td><a href='../../archivos-pdf-php/ticket-docente.php?cra=${com.idac}' target='_blank'>
+                                <span class='material-icons-sharp'>description</span>
+                            </a></td>
+                        </tr>
+                        `;
+                    });
+                    $("#table-container-compras").html(template);
+                }
             }
         });
     });
+
+    // ====================== MOSTRAR NOTIFICACIONES ======================== //
+    function mostrarNotificaciones() {
+        $.ajax({
+            type: 'GET',
+            url: '../../../controllers/ajax/cursos-eventos/admin/notificaciones.php',
+            success: function(response) {
+                let notificaciones = JSON.parse(response);
+                let template = '';
+
+                notificaciones.forEach(noti => {
+                    template += `
+                    <div class="update" id_n="${noti.id}" id_c="${noti.id_c}" user="${noti.rol}">
+                        <div class="profile-photo" style="background-color: grey;"></div>
+                            <div class="message">
+                                <p><b>${noti.name}</b><br>
+                                    ${noti.des}
+                                    <button class="btn-actions-notify" id="btn-send-notify-again"><span class="material-icons-sharp">send</span></button>
+                                    <button class="btn-actions-notify" id="btn-delete-notify"><span class="material-icons-sharp">delete</span></button>
+                            </p>       
+                        </div>
+                    </div>
+                    `
+                });
+                $('#notificaciones-de-cursos').html(template);
+            }
+        });
+    }
+
+    // ====================== BORRAR NOTIFICACIONES ======================== //
+    $(document).on('click', '#btn-delete-notify', function(){
+        // obtenemos toda la fila del botón cliqueado
+        let element = $(this)['0'].parentElement.parentElement.parentElement;
+        let id = $(element).attr('id_n'); // id de la notificacion
+        
+        $.ajax({
+            type: 'POST',
+            url: "../../../controllers/ajax/cursos-eventos/admin/eliminar-notificacion.php",
+            data: "id="+id,
+            success: function(response) {
+                if(response == "OK") {
+                    mostrarNotificaciones();
+                } else if(response == "EMPTY") {
+                    swal("Algo salió mal","No se pudo eliminar la notificacion","error");
+                }
+            }
+        });
+        
+    });
+
+    // ====================== REENVIAR NOTIFICACIONES ======================== //
+    $(document).on('click', '#btn-send-notify-again', function(){
+        // obtenemos toda la fila del botón cliqueado
+        let element = $(this)['0'].parentElement.parentElement.parentElement;
+        let idn = $(element).attr('id_n'); //id de la notificacion
+        let id_c = $(element).attr('id_c'); // id del curso
+        let user = $(element).attr('user'); // id del curso
+        
+        $.ajax({
+            type: 'POST',
+            url: "../../../controllers/ajax/cursos-eventos/admin/reenviar-notificacion.php",
+            data: "idn="+idn+"&idc="+id_c+"&user="+user,
+            success: function(response) {
+                if(response == "OK") {
+                    mostrarNotificaciones();
+                } else {
+                    swal(response);
+                    mostrarNotificaciones();
+                }
+            }
+        });
+        
+    });
+
 
 });

@@ -241,12 +241,12 @@ DROP TABLE IF EXISTS `cursos`;
 CREATE TABLE IF NOT EXISTS `cursos`(
     `id_curso` int(5) NOT NULL AUTO_INCREMENT,
     `nombre_curso` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `descripcion_curso` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `portada_curso` blob NULL,
+    `descripcion_curso` varchar(1000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `portada_curso` longblob NULL,
     `fecha_inicio_curso` date NOT NULL,
     `fecha_fin_curso` date NOT NULL,
-    `requisitos_curso` varchar(300) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `responsables_curso` varchar(300) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `requisitos_curso` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `responsables_curso` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `total_participantes` int(3) NOT NULL,
     `participantes_registrados` int(3) NOT NULL,
     `costo_unitario` float NOT NULL,
@@ -409,6 +409,21 @@ CREATE TABLE IF NOT EXISTS `planEstudios` (
 
 -- -------------------------------------------------------------------------------
 -- TABLAS CON CLAVE FORANEA
+
+-- -------------------------------------------------------------------------------
+--
+-- Estructura de tabla para la tabla `notificacion_curso`
+--
+
+DROP TABLE IF EXISTS `notificacion_curso`;
+
+CREATE TABLE IF NOT EXISTS `notificacion_curso` (
+    `id_notificacion_curso` int(5) NOT NULL AUTO_INCREMENT,
+    `descripcion_notificacion` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `id_curso` int(5) NOT NULL,
+    PRIMARY KEY (`id_notificacion_curso`),
+    FOREIGN KEY (`id_curso`) REFERENCES `cursos`(`id_curso`)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- -------------------------------------------------------------------------------
 --

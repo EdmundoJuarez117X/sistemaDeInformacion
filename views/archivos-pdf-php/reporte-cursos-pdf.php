@@ -1,9 +1,8 @@
 <?php
-    /*session_start();
-    if (empty($_SESSION["id_persona"])) {
+    session_start();
+    if (empty($_SESSION["subMat"])) {
         header("location:../../index.php");
-    }*/
-
+    }
     require_once("../../model/connection.php");
     $db = $connection;
     // inicio del objeto para guadar el contenido HTML en memoria

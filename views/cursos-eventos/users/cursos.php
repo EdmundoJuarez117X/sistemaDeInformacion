@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_SESSION["id_persona"])) {
+if (empty($_SESSION["subMat"])) {
     header("location:../../../index.php");
 }
 ?>
@@ -40,31 +40,62 @@ if (empty($_SESSION["id_persona"])) {
                     <!-- SIDEBAR / NAVBAR CODE -->
                     <div class="sidebar">
                         <ul class="">
-                            <li class="">
-                                <a class="" href="../../dashboard/inicio.php">
-                                    <span class="material-icons-sharp">grid_view</span>
-                                    <h3>Dashboard</h3>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="" href="../../stripeInscrip/public/checkout.php">
-                                    <span class="material-icons-sharp">person</span>
-                                    <h3>Inscripciones</h3>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="" href="#">
-                                    <span class="material-icons-sharp">mail_outline</span>
-                                    <h3>Mensajes</h3>
-                                    <span class="message-count">26</span>
-                                </a>
-                            </li>
-                            <li class="CloseSession">
-                                <a href="../../../controllers/controller_logout.php">
-                                    <span class="material-icons-sharp">logout</span>
-                                    <h3>Cerrar Sesión</h3>
-                                </a>
-                            </li>
+                            <?php
+                                if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"]=="DOC" or $_SESSION["subMat"] == "Al") {
+                                    echo '
+                                    <li class="">
+                                        <a class="" href="../../dashboard/inicio.php">
+                                            <span class="material-icons-sharp">grid_view</span>
+                                            <h3>Dashboard</h3>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="" href="../../stripeInscrip/pago/index.php">
+                                            <span class="material-icons-sharp">person</span>
+                                            <h3>Inscripciones</h3>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="active">
+                                        <a class="dropdown-toggleCursos">
+                                            <span class="material-icons-sharp">import_contacts</span>
+                                            <h3>Cursos</h3>
+                                            <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
+                                        </a>
+                                        <ul class="dropdown-menuCursos">
+                                            <li>
+                                                <a class="dropdown-item">
+                                                    <span class="material-icons-sharp">import_contacts</span>
+                                                    <h3>Cursos</h3>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="mis-cursos.php">
+                                                    <span class="material-icons-sharp">history</span>
+                                                    <h3>Mis cursos</h3>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li class="">
+                                        <a class="" href="#">
+                                            <span class="material-icons-sharp">mail_outline</span>
+                                            <h3>Mensajes</h3>
+                                            <span class="message-count">26</span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="CloseSession">
+                                        <a href="../../../controllers/controller_logout.php">
+                                            <span class="material-icons-sharp">logout</span>
+                                            <h3>Cerrar Sesión</h3>
+                                        </a>
+                                    </li>
+                                    ';
+                                }
+                            ?>
+                            
                         </ul>
                     </div>
                     <!-- END OF SIDEBAR / NAVBAR -->
@@ -73,8 +104,8 @@ if (empty($_SESSION["id_persona"])) {
                 <main>
                     <h1>Cursos</h1>
                     <div class="courses-catalogue">
-                        <div class="my-courses">
-                            <?php require_once '../../../controllers/ajax/cursos-eventos/users/mostrar-cursos.php' ?>
+                        <div class="my-courses" id="cursos-registrados-users">
+                            
                         </div>
                     </div>
                 </main>
@@ -92,9 +123,43 @@ if (empty($_SESSION["id_persona"])) {
                         <div class="profile">
                             <div class="info">
                                 <p>Hola, <b>
-                                <?php echo '' . $_SESSION["nombre_persona"] . " " . $_SESSION["apellido_paterno"] . ''; ?>
-                                    </b></p>
-                                <small class="text-muted">Admin</small>
+                                    <?php 
+                                    if($_SESSION["subMat"]=="ASP"){
+                                        echo '' . $_SESSION["nombre_aspirante"] . " " . $_SESSION["apellido_paternoAspirante"] . '';
+                                    }elseif($_SESSION["subMat"] == "Al"){
+                                        echo '' . $_SESSION["nombre_alumno"] . " " . $_SESSION["apellido_paternoAlumno"] . '';
+                                    }elseif($_SESSION["subMat"] == "PF"){
+                                        echo '' . $_SESSION["nombre_padreDeFam"] . " " . $_SESSION["apellido_paternopadreDeFam"] . '';
+                                    }elseif($_SESSION["subMat"] == "DOC"){
+                                        echo '' . $_SESSION["nombre_docente"] . " " . $_SESSION["apellido_paternoDocente"] . '';
+                                    }elseif($_SESSION["subMat"] == "ADM"){
+                                        echo '' . $_SESSION["nombre_admin"] . " " . $_SESSION["apellido_paternoAdmin"] . '';
+                                    }elseif($_SESSION["subMat"] == "MST"){
+                                        echo '' . $_SESSION["nombre_master"] . " " . $_SESSION["apellido_paternoMaster"] . '';
+                                    }else{
+                                        echo 'Rol Desconocido';
+                                    }
+                                    ?>
+                                </b></p>
+                                <small class="text-muted">
+                                    <?php 
+                                        if($_SESSION["subMat"]=="ASP"){
+                                            echo 'Aspirante';
+                                        }elseif($_SESSION["subMat"] == "Al"){
+                                            echo 'Alumno';
+                                        }elseif($_SESSION["subMat"] == "PF"){
+                                            echo 'Padre de Fam';
+                                        }elseif($_SESSION["subMat"] == "DOC"){
+                                            echo 'Docente';
+                                        }elseif($_SESSION["subMat"] == "ADM"){
+                                            echo 'Administrador';
+                                        }elseif($_SESSION["subMat"] == "MST"){
+                                            echo 'MASTER';
+                                        }else{
+                                            echo 'Rol Desconocido';
+                                        }
+                                    ?>
+                                </small>
                             </div>
                             <div class="profile-photo">
                                 <img src="../../../img/altindeximages/avatar.svg" alt="">
@@ -102,233 +167,15 @@ if (empty($_SESSION["id_persona"])) {
                         </div>
                     </div>
                     <div class="recent-updates">
-                        <h2>Tus cursos</h2>
+                        <h2><a href="mis-cursos.php">Tus cursos</a></h2>
                         <div class="updates container-my-courses">
-                            <div class="my-courses">
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="update">
-                                        <div class="profile-photo">
-                                            <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                        </div>
-                                        <div class="message">
-                                            <p><b>Myke Tyson</b> Received his order of
-                                                Night lion tech GPS drone.</p>
-                                            <small class="text-muted">2 Minutes Ago</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                            <div class="my-courses" id="my-courses-user"></div>
                         </div>
-                        <!--<div class="container-my-courses">
-                            <div class="my-courses">
-                                <div class="update">
-                                    <div class="profile-photo">
-                                        <img src="../../../img/altindeximages/welcoming.svg" alt="">
-                                    </div>
-                                    <div class="message">
-                                        <p><b>Myke Tyson</b> Received his order of
-                                            Night lion tech GPS drone.</p>
-                                        <small class="text-muted">2 Minutes Ago</small>
-                                    </div>
-                                </div>
-                                <div class="update">
-                                    <div class="profile-photo">
-                                        <img src="../../../img/altindeximages/teaching.svg" alt="">
-                                    </div>
-                                    <div class="message">
-                                        <p><b>Myke Tyson</b> Received his order of
-                                            Night lion tech GPS drone.</p>
-                                        <small class="text-muted">2 Minutes Ago</small>
-                                    </div>
-                                </div>
-                                <div class="update">
-                                    <div class="profile-photo">
-                                        <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                    </div>
-                                    <div class="message">
-                                        <p><b>Myke Tyson</b> Received his order of
-                                            Night lion tech GPS drone.</p>
-                                        <small class="text-muted">2 Minutes Ago</small>
-                                    </div>
-                                </div>
-                                <div class="update">
-                                    <div class="profile-photo">
-                                        <img src="../../../img/altindeximages/welcoming.svg" alt="">
-                                    </div>
-                                    <div class="message">
-                                        <p><b>Myke Tyson</b> Received his order of
-                                            Night lion tech GPS drone.</p>
-                                        <small class="text-muted">2 Minutes Ago</small>
-                                    </div>
-                                </div>
-                                <div class="update">
-                                    <div class="profile-photo">
-                                        <img src="../../../img/altindeximages/teaching.svg" alt="">
-                                    </div>
-                                    <div class="message">
-                                        <p><b>Myke Tyson</b> Received his order of
-                                            Night lion tech GPS drone.</p>
-                                        <small class="text-muted">2 Minutes Ago</small>
-                                    </div>
-                                </div>
-                                <div class="update">
-                                    <div class="profile-photo">
-                                        <img src="../../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                                    </div>
-                                    <div class="message">
-                                        <p><b>Myke Tyson</b> Received his order of
-                                            Night lion tech GPS drone.</p>
-                                        <small class="text-muted">2 Minutes Ago</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
                     </div>
                     <!------------------------------- END OF top / top ------------------------>
                 </div>
             </div>
             <!-- Script for navbar arrows and show the elements -->
-            <script>
-                $('.dropdown-toggle').click(function(){
-                    $('aside .sidebar ul .dropdown-menu').toggleClass("show");
-                    $('aside .sidebar ul .first-arrow').toggleClass("rotate");
-                });
-                $('aside .sidebar ul li').click(function(){
-                    $(this).addClass("active").siblings().removeClass("active");
-                });
-            </script>
             <script>
                 $('.dropdown-toggleCursos').click(function() {
                     $('aside .sidebar ul .dropdown-menuCursos').toggleClass("show");
@@ -339,6 +186,7 @@ if (empty($_SESSION["id_persona"])) {
                     });
             </script>
             <!-- SCRIPT JS -->
-            <script src="../../../js/dashboard/inicio.js"></script>  
+            <script src="../../../js/dashboard/inicio.js"></script> 
+            <script src="../../../js/cursos-eventos/user/actions-user.js"></script>
         </body>
     </html>
