@@ -54,7 +54,7 @@ if (empty($_SESSION["subMat"])) {
                         </a>
                     </li> -->
                     <?php
-                        if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"]=="DOC" ) {
+                        if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"]=="DOC" or $_SESSION['subMat'] == "Al") {
                             echo '
                             <li class="active">
                                 <a class="" href="inicio.php">
@@ -69,28 +69,22 @@ if (empty($_SESSION["subMat"])) {
                                 </a>
                             </li>
                             <li class="">
-                                <a class="dropdown-toggleCursos" href="#">
+                                <a class="dropdown-toggleCursos">
                                     <span class="material-icons-sharp">import_contacts</span>
-                                    <h3>Cursos</h3>
+                                        <h3>Cursos</h3>
                                     <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
                                 </a>
                                 <ul class="dropdown-menuCursos">
                                     <li>
-                                        <a class="dropdown-item" href="../cursos-eventos/admin/nuevo-curso.php">
-                                            <span class="material-icons-sharp">add</span>
-                                            <h3>Nuego Curso</h3>
+                                        <a class="dropdown-item" href="../cursos-eventos/users/cursos.php">
+                                            <span class="material-icons-sharp">import_contacts</span>
+                                            <h3>Cursos</h3>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="../cursos-eventos/admin/historial.php">
+                                        <a class="dropdown-item" href="../cursos-eventos/users/mis-cursos.php">
                                             <span class="material-icons-sharp">history</span>
-                                            <h3>Historial</h3>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="../cursos-eventos/admin/reporte.php">
-                                            <span class="material-icons-sharp">receipt_long</span>
-                                            <h3>Reportes</h3>
+                                            <h3>Mis cursos</h3>
                                         </a>
                                     </li>
                                 </ul>
@@ -234,6 +228,18 @@ if (empty($_SESSION["subMat"])) {
                                         <a class="dropdown-item" href="../cursos-eventos/admin/reporte.php">
                                             <span class="material-icons-sharp">receipt_long</span>
                                             <h3>Reportes</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/compras.php">
+                                            <span class="material-icons-sharp">paid</span>
+                                            <h3>Compras</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/actividad.php">
+                                            <span class="material-icons-sharp">trending_up</span>
+                                            <h3>Actividad</h3>
                                         </a>
                                     </li>
                                 </ul>

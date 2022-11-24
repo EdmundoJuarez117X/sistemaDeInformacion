@@ -85,6 +85,18 @@ session_start();
                                             <h3>Reportes</h3>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/compras.php">
+                                            <span class="material-icons-sharp">paid</span>
+                                            <h3>Compras</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/actividad.php">
+                                            <span class="material-icons-sharp">trending_up</span>
+                                            <h3>Actividad</h3>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             
@@ -196,6 +208,18 @@ session_start();
                                         <a class="dropdown-item" href="../cursos-eventos/admin/reporte.php">
                                             <span class="material-icons-sharp">receipt_long</span>
                                             <h3>Reportes</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/compras.php">
+                                            <span class="material-icons-sharp">paid</span>
+                                            <h3>Compras</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/admin/actividad.php">
+                                            <span class="material-icons-sharp">trending_up</span>
+                                            <h3>Actividad</h3>
                                         </a>
                                     </li>
                                 </ul>

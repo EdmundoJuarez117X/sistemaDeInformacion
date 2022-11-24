@@ -18,7 +18,7 @@ $(function() {
                         <a href="comprar-curso.php?cso='${curso.id}'" target="_blank">
                             <div class="courses">
                                 <div class="profile-photo">
-                                    <img src="../../../img/altindeximages/notify.svg" alt="">
+                                    <img src="../../../img/cursos-eventos/notify.svg" alt="">
                                 </div>
                                 <div class="message">
                                     <p><b>${curso.nombre}</b><br>${curso.descripcion}</p>
@@ -49,7 +49,7 @@ $(function() {
                     <a href="info-mi-curso.php?id=${curso.id}">
                         <div class="update">
                             <div class="profile-photo">
-                                <img src="../../../img/altindeximages/undraw_my_files_swob" alt="">
+                                <img src="../../../img/cursos-eventos/bibliophile.svg" alt="">
                             </div>
                             <div class="message">
                                 <p><b> ${curso.nombre} </b>  </p>

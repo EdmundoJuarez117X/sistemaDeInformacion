@@ -30,7 +30,7 @@ if (!empty($_POST["btn_ingresar"])) {
             $url = 'aspOfertaAcadem/index.php';
         } else {
             //Ejecutamos la sentencia SQL
-            $sql = $connection->query("SELECT * FROM alumno WHERE email_alumno	='$email' AND password_alumno='$md5EncryptionP4ss'");
+            $sql = $connection->query("SELECT * FROM alumno WHERE email_alumno	='$email' AND password_alumno='$password'");
             //Obtenemos el registro de los datos y guardamos algunos para control de acceso
             if ($datos = $sql->fetch_object()) {
                 $_SESSION["id_alumno"] = $datos->id_alumno;
@@ -56,7 +56,7 @@ if (!empty($_POST["btn_ingresar"])) {
                     $Autorizacion = true;
                 } else {
                     //Ejecutamos la sentencia SQL
-                    $sql = $connection->query("SELECT * FROM docente WHERE email_docente	='$email' AND password_docente='$md5EncryptionP4ss'");
+                    $sql = $connection->query("SELECT * FROM docente WHERE email_docente	='$email' AND password_docente='$password'");
                     //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                     if ($datos = $sql->fetch_object()) {
                         $_SESSION["id_docente"] = $datos->id_docente;
@@ -66,9 +66,10 @@ if (!empty($_POST["btn_ingresar"])) {
                         $_SESSION["email_docente"] = $datos->email_docente;
 
                         $Autorizacion = true;
+                        $url = 'dashboard/inicio.php';
                     } else {
                         //Ejecutamos la sentencia SQL
-                        $sql = $connection->query("SELECT * FROM administrador WHERE email_admin	='$email' AND password_admin='$md5EncryptionP4ss'");
+                        $sql = $connection->query("SELECT * FROM administrador WHERE email_admin	='$email' AND password_admin='$password'");
                         //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                         if ($datos = $sql->fetch_object()) {
                             $_SESSION["id_administrador"] = $datos->id_administrador;
@@ -80,6 +81,7 @@ if (!empty($_POST["btn_ingresar"])) {
                             $Autorizacion = true;
                             //Redireccionamos al inicio del sitio web (dashboard)
                             header("location:./views/dashboard/inicio.php");
+                            
                         } else {
                             //Ejecutamos la sentencia SQL
                             $sql = $connection->query("SELECT * FROM master WHERE email_master	='$email' AND password_master='$md5EncryptionP4ss'");
