@@ -255,66 +255,6 @@ $(function() {
         });
     }
 
-    // ====================== MOSTRAR GRÁFICA DE REPORTES ======================== //
-    $('#btn-mostrar-grafica-reportes').click(function(){
-        $.ajax({
-            url: '../../../controllers/ajax/cursos-eventos/admin/grafica-reportes.php',
-            type: 'POST'
-        }).done(function(e){
-            //alert(e);
-            
-            if(e.length > 0) {
-
-                var curso = [];
-                var total_accesos = [];
-                var data = JSON.parse(e);
-
-                for(var i = 0; i < data.length; i++) {
-
-                    curso.push(data[i][0]);
-                    total_accesos.push(data[i][1]);
-                }  
-            }
-
-            const ctx = document.getElementById('myChart');
-            const myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: curso,
-                    datasets: [{
-                        label: 'Gráfica de reportes',
-                        data: total_accesos,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            stacked: true
-                        }
-                    }
-                }
-            });
-            
-        });
-    });
-
     // ====================== MOSTRAR DATOS DE REPORTES PERIODOS ======================== //
     $('#btn-see-info').click(function(){
         //obtenemos el id del elemento dentro del select option
@@ -594,5 +534,138 @@ $(function() {
         
     });
 
+    // ====================== MOSTRAR GRÁFICA MÁS VENDIDOS ===================//
+    $(document).on('click', '#btn-mas-vendidos', function() {
+        var masVendidos = 1;
+        $.ajax({
+            url: '../../../controllers/ajax/cursos-eventos/admin/grafica-mas-menos-vendidos.php',
+            type: 'POST',
+            data: 'type='+masVendidos,
+        }).done(function(e){
+            if(e.length > 0) {
+
+                var curso = [];
+                var total_accesos = [];
+                var data = JSON.parse(e);
+
+                for(var i = 0; i < data.length; i++) {
+
+                    curso.push(data[i][0]);
+                    total_accesos.push(data[i][1]);
+                }
+                crearGrafico(curso, total_accesos, "CURSOS MÁS VENDIDOS");
+            }
+        });
+    });
+
+    // ====================== MOSTRAR GRÁFICA MENOS VENDIDOS ===================//
+    $(document).on('click', '#btn-menos-vendidos', function() {
+        var menosVendidos = 2;
+        $.ajax({
+            url: '../../../controllers/ajax/cursos-eventos/admin/grafica-mas-menos-vendidos.php',
+            type: 'POST',
+            data: 'type='+menosVendidos,
+        }).done(function(e){
+            if(e.length > 0) {
+
+                var curso = [];
+                var total_accesos = [];
+                var data = JSON.parse(e);
+
+                for(var i = 0; i < data.length; i++) {
+
+                    curso.push(data[i][0]);
+                    total_accesos.push(data[i][1]);
+                }
+                crearGrafico(curso, total_accesos, "CURSOS MENOS VENDIDOS");
+            }
+        });
+    });
+
+    // ====================== FUNCIÓN PARA GRÁFICAS ======================== //
+    let myChart;
+    function crearGrafico(nombre_curso, total_accesos, encabezado) {
+            
+        /*const ctx = document.getElementById('myChart');
+        if (myChart) {
+            myChart.destroy();
+        }
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: nombre_curso,
+                datasets: [{
+                    label: encabezado,
+                    data: total_accesos,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        stacked: true
+                    }
+                }
+            }
+        });*/
+        const ctx = document.getElementById('myChart');
+
+        if (myChart) {
+            myChart.destroy();
+        }
+        myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre_curso,
+            datasets: [{
+              label: encabezado,
+              data: total_accesos,
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });  
+    }
 
 });
