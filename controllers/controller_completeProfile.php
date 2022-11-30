@@ -89,7 +89,7 @@ if (!empty($_POST["btn_completarPerfil"])) {
                         if($datos = $sql === true){
                             //Autorizamos la redireccion a otro sitio (Dashboard)
                             $Autorizacion = true;
-                            include '../../controllers/phpMailer/enviarCorreo.php';
+                            include '../../controllers/phpMailer/enviarCorreoPF.php';
                         }
                 }
             }

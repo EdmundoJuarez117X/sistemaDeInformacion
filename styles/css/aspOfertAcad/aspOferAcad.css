@@ -1146,30 +1146,32 @@ main .sales-form .container-info-course {
         width: 100%;
     }
 }
-    /* 
+   /* 
 a:hover {
     color: var(--color-success);
   } */
   .tableAspOf:hover, .tableAspOf:active {
-    background-color: green;
+    background-color: var(--color-success);
     color: white;
     border-radius: var(--border-radius-1);
   }
-  
+  table{
+    background-color: var(--color-dark);
+    border-radius: var(--border-radius-1);
+  }
   th{
     background-color: var(--color-dark);
     color: var(--color-white);
     border: 1px solid var(--color-dark);
+    /* border-radius: var(--border-radius-1); */
   }
-  tr:hover {
+  tr{
+    color:var(--color-white);
+  }
+  tr:hover{
     background-color: #D6EEEE;
     color: var(--color-primary-variant);
-  }
-
-/*   
-  th:nth-child(even),td:nth-child(even) {
-    background-color: rgba(150, 212, 212, 0.4);
-  } */
-  .tableResp{
+    /* border-radius: var(--border-radius-1); */
+  }  .tableResp{
     overflow-x:auto;
   }

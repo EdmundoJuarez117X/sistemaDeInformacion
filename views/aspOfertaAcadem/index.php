@@ -64,7 +64,7 @@ if (empty($_SESSION["subMat"])) {
                                 </a>
                             </li>
                             <li class="">
-                                <a class="" href="../stripeInscrip/pago/index.php">
+                                <a class="" href="../stripeInscrip/pago/pagoExamAdm.php">
                                     <span class="material-icons-sharp">person</span>
                                     <h3>Inscripciones</h3>
                                 </a>
@@ -434,7 +434,7 @@ if (empty($_SESSION["subMat"])) {
                                         ;
                                     ?>
                                 <option>
-                                    <?php echo $row[2]; ?>
+                                    <?php echo $row[1]; ?>
                                 </optiondwhile; ?>
                                 <?php endwhile;?>
                         </select>

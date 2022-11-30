@@ -783,3 +783,6 @@ main .recent-orders a{
     box-shadow: none;
 }
 
+.tableResp{
+    overflow-x:scroll;
+  }

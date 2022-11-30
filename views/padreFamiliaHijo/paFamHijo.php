@@ -1,8 +1,91 @@
 <?php
+//Control de acceso por roles
+$Autorizacion = false;
 session_start();
-// if (empty($_SESSION["subMat"]) or $_SESSION["subMat"]=="ASP" or $_SESSION["subMat"]=="PF" or $_SESSION["subMat"] == "Al") {
-//     header("location:./../../index.php");
-// }
+$url = '';
+if (empty($_SESSION["subMat"])) {
+    $Autorizacion = true;
+    $url = '../index.php';
+} else if ($_SESSION["subMat"] == "ASP") {
+    $Autorizacion = true;
+    $url = '../index.php';
+
+} else if ($_SESSION["subMat"] == "PF") {
+    if ($_SESSION["estatus_persona"] == "ACTIVO") {
+
+        if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+            // last request was more than 30 minutes ago
+            session_unset(); // unset $_SESSION variable for the run-time 
+            session_destroy(); // destroy session data in storage
+            $Autorizacion = true;
+            $url = '../index.php';
+        } else {
+            $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+            $Autorizacion = false;
+            // $url = 'padreFamiliaHijo/paFamHijo.php';
+        }
+
+    } else if ($_SESSION["estatus_persona"] == "ASIGNADO") {
+        if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+            // last request was more than 30 minutes ago
+            session_unset(); // unset $_SESSION variable for the run-time 
+            session_destroy(); // destroy session data in storage
+            $Autorizacion = true;
+            $url = '../index.php';
+        } else {
+            $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+            $Autorizacion = true;
+            $url = 'dashboard/inicio.php';
+        }
+    }else if ($_SESSION["estatus_persona"] == "ASIGPREIN") {
+        if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+            // last request was more than 30 minutes ago
+            session_unset(); // unset $_SESSION variable for the run-time 
+            session_destroy(); // destroy session data in storage
+            $Autorizacion = true;
+            $url = '../index.php';
+        } else {
+            $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+            $Autorizacion = true;
+            $url = 'dashboard/inicio.php';
+        }
+    }
+} else if ($_SESSION["subMat"] == "Al") {
+    $Autorizacion = true;
+    $url = '../index.php';
+
+    // if ($_SESSION["estatus_persona"] == "ACTIVO") {
+
+    //     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    //         // last request was more than 30 minutes ago
+    //         session_unset(); // unset $_SESSION variable for the run-time 
+    //         session_destroy(); // destroy session data in storage
+    //         $Autorizacion = true;
+    //         $url = '../index.php';
+    //     } else {
+    //         $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+    //         // $Autorizacion = true;
+    //         // $url = 'aspOfertaAcadem/index.php';
+    //     }
+
+    // } else if ($_SESSION["estatus_persona"] == /*Cambiar ese status por el deseado*/"PROCADM") {
+    //     //Agregar que sucede 
+    //     // $Autorizacion = true;
+    //     // $url = 'stripeInscrip/pago/index.php';
+    // }
+
+} else if ($_SESSION["subMat"] == "DOC") {
+    $Autorizacion = true;
+    $url = '../index.php';
+} else if ($_SESSION["subMat"] == "ADM") {
+
+} else if ($_SESSION["subMat"] == "MST") {
+
+}
+if ($Autorizacion == true) {
+    //                   ./Views/
+    header("location:./../$url");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +104,7 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-    <title>Responsive Dashboard Using HTML CSS and Javascript</title>
+    <title>SISESCOLAR ASIGNAR HIJO</title>
 
 
 </head>
@@ -44,10 +127,40 @@ session_start();
             <!-- SIDEBAR / NAVBAR CODE -->
             <div class="sidebar">
                 <ul class="">
-                <!-- NAV BAR WITH ROL CONTROL -->
-                <?php
-                        if ($_SESSION["subMat"] == "ADM" ) {
-                            echo '
+                    <!-- NAV BAR WITH ROL CONTROL -->
+                    <?php
+                    if ($_SESSION["subMat"] == "PF") {
+                        echo '
+                            <li class="active">
+                                <a class="" href="">
+                                    <span class="material-icons-sharp">grid_view</span>
+                                    <h3>Dashboard</h3>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="" href="../stripeInscrip/pago/pagoExamAdm.php">
+                                    <span class="material-icons-sharp">person</span>
+                                    <h3>Inscripciones</h3>
+                                </a>
+                            </li>
+                            
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">mail_outline</span>
+                                    <h3>Mensajes</h3>
+                                    <span class="message-count">26</span>
+                                </a>
+                            </li>
+                            
+                            <li class="CloseSession">
+                                <a href="./../../controllers/controller_logout.php">
+                                    <span class="material-icons-sharp">logout</span>
+                                    <h3>Cerrar Sesión</h3>
+                                </a>
+                            </li>
+                            ';
+                    } else if ($_SESSION["subMat"] == "ADM") {
+                        echo '
                             <li class="">
                                 <a class="" href="./../dashboard/inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
@@ -103,8 +216,8 @@ session_start();
                                 </a>
                             </li>
                             ';
-                        }else if($_SESSION["subMat"]=="MST"){
-                            echo '
+                    } else if ($_SESSION["subMat"] == "MST") {
+                        echo '
                             <li class="">
                                 <a class="" href="./../dashboard/inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
@@ -221,7 +334,7 @@ session_start();
                                 </a>
                             </li>
                             ';
-                        }
+                    }
                     ?>
                     <!-- <li class="">
                         <a class="" href="./../dashboard/inicio.php">
@@ -331,16 +444,41 @@ session_start();
         </aside>
         <!------------------- END OF ASIDE ---------------->
         <main>
-            <h1>Buscar hijo aspirante</h1>
+            <h1>Buscar hijo aspirante</h1><br>
             <!--------------------- END OF INSIGHTS ---------------------->
             <div class="fields-middle second-middle">
-                <input class="input-field" type="search" placeholder="Correo electrónico de su hijo">
+                <input class="input-field" type="search" id="search" placeholder="Correo electrónico de su hijo">
                 <button class="btnSeg">Buscar</button>
             </div>
-            <button id="showData" class="btnSeg">Mostrar a todos los Aspirantes</button>
+            <div id="container">
+                <!-- <div style="overflow-x:auto;" id="table-container" class="tableResp">
+                <table >
+                    <tr>
+                        <th>Nombre de la Escuela</th>
+                        <th>Dirección</th>
+                        <th>Número de teléfono</th>
+                        <th>Sector</th>
+                        <th>Periodo Escolar</th>
+                        <th>Modalidad Escolar</th>
+                        <th>Especialidad</th>
+                        <th>Exámen de Admisión</th>
+                        <th>Preinscripción</th>
+                    </tr>
+                   <div >
+                    <tr id="container">
+                        
+                    </tr>
+                   </div> -->
+                <!-- <div>
+                        <ul id="container"></ul>
+                    </div> -->
+                <!-- </table> -->
+            </div>
+
+            <!-- <button id="showData" class="btnSeg">Mostrar a todos los Aspirantes</button>
             
-            <div id="table-container" class="">
-                <!-- <h2>Aspirantes</h2>
+            <div id="table-container" class=""> -->
+            <!-- <h2>Aspirantes</h2>
                 <table>
                     <thead>
                         <tr>
@@ -362,7 +500,7 @@ session_start();
                     </tbody>
                 </table>
                 <a href="">Show All</a> -->
-            </div>
+            <!-- </div> -->
         </main>
         <!---------------------------- END OF MAIN ------------------->
         <div class="right">
@@ -376,28 +514,30 @@ session_start();
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hola, 
+                        <p>Hola,
                             <b>
-                                <?php 
-                                    if($_SESSION["subMat"]=="ADM"){
-                                            echo '' . $_SESSION["nombre_admin"] . " " . $_SESSION["apellido_paternoAdmin"] . '';
-                                        }elseif($_SESSION["subMat"] == "MST"){
-                                            echo '' . $_SESSION["nombre_master"] . " " . $_SESSION["apellido_paternoMaster"] . '';
-                                        }else{
-                                            echo 'Rol Desconocido';
-                                        }
-                                 ?>    
+                                <?php
+                                if ($_SESSION["subMat"] == "PF") {
+                                    echo '' . $_SESSION["nombre_padreDeFam"] . " " . $_SESSION["apellido_paternopadreDeFam"] . '';
+                                } elseif ($_SESSION["subMat"] == "MST") {
+                                    echo '' . $_SESSION["nombre_master"] . " " . $_SESSION["apellido_paternoMaster"] . '';
+                                } else {
+                                    echo 'Rol Desconocido';
+                                }
+                                ?>
                             </b>
                         </p>
                         <small class="text-muted">
-                            <?php 
-                                if($_SESSION["subMat"] == "ADM"){
-                                    echo 'Administrador';
-                                    }elseif($_SESSION["subMat"] == "MST"){
-                                    echo 'MASTER';
-                                    }else{
-                                    echo 'Rol Desconocido';
-                                }
+                            <?php
+                            if ($_SESSION["subMat"] == "PF") {
+                                echo 'Padre de Familia';
+                            } elseif ($_SESSION["subMat"] == "ADM") {
+                                echo 'Administrador';
+                            } elseif ($_SESSION["subMat"] == "MST") {
+                                echo 'MASTER';
+                            } else {
+                                echo 'Rol Desconocido';
+                            }
                             ?>
                         </small>
                     </div>
@@ -496,29 +636,31 @@ session_start();
     <!-- Script for navbar arrows and show the elements -->
 
     <script>
-        $('.dropdown-toggle').click(function() {
+        $('.dropdown-toggle').click(function () {
             $('aside .sidebar ul .dropdown-menu').toggleClass("show");
 
             $('aside .sidebar ul .first-arrow').toggleClass("rotate");
         });
-        $('aside .sidebar ul li').click(function() {
+        $('aside .sidebar ul li').click(function () {
             $(this).addClass("active").siblings().removeClass("active");
         });
     </script>
 
     <script>
-        $('.dropdown-toggleCursos').click(function() {
+        $('.dropdown-toggleCursos').click(function () {
             $('aside .sidebar ul .dropdown-menuCursos').toggleClass("show");
             $('aside .sidebar ul .second-arrow').toggleClass("rotate");
         });
-        $('aside .sidebar ul li').click(function() {
+        $('aside .sidebar ul li').click(function () {
             $(this).addClass("active").siblings().removeClass("active");
         });
     </script>
 
     <!-- SCRIPT JS -->
     <script src="../../js/dashboard/inicio.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>    <script type="text/javascript" src="./../../js/segAsp/ajax-script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./../../js/segAsp/ajax-script.js"></script>
     <script type="text/javascript" src="./../../js/padreFamHijo/app.js"></script>
 </body>
 

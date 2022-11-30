@@ -35,7 +35,7 @@ if (empty($_SESSION["subMat"])) {
             // $url = 'pago/index.php';
         }
     }
-}  else if ($_SESSION["subMat"] == "PF") {
+} else if ($_SESSION["subMat"] == "PF") {
     if ($_SESSION["estatus_persona"] == "ACTIVO") {
 
         if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
@@ -46,14 +46,23 @@ if (empty($_SESSION["subMat"])) {
             $url = './../../index.php'; //Regresa al index
         } else {
             $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
-            $Autorizacion = false;
-            // $url = 'aspOfertaAcadem/index.php';
+            $Autorizacion = true;
+            $url = './../dashboard/inicio.php'; //Regresa al index
         }
 
-    } else if ($_SESSION["estatus_persona"] == /*Cambiar ese status por el deseado*/ "PROCADM") {
-        //Agregar que sucede 
-        // $Autorizacion = true;
-        // $url = 'stripeInscrip/pago/index.php';
+    } else if ($_SESSION["estatus_persona"] == "ASIGNADO") {
+        if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+            // last request was more than 30 minutes ago
+            session_unset(); // unset $_SESSION variable for the run-time 
+            session_destroy(); // destroy session data in storage
+            $Autorizacion = true;
+            $url = './../../index.php'; //Regresa al index
+        } else {
+            $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+            $Autorizacion = false;
+            // $url = './../dashboard/inicio.php'; //Regresa al index
+        }
+
     }
 
 } else if ($_SESSION["subMat"] == "Al") {
@@ -72,14 +81,14 @@ if (empty($_SESSION["subMat"])) {
             // $url = 'aspOfertaAcadem/index.php';
         }
 
-    } else if ($_SESSION["estatus_persona"] == /*Cambiar ese status por el deseado*/ "PROCADM") {
+    } else if ($_SESSION["estatus_persona"] == /*Cambiar ese status por el deseado*/"PROCADM") {
         //Agregar que sucede 
         // $Autorizacion = true;
         // $url = 'stripeInscrip/pago/index.php';
     }
 
 } else if ($_SESSION["subMat"] == "DOC") {
-    
+
 
 } else if ($_SESSION["subMat"] == "ADM") {
 
@@ -91,20 +100,6 @@ if ($Autorizacion == true) {
     header("location:./../$url");
 }
 
-
-// session_start();
-// if (empty($_SESSION["subMat"])) {
-//     header("location:./../../../index.php");
-
-// }
-// if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
-//     // last request was more than 30 minutes ago
-//     session_unset();     // unset $_SESSION variable for the run-time 
-//     session_destroy();   // destroy session data in storage
-//     header("location:./../../../index.php");
-// }else{
-//     $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
-// }
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -178,7 +173,7 @@ if ($Autorizacion == true) {
                                 </a>
                             </li>
                             <li class="active">
-                                <a class="" href="index.php">
+                                <a class="" href="">
                                     <span class="material-icons-sharp">person</span>
                                     <h3>Inscripciones</h3>
                                 </a>
@@ -194,13 +189,13 @@ if ($Autorizacion == true) {
                     } else if ($_SESSION["subMat"] == "PF") {
                         echo '
                             <li class="">
-                                <a class="" href="index.php">
+                                <a class="" href="../../dashboard/inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
                             </li>
                             <li class="active">
-                                <a class="" href="../stripeInscrip/pago/index.php">
+                                <a class="" href="">
                                     <span class="material-icons-sharp">person</span>
                                     <h3>Inscripciones</h3>
                                 </a>
@@ -233,7 +228,7 @@ if ($Autorizacion == true) {
                             </ul>
                             </li>                                        
                             <li class="CloseSession">
-                                <a href="./../../controllers/controller_logout.php">
+                                <a href="./../../../controllers/controller_logout.php">
                                     <span class="material-icons-sharp">logout</span>
                                     <h3>Cerrar Sesión</h3>
                                 </a>
@@ -600,8 +595,68 @@ if ($Autorizacion == true) {
                         <div class="form-group">
                             <label for="exampleInputPassword1">Monto total</label>
                             <?php
-                            const monto = 1000.00
-                                ?>
+                            include "./../../../model/connection.php";//DB Connection
+                            if ($_SESSION["subMat"] == "ASP") {//Busqueda de aspirante
+                                $id_aspirante = $_SESSION["id_aspirante"];
+                                //Ejecutamos la sentencia SQL
+                                $sqlDatosPFH = $connection->query("SELECT `id_padreDeFamHijo`, `nombre_padreDeFam`, `nombre_aspirante`, `nombre_alumno`, `f_creacion_pfHijo`, `f_modificacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`, `id_alumno` FROM `padredefamiliahijo` 
+                                WHERE `id_aspirante` = '$id_aspirante'");
+                                //Obtenemos el registro de los datos y guardamos algunos para control de acceso
+                                if ($datos = $sqlDatosPFH->fetch_object()) {
+                                    $id_padreDeFamilia = $datos->id_padreDeFamilia;
+                                    $sqlDatosAdmisionIntereses = $connection->query("SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`, `id_especializacion` FROM `admisioninteresesaspirante` 
+                                    WHERE `id_aspirante`= '$id_aspirante'");
+                                    if ($datosAdmision = $sqlDatosAdmisionIntereses->fetch_object()) {
+                                        $id_escuela = $datosAdmision->id_escuela;
+                                        $sqlMonto = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
+                                        WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion='Pago Inscripción' ORDER BY pago.f_creacion_pago DESC;");
+                                        if ($datosMonto = $sqlMonto->fetch_object()) {
+                                            define('monto', ($datosMonto->monto));
+                                            $_SESSION['descripcion'] = $datosMonto->descripcion;
+                                            $_SESSION['moneda_concurrencia'] = $datosMonto->moneda_concurrencia;
+                                        }else{
+                                            define('monto', 'Aún no se asigna un precio al pago, regrese más tarde');
+                                        }
+                                    }else{
+                                        define('monto', 'No asignado');
+                                    }
+                                } else {
+                                    define('monto', 'No asignado');
+                                }
+
+                            } else if ($_SESSION["subMat"] == "PF") {//Busqueda de padre de familia
+                                $id_padreDeFamilia = $_SESSION["id_padreDeFamilia"];
+                                //Ejecutamos la sentencia SQL
+                                $sqlDatosPFH = $connection->query("SELECT `id_padreDeFamHijo`, `nombre_padreDeFam`, `nombre_aspirante`, `nombre_alumno`, `f_creacion_pfHijo`, `f_modificacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`, `id_alumno` FROM `padredefamiliahijo` 
+                                WHERE `id_padreDeFamilia` = '$id_padreDeFamilia'");
+                                //Obtenemos el registro de los datos y guardamos algunos para control de acceso
+                                if ($datos = $sqlDatosPFH->fetch_object()) {
+                                    $id_aspirante = $datos->id_aspirante;
+                                    $sqlDatosAdmisionIntereses = $connection->query("SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`, `id_especializacion` FROM `admisioninteresesaspirante` 
+                                    WHERE `id_aspirante`= '$id_aspirante'");
+                                    if ($datosAdmision = $sqlDatosAdmisionIntereses->fetch_object()) {
+                                        $id_escuela = $datosAdmision->id_escuela;
+                                        $sqlMonto = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
+                                        WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion='Pago Inscripción' ORDER BY pago.f_creacion_pago DESC;");
+                                        if ($datosMonto = $sqlMonto->fetch_object()) {
+                                            define('monto', ($datosMonto->monto));
+                                            $_SESSION['descripcion'] = $datosMonto->descripcion;
+                                            $_SESSION['moneda_concurrencia'] = $datosMonto->moneda_concurrencia;
+                                        }else{
+                                            define('monto', 'Aún no se asigna un precio al pago, regrese más tarde');
+                                        }
+                                    } else {
+                                        define('monto', 'Algo Salio mal');
+                                    }
+                                } else {
+                                    define('monto', 'No asignado');
+                                }
+                                // $sqlPagoSearch = "SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
+                                // WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='5' AND pago.descripcion='Pago Inscripción' ORDER BY pago.f_creacion_pago DESC;";
+                            }
+
+                            // const monto = intval($valorMonto);
+                            ?>
                             <input style="display:grid;" type="number" required name="totalX" class="unselectable"
                                 id="exampleInputPasswordX" placeholder="$<?php echo monto ?>" pattern="[0-9]+"
                                 title="Precio total a pagar" readonly="readonly">
@@ -756,7 +811,7 @@ if ($Autorizacion == true) {
             $('aside .sidebar ul .second-arrow').toggleClass("rotate");
         });
         $('aside .sidebar ul li').click(function () {
-            $(this).addClass("active").siblings().removeClass("active");
+            $(this).addClass("active").siblings().removeClass("ae");
         });
     </script>
 

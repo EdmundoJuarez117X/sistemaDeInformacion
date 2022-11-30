@@ -4,13 +4,15 @@ var elements = stripe.elements();
 // Custom Styling
 var style = {
     base: {
-        color: '#32325d',
+        //color: '#32325d',
+        color: '#16C368',
         lineHeight: '24px',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
         fontSize: '16px',
         '::placeholder': {
-            color: '#aab7c4'
+            //color: '#aab7c4'
+            color: '#2986cc'
         }
     },
     invalid: {

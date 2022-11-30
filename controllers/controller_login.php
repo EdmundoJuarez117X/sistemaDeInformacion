@@ -26,6 +26,7 @@ if (!empty($_POST["btn_ingresar"])) {
             $_SESSION["email_aspirante"] = $datos->email_aspirante;
             $_SESSION["estatus_persona"] = $datos->estatus_Aspirante;
             $_SESSION['LAST_ACTIVITY'] = time();
+
             $Autorizacion = true;
             $url = 'dashboard/inicio.php';
         } else {
@@ -38,6 +39,7 @@ if (!empty($_POST["btn_ingresar"])) {
                 $_SESSION["nombre_alumno"] = $datos->nombre_alumno;
                 $_SESSION["apellido_paternoAlumno"] = $datos->apellido_paternoAlumno;
                 $_SESSION["email_alumno"] = $datos->email_alumno;
+                $_SESSION["estatus_persona"] = $datos->estatus_alumno;
                 $_SESSION['LAST_ACTIVITY'] = time();
 
                 $Autorizacion = true;
@@ -52,10 +54,11 @@ if (!empty($_POST["btn_ingresar"])) {
                     $_SESSION["nombre_padreDeFam"] = $datos->nombre_padreDeFam;
                     $_SESSION["apellido_paternopadreDeFam"] = $datos->apellido_paternopadreDeFam;
                     $_SESSION["email_padreDeFam"] = $datos->email_padreDeFam;
-                    $_SESSION["estatus_padreDeFam"] = $datos->estatus_padreDeFam;
+                    $_SESSION["estatus_persona"] = $datos->estatus_padreDeFam;
                     $_SESSION['LAST_ACTIVITY'] = time();
 
                     $Autorizacion = true;
+                    $url = 'dashboard/inicio.php';
                 } else {
                     //Ejecutamos la sentencia SQL
                     $sql = $connection->query("SELECT * FROM docente WHERE email_docente	='$email' AND password_docente='$password'");
@@ -85,7 +88,7 @@ if (!empty($_POST["btn_ingresar"])) {
                             $Autorizacion = true;
                             //Redireccionamos al inicio del sitio web (dashboard)
                             header("location:./views/dashboard/inicio.php");
-                            
+
                         } else {
                             //Ejecutamos la sentencia SQL
                             $sql = $connection->query("SELECT * FROM master WHERE email_master	='$email' AND password_master='$password'");
@@ -115,6 +118,7 @@ if (!empty($_POST["btn_ingresar"])) {
         echo "Correo o Contraseña no ingresados";
     }
     if ($Autorizacion == true) {
+
         //Redireccionamos al enlace proporcionado dependiendoe el usuario
         header("location:./views/$url");
     }

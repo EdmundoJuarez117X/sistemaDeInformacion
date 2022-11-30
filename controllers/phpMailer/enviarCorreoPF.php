@@ -25,7 +25,7 @@ try {
 
     //Recipients
     $mail->setFrom('scode.dv@gmail.com', 'SISESCOLAR');
-    $mail->addAddress($_SESSION["email_aspirante"], $_SESSION["nombre_aspirante"]); //Add a recipient
+    $mail->addAddress($_SESSION["email_padreDeFam"], $_SESSION["email_padreDeFam"]); //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
     // $mail->addCC('cc@example.com');

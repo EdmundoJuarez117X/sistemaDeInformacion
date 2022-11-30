@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="styles/css/stylev2.css">
     <!-- Material Icons CDN -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>Acceso al Sistema Escolar</title>
 </head>
 
