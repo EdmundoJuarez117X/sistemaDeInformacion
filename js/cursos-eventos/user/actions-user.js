@@ -23,6 +23,7 @@ $(function() {
                                 <div class="message">
                                     <p><b>${curso.nombre}</b><br>${curso.descripcion}</p>
                                     <small class="text-muted"><strong> $${curso.costo}</strong></small>
+                                    
                                 </div>
                             </div>
                         </a>

@@ -344,9 +344,9 @@ if (empty($_SESSION["subMat"])) {
                     <!------------------------------- END OF top / top ------------------------>
                     <div class="recent-updates notify-section">
                         <h2>Notificaciones</h2>
-                        <div class="updates" id="notificaciones-de-cursos">
-                        </div>
-                    </div>
+                            <div class="info-noticaciones-cursos" id="notificaciones-de-cursos">
+                            </div>
+                    </div> 
                     <!-- END OF RECENT UPDATES -->
                 </div>
             </div>

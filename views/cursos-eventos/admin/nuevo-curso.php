@@ -296,7 +296,7 @@ if (empty($_SESSION["subMat"])) {
                                 </div>
                                 <div class="fields-middle first-middle">
                                     <p>Costo unitario (MXN):
-                                        <input type="number" id="costo_unitario" placeholder="0.00" min="0" step=".01" required>
+                                        <input type="number" id="costo_unitario" placeholder="mínimo 10.00" min="10" step=".05" required>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
@@ -394,9 +394,9 @@ if (empty($_SESSION["subMat"])) {
                     <!------------------------------- END OF top / top ------------------------>
                     <div class="recent-updates notify-section">
                         <h2>Notificaciones</h2>
-                        <div class="updates" id="notificaciones-de-cursos">
-                        </div>
-                    </div>
+                            <div class="info-noticaciones-cursos" id="notificaciones-de-cursos">
+                            </div>
+                    </div> 
                 </div>
             </div>
             <!-- Script for navbar arrows and show the elements -->

@@ -212,27 +212,6 @@ if ($Autorizacion == true) {
                                     <h3>Inscripciones</h3>
                                 </a>
                             </li>
-                            <li class="">
-                                <a class="dropdown-toggleCursos">
-                                    <span class="material-icons-sharp">import_contacts</span>
-                                        <h3>Cursos</h3>
-                                    <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
-                                </a>
-                                <ul class="dropdown-menuCursos">
-                                    <li>
-                                        <a class="dropdown-item" href="../cursos-eventos/users/cursos.php">
-                                            <span class="material-icons-sharp">import_contacts</span>
-                                            <h3>Cursos</h3>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="../cursos-eventos/users/mis-cursos.php">
-                                            <span class="material-icons-sharp">history</span>
-                                            <h3>Mis cursos</h3>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                             
                             <li class="">
                                 <a class="" href="#">
@@ -303,7 +282,51 @@ if ($Autorizacion == true) {
                             </li>
                             ';
                     }else if ($_SESSION["subMat"] == "DOC") {
-
+                        echo '
+                            <li class="active">
+                                <a class="" href="inicio.php">
+                                    <span class="material-icons-sharp">grid_view</span>
+                                    <h3>Dashboard</h3>
+                                </a>
+                            </li>
+                            
+                            <li class="">
+                                <a class="dropdown-toggleCursos">
+                                    <span class="material-icons-sharp">import_contacts</span>
+                                        <h3>Cursos</h3>
+                                    <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
+                                </a>
+                                <ul class="dropdown-menuCursos">
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/users/cursos.php">
+                                            <span class="material-icons-sharp">import_contacts</span>
+                                            <h3>Cursos</h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="../cursos-eventos/users/mis-cursos.php">
+                                            <span class="material-icons-sharp">history</span>
+                                            <h3>Mis cursos</h3>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">mail_outline</span>
+                                    <h3>Mensajes</h3>
+                                    <span class="message-count">26</span>
+                                </a>
+                            </li>
+                            
+                            <li class="CloseSession">
+                                <a href="./../../controllers/controller_logout.php">
+                                    <span class="material-icons-sharp">logout</span>
+                                    <h3>Cerrar Sesión</h3>
+                                </a>
+                            </li>
+                            ';
                     } else if ($_SESSION["subMat"] == "Al") {
                         echo '
                             <li class="active">

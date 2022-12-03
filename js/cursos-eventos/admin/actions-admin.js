@@ -3,6 +3,7 @@ $(function() {
     // al iniciar la interfaz, carga los datos dela tabla de cursos
     mostrarCursos();
     mostrarNotificaciones();
+    desCurso();
     // ====================== REGISTRAR CURSO ======================== //
     $('#btn-register-course').click(function(){
         // obtenemos el contenido de las IDs
@@ -182,6 +183,7 @@ $(function() {
                 }else if(reponse == 1) {
                     // éxito
                     swal("", "Cambios guardados exitosamente", "success");
+                    mostrarNotificaciones();
                 } else if(reponse == "OK") {
                     // éxito con cambio de usuario de destino
                     swal({
@@ -469,20 +471,54 @@ $(function() {
             success: function(response) {
                 let notificaciones = JSON.parse(response);
                 let template = '';
+                let template1 = '';
+                let template2 = '';
 
                 notificaciones.forEach(noti => {
-                    template += `
-                    <div class="update" id_n="${noti.id}" id_c="${noti.id_c}" user="${noti.rol}">
-                        <div class="profile-photo" style="background-color: grey;"></div>
+
+                    if(noti.des == "CPD") {
+                        template += `
+                        <div class="update" id_n="${noti.id}" id_c="${noti.id_c}" user="${noti.rol}">
                             <div class="message">
                                 <p><b>${noti.name}</b><br>
-                                    ${noti.des}
-                                    <button class="btn-actions-notify" id="btn-send-notify-again"><span class="material-icons-sharp">send</span></button>
-                                    <button class="btn-actions-notify" id="btn-delete-notify"><span class="material-icons-sharp">delete</span></button>
-                            </p>       
+                                    El curso se vence hoy. Edita la fecha final en el formulario de actualización.
+                                    <div>
+                                        <a class="btn-actions-notify" href="actualizar-curso.php?cso=${noti.id_c}"><span class="material-icons-sharp">edit</span></a>
+                                        <button class="btn-actions-notify" id="btn-delete-notify"><span class="material-icons-sharp">delete</span></button>
+                                    </div>
+                                </p>       
+                            </div>
                         </div>
-                    </div>
-                    `
+                        `
+                    } else if(noti.des == "CD") {
+                        template += `
+                        <div class="update" id_n="${noti.id}" id_c="${noti.id_c}" user="${noti.rol}">
+                            <div class="message">
+                                <p><b>${noti.name}</b><br>
+                                    El curso se ha desactivado ya que las fechas han vencido. Puedes editar la fecha final en el formulario de actualización.
+                                    <div>
+                                        <a class="btn-actions-notify" href="actualizar-curso.php?cso=${noti.id_c}"><span class="material-icons-sharp">edit</span></a>
+                                        <button class="btn-actions-notify" id="btn-delete-notify"><span class="material-icons-sharp">delete</span></button>
+                                    </div>
+                                </p>       
+                            </div>
+                        </div>
+                        `
+                    } else {
+                        template += `
+                        <div class="update" id_n="${noti.id}" id_c="${noti.id_c}" user="${noti.rol}">
+                                <div class="message">
+                                    <p><b>${noti.name}</b><br>
+                                        ${noti.des}
+                                        <div>
+                                            <button class="btn-actions-notify" id="btn-send-notify-again"><span class="material-icons-sharp">send</span></button>
+                                            <button class="btn-actions-notify" id="btn-delete-notify"><span class="material-icons-sharp">delete</span></button>
+                                        </div>
+                                </p>       
+                            </div>
+                        </div>
+                        `
+                    }
                 });
                 $('#notificaciones-de-cursos').html(template);
             }
@@ -666,6 +702,17 @@ $(function() {
             }
           }
         });  
+    }
+
+    // ==================== FUNCIÓN PARA ACTIVAR LA DESACTIVACIÓN DE CURSOS ========== //
+    function desCurso() {
+        $.ajax({
+            url: '../../../controllers/ajax/cursos-eventos/admin/desactivar-curso.php',
+            success: function(response) {
+                console.log(response);
+                mostrarNotificaciones();
+            }
+        });
     }
 
 });

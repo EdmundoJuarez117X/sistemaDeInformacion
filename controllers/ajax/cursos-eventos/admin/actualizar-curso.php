@@ -51,7 +51,12 @@
                 estatus_curso = '$status', f_modificacion_curso = '$date', rol_dirigido = '$user' WHERE cursos.id_curso = '$id';");
                 //condicionamos si se ha registrado exitosamente
                 if($sql == true) {
-                    echo 1; // transacción exitosa
+
+                    if(!$db->query("DELETE FROM notificacion_curso WHERE notificacion_curso.id_curso = $id")) {
+                        die("Error al eliminar. Error: ". mysqli_error($db));
+                    } else {
+                        echo 1; // transacción exitosa
+                    }
                 } else {
                     echo 2; // transacción fallida
                 }

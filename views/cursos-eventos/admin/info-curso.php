@@ -398,9 +398,9 @@
                     <!------------------------------- END OF top / top ------------------------>
                     <div class="recent-updates notify-section">
                         <h2>Notificaciones</h2>
-                        <div class="updates" id="notificaciones-de-cursos">
-                        </div>
-                    </div>
+                            <div class="info-noticaciones-cursos" id="notificaciones-de-cursos">
+                            </div>
+                    </div> 
                     <!-- END OF RECENT UPDATES -->
                     <div class="sales-analytics">
                         <h2>Metricas de Ventas</h2>
@@ -472,7 +472,8 @@
                     });
             </script>
             <!-- SCRIPT JS -->
-            <script src="../../../js/dashboard/inicio.js"></script>  
+            <script src="../../../js/dashboard/inicio.js"></script> 
+            <script src="../../../js/cursos-eventos/admin/actions-admin.js"></script>
         </body>
     </html>
 <?php

@@ -305,7 +305,7 @@
                                 <div class="fields-middle first-middle">
                                     <p>Costo unitario (MXN):
                                         <input type="number" id="costo_unitario" value="<?=$curso['costo_unitario']?>" min="<?php if($curso['participantes_registrados'] > 0) {echo $curso['costo_unitario']; } 
-                                        else { echo 0; } ?>" step=".05" required>
+                                        else { echo 10; } ?>" step=".05" required>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
@@ -412,9 +412,9 @@
                     <!------------------------------- END OF top / top ------------------------>
                     <div class="recent-updates notify-section">
                         <h2>Notificaciones</h2>
-                        <div class="updates" id="notificaciones-de-cursos">
-                        </div>
-                    </div>
+                            <div class="info-noticaciones-cursos" id="notificaciones-de-cursos">
+                            </div>
+                    </div> 
                     <!-- END OF RECENT UPDATES -->
                     <div class="sales-analytics">
                         <h2>Metricas de Ventas</h2>
