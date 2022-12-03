@@ -28,18 +28,20 @@ if ($nombre_nivelEducativo == "Basica") {
         echo 'Algo Salio mal';
     }
 } else if ($nombre_nivelEducativo == "Media Superior") {
-    $sql = "INSERT INTO `admisioninteresesaspirante`( `nombre_escuela`, `nombre_nivelEducativo`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`)
-    VALUES ('$nombre_escuela','$nombre_nivelEducativo', '$date', '$id_aspirante', $id_escuela','$id_nivelEducativo')";
-    if (mysqli_query($connection, $sql)) {
-        $sqlUpdate = "UPDATE `aspirante` SET `estatus_Aspirante`='PROCADM' WHERE `id_aspirante`='$id_aspirante'";
-        if (mysqli_query($connection, $sqlUpdate)) {
+    //echo $nombre_escuela . " " . $nombre_nivelEducativo . " " . $date . " " . $id_aspirante . " " . $id_escuela . " " . $id_nivelEducativo;
+    $sqlMS = "INSERT INTO `admisioninteresesaspirante`(`nombre_escuela`, `nombre_nivelEducativo`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`)
+        VALUES ('$nombre_escuela','$nombre_nivelEducativo', '$date', '$id_aspirante', '$id_escuela', '$id_nivelEducativo')";
+    if (mysqli_query($connection, $sqlMS)) {
+
+        $sqlUpdateAsp = "UPDATE `aspirante` SET `estatus_Aspirante`='PROCADM' WHERE `id_aspirante`='$id_aspirante'";
+        if (mysqli_query($connection, $sqlUpdateAsp)) {
             $Autorizacion = true;
             $_SESSION["estatus_persona"] = "PROCADM";
             $url = 'views/dashboard/inicio.php';
         }
 
     } else {
-
+        //echo "Error: " . $sqlMS . "<br>" . mysqli_error($connection);
     }
 } else if ($nombre_nivelEducativo == "Superior") {
 
@@ -109,16 +111,10 @@ if ($nombre_nivelEducativo == "Basica") {
 
 }
 if ($Autorizacion == true) {
-    //Redireccionamos al enlace proporcionado dependiendo el usuario
+
     header("location:./../../../$url");
 }
-// $descripcion_nivelEducativo;
-// $nombre_facultad;
-// $nombre_esp;
-// $nombre_carrera;
-// $numero_grado;
-// $id_carrera;
-// $id_especializacion;
+
 
 
 ?>

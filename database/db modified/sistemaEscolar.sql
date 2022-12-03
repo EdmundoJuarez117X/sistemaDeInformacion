@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `docente` (
     `apellido_maternoDocente` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `edad_Docente` int(3) not null,
     `genero_Docente` varchar(9) not null,
-    `estatus_Docente` varchar(9) DEFAULT 'ACTIVO' not null,
+    `estatus_Docente` varchar(16) DEFAULT 'ACTIVO' not null,
     `numero_tel_Docente` varchar(16) not null,
     `email_docente` varchar(64) not null,
     `password_docente` varchar(128) not null,
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `alumno` (
     `apellido_maternoAlumno` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `edad_Alumno` int(3) not null,
     `genero_Alumno` varchar(9) not null,
-    `estatus_Alumno` varchar(9) DEFAULT 'ACTIVO' not null,
+    `estatus_Alumno` varchar(16) DEFAULT 'ACTIVO' not null,
     `numero_tel_Alumno` varchar(16) not null,
     `email_alumno` varchar(64) not null,
     `password_alumno` varchar(128) not null,
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `aspirante` (
     `apellido_maternoAspirante` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `edad_Aspirante` int(3) not null,
     `genero_Aspirante` varchar(9) not null,
-    `estatus_Aspirante` varchar(9) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'ACTIVO' not null,
+    `estatus_Aspirante` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'ACTIVO' not null,
     `numero_tel_Aspirante` varchar(16) not null,
     `email_aspirante` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci not null,
     `password_aspirante` varchar(128) not null,
@@ -144,7 +144,7 @@ DROP TABLE IF EXISTS `escuela`;
 CREATE TABLE IF NOT EXISTS `escuela` (
     `id_escuela` int(5) NOT NULL AUTO_INCREMENT,
     `nombre_escuela` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `nombre_corto_esc` varchar(9) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `nombre_corto_esc` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `estatus_escuela` bit(1) DEFAULT 1 NOT NULL,
     `logotipo_escuela` mediumblob,
     `direccion_escuela` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `master` (
     `apellido_maternoMaster` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `edad_Master` int(3) not null,
     `genero_Master` varchar(9) not null,
-    `estatus_Master` varchar(9) DEFAULT 'ACTIVO' not null,
+    `estatus_Master` varchar(16) DEFAULT 'ACTIVO' not null,
     `numero_tel_Master` varchar(16) not null,
     `email_master` varchar(64) not null,
     `password_master` varchar(128) not null,
@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `administrador` (
     `apellido_maternoAdmin` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `edad_Admin` int(3) not null,
     `genero_Admin` varchar(9) not null,
-    `estatus_Admin` varchar(9) DEFAULT 'ACTIVO' not null,
+    `estatus_Admin` varchar(16) DEFAULT 'ACTIVO' not null,
     `numero_tel_Admin` varchar(16) not null,
     `email_admin` varchar(64) not null,
     `password_admin` varchar(128) not null,
@@ -224,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `padreDeFamilia` (
     `apellido_maternopadreDeFam` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `edad_padreDeFam` int(3) not null,
     `genero_padreDeFam` varchar(9) not null,
-    `estatus_padreDeFam` varchar(9) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'ACTIVO' not null,
+    `estatus_padreDeFam` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'ACTIVO' not null,
     `numero_tel_padreDeFam` varchar(16) not null,
     `email_padreDeFam` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci not null,
     `password_padreDeFam` varchar(128) not null,
@@ -271,7 +271,7 @@ DROP TABLE IF EXISTS `facultad`;
 CREATE TABLE IF NOT EXISTS `facultad`(
     `id_facultad` int(5) NOT NULL AUTO_INCREMENT,
     `nombre_facultad` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `nombre_corto_facultad` varchar(9) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `nombre_corto_facultad` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `estatus_facultad` bit(1) DEFAULT 1 NOT NULL,
     `f_creacion_facultad` datetime NOT NULL,
     `f_modificacion_facultad` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -319,7 +319,7 @@ DROP TABLE IF EXISTS `asignatura`;
 CREATE TABLE IF NOT EXISTS `asignatura` (
     `id_asignatura` int(5) NOT NULL AUTO_INCREMENT,
     `nombre_asignatura` varchar(150) ,
-    `nombre_corto_asig` varchar(9),
+    `nombre_corto_asig` varchar(16),
     `estatus_asignatura` bit(1) NOT NULL,
     `f_creacion_asig` datetime NOT NULL,
     `f_modificacion_asig` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -368,7 +368,7 @@ DROP TABLE IF EXISTS `carrera`;
 CREATE TABLE IF NOT EXISTS `carrera` (
     `id_carrera` int(5) NOT NULL AUTO_INCREMENT,
     `nombre_carrera` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `nombre_corto_carrera` varchar(9) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `nombre_corto_carrera` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `estatus_carrera` bit(1) DEFAULT 1 NOT NULL,
     `f_creacion_carrera` datetime NOT NULL,
     `f_modificacion_carrera` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -413,7 +413,7 @@ DROP TABLE IF EXISTS `planEstudios`;
 CREATE TABLE IF NOT EXISTS `planEstudios` (
     `id_planEstudios` int(5) NOT NULL AUTO_INCREMENT,
     `nombre_planEstudios` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `nombre_corto_planE` varchar(9) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `nombre_corto_planE` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `estatus_planEstudios` bit(1) DEFAULT 1 NOT NULL,
     `num_creditos_totales` tinyint NOT NULL,
     `num_creditos_min` tinyint NOT NULL,
@@ -592,6 +592,8 @@ CREATE TABLE IF NOT EXISTS `escuela_periodoEscolar` (
     `nombre_escuela` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `numero_periodoE` int(3) not null,
     `nombre_periodoE` varchar(33) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `f_inicio_periodoE` datetime NOT NULL,
+    `f_termino_periodoE` datetime NOT NULL,
     `f_creacion_escuelaPE` datetime NOT NULL,
     `f_modificacion_escuelaPE` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `id_escuela` int(5) NOT NULL,
@@ -951,6 +953,8 @@ CREATE TABLE IF NOT EXISTS `carrera_periodoEscolar` (
     `nombre_carrera` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `numero_periodoE` int(3) NOT NULL,
     `nombre_periodoE` varchar(33) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `f_inicio_PeriodoE` datetime NOT NULL,
+    `f_termino_PeriodoE` datetime NOT NULL,
     `f_creacion_carreraPeriodoE` datetime NOT NULL,
     `f_modificacion_carreraPeriodoE` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `id_carrera` int(5) NOT NULL,
@@ -971,6 +975,8 @@ CREATE TABLE IF NOT EXISTS `especializacion_periodoEscolar` (
     `nombre_carrera` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `numero_periodoE` int(3) NOT NULL,
     `nombre_periodoE` varchar(33) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `f_inicio_PeriodoE` datetime NOT NULL,
+    `f_termino_PeriodoE` datetime NOT NULL,
     `f_creacion_espPeriodoE` datetime NOT NULL,
     `f_modificacion_espPeriodoE` datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `id_especializacion` int(5) NOT NULL,
@@ -1523,6 +1529,28 @@ INSERT INTO `escuela_aula`(`id_escuelaAula`, `nombre_escuela`, `numero_aula`, `n
 (9,'Universidad Politécnica lde Amozoc','102','Salón de Mac','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',5,9);
 
 --
+-- Dumping data for table `pago`
+--
+INSERT INTO `pago`(`id_pago`, `monto`, `descripcion`, `moneda_concurrencia`, `estatus_pago`, `f_creacion_pago`, `f_modificacion_pago`) VALUES
+(1,'200','Exámen de Admisión','MXN','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08'),
+(2,'800','Pago Inscripción','MXN','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08'),
+(3,'360','Exámen de Admisión','MXN','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08'),
+(4,'1300','Pago Inscripción','MXN','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08'),
+(5,'460','Exámen de Admisión','MXN','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08'),
+(6,'1639','Pago Inscripción','MXN','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08');
+
+--
+-- Dumping data for table `escuela_pago`
+--
+INSERT INTO `escuela_pago`(`id_esc_pago`, `nombre_escuela`, `monto`, `moneda_concurrencia`, `descripcion`, `estatus_pago`, `f_creacion_EscPago`, `f_modificacion_EscPago`, `id_escuela`, `id_pago`) VALUES
+(1,'Jardin de Niños Fantasía','200','MXN','Exámen de Admisión','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 1,1),
+(2,'Jardin de Niños Fantasía','800','MXN','Pago Inscripción','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 1,2),
+(3,'Bachillerato General Oficial José María Sánchez Rojas','360','MXN','Exámen de Admisión','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 4,3),
+(4,'Bachillerato General Oficial José María Sánchez Rojas','1300','MXN','Pago Inscripción','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 4,4),
+(5,'Universidad Politécnica lde Amozoc','460','MXN','Exámen de Admisión','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 5,5),
+(6,'Universidad Politécnica lde Amozoc','1639','MXN','Pago Inscripción','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 5,6);
+
+--
 -- Dumping data for table `escuela_facultad`
 --
 
@@ -1530,7 +1558,135 @@ INSERT INTO `escuela_facultad` (`id_escuela_facultad`, `nombre_escuela`, `nombre
 (1, 'Universidad Politécnica de Amozoc', 'Ciencias Exactas', '2022-11-23 22:55:27', '2022-11-23 22:56:01', 5, 1),
 (2, 'Universidad Politécnica de Amozoc', 'Ciencias de la Salud', '2022-11-23 22:55:27', '2022-11-23 22:56:01', 5, 2);
 
+--
+-- Dumping data for table `asignatura`
+--
+INSERT INTO `asignatura`(`id_asignatura`, `nombre_asignatura`, `nombre_corto_asig`, `estatus_asignatura`, `f_creacion_asig`, `f_modificacion_asig`) VALUES
+(1,'Educación Socioemocional','ES', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(2,'Exploración y comprensión del mundo natural y social','ECMNS', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(3,'Pensamiento Matemático','PM', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(4,'Geometría y Trigonometría','GEOTRIG', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(5,'Filosofía','FSA', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(6,'Biología','BGA', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(7,'Introducción a la Programación','INPROG-EN', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(8,'Algoritmos','ALG-EN', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(9,'Inglés I','INGI-US', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01');
 
+
+--
+-- Dumping data for table `asignatura_aula`
+--
+INSERT INTO `asignatura_aula`(`id_asinaturaAula`, `nombre_asignatura`, `numero_aula`, `nombre_aula`, `grupo_aula`, `f_creacion_AsigAula`, `f_modificacion_AsigAula`, `id_asignatura`, `id_aula`) VALUES 
+(1,'Educación Socioemocional','1','Creatividad Inicial','A','2022-11-23 22:56:41', '2022-11-23 22:57:08',1,1),
+(2,'Exploración y comprensión del mundo natural y social','2','Creatividad Inicial','B','2022-11-23 22:56:41', '2022-11-23 22:57:08',2,2),
+(3,'Pensamiento Matemático','3','Creatividad Inicial','C','2022-11-23 22:56:41', '2022-11-23 22:57:08',3,3),
+(4,'Geometría y Trigonometría','10','PRIMERO','A','2022-11-23 22:56:41', '2022-11-23 22:57:08',4,4),
+(5,'Filosofía','11','PRIMERO','B','2022-11-23 22:56:41', '2022-11-23 22:57:08',5,5),
+(6,'Biología','12','PRIMERO','C','2022-11-23 22:56:41', '2022-11-23 22:57:08',6,6),
+(7,'Introducción a la Programación','100','Creatividad Inicial','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',7,7),
+(8,'Algoritmos','101','Creatividad Inicial','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',8,9),
+(9,'Inglés I','102','Creatividad Inicial','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',9,7),
+(10,'Inglés I','102','Creatividad Inicial','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',9,8),
+(11,'Inglés I','102','Creatividad Inicial','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',9,9);
+
+--
+-- Dumping data for table `planestudios`
+--
+INSERT INTO `planestudios`(`id_planEstudios`, `nombre_planEstudios`, `nombre_corto_planE`, `estatus_planEstudios`, `num_creditos_totales`, `num_creditos_min`, `num_creditos_max`, `f_creacion_planE`, `f_modificacion_planE`) VALUES 
+(1,'Jardín de Niños 2022','JNF-2022', b'1','160','96','160','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(2,'Bachillerato JMSR 2022','BJMSR-2022', b'1','260','156','260','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(3,'Ingeniería en Software 2022','ISW-2022', b'1','390','273','390','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(4,'Ingeniería Automotríz 2022','IAU-2022', b'1','390','273','390','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(5,'Maestría en Inteligencia Artificial 2022','MIA-2022', b'1','430','301','430','2022-11-23 22:55:27', '2022-11-23 22:56:01');
+
+--
+-- Dumping data for table `asignatura_planestudios`
+--
+INSERT INTO `asignatura_planestudios`(`id_asigPlanE`, `nombre_asignatura`, `nombre_planE`, `f_creacion_asigPlanE`, `f_modificacion_asigPlanE`, `id_asignatura`, `id_planEstudios`) VALUES
+(1,'Educación Socioemocional','Jardín de Niños 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',1,1),
+(2,'Exploración y comprensión del mundo natural y social','Jardín de Niños 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',2,1),
+(3,'Pensamiento Matemático','Jardín de Niños 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',3,1),
+(4,'Geometría y Trigonometría','Bachillerato JMSR 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(5,'Filosofía','Bachillerato JMSR 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',5,2),
+(6,'Biología','Bachillerato JMSR 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',6,2),
+(7,'Introducción a la Programación','Ingeniería en Software 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',7,3),
+(8,'Algoritmos','Ingeniería en Software 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',8,3),
+(9,'Inglés I','Ingeniería en Software 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',9,3),
+(10,'Inglés I','Ingeniería Automotríz 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',9,4);
+
+--
+-- Dumping data for table `carrera_asignatura`
+--
+INSERT INTO `carrera_asignatura`(`id_carreraAsig`, `nombre_carrera`, `nombre_asignatura`, `f_creacion_carreraAsig`, `f_modificacion_carreraAsig`, `id_carrera`, `id_asignatura`) VALUES 
+(1,'Ingeniería en Software','Introducción a la Programación','2022-11-23 22:55:27', '2022-11-23 22:56:01',1,7),
+(2,'Ingeniería en Software','Algoritmos','2022-11-23 22:55:27', '2022-11-23 22:56:01',1,8),
+(3,'Ingeniería en Software','Inglés I','2022-11-23 22:55:27', '2022-11-23 22:56:01',1,9),
+(4,'Ingeniería Automotríz','Inglés I','2022-11-23 22:55:27', '2022-11-23 22:56:01',2,9);
+
+
+--
+-- Dumping data for table `carrera_periodoescolar`
+--
+
+INSERT INTO `carrera_periodoescolar`(`id_carrera_periodoEscolar`, `nombre_carrera`, `numero_periodoE`, `nombre_periodoE`, `f_inicio_PeriodoE`, `f_termino_PeriodoE`, `f_creacion_carreraPeriodoE`, `f_modificacion_carreraPeriodoE`, `id_carrera`, `id_periodoEscolar`) VALUES
+(1,'Ingeniería en Software','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(2,'Ingeniería Automotríz','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(3,'Ingeniería en Energía','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(4,'Ingeniería en Manufactura','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(5,'Ingeniería en Software','2','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(6,'Ingeniería Automotríz','2','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(7,'Ingeniería en Energía','2','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(8,'Ingeniería en Manufactura','2','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(9,'Ingeniería en Software','3','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(10,'Ingeniería Automotríz','3','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(11,'Ingeniería en Energía','3','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(12,'Ingeniería en Manufactura','3','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(13,'Ingeniería en Software','4','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(14,'Ingeniería Automotríz','4','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(15,'Ingeniería en Energía','4','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(16,'Ingeniería en Manufactura','4','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(17,'Ingeniería en Software','5','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(18,'Ingeniería Automotríz','5','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(19,'Ingeniería en Energía','5','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(20,'Ingeniería en Manufactura','5','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(21,'Ingeniería en Software','6','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(22,'Ingeniería Automotríz','6','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(23,'Ingeniería en Energía','6','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(24,'Ingeniería en Manufactura','6','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(25,'Ingeniería en Software','7','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(26,'Ingeniería Automotríz','7','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(27,'Ingeniería en Energía','7','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(28,'Ingeniería en Manufactura','7','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(29,'Ingeniería en Software','8','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(30,'Ingeniería Automotríz','8','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(31,'Ingeniería en Energía','8','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(32,'Ingeniería en Manufactura','8','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(33,'Ingeniería en Software','9','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(34,'Ingeniería Automotríz','9','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(35,'Ingeniería en Energía','9','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(36,'Ingeniería en Manufactura','9','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(37,'Ingeniería en Software','10','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(38,'Ingeniería Automotríz','10','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(39,'Ingeniería en Energía','10','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(40,'Ingeniería en Manufactura','10','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2);
+
+--
+-- Dumping data for table `carrera_planestudios`
+--
+
+INSERT INTO `carrera_planestudios`(`id_carreraPlanE`, `nombre_carrera`, `nombre_planEstudios`, `f_creacion_carreraPlanE`, `f_modificacion_carreraPlanE`, `id_carrera`, `id_planEstudios`) VALUES
+(1,'Ingeniería en Software','Ingeniería en Software 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',1,3),
+(2,'Ingeniería Automotríz','Ingeniería Automotríz 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',2,4);
+
+
+--
+-- Dumping data for table `facultad_aula`
+--
+
+INSERT INTO `facultad_aula`(`id_facultadAula`, `nombre_facultad`, `numero_aula`, `nombre_aula`, `grupo_aula`, `f_creacion_FacAula`, `f_modificacion_FacAula`, `id_facultad`, `id_aula`) VALUES
+(1,'Ciencias Exactas','100','Multimedia','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08', 1, 7),
+(2,'Ciencias Exactas','101','Maquinaria','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08', 1, 8),
+(3,'Ciencias Exactas','102','Salón de Mac','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08', 1, 9);
 --
 -- Dumping data for table `escuela_modalidadEscolar`
 --
@@ -1539,7 +1695,7 @@ INSERT INTO `escuela_modalidadEscolar` (`id_escuela_modalidadEscolar`, `nombre_e
 (1, 'Jardin de Niños Fantasía', 'Escolarizada', '2022-11-23 23:09:37', '2022-11-23 23:11:09', 1, 1),
 (2, 'Primaria Benito Juárez', 'Escolarizada', '2022-11-23 23:09:37', '2022-11-23 23:11:09', 2, 1),
 (3, 'Telesecundaria Gabino Barreda', 'Escolarizada', '2022-11-23 23:09:37', '2022-11-23 23:11:09', 3, 1),
-(4, 'Bachillerato General Oficial José María Sánchez Ro...', 'Escolarizada', '2022-11-23 23:09:37', '2022-11-23 23:11:09', 4, 1),
+(4, 'Bachillerato General Oficial José María Sánchez Rojas', 'Escolarizada', '2022-11-23 23:09:37', '2022-11-23 23:11:09', 4, 1),
 (5, 'Universidad Politécnica de Amozoc', 'Mixta', '2022-11-23 23:09:37', '2022-11-23 23:11:09', 5, 3);
 
 --
@@ -1556,20 +1712,20 @@ INSERT INTO `escuela_nivelEducativo` (`id_escuela_nivelEducativo`, `nombre_escue
 --
 -- Dumping data for table `escuela_periodoEscolar`
 --
-
-INSERT INTO `escuela_periodoEscolar` (`id_escuela_periodoEscolar`, `nombre_escuela`, `numero_periodoE`, `nombre_periodoE`, `f_creacion_escuelaPE`, `f_modificacion_escuelaPE`, `id_escuela`, `id_periodoEscolar`) VALUES
-(1, 'Jardin de Niños Fantasía', 1, 'Semestre', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 1, 1),
-(2, 'Primaria Benito Juárez', 1, 'Semestre', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 2, 1),
-(3, 'Telesecundaria Gabino Barreda', 1, 'Semestre', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 3, 1),
-(4, 'Bachillerato General Oficial José María Sánchez Rojas', 1, 'Semestre', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 4, 1),
-(5, 'Universidad Politécnica de Amozoc', 1, 'Cuatrimestre', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 5, 2);
+ 
+INSERT INTO `escuela_periodoEscolar` (`id_escuela_periodoEscolar`, `nombre_escuela`, `numero_periodoE`, `nombre_periodoE`, `f_inicio_periodoE`, `f_termino_periodoE`, `f_creacion_escuelaPE`, `f_modificacion_escuelaPE`, `id_escuela`, `id_periodoEscolar`) VALUES
+(1, 'Jardin de Niños Fantasía', 1, 'Semestre', '2022-07-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 1, 1),
+(2, 'Primaria Benito Juárez', 1, 'Semestre', '2022-07-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 2, 1),
+(3, 'Telesecundaria Gabino Barreda', 1, 'Semestre', '2022-07-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 3, 1),
+(4, 'Bachillerato General Oficial José María Sánchez Rojas', 1, 'Semestre', '2022-07-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 4, 1),
+(5, 'Universidad Politécnica de Amozoc', 1, 'Cuatrimestre', '2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 23:06:17', '2022-11-23 23:07:45', 5, 2);
 
 --
 -- Dumping data for table `escuela_Telefono`
 --
 
 INSERT INTO `escuela_Telefono` (`id_escuela_telefono`, `departamento_escuela`, `numero_telefonico`, `f_creacion_escuela_telefono`, `f_modificacion_escuela_telefono`, `id_escuela`, `id_telefono`) VALUES
-(1, 'Servicios Escolares', '2215365896', '2022-11-23 23:04:10', '2022-11-23 23:05:53', 1, 1),
+(1, 'Servicios Escolares', '2216535896', '2022-11-23 23:04:10', '2022-11-23 23:05:53', 1, 1),
 (2, 'Servicios Escolares', '2245987636', '2022-11-23 23:04:10', '2022-11-23 23:05:53', 2, 2),
 (3, 'Servicios Escolares', '2259874638', '2022-11-23 23:04:10', '2022-11-23 23:05:53', 3, 3),
 (4, 'Servicios Escolares', '2256987415', '2022-11-23 23:04:10', '2022-11-23 23:05:53', 4, 4),

@@ -61,7 +61,7 @@ form.sign-in-form {
 }
 
 .title {
-  font-size: 2.2rem;
+  font-size: 1.9rem;
   color: #444;
   margin-bottom: 10px;
 }
@@ -212,7 +212,7 @@ form.sign-in-form {
 }
 
 .panel p {
-  font-size: 0.95rem;
+  font-size: 0.99rem;
   padding: 0.7rem 0;
 }
 
@@ -223,7 +223,7 @@ form.sign-in-form {
   width: 130px;
   height: 41px;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 12px;
 }
 
 .right-panel .image,
@@ -325,14 +325,14 @@ form.sign-in-form {
   }
 
   .panel p {
-    font-size: 0.7rem;
+    font-size: 12px;
     padding: 0.5rem 0;
   }
 
   .btn.transparent {
     width: 110px;
     height: 35px;
-    font-size: 0.7rem;
+    font-size: 12px;
   }
 
   .container:before {

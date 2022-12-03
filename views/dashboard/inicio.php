@@ -249,7 +249,7 @@ if ($Autorizacion == true) {
                                 </a>
                             </li>
                             ';
-                    } else if ($_SESSION["subMat"] == "PF") {
+                    } else if ($_SESSION["subMat"] == "PF" AND $_SESSION["estatus_persona"] == "ASIGPREIN") {
                         echo '
                             <li class="active">
                                 <a class="" href="inicio.php">
@@ -258,11 +258,11 @@ if ($Autorizacion == true) {
                                 </a>
                             </li>
                             <li class="">
-                                <a class="" href="../stripeInscrip/pago/pagoExam.php">
-                                    <span class="material-icons-sharp">person</span>
-                                    <h3>Inscripciones</h3>
-                                </a>
-                            </li>                            
+                            <a class="" href="../stripeInscrip/pago/pagoExamAdm.php">
+                                <span class="material-icons-sharp">person</span>
+                                <h3>Inscripciones</h3>
+                            </a>
+                            </li>                
                             <li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">mail_outline</span>
@@ -278,7 +278,31 @@ if ($Autorizacion == true) {
                                 </a>
                             </li>
                             ';
-                    } else if ($_SESSION["subMat"] == "DOC") {
+                    } else if ($_SESSION["subMat"] == "PF" AND $_SESSION["estatus_persona"] == "ASIGPAG") {
+                        echo '
+                            <li class="active">
+                                <a class="" href="inicio.php">
+                                    <span class="material-icons-sharp">grid_view</span>
+                                    <h3>Dashboard</h3>
+                                </a>
+                            </li>
+                                                     
+                            <li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">mail_outline</span>
+                                    <h3>Mensajes</h3>
+                                    <span class="message-count">26</span>
+                                </a>
+                            </li>
+                            
+                            <li class="CloseSession">
+                                <a href="./../../controllers/controller_logout.php">
+                                    <span class="material-icons-sharp">logout</span>
+                                    <h3>Cerrar Sesión</h3>
+                                </a>
+                            </li>
+                            ';
+                    }else if ($_SESSION["subMat"] == "DOC") {
 
                     } else if ($_SESSION["subMat"] == "Al") {
                         echo '
@@ -288,12 +312,7 @@ if ($Autorizacion == true) {
                                     <h3>Dashboard</h3>
                                 </a>
                             </li>
-                            <li class="">
-                                <a class="" href="../stripeInscrip/pago/index.php">
-                                    <span class="material-icons-sharp">person</span>
-                                    <h3>Inscripciones</h3>
-                                </a>
-                            </li>
+                            
                             <li class="">
                                 <a class="dropdown-toggleCursos">
                                     <span class="material-icons-sharp">import_contacts</span>

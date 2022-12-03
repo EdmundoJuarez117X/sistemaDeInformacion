@@ -1176,7 +1176,7 @@ try {
 								if (mysqli_query($connection, $sqlUpdatePadreFam)) {
 									//Si la consulta salió exitosa entonces:
 									$sqlAspToAl = "INSERT INTO `alumno`(`nombre_alumno`, `segundo_nombreAlumno`, `apellido_paternoAlumno`, `apellido_maternoAlumno`, `edad_Alumno`, `genero_Alumno`, `estatus_Alumno`, `numero_tel_Alumno`, `email_alumno`, `password_alumno`, `fecha_nacimientoAlumno`, `f_creacion_Alumno`) 
-									VALUES ('$nombre_alumno','$segundo_nombreAlumno','$apellido_paternoAlumno','$apellido_maternoAlumno','$edad_Alumno','$genero_Alumno','INSCRITO','$numero_tel_Alumno','$email_alumno','$password_alumno','$fecha_nacimientoAlumno', NOW())";
+								VALUES ('$nombre_alumno','$segundo_nombreAlumno','$apellido_paternoAlumno','$apellido_maternoAlumno','$edad_Alumno','$genero_Alumno','INSCRITO','$numero_tel_Alumno','$email_alumno','$password_alumno','$fecha_nacimientoAlumno', NOW())";
 									usleep(136000);
 									if (mysqli_query($connection, $sqlAspToAl)) {
 										//Se agregan con exito los datos del nuevo alumno
@@ -1242,8 +1242,13 @@ try {
 																				WHERE `id_aula` ='$id_aula'";
 																				usleep(136000);
 																				if (mysqli_query($connection, $sqlUpdateAsAulaF)) {
-																					
-																					$_SESSION["estatus_persona"] = "ASIGPAG";
+																					$_SESSION["subMat"] = "Al";
+																					$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
+																					$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
+																					$_SESSION["nombre_aspirante"] = "";
+																					$_SESSION["apellido_paternoAspirante"] = "";
+
+																					$_SESSION["estatus_persona"] = "INSCRITO";
 																					echo "
 																				<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
 																				<script>
@@ -1264,8 +1269,12 @@ try {
 																			WHERE `id_aula` ='$id_aula'";
 																				usleep(136000);
 																				if (mysqli_query($connection, $sqlUpdateAsAula)) {
-																					
-																					$_SESSION["estatus_persona"] = "ASIGPAG";
+																					$_SESSION["subMat"] = "Al";
+																					$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
+																					$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
+																					$_SESSION["nombre_aspirante"] = "";
+																					$_SESSION["apellido_paternoAspirante"] = "";
+																					$_SESSION["estatus_persona"] = "INSCRITO";
 																					echo "
 																				<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
 																				<script>
@@ -1316,8 +1325,12 @@ try {
 																				WHERE `id_aula` ='$id_aula'";
 																				usleep(136000);
 																				if (mysqli_query($connection, $sqlUpdateAsAulaF)) {
-																					
-																					$_SESSION["estatus_persona"] = "ASIGPAG";
+																					$_SESSION["subMat"] = "Al";
+																					$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
+																					$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
+																					$_SESSION["nombre_aspirante"] = "";
+																					$_SESSION["apellido_paternoAspirante"] = "";
+																					$_SESSION["estatus_persona"] = "INSCRITO";
 																					echo "
 																				<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
 																				<script>
@@ -1331,14 +1344,21 @@ try {
 																				</script>";
 																					$Autorizacion = true;
 																					$url = 'dashboard/inicio.php';
+
+																					$Autorizacion = true;
+																					$url = 'dashboard/inicio.php';
 																				}
 																			} else { //Mayor que 1
 																				$sqlUpdateAsAula = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
 																			WHERE `id_aula` ='$id_aula'";
 																				usleep(136000);
 																				if (mysqli_query($connection, $sqlUpdateAsAula)) {
-																					
-																					$_SESSION["estatus_persona"] = "ASIGPAG";
+																					$_SESSION["subMat"] = "Al";
+																					$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
+																					$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
+																					$_SESSION["nombre_aspirante"] = "";
+																					$_SESSION["apellido_paternoAspirante"] = "";
+																					$_SESSION["estatus_persona"] = "INSCRITO";
 																					echo "
 																				<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
 																				<script>
@@ -1363,6 +1383,16 @@ try {
 
 																}
 															} else if ($nombre_nivelEducativo == "Superior") { //Caso de querer ingresar a la universidad
+																//Variables a usar (Borrar después)
+
+																// $nombre_facultad = $admAspData->nombre_facultad;
+																// $nombre_esp = $admAspData->nombre_esp;
+																// $nombre_carrera = $admAspData->nombre_carrera;
+																// $id_escuela = $admAspData->id_escuela;
+																// $id_nivelEducativo = $admAspData->id_nivelEducativo;
+																// $id_facultad = $admAspData->id_facultad;
+																// $id_carrera = $admAspData->id_carrera;
+																// $id_especializacion = $admAspData->id_especializacion;
 
 																if ($nombre_esp != "") {
 																	/* */
@@ -1398,8 +1428,13 @@ try {
 																			WHERE `id_aula` ='$id_aula'";
 																					usleep(136000);
 																					if (mysqli_query($connection, $sqlUpdateAsAulaF)) {
-																						
-																						$_SESSION["estatus_persona"] = "ASIGPAG";
+																						$_SESSION["subMat"] = "Al";
+																						$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
+																						$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
+																						$_SESSION["nombre_aspirante"] = "";
+																						$_SESSION["apellido_paternoAspirante"] = "";
+
+																						$_SESSION["estatus_persona"] = "INSCRITO";
 																						echo "
 																					<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
 																					<script>
@@ -1421,8 +1456,13 @@ try {
 																				WHERE `id_aula` ='$id_aula'";
 																					usleep(136000);
 																					if (mysqli_query($connection, $sqlUpdateAsAula)) {
-																						
-																						$_SESSION["estatus_persona"] = "ASIGPAG";
+																						$_SESSION["subMat"] = "Al";
+																						$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
+																						$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
+																						$_SESSION["nombre_aspirante"] = "";
+																						$_SESSION["apellido_paternoAspirante"] = "";
+
+																						$_SESSION["estatus_persona"] = "INSCRITO";
 																						echo "
 																					<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
 																						<script>
@@ -1475,8 +1515,13 @@ try {
 																					WHERE `id_aula` ='$id_aula'";
 																					usleep(136000);
 																					if (mysqli_query($connection, $sqlUpdateAsAulaFC)) {
-																						
-																						$_SESSION["estatus_persona"] = "ASIGPAG";
+																						$_SESSION["subMat"] = "Al";
+																						$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
+																						$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
+																						$_SESSION["nombre_aspirante"] = "";
+																						$_SESSION["apellido_paternoAspirante"] = "";
+
+																						$_SESSION["estatus_persona"] = "INSCRITO";
 																						echo "
 																						<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
 																						<script>
@@ -1496,9 +1541,13 @@ try {
 																					WHERE `id_aula` ='$id_aula'";
 																					usleep(136000);
 																					if (mysqli_query($connection, $sqlUpdateAsAulaC)) {
-																						
+																						$_SESSION["subMat"] = "Al";
+																						$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
+																						$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
+																						$_SESSION["nombre_aspirante"] = "";
+																						$_SESSION["apellido_paternoAspirante"] = "";
 
-																						$_SESSION["estatus_persona"] = "ASIGPAG";
+																						$_SESSION["estatus_persona"] = "INSCRITO";
 																						echo "
 																						<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
 																						<script>
@@ -1540,6 +1589,18 @@ try {
 							}
 						}
 					}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

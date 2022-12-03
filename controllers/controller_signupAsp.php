@@ -12,15 +12,15 @@ if ($_POST['type'] == 1) {
 
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		$duplicate = mysqli_query($connection, "SELECT * FROM aspirante WHERE email_aspirante = '$email'");
-		sleep(1);
+		usleep(136000);
 		$duplicate1 = mysqli_query($connection, "SELECT * FROM alumno WHERE email_alumno = '$email'");
-		sleep(1);
+		usleep(136000);
 		$duplicate2 = mysqli_query($connection, "SELECT * FROM padredefamilia WHERE email_padreDeFam = '$email'");
-		sleep(1);
+		usleep(136000);
 		$duplicate3 = mysqli_query($connection, "SELECT * FROM docente WHERE email_docente = '$email'");
-		sleep(1);
+		usleep(136000);
 		$duplicate4 = mysqli_query($connection, "SELECT * FROM administrador WHERE email_admin = '$email'");
-		sleep(1);
+		usleep(136000);
 		$duplicate5 = mysqli_query($connection, "SELECT * FROM master WHERE email_master = '$email'");
 
 		if (
@@ -43,9 +43,12 @@ if ($_POST['type'] == 1) {
 					$_SESSION["apellido_paternoAspirante"] = $apellido_paterno;
 					$_SESSION["email_aspirante"] = $email;
 					$_SESSION["enviar_correo"] = "ENV";
+					echo json_encode(array("statusCode" => 200));
+				}else{
+					echo json_encode(array("statusCode" => 201));
 				}
 
-				echo json_encode(array("statusCode" => 200));
+				
 			} else {
 				echo json_encode(array("statusCode" => 201));
 			}

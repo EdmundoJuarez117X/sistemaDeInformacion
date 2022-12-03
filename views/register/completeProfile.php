@@ -16,6 +16,9 @@ if (empty($_SESSION["subMat"])) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <!-- CSS only -->
     <link rel="stylesheet" href="../../styles/css/comProfile.css">
+    <!-- Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>Acceso al Sistema Escolar</title>
 </head>
 
@@ -34,7 +37,8 @@ if (empty($_SESSION["subMat"])) {
                     ?>
                     <div class="input-field">
                         <i class="material-icons-sharp">person</i>
-                        <input type="text" placeholder="Segundo Nombre (Opcional)" name="seg_nombre_persona" autocomplete="off">
+                        <input type="text" placeholder="Segundo Nombre (Opcional)" name="seg_nombre_persona"
+                            autocomplete="off">
                     </div>
                     <div class="input-field">
                         <i class="material-icons-sharp">signpost</i>
@@ -58,18 +62,20 @@ if (empty($_SESSION["subMat"])) {
                     </div>
                     <div class="input-field">
                         <i class="material-icons-sharp">location_city</i>
-                        <input type="text" placeholder="Código Postal" name="codPostalPersona" required autocomplete="off">
+                        <input type="text" placeholder="Código Postal" name="codPostalPersona" required
+                            autocomplete="off">
                     </div>
                     <div>
-                        <label >Fecha de Nacimiento</label>
+                        <label>Fecha de Nacimiento</label>
                     </div>
                     <div class="input-field">
                         <i class="material-icons-sharp">person</i>
-                        <input type="date"  id="datePickerId" name="fecha_nacimiento" required value="2000-01-01" min="1922-01-01" autocomplete="off">
+                        <input type="date" id="datePickerId" name="fecha_nacimiento" required value="2000-01-01"
+                            min="1922-01-01" autocomplete="off">
                     </div>
                     <div class="input-field">
                         <i class="material-icons-sharp">person</i>
-                        <select class="input-field"name="genero" required>
+                        <select class="input-field" name="genero" required>
                             <option value="">Selecciona tu Género</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
@@ -77,7 +83,8 @@ if (empty($_SESSION["subMat"])) {
                     </div>
                     <div class="input-field">
                         <i class="material-icons-sharp">phone_iphone</i>
-                        <input type="number" placeholder="Número de teléfono móvil" name="numero_telefonico" required autocomplete="off">
+                        <input type="number" placeholder="Número de teléfono móvil" name="numero_telefonico" required
+                            autocomplete="off">
                     </div>
                     <input type="submit" name="btn_completarPerfil" value="Finalizar" class="btn solid">
                 </form>

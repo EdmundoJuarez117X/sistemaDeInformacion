@@ -579,19 +579,30 @@ if ($Autorizacion == true) {
         </aside>
         <!------------------- END OF ASIDE ---------------->
         <main>
+            <?php
+            $emailPag = "";
+                if ($_SESSION["subMat"] == "ASP") {
+                    $emailPag = $_SESSION["email_aspirante"];
+
+            } else if ($_SESSION["subMat"] == "PF") {
+                $emailPag = $_SESSION['email_padreDeFam'];
+
+            }
+
+            ?>
             <form action="process.php" method="post" id="payment-form">
 
                 <div class="insights-form">
                     <div class="sales-form">
                         <div>
-                            <h1>Antes de pagar espera a que un agente de la escuela se comunique contigo 😎👍</h1>
-                            <h2>Pago de Exámen de Admisión</h2>
+                            <h1>Antes de pagar espera a que un agente de la escuela se comunique contigo</h1>
+                            <h2 class="success">Pago de Exámen de Admisión</h2>
                         </div>
 
                         <label for="exampleInputEmail1">Correo de tu cuenta escolar</label>
 
                         <input type="email" required name="email" class="form-control" id="exampleInputEmail1"
-                            placeholder="Correo electrónico">
+                            placeholder="Correo electrónico" value="<?php echo $emailPag;?>">
 
                         <div class="form-group">
                             <label for="exampleInputPassword1">Monto total</label>
@@ -609,16 +620,39 @@ if ($Autorizacion == true) {
                                     WHERE `id_aspirante`= '$id_aspirante'");
                                     if ($datosAdmision = $sqlDatosAdmisionIntereses->fetch_object()) {
                                         $id_escuela = $datosAdmision->id_escuela;
-                                        $sqlMonto = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
-                                        WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion='Exámen de Admisión' ORDER BY pago.f_creacion_pago DESC;");
-                                        if ($datosMonto = $sqlMonto->fetch_object()) {
-                                            define('monto', ($datosMonto->monto));
-                                            $_SESSION['id_pago'] = $datosMonto->id_pago;
-                                            $_SESSION['descripcion'] = $datosMonto->descripcion;
-                                            $_SESSION['moneda_concurrencia'] = $datosMonto->moneda_concurrencia;
+
+                                        $sqlMontoBeca = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela 
+                                        FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago 
+                                        INNER JOIN aspirante_pago on pago.id_pago = aspirante_pago.id_pago
+                                        WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion LIKE 'Beca Admisión%' AND aspirante_pago.id_aspirante='$id_aspirante' ORDER BY pago.f_creacion_pago DESC;");
+                                        if ($datosMontoB = $sqlMontoBeca->fetch_object()) {
+                                            define('monto', ($datosMontoB->monto));
+                                            $_SESSION['id_pago'] = $datosMontoB->id_pago;
+                                            $_SESSION['descripcion'] = $datosMontoB->descripcion;
+                                            $_SESSION['moneda_concurrencia'] = $datosMontoB->moneda_concurrencia;
                                         } else {
-                                            define('monto', 'Aún no se asigna un precio al pago, regrese más tarde');
+                                            $sqlMonto = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
+                                            WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion='Exámen de Admisión' ORDER BY pago.f_creacion_pago DESC;");
+                                            if ($datosMonto = $sqlMonto->fetch_object()) {
+                                                define('monto', ($datosMonto->monto));
+                                                $_SESSION['id_pago'] = $datosMonto->id_pago;
+                                                $_SESSION['descripcion'] = $datosMonto->descripcion;
+                                                $_SESSION['moneda_concurrencia'] = $datosMonto->moneda_concurrencia;
+                                            } else {
+                                                define('monto', 'Aún no se asigna un precio al pago, regrese más tarde');
+                                            }
                                         }
+
+                                        // $sqlMonto = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
+                                        // WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion='Exámen de Admisión' ORDER BY pago.f_creacion_pago DESC;");
+                                        // if ($datosMonto = $sqlMonto->fetch_object()) {
+                                        //     define('monto', ($datosMonto->monto));
+                                        //     $_SESSION['id_pago'] = $datosMonto->id_pago;
+                                        //     $_SESSION['descripcion'] = $datosMonto->descripcion;
+                                        //     $_SESSION['moneda_concurrencia'] = $datosMonto->moneda_concurrencia;
+                                        // } else {
+                                        //     define('monto', 'Aún no se asigna un precio al pago, regrese más tarde');
+                                        // }
                                     } else {
                                         define('monto', 'No asignado');
                                     }
@@ -627,16 +661,29 @@ if ($Autorizacion == true) {
                                     WHERE `id_aspirante`= '$id_aspirante'");
                                     if ($datosAdmision = $sqlDatosAdmisionIntereses->fetch_object()) {
                                         $id_escuela = $datosAdmision->id_escuela;
-                                        $sqlMonto = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
-                                        WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion='Exámen de Admisión' ORDER BY pago.f_creacion_pago DESC;");
-                                        if ($datosMonto = $sqlMonto->fetch_object()) {
-                                            define('monto', ($datosMonto->monto));
-                                            $_SESSION['id_pago'] = $datosMonto->id_pago;
-                                            $_SESSION['descripcion'] = $datosMonto->descripcion;
-                                            $_SESSION['moneda_concurrencia'] = $datosMonto->moneda_concurrencia;
+                                        $sqlMontoBeca = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela 
+                                        FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago 
+                                        INNER JOIN aspirante_pago on pago.id_pago = aspirante_pago.id_pago
+                                        WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion LIKE 'Beca Admisión%' AND aspirante_pago.id_aspirante='$id_aspirante' ORDER BY pago.f_creacion_pago DESC;");
+                                        if ($datosMontoB = $sqlMontoBeca->fetch_object()) {
+                                            define('monto', ($datosMontoB->monto));
+                                            $_SESSION['id_pago'] = $datosMontoB->id_pago;
+                                            $_SESSION['descripcion'] = $datosMontoB->descripcion;
+                                            $_SESSION['moneda_concurrencia'] = $datosMontoB->moneda_concurrencia;
                                         } else {
-                                            define('monto', 'Aún no se asigna un precio al pago, regrese más tarde');
+                                            $sqlMonto = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
+                                            WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion='Exámen de Admisión' ORDER BY pago.f_creacion_pago DESC;");
+                                            if ($datosMonto = $sqlMonto->fetch_object()) {
+                                                define('monto', ($datosMonto->monto));
+                                                $_SESSION['id_pago'] = $datosMonto->id_pago;
+                                                $_SESSION['descripcion'] = $datosMonto->descripcion;
+                                                $_SESSION['moneda_concurrencia'] = $datosMonto->moneda_concurrencia;
+                                            } else {
+
+                                                define('monto', 'Aún no se asigna un precio al pago, regrese más tarde');
+                                            }
                                         }
+
                                     }
                                 }
 
@@ -652,14 +699,27 @@ if ($Autorizacion == true) {
                                     WHERE `id_aspirante`= '$id_aspirante'");
                                     if ($datosAdmision = $sqlDatosAdmisionIntereses->fetch_object()) {
                                         $id_escuela = $datosAdmision->id_escuela;
-                                        $sqlMonto = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
-                                        WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion='Exámen de Admisión' ORDER BY pago.f_creacion_pago DESC;");
-                                        if ($datosMonto = $sqlMonto->fetch_object()) {
-                                            define('monto', ($datosMonto->monto));
-                                            $_SESSION['descripcion'] = $datosMonto->descripcion;
-                                            $_SESSION['moneda_concurrencia'] = $datosMonto->moneda_concurrencia;
+                                        $sqlMontoBeca = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela 
+                                        FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago 
+                                        INNER JOIN aspirante_pago on pago.id_pago = aspirante_pago.id_pago
+                                        WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion LIKE 'Beca Admisión%' AND aspirante_pago.id_aspirante='$id_aspirante' ORDER BY pago.f_creacion_pago DESC;");
+                                        if ($datosMontoB = $sqlMontoBeca->fetch_object()) {
+                                            define('monto', ($datosMontoB->monto));
+                                            $_SESSION['id_pago'] = $datosMontoB->id_pago;
+                                            $_SESSION['descripcion'] = $datosMontoB->descripcion;
+                                            $_SESSION['moneda_concurrencia'] = $datosMontoB->moneda_concurrencia;
                                         } else {
-                                            define('monto', 'Aún no se asigna un precio al pago, regrese más tarde');
+                                            $sqlMonto = $connection->query("SELECT pago.id_pago, pago.monto, pago.descripcion, pago.moneda_concurrencia, pago.f_creacion_pago, escuela_pago.id_escuela FROM pago INNER JOIN escuela_pago on pago.id_pago = escuela_pago.id_pago
+                                            WHERE pago.estatus_pago='ACTIVO' AND escuela_pago.id_escuela='$id_escuela' AND pago.descripcion='Exámen de Admisión' ORDER BY pago.f_creacion_pago DESC;");
+                                            if ($datosMonto = $sqlMonto->fetch_object()) {
+                                                define('monto', ($datosMonto->monto));
+                                                $_SESSION['id_pago'] = $datosMonto->id_pago;
+                                                $_SESSION['descripcion'] = $datosMonto->descripcion;
+                                                $_SESSION['moneda_concurrencia'] = $datosMonto->moneda_concurrencia;
+                                            } else {
+
+                                                define('monto', 'Aún no se asigna un precio al pago, regrese más tarde');
+                                            }
                                         }
                                     } else {
                                         define('monto', 'Algo Salio mal');
@@ -682,7 +742,7 @@ if ($Autorizacion == true) {
                                 id="exampleInputPassword1" readonly="readonly" hidden></div>
 
                         <label for="card-element">Tarjeta de crédito o debito</label>
-                       
+
                         <div id="card-element">
                             <!-- a Stripe Element will be inserted here. -->
                         </div>

@@ -58,13 +58,22 @@ if (!empty($_POST["btn_completarPerfil"])) {
                 VALUES('$callePersona', '$numeroCallePersona', '$coloniaPersona', '$estadoPersona', '$ciudadPersona','$codPostalPersona', '$f_creacion', '$id_aspirante')");
                 //Si los datos se envian entonces
                 if ($datos = $sql === true) {
-                    sleep(1);
+                    usleep(136000);
                     //Ejecutamos la sentencia SQL para actualizar los datos del Aspirante
                     $sql = $connection->query("UPDATE `aspirante` SET `segundo_nombreAspirante`='$seg_nombre_persona', `edad_Aspirante`='$edad',`genero_Aspirante`='$genero',`numero_tel_Aspirante`='$numero_telefonico',`fecha_nacimientoAspirante`='$fecha_nacimiento',`f_modificacion_Aspirante`='$f_creacion' WHERE `id_aspirante`='$id_aspirante'");
                     if($datos = $sql === true){
                         //Autorizamos la redireccion a otro sitio (Dashboard)
                         $Autorizacion = true;
-                        
+                        echo "
+                        <script>Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Bienvenido!',
+                            showConfirmButton: false,
+                            timer: 1963
+                            });
+                        </script>";
+                        usleep(136000);
                         include '../../controllers/phpMailer/enviarCorreo.php';
 
                      }
