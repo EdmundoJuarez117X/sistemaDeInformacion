@@ -1524,9 +1524,9 @@ INSERT INTO `escuela_aula`(`id_escuelaAula`, `nombre_escuela`, `numero_aula`, `n
 (4,'Bachillerato General Oficial José María Sánchez Rojas','10','PRIMERO','A','2022-11-23 22:56:41', '2022-11-23 22:57:08',4,4),
 (5,'Bachillerato General Oficial José María Sánchez Rojas','11','PRIMERO','B','2022-11-23 22:56:41', '2022-11-23 22:57:08',4,5),
 (6,'Bachillerato General Oficial José María Sánchez Rojas','12','PRIMERO','C','2022-11-23 22:56:41', '2022-11-23 22:57:08',4,6),
-(7,'Universidad Politécnica lde Amozoc','100','Multimedia','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',5,7),
-(8,'Universidad Politécnica lde Amozoc','101','Maquinaria','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',5,8),
-(9,'Universidad Politécnica lde Amozoc','102','Salón de Mac','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',5,9);
+(7,'Universidad Politécnica de Amozoc','100','Multimedia','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',5,7),
+(8,'Universidad Politécnica de Amozoc','101','Maquinaria','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',5,8),
+(9,'Universidad Politécnica de Amozoc','102','Salón de Mac','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',5,9);
 
 --
 -- Dumping data for table `pago`
@@ -1547,8 +1547,8 @@ INSERT INTO `escuela_pago`(`id_esc_pago`, `nombre_escuela`, `monto`, `moneda_con
 (2,'Jardin de Niños Fantasía','800','MXN','Pago Inscripción','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 1,2),
 (3,'Bachillerato General Oficial José María Sánchez Rojas','360','MXN','Exámen de Admisión','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 4,3),
 (4,'Bachillerato General Oficial José María Sánchez Rojas','1300','MXN','Pago Inscripción','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 4,4),
-(5,'Universidad Politécnica lde Amozoc','460','MXN','Exámen de Admisión','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 5,5),
-(6,'Universidad Politécnica lde Amozoc','1639','MXN','Pago Inscripción','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 5,6);
+(5,'Universidad Politécnica de Amozoc','460','MXN','Exámen de Admisión','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 5,5),
+(6,'Universidad Politécnica de Amozoc','1639','MXN','Pago Inscripción','ACTIVO','2022-11-23 22:56:41', '2022-11-23 22:57:08', 5,6);
 
 --
 -- Dumping data for table `escuela_facultad`
@@ -1592,7 +1592,7 @@ INSERT INTO `asignatura_aula`(`id_asinaturaAula`, `nombre_asignatura`, `numero_a
 --
 -- Dumping data for table `planestudios`
 --
-INSERT INTO `planestudios`(`id_planEstudios`, `nombre_planEstudios`, `nombre_corto_planE`, `estatus_planEstudios`, `num_creditos_totales`, `num_creditos_min`, `num_creditos_max`, `f_creacion_planE`, `f_modificacion_planE`) VALUES 
+INSERT INTO `planEstudios`(`id_planEstudios`, `nombre_planEstudios`, `nombre_corto_planE`, `estatus_planEstudios`, `num_creditos_totales`, `num_creditos_min`, `num_creditos_max`, `f_creacion_planE`, `f_modificacion_planE`) VALUES
 (1,'Jardín de Niños 2022','JNF-2022', b'1','160','96','160','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
 (2,'Bachillerato JMSR 2022','BJMSR-2022', b'1','260','156','260','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
 (3,'Ingeniería en Software 2022','ISW-2022', b'1','390','273','390','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
@@ -1602,7 +1602,7 @@ INSERT INTO `planestudios`(`id_planEstudios`, `nombre_planEstudios`, `nombre_cor
 --
 -- Dumping data for table `asignatura_planestudios`
 --
-INSERT INTO `asignatura_planestudios`(`id_asigPlanE`, `nombre_asignatura`, `nombre_planE`, `f_creacion_asigPlanE`, `f_modificacion_asigPlanE`, `id_asignatura`, `id_planEstudios`) VALUES
+INSERT INTO `asignatura_planEstudios`(`id_asigPlanE`, `nombre_asignatura`, `nombre_planE`, `f_creacion_asigPlanE`, `f_modificacion_asigPlanE`, `id_asignatura`, `id_planEstudios`) VALUES
 (1,'Educación Socioemocional','Jardín de Niños 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',1,1),
 (2,'Exploración y comprensión del mundo natural y social','Jardín de Niños 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',2,1),
 (3,'Pensamiento Matemático','Jardín de Niños 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',3,1),
@@ -1627,8 +1627,7 @@ INSERT INTO `carrera_asignatura`(`id_carreraAsig`, `nombre_carrera`, `nombre_asi
 --
 -- Dumping data for table `carrera_periodoescolar`
 --
-
-INSERT INTO `carrera_periodoescolar`(`id_carrera_periodoEscolar`, `nombre_carrera`, `numero_periodoE`, `nombre_periodoE`, `f_inicio_PeriodoE`, `f_termino_PeriodoE`, `f_creacion_carreraPeriodoE`, `f_modificacion_carreraPeriodoE`, `id_carrera`, `id_periodoEscolar`) VALUES
+INSERT INTO `carrera_periodoEscolar`(`id_carrera_periodoEscolar`, `nombre_carrera`, `numero_periodoE`, `nombre_periodoE`, `f_inicio_PeriodoE`, `f_termino_PeriodoE`, `f_creacion_carreraPeriodoE`, `f_modificacion_carreraPeriodoE`, `id_carrera`, `id_periodoEscolar`) VALUES
 (1,'Ingeniería en Software','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
 (2,'Ingeniería Automotríz','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
 (3,'Ingeniería en Energía','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
@@ -1673,8 +1672,7 @@ INSERT INTO `carrera_periodoescolar`(`id_carrera_periodoEscolar`, `nombre_carrer
 --
 -- Dumping data for table `carrera_planestudios`
 --
-
-INSERT INTO `carrera_planestudios`(`id_carreraPlanE`, `nombre_carrera`, `nombre_planEstudios`, `f_creacion_carreraPlanE`, `f_modificacion_carreraPlanE`, `id_carrera`, `id_planEstudios`) VALUES
+INSERT INTO `carrera_planEstudios`(`id_carreraPlanE`, `nombre_carrera`, `nombre_planEstudios`, `f_creacion_carreraPlanE`, `f_modificacion_carreraPlanE`, `id_carrera`, `id_planEstudios`) VALUES
 (1,'Ingeniería en Software','Ingeniería en Software 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',1,3),
 (2,'Ingeniería Automotríz','Ingeniería Automotríz 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',2,4);
 

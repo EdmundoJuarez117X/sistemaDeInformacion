@@ -46,7 +46,7 @@ if (!empty($_POST["btn_ingresar"])) {
                 $url = 'dashboard/inicio.php';
             } else {
                 //Ejecutamos la sentencia SQL
-                $sql = $connection->query("SELECT * FROM padredefamilia WHERE email_padreDeFam	='$email' AND password_padreDeFam='$md5EncryptionP4ss'");
+                $sql = $connection->query("SELECT * FROM padreDeFamilia WHERE email_padreDeFam	='$email' AND password_padreDeFam='$md5EncryptionP4ss'");
                 //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                 if ($datos = $sql->fetch_object()) {
                     $_SESSION["id_padreDeFamilia"] = $datos->id_padreDeFamilia;

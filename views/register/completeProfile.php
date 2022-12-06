@@ -16,6 +16,8 @@ if (empty($_SESSION["subMat"])) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <!-- CSS only -->
     <link rel="stylesheet" href="../../styles/css/comProfile.css">
+    <!-- shorcut icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="./../../img/loginImages/EducationSchool.svg" />
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

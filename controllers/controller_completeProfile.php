@@ -54,7 +54,7 @@ if (!empty($_POST["btn_completarPerfil"])) {
                 $id_aspirante  = $datos->id_aspirante;
 
                 //Ejecutamos la sentencia SQL para insertar los datos de Domicilio
-                $sql = $connection->query("INSERT INTO direccionaspirante (calleAspirante, numeroCalleAspirante, coloniaAspirante, estadoAspirante, ciudadAspirante	, codPostalAspirante, f_creacion_DirAspirante, id_aspirante)
+                $sql = $connection->query("INSERT INTO direccionAspirante (calleAspirante, numeroCalleAspirante, coloniaAspirante, estadoAspirante, ciudadAspirante	, codPostalAspirante, f_creacion_DirAspirante, id_aspirante)
                 VALUES('$callePersona', '$numeroCallePersona', '$coloniaPersona', '$estadoPersona', '$ciudadPersona','$codPostalPersona', '$f_creacion', '$id_aspirante')");
                 //Si los datos se envian entonces
                 if ($datos = $sql === true) {
@@ -87,14 +87,14 @@ if (!empty($_POST["btn_completarPerfil"])) {
                 $email_padreDeFam = $_SESSION["email_padreDeFam"];
 
                 //Ejecutamos una sentencia SQL para obtener el id de la persona (Aspirante)
-                $sqlPFID = $connection->query("SELECT * FROM padredefamilia WHERE email_padreDeFam='$email_padreDeFam'");
+                $sqlPFID = $connection->query("SELECT * FROM padreDeFamilia WHERE email_padreDeFam='$email_padreDeFam'");
                 if ($datos = $sqlPFID->fetch_object()) {
                     //Obtenemos el ID del usuario
                     $id_padreDeFamilia   = $datos->id_padreDeFamilia ;
 
                    
                         //Ejecutamos la sentencia SQL para actualizar los datos del Padre de Familia
-                        $sql = $connection->query("UPDATE `padredefamilia` SET `segundo_nombrepadreDeFam`='$seg_nombre_persona', `edad_padreDeFam`='$edad',`genero_padreDeFam`='$genero',`numero_tel_padreDeFam`='$numero_telefonico',`fecha_nacimientopadreDeFam`='$fecha_nacimiento',`f_modificacion_padreDeFam`='$f_creacion' WHERE `id_padreDeFamilia`='$id_padreDeFamilia'");
+                        $sql = $connection->query("UPDATE `padreDeFamilia` SET `segundo_nombrepadreDeFam`='$seg_nombre_persona', `edad_padreDeFam`='$edad',`genero_padreDeFam`='$genero',`numero_tel_padreDeFam`='$numero_telefonico',`fecha_nacimientopadreDeFam`='$fecha_nacimiento',`f_modificacion_padreDeFam`='$f_creacion' WHERE `id_padreDeFamilia`='$id_padreDeFamilia'");
                         if($datos = $sql === true){
                             //Autorizamos la redireccion a otro sitio (Dashboard)
                             $Autorizacion = true;

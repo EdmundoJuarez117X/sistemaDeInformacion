@@ -118,10 +118,8 @@ if ($Autorizacion == true) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 
-    <!-- CSS STYLESHEET-->
-
-    <!-- CSS STYLESHEET-->
-
+    <!-- shorcut icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="./../../img/loginImages/EducationSchool.svg" />
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -611,12 +609,12 @@ if ($Autorizacion == true) {
                             if ($_SESSION["subMat"] == "ASP") { //Busqueda de aspirante
                                 $id_aspirante = $_SESSION["id_aspirante"];
                                 //Ejecutamos la sentencia SQL
-                                $sqlDatosPFH = $connection->query("SELECT `id_padreDeFamHijo`, `nombre_padreDeFam`, `nombre_aspirante`, `nombre_alumno`, `f_creacion_pfHijo`, `f_modificacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`, `id_alumno` FROM `padredefamiliahijo` 
+                                $sqlDatosPFH = $connection->query("SELECT `id_padreDeFamHijo`, `nombre_padreDeFam`, `nombre_aspirante`, `nombre_alumno`, `f_creacion_pfHijo`, `f_modificacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`, `id_alumno` FROM `padreDeFamiliaHijo` 
                                 WHERE `id_aspirante` = '$id_aspirante'");
                                 //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                                 if ($datos = $sqlDatosPFH->fetch_object()) {
                                     $id_padreDeFamilia = $datos->id_padreDeFamilia;
-                                    $sqlDatosAdmisionIntereses = $connection->query("SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`, `id_especializacion` FROM `admisioninteresesaspirante` 
+                                    $sqlDatosAdmisionIntereses = $connection->query("SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`, `id_especializacion` FROM `admisionInteresesAspirante` 
                                     WHERE `id_aspirante`= '$id_aspirante'");
                                     if ($datosAdmision = $sqlDatosAdmisionIntereses->fetch_object()) {
                                         $id_escuela = $datosAdmision->id_escuela;
@@ -657,7 +655,7 @@ if ($Autorizacion == true) {
                                         define('monto', 'No asignado');
                                     }
                                 } else {
-                                    $sqlDatosAdmisionIntereses = $connection->query("SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`, `id_especializacion` FROM `admisioninteresesaspirante` 
+                                    $sqlDatosAdmisionIntereses = $connection->query("SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`, `id_especializacion` FROM `admisionInteresesAspirante` 
                                     WHERE `id_aspirante`= '$id_aspirante'");
                                     if ($datosAdmision = $sqlDatosAdmisionIntereses->fetch_object()) {
                                         $id_escuela = $datosAdmision->id_escuela;
@@ -690,12 +688,12 @@ if ($Autorizacion == true) {
                             } else if ($_SESSION["subMat"] == "PF") { //Busqueda de padre de familia
                                 $id_padreDeFamilia = $_SESSION["id_padreDeFamilia"];
                                 //Ejecutamos la sentencia SQL
-                                $sqlDatosPFH = $connection->query("SELECT `id_padreDeFamHijo`, `nombre_padreDeFam`, `nombre_aspirante`, `nombre_alumno`, `f_creacion_pfHijo`, `f_modificacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`, `id_alumno` FROM `padredefamiliahijo` 
+                                $sqlDatosPFH = $connection->query("SELECT `id_padreDeFamHijo`, `nombre_padreDeFam`, `nombre_aspirante`, `nombre_alumno`, `f_creacion_pfHijo`, `f_modificacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`, `id_alumno` FROM `padreDeFamiliaHijo` 
                                 WHERE `id_padreDeFamilia` = '$id_padreDeFamilia'");
                                 //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                                 if ($datos = $sqlDatosPFH->fetch_object()) {
                                     $id_aspirante = $datos->id_aspirante;
-                                    $sqlDatosAdmisionIntereses = $connection->query("SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`, `id_especializacion` FROM `admisioninteresesaspirante` 
+                                    $sqlDatosAdmisionIntereses = $connection->query("SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`, `id_especializacion` FROM `admisionInteresesAspirante` 
                                     WHERE `id_aspirante`= '$id_aspirante'");
                                     if ($datosAdmision = $sqlDatosAdmisionIntereses->fetch_object()) {
                                         $id_escuela = $datosAdmision->id_escuela;

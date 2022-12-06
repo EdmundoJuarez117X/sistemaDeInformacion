@@ -17,12 +17,12 @@ $date = date("Y-m-d H:i:s");
 
 
 if ($nombre_nivelEducativo == "Basica") {
-    $sqlB = "INSERT INTO `padredefamiliahijo`(`nombre_padreDeFam`, `nombre_aspirante`, `f_creacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`) 
+    $sqlB = "INSERT INTO `padreDeFamiliaHijo`(`nombre_padreDeFam`, `nombre_aspirante`, `f_creacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`) 
     VALUES ('$nombre_padreDeFam','$nombre_aspirante','$date','$id_padreDeFamilia','$id_aspirante')";
     // $sql = "INSERT INTO `admisioninteresesaspirante`(`nombre_escuela`, `nombre_nivelEducativo`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`) 
     //     VALUES ('$nombre_escuela','$nombre_nivelEducativo', '$date', '$id_padreDeFamilia', '$id_escuela', '$id_nivelEducativo')";
     if (mysqli_query($connection, $sqlB)) {
-        $sqlUpdate = "UPDATE `padredefamilia` SET `estatus_padreDeFam`='ASIGNADO'";
+        $sqlUpdate = "UPDATE `padreDeFamilia` SET `estatus_padreDeFam`='ASIGNADO'";
         // $sqlUpdate = "UPDATE `aspirante` SET `estatus_Aspirante`='PROCADM' WHERE `id_aspirante`='$id_padreDeFamilia'";
         if (mysqli_query($connection, $sqlUpdate)) {
             $Autorizacion = true;
@@ -34,10 +34,10 @@ if ($nombre_nivelEducativo == "Basica") {
         echo 'Algo Salio mal';
     }
 } else if ($nombre_nivelEducativo == "Media Superior") {
-    $sqlMS = "INSERT INTO `padredefamiliahijo`(`nombre_padreDeFam`, `nombre_aspirante`, `f_creacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`) 
+    $sqlMS = "INSERT INTO `padreDeFamiliaHijo`(`nombre_padreDeFam`, `nombre_aspirante`, `f_creacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`) 
     VALUES ('$nombre_padreDeFam','$nombre_aspirante','$date','$id_padreDeFamilia','$id_aspirante')";
     if (mysqli_query($connection, $sqlMS)) {
-        $sqlUpdateM = "UPDATE `padredefamilia` SET `estatus_padreDeFam`='ASIGNADO'";
+        $sqlUpdateM = "UPDATE `padreDeFamilia` SET `estatus_padreDeFam`='ASIGNADO'";
         if (mysqli_query($connection, $sqlUpdateM)) {
             $Autorizacion = true;
             $_SESSION["estatus_persona"] = "ASIGNADO";
@@ -48,10 +48,10 @@ if ($nombre_nivelEducativo == "Basica") {
 
     }
 } else if ($nombre_nivelEducativo == "Superior") {
-    $sqlSup = "INSERT INTO `padredefamiliahijo`(`nombre_padreDeFam`, `nombre_aspirante`, `f_creacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`) 
+    $sqlSup = "INSERT INTO `padreDeFamiliaHijo`(`nombre_padreDeFam`, `nombre_aspirante`, `f_creacion_pfHijo`, `id_padreDeFamilia`, `id_aspirante`) 
     VALUES ('$nombre_padreDeFam','$nombre_aspirante','$date','$id_padreDeFamilia','$id_aspirante')";
     if (mysqli_query($connection, $sqlSup)) {
-        $sqlUpdateS = "UPDATE `padredefamilia` SET `estatus_padreDeFam`='ASIGNADO'";
+        $sqlUpdateS = "UPDATE `padreDeFamilia` SET `estatus_padreDeFam`='ASIGNADO'";
         if (mysqli_query($connection, $sqlUpdateS)) {
             $Autorizacion = true;
             $_SESSION["estatus_persona"] = "ASIGNADO";

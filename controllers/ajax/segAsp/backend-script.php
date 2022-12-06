@@ -6,7 +6,7 @@ $db = $connection;
 function fetch_data()
 {
   global $db;
-  $query = "SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, admisioninteresesaspirante.id_aspirante, `id_carrera`, `id_especializacion`, aspirante.nombre_aspirante, aspirante.apellido_paternoAspirante, aspirante.edad_Aspirante, aspirante.genero_Aspirante, aspirante.email_aspirante, aspirante.numero_tel_Aspirante FROM `admisioninteresesaspirante` INNER JOIN aspirante on admisioninteresesaspirante.id_aspirante = aspirante.id_aspirante;";
+  $query = "SELECT `id_admsnIntePersona`, `nombre_escuela`, `nombre_nivelEducativo`, `descripcion_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `nombre_carrera`, `numero_grado`, `f_creacion_admsnIntePersona`, `f_modificacion_admsnIntePersona`, admisionInteresesAspirante.id_aspirante, `id_carrera`, `id_especializacion`, aspirante.nombre_aspirante, aspirante.apellido_paternoAspirante, aspirante.edad_Aspirante, aspirante.genero_Aspirante, aspirante.email_aspirante, aspirante.numero_tel_Aspirante FROM `admisionInteresesAspirante` INNER JOIN aspirante on admisionInteresesAspirante.id_aspirante = aspirante.id_aspirante;";
   $exec = mysqli_query($db, $query);
   if (mysqli_num_rows($exec) > 0) {
     $row = mysqli_fetch_all($exec, MYSQLI_ASSOC);

@@ -14,8 +14,8 @@ if (empty($_SESSION["subMat"])) {
     <!-- Material Icons CDN -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 
-    <!-- CSS STYLESHEET-->
-
+    <!-- shorcut icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="./../../img/loginImages/EducationSchool.svg" />
     <!-- CSS STYLESHEET-->
     <link rel="stylesheet" href="../../styles/css/aspOfertAcad/aspOferAcad.css">
     <!-- FOR NAVBAR SUBMENUS -->

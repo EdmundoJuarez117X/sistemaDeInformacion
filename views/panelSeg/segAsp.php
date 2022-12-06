@@ -1,8 +1,8 @@
 <?php
 session_start();
-// if (empty($_SESSION["subMat"]) or $_SESSION["subMat"]=="ASP" or $_SESSION["subMat"]=="PF" or $_SESSION["subMat"] == "Al") {
-//     header("location:./../../index.php");
-// }
+if (empty($_SESSION["subMat"]) or $_SESSION["subMat"]=="PF" or $_SESSION["subMat"] == "ADM") {
+    header("location:./../../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,8 @@ session_start();
 
     <!-- CSS STYLESHEET-->
     <link rel="stylesheet" href="../../styles/css/panelSeg/segAsp.css">
-
+    <!-- shorcut icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="./../../img/loginImages/EducationSchool.svg" />
     <!-- FOR NAVBAR SUBMENUS -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -247,108 +248,6 @@ session_start();
                             ';
                 }
                 ?>
-                    <!-- <li class="">
-                        <a class="" href="./../dashboard/inicio.php">
-                            <span class="material-icons-sharp">grid_view</span>
-                            <h3>Dashboard</h3>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">person</span>
-                            <h3>Clientes</h3>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">report</span>
-                            <h3>Reportes</h3>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">add</span>
-                            <h3>Agregar Producto</h3>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">settings</span>
-                            <h3>Ajustes</h3>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="dropdown-toggle" href="#">
-                            <span class="material-icons-sharp">paid</span>
-                            <h3>Pagos</h3>
-                            <span class="material-icons-sharp arrow_down first-arrow">keyboard_arrow_down</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <span class="material-icons-sharp">credit_card</span>
-                                    <h3>Tarjeta de Crédito</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <span class="material-icons-sharp">local_atm</span>
-                                    <h3>Efectivo</h3>
-                                </a>
-                            </li>
-
-                            <-- <li>
-                                <hr class="dropdown-divider">
-                            </li> --
-
-                        </ul>
-                    </li>
-                    <li class="">
-                        <a class="dropdown-toggleCursos" href="#">
-                            <span class="material-icons-sharp">import_contacts</span>
-                            <h3>Cursos</h3>
-                            <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
-                        </a>
-                        <ul class="dropdown-menuCursos">
-                            <li>
-                                <a class="dropdown-item" href="../cursos-eventos/nuevo-curso.php">
-                                    <span class="material-icons-sharp">add</span>
-                                    <h3>Nuego Curso</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../cursos-eventos/historial.php">
-                                    <span class="material-icons-sharp">history</span>
-                                    <h3>Historial</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <span class="material-icons-sharp">receipt_long</span>
-                                    <h3>Reportes</h3>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">mail_outline</span>
-                            <h3>Mensajes</h3>
-                            <span class="message-count">26</span>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">admin_panel_settings</span>
-                            <h3>Panel de Seguimiento</h3>
-                        </a>
-                    </li>
-                    <li class="CloseSession">
-                        <a href="./../../controllers/controller_logout.php">
-                            <span class="material-icons-sharp">logout</span>
-                            <h3>Cerrar Sesión</h3>
-                        </a>
-                    </li> -->
                 </ul>
             </div>
             <!-- END OF SIDEBAR / NAVBAR -->
@@ -359,28 +258,6 @@ session_start();
             <!--------------------- END OF INSIGHTS ---------------------->
             <button id="showData" class="btnSeg">Mostrar a todos los Aspirantes</button>
             <div id="table-container" class="recent-orders">
-                <!-- <h2>Aspirantes</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre del Producto</th>
-                            <th>Número del producto</th>
-                            <th>Método de Pago</th>
-                            <th>Estado</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Foldable Mini Drone</td>
-                            <td>8564</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a href="">Show All</a> -->
             </div>
         </main>
         <!---------------------------- END OF MAIN ------------------->

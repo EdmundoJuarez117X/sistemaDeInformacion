@@ -6,11 +6,11 @@ $(document).ready(function () {
         var apellido_materno = $('#apellido_materno').val();
         var email = $('#email').val();
         var password = $('#password').val();
-        var aspdoc = $('#aspdoc').val();
+        var mastadm = $('#aspdoc').val();
         if (nombre_persona != "" && apellido_paterno != "" && apellido_materno != "" && email != "" && password != "" && aspdoc != "") {
-            if (aspdoc == "aspirante") {
+            if (mastadm == "master") {
                 $.ajax({
-                    url: "./controllers/controller_signupAsp.php",
+                    url: "./../../controllers/controller_signupAsp.php",
                     type: "POST",
                     data: {
                         type: 1,
@@ -19,7 +19,7 @@ $(document).ready(function () {
                         apellido_materno: apellido_materno,
                         email: email,
                         password: password,
-                        aspdoc: aspdoc
+                        mastadm: mastadm
                     },
                     cache: false,
                     success: function (dataResult) {
@@ -31,66 +31,65 @@ $(document).ready(function () {
                             // $('#success').html('Registro Exitoso !');
                             //Sweet alert and locate to complete profile view
                             let timerInterval
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Completa tu perfil!',
-                                html: 'Se actualizará en <b></b>.',
-                                timer: 1369,
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading()
-                                    const b = Swal.getHtmlContainer().querySelector('b')
-                                    timerInterval = setInterval(() => {
-                                        b.textContent = Swal.getTimerLeft()
-                                    }, 100)
-                                },
-                                willClose: () => {
-                                    clearInterval(timerInterval)
-                                }
-                            }).then((result) => {
-                                /* Read more about handling dismissals below */
-                                if (result.dismiss === Swal.DismissReason.timer) {
-                                    location.href = "./views/register/completeProfile.php";
-                                }
-                            });
-
-
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Completa tu perfil!',
+                                    html: 'Se actualizará en <b></b>.',
+                                    timer: 1369,
+                                    timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                        const b = Swal.getHtmlContainer().querySelector('b')
+                                        timerInterval = setInterval(() => {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }, 100)
+                                    },
+                                    willClose: () => {
+                                        clearInterval(timerInterval)
+                                    }
+                                }).then((result) => {
+                                    /* Read more about handling dismissals below */
+                                    if (result.dismiss === Swal.DismissReason.timer) {
+                                        location.href = "./../views/register/completeProfile.php";
+                                    }
+                                });
                         }
                         else if (dataResult.statusCode == 201) {
-                            //Sweet alert 2 and location to index
+                            //Sweet alert and locate to index
                             let timerInterval
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'Correo ya registrado o estructura no valida!',
-                                html: 'Se actualizará en <b></b>.',
-                                timer: 1369,
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading()
-                                    const b = Swal.getHtmlContainer().querySelector('b')
-                                    timerInterval = setInterval(() => {
-                                        b.textContent = Swal.getTimerLeft()
-                                    }, 100)
-                                },
-                                willClose: () => {
-                                    clearInterval(timerInterval)
-                                }
-                            }).then((result) => {
-                                /* Read more about handling dismissals below */
-                                if (result.dismiss === Swal.DismissReason.timer) {
-                                    location.href = "index.php";
-                                }
-                            });
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    title: 'Correo ya registrado o estructura no valida!',
+                                    html: 'Se actualizará en <b></b>.',
+                                    timer: 1369,
+                                    timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                        const b = Swal.getHtmlContainer().querySelector('b')
+                                        timerInterval = setInterval(() => {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }, 100)
+                                    },
+                                    willClose: () => {
+                                        clearInterval(timerInterval)
+                                    }
+                                }).then((result) => {
+                                    /* Read more about handling dismissals below */
+                                    if (result.dismiss === Swal.DismissReason.timer) {
+                                        location.href = "index.php";
+                                    }
+                                });
+
                         }
 
                     }
                 });
             } else {
-                if (aspdoc == "padredefamilia") {
+                if (mastadm == "administrador") {
                     $.ajax({
-                        url: "./controllers/controller_signupPF.php",
+                        url: "./../controllers/controller_signupPF.php",
                         type: "POST",
                         data: {
                             type: 1,
@@ -99,7 +98,7 @@ $(document).ready(function () {
                             apellido_materno: apellido_materno,
                             email: email,
                             password: password,
-                            aspdoc: aspdoc
+                            mastadm: mastadm
                         },
                         cache: false,
                         success: function (dataResult) {
@@ -127,13 +126,13 @@ $(document).ready(function () {
                                 }).then((result) => {
                                     /* Read more about handling dismissals below */
                                     if (result.dismiss === Swal.DismissReason.timer) {
-                                        location.href = "./views/register/completeProfile.php";
+                                        location.href = "./../views/register/completeProfile.php";
                                     }
                                 });
 
+
                             }
                             else if (dataResult.statusCode == 201) {
-                                //Sweet alert 2 and locate to index
                                 let timerInterval
                                 Swal.fire({
                                     position: 'center',
@@ -167,7 +166,7 @@ $(document).ready(function () {
             }
         }
         else {
-            //Sweet Alert 2 and locate to index
+            //Sweet alert
             let timerInterval
             Swal.fire({
                 icon: 'error',
@@ -190,8 +189,9 @@ $(document).ready(function () {
                 if (result.dismiss === Swal.DismissReason.timer) {
                     location.href = "index.php";
                 }
-            });
-            // alert('Por favor llena todos los campos !');
+            })
+
+
         }
     });
 

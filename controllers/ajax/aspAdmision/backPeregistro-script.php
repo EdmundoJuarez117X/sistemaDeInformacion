@@ -14,7 +14,7 @@ $date = date("Y-m-d H:i:s");
 
 
 if ($nombre_nivelEducativo == "Basica") {
-    $sql = "INSERT INTO `admisioninteresesaspirante`(`nombre_escuela`, `nombre_nivelEducativo`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`) 
+    $sql = "INSERT INTO `admisionInteresesAspirante`(`nombre_escuela`, `nombre_nivelEducativo`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`) 
         VALUES ('$nombre_escuela','$nombre_nivelEducativo', '$date', '$id_aspirante', '$id_escuela', '$id_nivelEducativo')";
     if (mysqli_query($connection, $sql)) {
         $sqlUpdate = "UPDATE `aspirante` SET `estatus_Aspirante`='PROCADM' WHERE `id_aspirante`='$id_aspirante'";
@@ -29,7 +29,7 @@ if ($nombre_nivelEducativo == "Basica") {
     }
 } else if ($nombre_nivelEducativo == "Media Superior") {
     //echo $nombre_escuela . " " . $nombre_nivelEducativo . " " . $date . " " . $id_aspirante . " " . $id_escuela . " " . $id_nivelEducativo;
-    $sqlMS = "INSERT INTO `admisioninteresesaspirante`(`nombre_escuela`, `nombre_nivelEducativo`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`)
+    $sqlMS = "INSERT INTO `admisionInteresesAspirante`(`nombre_escuela`, `nombre_nivelEducativo`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`)
         VALUES ('$nombre_escuela','$nombre_nivelEducativo', '$date', '$id_aspirante', '$id_escuela', '$id_nivelEducativo')";
     if (mysqli_query($connection, $sqlMS)) {
 
@@ -60,7 +60,7 @@ if ($nombre_nivelEducativo == "Basica") {
             if (isset($_GET['id_especializacion'])) {
                 $id_especializacion = $_GET['id_especializacion'];
                 if ($nombre_esp != "") {
-                    $sql = "INSERT INTO `admisioninteresesaspirante`( `nombre_escuela`, `nombre_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_especializacion`) 
+                    $sql = "INSERT INTO `admisionInteresesAspirante`( `nombre_escuela`, `nombre_nivelEducativo`, `nombre_facultad`, `nombre_esp`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_especializacion`) 
                     VALUES ('$nombre_escuela','$nombre_nivelEducativo', '$nombre_facultad', '$nombre_esp', '$date', '$id_aspirante', '$id_escuela','$id_nivelEducativo', '$id_facultad', '$id_especializacion')";
                     if (mysqli_query($connection, $sql)) {
                         $sqlUpdate = "UPDATE `aspirante` SET `estatus_Aspirante`='PROCADM' WHERE `id_aspirante`='$id_aspirante'";
@@ -83,7 +83,7 @@ if ($nombre_nivelEducativo == "Basica") {
                     // echo "<script>alert('" . $id_nivelEducativo . "');</script>";
                     // echo "<script>alert('" . $id_facultad . "');</script>";
                     // echo "<script>alert('" . $id_escuela . "');</script>";
-                    $sql = "INSERT INTO `admisioninteresesaspirante`( `nombre_escuela`, `nombre_nivelEducativo`, `nombre_facultad`, `nombre_carrera`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`) 
+                    $sql = "INSERT INTO `admisionInteresesAspirante`( `nombre_escuela`, `nombre_nivelEducativo`, `nombre_facultad`, `nombre_carrera`, `f_creacion_admsnIntePersona`, `id_aspirante`, `id_escuela`, `id_nivelEducativo`, `id_facultad`, `id_carrera`) 
                     VALUES ('$nombre_escuela','$nombre_nivelEducativo', '$nombre_facultad', '$nombre_carrera', '$date', '$id_aspirante', '$id_escuela','$id_nivelEducativo', '$id_facultad', '$id_carrera')";
                     if (mysqli_query($connection, $sql)) {
                         $sqlUpdate = "UPDATE `aspirante` SET `estatus_Aspirante`='PROCADM' WHERE `id_aspirante`='$id_aspirante'";

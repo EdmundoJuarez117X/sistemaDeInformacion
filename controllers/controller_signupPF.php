@@ -16,7 +16,7 @@ if ($_POST['type'] == 1) {
 		usleep(136000);
 		$duplicate1 = mysqli_query($connection, "SELECT * FROM alumno WHERE email_alumno = '$email'");
 		usleep(136000);
-		$duplicate2 = mysqli_query($connection, "SELECT * FROM padredefamilia WHERE email_padreDeFam = '$email'");
+		$duplicate2 = mysqli_query($connection, "SELECT * FROM padreDeFamilia WHERE email_padreDeFam = '$email'");
 		usleep(136000);
 		$duplicate3 = mysqli_query($connection, "SELECT * FROM docente WHERE email_docente = '$email'");
 		usleep(136000);
@@ -30,12 +30,12 @@ if ($_POST['type'] == 1) {
 			echo json_encode(array("statusCode" => 201));
 		} else {
 			$md5EncryptionP4ss = md5($password);
-			$sql = "INSERT INTO `padredefamilia`(`nombre_padreDeFam`, `apellido_paternopadreDeFam`, `apellido_maternopadreDeFam`, `email_padreDeFam`, `password_padreDeFam`, `f_creacion_padreDeFam`) 
+			$sql = "INSERT INTO `padreDeFamilia`(`nombre_padreDeFam`, `apellido_paternopadreDeFam`, `apellido_maternopadreDeFam`, `email_padreDeFam`, `password_padreDeFam`, `f_creacion_padreDeFam`) 
 				VALUES('$nombre_persona','$apellido_paterno','$apellido_materno','$email','$md5EncryptionP4ss','$date')";
 			if (mysqli_query($connection, $sql)) {
 				usleep(136000);
 				//Ejecutamos la sentencia SQL
-				$sqlToGetID = $connection->query("SELECT * FROM padredefamilia WHERE email_padreDeFam	='$email'");
+				$sqlToGetID = $connection->query("SELECT * FROM padreDeFamilia WHERE email_padreDeFam	='$email'");
 				//Obtenemos el registro de los datos y guardamos algunos para control de acceso
 				if ($datosID = $sqlToGetID->fetch_object()) {
 					$_SESSION["id_padreDeFamilia"] = $datosID->id_padreDeFamilia;
