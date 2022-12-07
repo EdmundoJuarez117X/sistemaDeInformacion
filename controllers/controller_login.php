@@ -104,7 +104,32 @@ if (!empty($_POST["btn_ingresar"])) {
                                 $Autorizacion = true;
                                 $url = 'dashboard/inicio.php';
                             } else {
-                                echo "<div class='alert alert-danger'>Correo o Contraseña incorrectos</div>";
+                                echo "<script>
+                                //Sweet Alert 2 and locate to index
+                                let timerInterval
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Correo o contraseña incorrectos :(',
+                                    html: 'Intenta de nuevo en <b></b>.',
+                                    timer: 1369,
+                                    timerProgressBar: true,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                        const b = Swal.getHtmlContainer().querySelector('b')
+                                        timerInterval = setInterval(() => {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }, 100)
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval)
+                                }
+                                }).then((result) => {
+                                    /* Read more about handling dismissals below */
+                                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                                    }
+                                });
+                                </script>";
                                 session_destroy();
                             }
                         }

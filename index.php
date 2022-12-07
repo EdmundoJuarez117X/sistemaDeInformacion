@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SISESCOLAR Sistema de Gestion de Instituciones.">
-    <!-- FontAwesome API -->
-    <script src="https://kit.fontawesome.com/73f1291dca.js" crossorigin="anonymous"></script>
+    <!-- Sweet alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script>
+
     <!-- CSS only -->
     <link rel="stylesheet" href="styles/css/stylev2.css">
-    <!-- Sweet Alert -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <link rel="shortcut icon" type="image/x-icon" href="./img/loginImages/EducationSchool.svg" />
 
     <title>Acceso al Sistema Escolar</title>
@@ -186,7 +186,10 @@
 
         });
     </script>
-
+    <!-- Sweet Alert -->
+    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+    <!-- FontAwesome API -->
+    <script src="https://kit.fontawesome.com/73f1291dca.js" crossorigin="anonymous"></script>
 </body>
 </html>   
 

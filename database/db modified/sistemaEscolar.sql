@@ -1292,11 +1292,11 @@ CREATE TABLE IF NOT EXISTS `facultad_especializacion` (
 
 -- -------------------------------------------------------------------------------
 --
--- Estructura de tabla para la tabla `especilizacion_asignatura`
+-- Estructura de tabla para la tabla `especializacion_asignatura`
 --
-DROP TABLE IF EXISTS `especilizacion_asignatura`;
+DROP TABLE IF EXISTS `especializacion_asignatura`;
 
-CREATE TABLE IF NOT EXISTS `especilizacion_asignatura` (
+CREATE TABLE IF NOT EXISTS `especializacion_asignatura` (
     `id_espAsignatura` int(5) NOT NULL AUTO_INCREMENT,
     `nombre_esp` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `nombre_asignatura` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -1570,7 +1570,8 @@ INSERT INTO `asignatura`(`id_asignatura`, `nombre_asignatura`, `nombre_corto_asi
 (6,'Biología','BGA', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
 (7,'Introducción a la Programación','INPROG-EN', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
 (8,'Algoritmos','ALG-EN', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
-(9,'Inglés I','INGI-US', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01');
+(9,'Inglés I','INGI-US', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01'),
+(10,'Data Science','DS-US', b'1','2022-11-23 22:55:27', '2022-11-23 22:56:01');
 
 
 --
@@ -1676,6 +1677,62 @@ INSERT INTO `carrera_planEstudios`(`id_carreraPlanE`, `nombre_carrera`, `nombre_
 (1,'Ingeniería en Software','Ingeniería en Software 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',1,3),
 (2,'Ingeniería Automotríz','Ingeniería Automotríz 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',2,4);
 
+--
+-- Dumping data for table `especializacion_planEstudios`
+--
+INSERT INTO `especializacion_planEstudios`(`id_espPlanE`, `nombre_esp`, `nombre_planEstudios`, `f_creacion_espPlanE`, `f_modificacion_espPlanE`, `id_especializacion`, `id_planEstudios`) VALUES
+(1,'Maestría en Inteligencia Artificial','Maestría en Inteligencia Artificial 2022','2022-11-23 22:55:27', '2022-11-23 22:56:01',1,5);
+
+--
+-- Dumping data for table `especializacion_asignatura`
+--
+INSERT INTO `especializacion_asignatura`(`id_espAsignatura`, `nombre_esp`, `nombre_asignatura`, `f_creacion_espAsig`, `f_modificacion_espAsig`, `id_especializacion`, `id_asignatura`) VALUES 
+(1,'Maestría en Inteligencia Artificial','Data Science','2022-11-23 22:55:27', '2022-11-23 22:56:01',1, 10);
+
+--
+-- Dumping data for table `especializacion_periodoEscolar`
+--
+INSERT INTO `especializacion_periodoEscolar`(`id_especializacion_periodoEscolar`, `nombre_carrera`, `numero_periodoE`, `nombre_periodoE`, `f_inicio_PeriodoE`, `f_termino_PeriodoE`, `f_creacion_espPeriodoE`, `f_modificacion_espPeriodoE`, `id_especializacion`, `id_periodoEscolar`) VALUES 
+(1,'Maestría en Inteligencia Artificial','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(2,'Maestría en Mecánica Automotríz a Gasolina','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(3,'Maestría en Potencial Eléctrica Atómica','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(4,'Maestría en Ciencias de la Salud','1','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(5,'Maestría en Inteligencia Artificial','2','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(6,'Maestría en Mecánica Automotríz a Gasolina','2','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(7,'Maestría en Potencial Eléctrica Atómica','2','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(8,'Maestría en Ciencias de la Salud','2','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(9,'Maestría en Inteligencia Artificial','3','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(10,'Maestría en Mecánica Automotríz a Gasolina','3','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(11,'Maestría en Potencial Eléctrica Atómica','3','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(12,'Maestría en Ciencias de la Salud','3','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(13,'Maestría en Inteligencia Artificial','4','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(14,'Maestría en Mecánica Automotríz a Gasolina','4','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(15,'Maestría en Potencial Eléctrica Atómica','4','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(16,'Maestría en Ciencias de la Salud','4','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(17,'Maestría en Inteligencia Artificial','5','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(18,'Maestría en Mecánica Automotríz a Gasolina','5','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(19,'Maestría en Potencial Eléctrica Atómica','5','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(20,'Maestría en Ciencias de la Salud','5','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(21,'Maestría en Inteligencia Artificial','6','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(22,'IngenieríMaestría en Mecánica Automotríz a Gasolinaa Automotríz','6','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(23,'Maestría en Potencial Eléctrica Atómica','6','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(24,'Maestría en Ciencias de la Salud','6','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(25,'Maestría en Inteligencia Artificial','7','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(26,'Maestría en Mecánica Automotríz a Gasolina','7','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(27,'Maestría en Potencial Eléctrica Atómica','7','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(28,'Maestría en Ciencias de la Salud','7','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(29,'Maestría en Inteligencia Artificial','8','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(30,'Maestría en Mecánica Automotríz a Gasolina','8','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(31,'Maestría en Potencial Eléctrica Atómica','8','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(32,'Maestría en Ciencias de la Salud','8','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(33,'Maestría en Inteligencia Artificial','9','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(34,'Maestría en Mecánica Automotríz a Gasolina','9','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(35,'Maestría en Potencial Eléctrica Atómica','9','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(36,'Maestría en Ciencias de la Salud','9','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2),
+(37,'Maestría en Inteligencia Artificial','10','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',1,2),
+(38,'Maestría en Mecánica Automotríz a Gasolina','10','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',2,2),
+(39,'Maestría en Potencial Eléctrica Atómica','10','Cuatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',3,2),
+(40, 'Maestría en Ciencias de la Salud','10','C(40,uatrimestre','2022-09-05 22:53:50','2022-12-16 22:53:50', '2022-11-23 22:55:27', '2022-11-23 22:56:01',4,2);
 
 --
 -- Dumping data for table `facultad_aula`
