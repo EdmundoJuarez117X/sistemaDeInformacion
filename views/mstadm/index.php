@@ -28,7 +28,7 @@
                     // Conexión a la base de datos
                     include "./../../model/connection.php";
                     // Controlador para acceder al login
-                    include "./../../controllers/controller_login.php";
+                    include "./../../controllers/controller_loginMstAdm.php";
                     ?>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
@@ -84,10 +84,10 @@
                     </div>
                     <div class="input-field">
                     <i class="fas fa-user"></i>
-                        <select class="input-field" id="aspdoc" name="aspdoc" required>
-                            <option value="">¿Aspirante o Padre de Familia?</option>
-                            <option value = "aspirante">Aspirante</option>
-                            <option value = "padredefamilia">Padre de Familia</option>
+                        <select class="input-field" id="mstadm" name="mstadm" required>
+                            <option value="">¿Master o Administrador?</option>
+                            <option value = "master">Master</option>
+                            <option value = "administrador">Administrador</option>
                         </select>
                     </div>
                     <input type="submit" name="btn_registrar" value="Registrarse" id="register" class="btn solid">

@@ -59,7 +59,8 @@ $search = $_POST['search'];
           <td>" . $data['fecha_nacimientoAspirante'] . "</td>
           <td>" . $data['nombre_escuela'] . "</td>
           <td>" . $data['nombre_nivelEducativo'] . " ~ " . $data['nombre_facultad'] . " ~ " . $data['nombre_esp'] . " ~ " . $data['nombre_carrera'] . " </td>
-          <td><a class='primary tableAspOf' href='./../../controllers/ajax/aspAlSearch/backAsigAsp.php?id_padreDeFamilia=".$_SESSION['id_padreDeFamilia']."&id_aspirante=".$data['id_aspirante']."&nombre_escuela=" . $data['nombre_escuela'] . "&nombre_nivelEducativo=" . $data['nombre_nivelEducativo'] . "&nombre_facultad=" . $data['nombre_facultad'] . "&nombre_carrera=" . $data['nombre_carrera'] ."&nombre_aspirante=".$data['nombre_aspirante']."'>Es mi hijo (Asignar)</a></td>
+          <td><a class='primary tableAspOf' href='./../../controllers/ajax/aspAlSearch/backAsigAsp.php?nombre_escuela=" . $data['nombre_escuela'] . "&nombre_nivelEducativo=" . $data['nombre_nivelEducativo'] . "&nombre_facultad=" . $data['nombre_facultad'] . "&nombre_carrera=" . $data['nombre_carrera'] ."&nombre_aspirante=".$data['nombre_aspirante']."&id_aspirante=".$data['id_aspirante']."'>Es mi hijo (Asignar)</a></td>
+          
           
    </tr>";
 
@@ -78,5 +79,5 @@ $search = $_POST['search'];
 
 
 //    <td><a class='primary tableAspOf' href='./../../controllers/ajax/aspAdmision/backPeregistro-script.php?id_escuela=" . $data['id_escuela'] . "&nombre_escuela=" . $data['nombre_escuela'] . "&nombre_nivelEducativo=" . $data['nombre_nivelEducativo'] . "&nombre_facultad=" . $data['nombre_facultad'] . "&nombre_carrera=" . $data['nombre_carrera'] . "&id_carrera=" . $data['id_carrera'] . "'>Es mi hijo (Asignar)</a></td>
-
+// <td><a class='primary tableAspOf' href='./../../controllers/ajax/aspAlSearch/backAsigAsp.php?id_padreDeFamilia=".$_SESSION['id_padreDeFamilia']."&id_aspirante=".$data['id_aspirante']."&nombre_escuela=" . $data['nombre_escuela'] . "&nombre_nivelEducativo=" . $data['nombre_nivelEducativo'] . "&nombre_facultad=" . $data['nombre_facultad'] . "&nombre_carrera=" . $data['nombre_carrera'] ."&nombre_aspirante=".$data['nombre_aspirante']."'>Es mi hijo (Asignar)</a></td>
 ?>

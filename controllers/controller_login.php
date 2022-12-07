@@ -61,7 +61,7 @@ if (!empty($_POST["btn_ingresar"])) {
                     $url = 'dashboard/inicio.php';
                 } else {
                     //Ejecutamos la sentencia SQL
-                    $sql = $connection->query("SELECT * FROM docente WHERE email_docente	='$email' AND password_docente='$password'");
+                    $sql = $connection->query("SELECT * FROM docente WHERE email_docente	='$email' AND password_docente='$md5EncryptionP4ss'");
                     //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                     if ($datos = $sql->fetch_object()) {
                         $_SESSION["id_docente"] = $datos->id_docente;
@@ -75,7 +75,7 @@ if (!empty($_POST["btn_ingresar"])) {
                         $url = 'dashboard/inicio.php';
                     } else {
                         //Ejecutamos la sentencia SQL
-                        $sql = $connection->query("SELECT * FROM administrador WHERE email_admin	='$email' AND password_admin='$password'");
+                        $sql = $connection->query("SELECT * FROM administrador WHERE email_admin	='$email' AND password_admin='$md5EncryptionP4ss'");
                         //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                         if ($datos = $sql->fetch_object()) {
                             $_SESSION["id_administrador"] = $datos->id_administrador;
@@ -87,11 +87,11 @@ if (!empty($_POST["btn_ingresar"])) {
 
                             $Autorizacion = true;
                             //Redireccionamos al inicio del sitio web (dashboard)
-                            header("location:./views/dashboard/inicio.php");
+                            $url = 'dashboard/inicio.php';
 
                         } else {
                             //Ejecutamos la sentencia SQL
-                            $sql = $connection->query("SELECT * FROM master WHERE email_master	='$email' AND password_master='$password'");
+                            $sql = $connection->query("SELECT * FROM master WHERE email_master	='$email' AND password_master='$md5EncryptionP4ss'");
                             //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                             if ($datos = $sql->fetch_object()) {
                                 $_SESSION["id_master"] = $datos->id_master;
@@ -102,7 +102,7 @@ if (!empty($_POST["btn_ingresar"])) {
                                 $_SESSION['LAST_ACTIVITY'] = time();
 
                                 $Autorizacion = true;
-
+                                $url = 'dashboard/inicio.php';
                             } else {
                                 echo "<div class='alert alert-danger'>Correo o Contraseña incorrectos</div>";
                                 session_destroy();

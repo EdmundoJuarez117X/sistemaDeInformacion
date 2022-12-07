@@ -449,7 +449,7 @@ if ($Autorizacion == true) {
             <!--------------------- END OF INSIGHTS ---------------------->
             <div class="fields-middle second-middle">
                 <input class="input-field" type="search" id="search" placeholder="Correo electrónico de su hijo">
-                <button class="btnSeg">Buscar</button>
+                <button class="btnSeg" id="btnAsig">Buscar</button>
             </div>
             <div id="container">
                 <!-- <div style="overflow-x:auto;" id="table-container" class="tableResp">

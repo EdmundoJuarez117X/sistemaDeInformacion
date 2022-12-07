@@ -15,13 +15,13 @@ if ($_POST['type'] == 1) {
 		usleep(136000);
 		$duplicate1 = mysqli_query($connection, "SELECT * FROM alumno WHERE email_alumno = '$email'");
 		usleep(136000);
-		$duplicate2 = mysqli_query($connection, "SELECT * FROM padredefamilia WHERE email_padreDeFam = '$email'");
+		$duplicate2 = mysqli_query($connection, "SELECT * FROM padreDeFamilia WHERE email_padreDeFam = '$email'");
 		usleep(136000);
 		$duplicate3 = mysqli_query($connection, "SELECT * FROM docente WHERE email_docente = '$email'");
 		usleep(136000);
 		$duplicate4 = mysqli_query($connection, "SELECT * FROM administrador WHERE email_admin = '$email'");
 		usleep(136000);
-		$duplicate5 = mysqli_query($connection, "SELECT * FROM master WHERE email_master = '$email'");
+		$duplicate5 = mysqli_query($connection, "SELECT * FROM `master` WHERE email_master = '$email'");
 
 		if (
 			mysqli_num_rows($duplicate) > 0 or mysqli_num_rows($duplicate1) > 0 or mysqli_num_rows($duplicate2) > 0
@@ -30,18 +30,18 @@ if ($_POST['type'] == 1) {
 			echo json_encode(array("statusCode" => 201));
 		} else {
 			$md5EncryptionP4ss = md5($password);
-			$sql = "INSERT INTO `aspirante`(`nombre_aspirante`, `apellido_paternoAspirante`, `apellido_maternoAspirante`, `email_aspirante`, `password_aspirante`, `f_creacion_Aspirante`) 
+			$sql = "INSERT INTO `administrador`(`nombre_admin`, `apellido_paternoAdmin`, `apellido_maternoAdmin`, `email_admin`, `password_admin`, `f_creacion_Admin`) 
             VALUES('$nombre_persona','$apellido_paterno','$apellido_materno','$email','$md5EncryptionP4ss','$date')";
 			if (mysqli_query($connection, $sql)) {
-				$sqlToGetID = $connection->query("SELECT * FROM aspirante WHERE email_aspirante='$email'");
+				$sqlToGetID = $connection->query("SELECT * FROM administrador WHERE email_admin='$email'");
 				//Obtenemos el registro de los datos y guardamos algunos para control de acceso
 				if ($datosID = $sqlToGetID->fetch_object()) {
-					$_SESSION["id_aspirante"] = $datosID->id_aspirante;
-					$_SESSION["estatus_persona"] = $datosID->estatus_Aspirante;
-					$_SESSION["subMat"] = "ASP";
-					$_SESSION["nombre_aspirante"] = $nombre_persona;
-					$_SESSION["apellido_paternoAspirante"] = $apellido_paterno;
-					$_SESSION["email_aspirante"] = $email;
+					$_SESSION["id_administrador"] = $datosID->id_administrador;
+					$_SESSION["estatus_persona"] = $datosID->estatus_Admin;
+					$_SESSION["subMat"] = "ADM";
+					$_SESSION["nombre_admin"] = $nombre_persona;
+					$_SESSION["apellido_paternoAdmin"] = $apellido_paterno;
+					$_SESSION["email_admin"] = $email;
 					// $_SESSION["enviar_correo"] = "ENV";
 					echo json_encode(array("statusCode" => 200));
 				}else{

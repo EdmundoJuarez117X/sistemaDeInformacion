@@ -107,7 +107,7 @@ if ($Autorizacion == true) {
 <head>
 
     <title>Pago</title>
-    <!-- <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"> -->
 
 
@@ -115,16 +115,16 @@ if ($Autorizacion == true) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Material Icons CDN -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet"> 
 
     <!-- shorcut icon-->
     <link rel="shortcut icon" type="image/x-icon" href="./../../img/loginImages/EducationSchool.svg" />
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="./../../../styles/css/stripePayment/stripeForm.css">
-    <link rel="stylesheet" href="./../../../styles/css/stripePayment/stripeForm.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
+        <!-- <link rel="stylesheet" href="./../../../styles/css/stripePayment/stripeForm.css">-->
+    <link rel="stylesheet" href="./../../../styles/css/stripePayment/stripeForm.css"> 
     <!-- <link rel="stylesheet" href="../../../styles/css/eventos-cursos/eventos-cursos.css"> -->
     <!-- FOR NAVBAR SUBMENUS -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -356,7 +356,7 @@ if ($Autorizacion == true) {
                     } else {
                         echo '
                             <li class="">
-                                <a class="" href="index.php">
+                                <a class="" href="./../../dashboard/inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
@@ -465,7 +465,7 @@ if ($Autorizacion == true) {
                                 </a>
                             </li>
                             <li class="CloseSession">
-                                <a href="./../../controllers/controller_logout.php">
+                                <a href="./../../../controllers/controller_logout.php">
                                     <span class="material-icons-sharp">logout</span>
                                     <h3>Cerrar Sesión</h3>
                                 </a>

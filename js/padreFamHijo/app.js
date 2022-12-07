@@ -1,6 +1,8 @@
 $(function () {
     // console.log("JQuery is working...")
-    $('#search').keyup(function(){
+    //btnAsig
+    $('#btnAsig').on('click', function () {
+    // $('#search').keyup(function(){
         let search = $('#search').val();
         $.ajax({
             url: './../../controllers/ajax/aspAlSearch/aspAlSearch.php',

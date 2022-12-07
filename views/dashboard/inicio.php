@@ -137,11 +137,34 @@ if (empty($_SESSION["subMat"])) {
     }
 
 } else if ($_SESSION["subMat"] == "DOC") {
-
+    $Autorizacion = false;
 } else if ($_SESSION["subMat"] == "ADM") {
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+        // last request was more than 30 minutes ago
+        session_unset(); // unset $_SESSION variable for the run-time 
+        session_destroy(); // destroy session data in storage
+        $Autorizacion = true;
+        $url = '../index.php';
+    } else {
+        $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+        // $Autorizacion = true;
+        $Autorizacion = false;
+        
+    }
 
 } else if ($_SESSION["subMat"] == "MST") {
-
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+        // last request was more than 30 minutes ago
+        session_unset(); // unset $_SESSION variable for the run-time 
+        session_destroy(); // destroy session data in storage
+        $Autorizacion = true;
+        $url = '../index.php';
+    } else {
+        $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+        // $Autorizacion = true;
+        $Autorizacion = false;
+        
+    }
 }
 if ($Autorizacion == true) {
     //                   ./Views/
@@ -384,12 +407,7 @@ if ($Autorizacion == true) {
                                 </a>
                             </li>
 
-                            <li class="">
-                                <a class="" href="../stripeInscrip/public/checkout.php">
-                                    <span class="material-icons-sharp">person</span>
-                                    <h3>Incripciones</h3>
-                                </a>
-                            </li>
+                            
                             <li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">person</span>
@@ -437,6 +455,12 @@ if ($Autorizacion == true) {
                                             <h3>Efectivo</h3>
                                         </a>
                                     </li>
+                                    <!-- <li class="">
+                                         <a class="" href="../stripeInscrip/pago/pagoExamAdm.php">
+                                             <span class="material-icons-sharp">person</span>
+                                             <h3>Inscripciones</h3>
+                                         </a>
+                                     </li>-->
 
                                     <!-- <li>
                                         <hr class="dropdown-divider">
@@ -507,104 +531,8 @@ if ($Autorizacion == true) {
                             ';
                     }
                     ?>
-                    <!-- <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">person</span>
-                            <h3>Clientes</h3>
-                        </a>
-                    </li> -->
-                    <!-- <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">report</span>
-                            <h3>Reportes</h3>
-                        </a>
-                    </li> -->
-                    <!-- <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">add</span>
-                            <h3>Agregar Producto</h3>
-                        </a>
-                    </li> -->
-                    <!-- <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">settings</span>
-                            <h3>Ajustes</h3>
-                        </a>
-                    </li> -->
-                    <!-- <li class="">
-                        <a class="dropdown-toggle" href="#">
-                            <span class="material-icons-sharp">paid</span>
-                            <h3>Pagos</h3>
-                            <span class="material-icons-sharp arrow_down first-arrow">keyboard_arrow_down</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <span class="material-icons-sharp">credit_card</span>
-                                    <h3>Tarjeta de Crédito</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <span class="material-icons-sharp">local_atm</span>
-                                    <h3>Efectivo</h3>
-                                </a>
-                            </li>
-
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li> 
-
-                        </ul>
-                    </li> -->
-                    <!-- <li class="">
-                        <a class="dropdown-toggleCursos" href="#">
-                            <span class="material-icons-sharp">import_contacts</span>
-                            <h3>Cursos</h3>
-                            <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
-                        </a>
-                        <ul class="dropdown-menuCursos">
-                            <li>
-                                <a class="dropdown-item" href="../cursos-eventos/nuevo-curso.php">
-                                    <span class="material-icons-sharp">add</span>
-                                    <h3>Nuego Curso</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../cursos-eventos/historial.php">
-                                    <span class="material-icons-sharp">history</span>
-                                    <h3>Historial</h3>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <span class="material-icons-sharp">receipt_long</span>
-                                    <h3>Reportes</h3>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-                    <!-- <li class="">
-                        <a class="" href="#">
-                            <span class="material-icons-sharp">mail_outline</span>
-                            <h3>Mensajes</h3>
-                            <span class="message-count">26</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a class="" href="./../panelSeg/segAsp.php">
-                            <span class="material-icons-sharp">admin_panel_settings</span>
-                            <h3>Panel de Seguimiento</h3>
-                        </a>
-                    </li>
-                    <li class="CloseSession">
-                        <a href="./../../controllers/controller_logout.php">
-                            <span class="material-icons-sharp">logout</span>
-                            <h3>Cerrar Sesión</h3>
-                        </a>
-                    </li> 
                 
-                NAV BAR WITHOUT ROL CONTROL-->
+                <!-- NAV BAR WITHOUT ROL CONTROL-->
                 </ul>
             </div>
             <!-- END OF SIDEBAR / NAVBAR -->

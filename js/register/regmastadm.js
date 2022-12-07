@@ -6,11 +6,11 @@ $(document).ready(function () {
         var apellido_materno = $('#apellido_materno').val();
         var email = $('#email').val();
         var password = $('#password').val();
-        var mastadm = $('#aspdoc').val();
-        if (nombre_persona != "" && apellido_paterno != "" && apellido_materno != "" && email != "" && password != "" && aspdoc != "") {
-            if (mastadm == "master") {
+        var mstadm = $('#mstadm').val();
+        if (nombre_persona != "" && apellido_paterno != "" && apellido_materno != "" && email != "" && password != "" && mstadm != "") {
+            if (mstadm == "master") {
                 $.ajax({
-                    url: "./../../controllers/controller_signupAsp.php",
+                    url: "./../../controllers/controller_signupMst.php",
                     type: "POST",
                     data: {
                         type: 1,
@@ -19,16 +19,14 @@ $(document).ready(function () {
                         apellido_materno: apellido_materno,
                         email: email,
                         password: password,
-                        mastadm: mastadm
+                        mstadm: mstadm
                     },
                     cache: false,
                     success: function (dataResult) {
                         var dataResult = JSON.parse(dataResult);
                         if (dataResult.statusCode == 200) {
                             // $("#register").removeAttr("disabled");
-                            // $('#register_form').find('input:text').val('');
-                            // $("#success").show();
-                            // $('#success').html('Registro Exitoso !');
+                            
                             //Sweet alert and locate to complete profile view
                             let timerInterval
                                 Swal.fire({
@@ -51,7 +49,7 @@ $(document).ready(function () {
                                 }).then((result) => {
                                     /* Read more about handling dismissals below */
                                     if (result.dismiss === Swal.DismissReason.timer) {
-                                        location.href = "./../views/register/completeProfile.php";
+                                        location.href = "./../../views/register/completeProfile.php";
                                     }
                                 });
                         }
@@ -87,9 +85,9 @@ $(document).ready(function () {
                     }
                 });
             } else {
-                if (mastadm == "administrador") {
+                if (mstadm == "administrador") {
                     $.ajax({
-                        url: "./../controllers/controller_signupPF.php",
+                        url: "./../../controllers/controller_signupAdm.php",
                         type: "POST",
                         data: {
                             type: 1,
@@ -98,7 +96,7 @@ $(document).ready(function () {
                             apellido_materno: apellido_materno,
                             email: email,
                             password: password,
-                            mastadm: mastadm
+                            mstadm: mstadm
                         },
                         cache: false,
                         success: function (dataResult) {
@@ -126,7 +124,7 @@ $(document).ready(function () {
                                 }).then((result) => {
                                     /* Read more about handling dismissals below */
                                     if (result.dismiss === Swal.DismissReason.timer) {
-                                        location.href = "./../views/register/completeProfile.php";
+                                        location.href = "./../../views/register/completeProfile.php";
                                     }
                                 });
 
