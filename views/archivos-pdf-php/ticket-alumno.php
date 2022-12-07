@@ -66,6 +66,19 @@
         background:black;
         margin-top:30px;
     }
+    .info-logotipo {
+        font-size: 13px;
+        color: grey;
+    }
+    .info-logotipo span {
+        color: #47ABE2;
+        font-weight: 500;
+        font-size:13px;
+        font-family: 'poppins', sans-serif;
+    }
+    .container-logtipo-stripe {
+        margin-top:323px;
+    }
 </style>
 <body>
     <div class="container-info-pdf">
@@ -102,7 +115,11 @@
 
             <p>Costo total (MXN): $<?= ($compra['cantidad_boletines']) * ($compra['costo_unitario']) ?></p>
 
-
+            <div class="container-logtipo-stripe">
+                <p class="info-logotipo">Información validada por <span>Stripe</span></p>
+                <p style="font-size:12px;color:grey;">www.stripe.com<p>
+            </div>
+            
         </div>
     </div>
 </body>

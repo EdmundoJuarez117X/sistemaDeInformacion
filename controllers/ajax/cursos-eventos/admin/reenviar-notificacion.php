@@ -36,7 +36,7 @@
         $description = $data['descripcion_curso'];
 
         // url del sitio
-        $enlace = "http://localhost/sistemaDeInformacion/views/cursos-eventos/users/comprar-curso.php?cso=".$id_c;
+        $enlace = "https://base4.mx/webapp01/views/cursos-eventos/users/comprar-curso.php?cso=".$id_c;
 
         // diseño de mensaje
         $html = '
@@ -130,7 +130,7 @@
                             die("No se pudo eliminar notificacion. Error: ". mysqli_error($db));
                         }
 
-                        echo "OK";
+                        echo 1;
 
                     }else {
 
@@ -253,7 +253,7 @@
                             die("No se pudo eliminar notificacion. Error: ". mysqli_error($db));
                         }
                         
-                        echo "OK";
+                        echo 1;
  
                     }else {
 

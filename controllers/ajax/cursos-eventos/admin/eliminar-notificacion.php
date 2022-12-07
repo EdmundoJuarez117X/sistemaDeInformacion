@@ -12,10 +12,10 @@
         if(!$result) {
             die("Error al eliminar. Error: ". mysqli_error($db));
         }
-        echo "OK";
+        echo 1; // OK
 
     } else {
-        echo "EMPTY";
+        echo 2; // vacío
     }
 
 ?>

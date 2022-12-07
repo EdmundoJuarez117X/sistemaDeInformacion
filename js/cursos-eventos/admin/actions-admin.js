@@ -1,6 +1,7 @@
 $(function() {
-
+    // Nota: EN EL FTP, LAS CONDICIONALES CON CADENAS DE TEXTO NO SON VÁLIDAD, USE NÚMEROS
     // al iniciar la interfaz, carga los datos dela tabla de cursos
+    console.log("JQuery is ready");
     mostrarCursos();
     mostrarNotificaciones();
     desCurso();
@@ -31,17 +32,21 @@ $(function() {
                 type: 'POST',
                 data: datas,
                 success: function(data) {
+                    console.log(data);
                     // verficamos y condicionamos la respuesta desde registrar-curso.php
-                    if(data == "INCOMPLET") {
+                    if(data == 4) {
                         // advertencia
                         swal("Datos incompletos", "Asegúrese de llenar todos los campos", "warning");
-                    } else if(data == "BAD_DATES") {
+                    }
+                    if(data == 3) {
                         // error de fechas
                         swal("Fechas incorrectas", "Debe agregar una fecha mayor o igual a la actual", "warning");
-                    } else if(data == "FAILED") {
+                    }
+                    if(data == 2) {
                         // error de transacción
                         swal("Algo salió mal", "Inténtalo más tarde", "error");
-                    } else if(data == "OK") {
+                    }
+                    if(data == 1) {
                         // éxito
                         swal({
                             title: "Curso registrado exitosamente",
@@ -59,7 +64,7 @@ $(function() {
                                     success: function(response) {
                                         swal(response);
                                         mostrarNotificaciones();
-                                        name = document.getElementById('course_name').value = "";
+                                        document.getElementById('course_name').value = "";
                                         document.getElementById('course_description').value = "";
                                         document.getElementById('course_requirements').value = "";
                                         document.getElementById('course_responsible').value = "";
@@ -71,6 +76,7 @@ $(function() {
                                 });
                                 
                             } else {
+                                console.log("Datos de envío: " , user , " ", name);
                                 $.ajax({
                                     type: 'POST',
                                     url: '../../../controllers/ajax/cursos-eventos/admin/agregar-notificacion.php',
@@ -78,7 +84,7 @@ $(function() {
                                     success: function(response) {
                                         if(response == 1) {
                                             mostrarNotificaciones();
-                                            name = document.getElementById('course_name').value = "";
+                                            document.getElementById('course_name').value = "";
                                             document.getElementById('course_description').value = "";
                                             document.getElementById('course_requirements').value = "";
                                             document.getElementById('course_responsible').value = "";
@@ -86,7 +92,7 @@ $(function() {
                                             document.getElementById('costo_unitario').value = "";
                                             document.getElementById('date_initial').value = "";
                                             document.getElementById('date_end').value = "";
-                                        }else {
+                                        }else if(response == 2) {
                                             swal("No pudo crear notificacion","Los datos estan vacíos","error");
                                         }
                                     }
@@ -184,8 +190,8 @@ $(function() {
                     // éxito
                     swal("", "Cambios guardados exitosamente", "success");
                     mostrarNotificaciones();
-                } else if(reponse == "OK") {
-                    // éxito con cambio de usuario de destino
+                } else if(reponse == 11) {
+                    // éxito con cambio de usuario
                     swal({
                         title: "Cambios guardados exitosamente",
                         text: "Se cambió el usuario de destino ¿Desea notificar a los usuarios?",
@@ -213,7 +219,7 @@ $(function() {
                                 success: function(response) {
                                     if(response == 1) {
                                         mostrarNotificaciones();
-                                    }else {
+                                    }else if(response == 2) {
                                         swal("No pudo crear notificacion","Los datos estan vacíos","error");
                                     }
                                 }
@@ -240,10 +246,10 @@ $(function() {
                     template += `
                     <tr courseId='${curso.id}' users='${curso.registrados}' status='${curso.estatus}'>
                         <td>
-                            <a class='a-curso-info' href="info-curso.php?cso='${curso.id}'"> ${curso.nombre} </a>
+                            <a class='a-curso-info' href="info-curso.php?cso='${curso.id}'" style='color:#47ABE2;font-weight:500;'> ${curso.nombre} </a>
                         </td>
                         <td> ${curso.participantes} </td>
-                        <td><a target="__blank" href="../../archivos-pdf-php/${curso.rol}s-registrados-pdf.php?cso='${curso.id}'"> ${curso.registrados} </a></td>
+                        <td><a target="__blank" href="../../archivos-pdf-php/${curso.rol}s-registrados-pdf.php?cso='${curso.id}'" style='color:#47ABE2;font-weight:550;'> ${curso.registrados} </a></td>
                         <td>$${curso.costo} </td>
                         <td> ${curso.estatus} </td>
                         <td><a class='a-span-edit' href="actualizar-curso.php?cso='${curso.id}'"><span class='material-icons-sharp'>edit</span></a></td>
@@ -269,15 +275,7 @@ $(function() {
                 url: "../../../controllers/ajax/cursos-eventos/admin/backend-reportes.php",
                 data: datas,                 
                 success: function(response){
-                    // de no existir un periodo  
-                    if(response == "error") {
-                        // error de transacción
-                        swal("Algo salió mal", "Inténtalo más tarde", "error");
-                    } else if(response == "NoCursos") {
-                        $("#report-courses-info").html("No se encontraron cursos..."); 
-                    } else {
-                        $("#report-courses-info").html(response); 
-                    }
+                    $("#report-courses-info").html(response);
                 }
             });
         } else if(report_period == "op4") {
@@ -309,14 +307,7 @@ $(function() {
                 url: '../../../controllers/ajax/cursos-eventos/admin/backend-cursos-filtrados.php',
                 data: datas,
                 success: function(response) {
-                    if(response == "error") {
-                        // error de transacción
-                        swal("Algo salió mal", "Inténtalo más tarde", "error");
-                    } else if(response == "NoCursos") {
-                        $("#report-courses-info").html(response);
-                    } else {
-                        $("#report-courses-info").html(response);
-                    }
+                    $("#report-courses-info").html(response);
                 }
             });
         }
@@ -403,8 +394,8 @@ $(function() {
             type: "GET",
             url: "../../../controllers/ajax/cursos-eventos/admin/compras-alumnos.php",                
             success: function(response){
-                if(response == "No se encontraron compras") {
-                    $("#table-container-compras").html(response);
+                if(response == 2) {
+                    $("#table-container-compras").html("No se encontraron compras");
                 } else {
                     let compras = JSON.parse(response);
                     let template = '';
@@ -418,7 +409,7 @@ $(function() {
                             <td>${com.cb}</td>
                             <td>$${(com.cb) * (com.costo)}</td>
                             <td>${com.fcac}</td>
-                            <td><a href='../../archivos-pdf-php/ticket-alumno.php?cra=${com.idac}' target='_blank'>
+                            <td><a class='a-span-edit' href='../../archivos-pdf-php/ticket-alumno.php?cra=${com.idac}' target='_blank'>
                                 <span class='material-icons-sharp'>description</span>
                             </a></td>
                         </tr>
@@ -436,8 +427,8 @@ $(function() {
             type: "GET",
             url: "../../../controllers/ajax/cursos-eventos/admin/compras-docentes.php",                
             success: function(response){
-                if(response == "No se encontraron compras") {
-                    $("#table-container-compras").html(response);
+                if(response == 2) {
+                    $("#table-container-compras").html("No se encontraron compras");
                 } else {
                     let compras = JSON.parse(response);
                     let template = '';
@@ -451,7 +442,7 @@ $(function() {
                             <td>${com.cb}</td>
                             <td>$${(com.cb) * (com.costo)}</td>
                             <td>${com.fcac}</td>
-                            <td><a href='../../archivos-pdf-php/ticket-docente.php?cra=${com.idac}' target='_blank'>
+                            <td><a class='a-span-edit' href='../../archivos-pdf-php/ticket-docente.php?cra=${com.idac}' target='_blank'>
                                 <span class='material-icons-sharp'>description</span>
                             </a></td>
                         </tr>
@@ -536,9 +527,9 @@ $(function() {
             url: "../../../controllers/ajax/cursos-eventos/admin/eliminar-notificacion.php",
             data: "id="+id,
             success: function(response) {
-                if(response == "OK") {
+                if(response == 1) {
                     mostrarNotificaciones();
-                } else if(response == "EMPTY") {
+                } else if(response == 2) {
                     swal("Algo salió mal","No se pudo eliminar la notificacion","error");
                 }
             }
@@ -559,7 +550,7 @@ $(function() {
             url: "../../../controllers/ajax/cursos-eventos/admin/reenviar-notificacion.php",
             data: "idn="+idn+"&idc="+id_c+"&user="+user,
             success: function(response) {
-                if(response == "OK") {
+                if(response == 1) {
                     mostrarNotificaciones();
                 } else {
                     swal(response);

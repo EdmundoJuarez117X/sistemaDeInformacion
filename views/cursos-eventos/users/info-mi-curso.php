@@ -172,8 +172,8 @@
                                 </div>
                                 <div class="right--section">
                                     <p><strong>Descargar:</strong><br>
-                                        <span class="material-icons-sharp">download</span>
-                                        <a href="../../archivos-pdf-php/ticket-<?=$user?>.php?cra=<?= $idCompra ?>" target="_blank">TICKET</a>
+                                        <span class="material-icons-sharp" style="color:#47ABE2;font-weight:600;">download</span>
+                                        <a style="color:#47ABE2;font-weight:600;" href="../../archivos-pdf-php/ticket-<?=$user?>.php?cra=<?= $idCompra ?>" target="_blank">TICKET</a>
                                     </p>
                                 </div>
                             </div>
@@ -188,7 +188,7 @@
                         <button id="menu-btn">
                             <span class="material-icons-sharp">menu</span>
                         </button>
-                        <div class="theme-toggler" id="darkbutton">
+                        <div class="theme-toggler">
                             <span class="material-icons-sharp active">light_mode</span>
                             <span class="material-icons-sharp">dark_mode</span>
                         </div>

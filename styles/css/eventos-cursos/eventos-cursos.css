@@ -614,6 +614,14 @@ tbody span {
     cursor: pointer;
 }
 
+tbody span:hover {
+    color: var(--color-primary);
+}
+
+.a-span-edit span:hover {
+    color: var(--color-primary);
+}
+
 .table-fixed tbody::-webkit-scrollbar {
     --webkit-appearance: none;
 }
@@ -908,11 +916,11 @@ main .sales-form .third-thirds {
 }
 
 .section-download-report button {
-    background: var(--color-white);
+    background: var(--color-info-dark);
     width: 100%;
     height: 25px;
     font-size: 12px;
-    color: var(--color-dark);
+    color: #fff;
     cursor: pointer;
     border-radius: 15px;
     font-weight: 700;
@@ -1351,7 +1359,6 @@ main .courses-catalogue {
     width: 50%;
     height: 550px;
     float: left;
-    padding: 10px;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -1413,11 +1420,6 @@ main .courses-catalogue {
     padding-top: 100px;
 }
 
-.container-for-pago h2{
-    margin-bottom: 5px;
-    text-align: center;
-}
-
 .container-for-pago input {
     width: 100%;
     height: 35px;
@@ -1434,6 +1436,7 @@ main .courses-catalogue {
     border-radius: 15px;
     color: #fff;
     margin-top: 5px;
+    margin-bottom: 13px;
     cursor: pointer;
     box-shadow: 5px 5px 9px 1px rgb(209, 209, 209);
 }
@@ -1450,6 +1453,30 @@ main .courses-catalogue {
     padding: 5px 10px;
     border: 1px solid rgb(226, 226, 226);
     background-color: #fff;
+}
+
+.container-for-pago .link-stripe {
+    text-align: center;
+}
+
+.container-for-pago .link-stripe a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.logotipo-stripe {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    align-items: center;
+    margin-top: -50px;
+    margin-bottom: 10px;
+}
+
+.logotipo-stripe img{
+    width: 140px;
+    height: 55px;
+    margin: auto;
 }
 
 /* =============== MEDIA QUERIES ===============*/

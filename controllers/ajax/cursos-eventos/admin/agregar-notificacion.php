@@ -6,7 +6,7 @@
     $user = $_POST['user'];
     $cso = $_POST['cso'];
 
-    if($user == "" and $cso == "") {
+    if(empty($user) and empty($cso)) {
         echo 2;
     } else {
 

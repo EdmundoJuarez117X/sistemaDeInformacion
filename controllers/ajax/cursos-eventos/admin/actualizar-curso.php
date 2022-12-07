@@ -69,7 +69,7 @@
                 estatus_curso = '$status', f_modificacion_curso = '$date', rol_dirigido = '$user' WHERE cursos.id_curso = '$id';");
                 //condicionamos si se ha registrado exitosamente
                 if($sql == true) {
-                    echo "OK"; // transacción exitosa
+                    echo 11; // transacción exitosa de cambio de usuario
                 } else {
                     echo 2; // transacción fallida
                 }

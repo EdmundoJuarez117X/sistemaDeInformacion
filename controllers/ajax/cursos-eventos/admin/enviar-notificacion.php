@@ -25,7 +25,7 @@
         // obtenemos el ID
         $id = $data['id_curso'];
         // url del sitio
-        $enlace = "http://localhost/sistemaDeInformacion/views/cursos-eventos/users/comprar-curso.php?cso=".$id;
+        $enlace = "https://base4.mx/webapp01/views/cursos-eventos/users/comprar-curso.php?cso=".$id;
         
         // diseño de mensaje
         $html = '

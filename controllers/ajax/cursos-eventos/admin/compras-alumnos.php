@@ -36,7 +36,7 @@
         echo $jsonstring;
 
     } else {
-        echo "No se encontraron compras";
+        echo 2; // no hay compras
     }
 
 ?>

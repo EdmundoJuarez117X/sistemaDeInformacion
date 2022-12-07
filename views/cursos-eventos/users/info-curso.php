@@ -30,7 +30,11 @@
 </div>
 <div class="info-buy-course-selected">
     <div class="container-for-pago">
-        <h2>Ingresa tus datos</h2>
+        <div class="logotipo-stripe">
+            <a href="https://stripe.com/mx" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png">
+            </a>
+        </div>
         <p><strong>Todos los campos son obligatorios</strong>, si el curso no tiene accesos o ingresa 
             una cantidad mayor a los accesos disponibles, no podrá realizar su compra.</p>
         <form action="../../../controllers/ajax/cursos-eventos/users/charge.php" method="post" id="payment-form">
@@ -62,6 +66,7 @@
                 </div>
             </div>
             <button>Pagar</button>
+                <p class="link-stripe">Todas las tranferencias son realizadas por <a href="https://stripe.com/mx" target="_blank">Stripe</a></p>
         </form>
     </div>  
 </div>

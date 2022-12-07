@@ -66,7 +66,7 @@ $(function() {
         });
     }
 
-    // ====================== TABLA MIS CURSO ======================== //
+    // ====================== TABLA MIS CURSOS ======================== //
     function historialCursos() {
         $.ajax({
             type: 'GET',
@@ -79,7 +79,7 @@ $(function() {
                     template += `
                     <tr>
                         <td>
-                            <a class='a-curso-info' href="info-mi-curso.php?id=${curso.idCompra}"> ${curso.nombre} </a>
+                            <a class='a-curso-info' href="info-mi-curso.php?id=${curso.idCompra}" style='color:#47ABE2;font-weight:500;'> ${curso.nombre} </a>
                         </td>
                         <td> $${curso.costo} </td>
                         <td> ${curso.boletos} </td>

@@ -39,18 +39,18 @@
             // ejecutamos la query
             $sql = $db->query($query);
             //condicionamos si se ha registrado exitosamente
-            if($sql == true) {
-                echo "OK";
+            if($sql === true) {
+                echo 1; // transacción exitosa
             } else {
-                echo "FAILED"; // transacción fallida
+                echo 2; // transacción fallida
             }
             /*------------- Fin de inserción de datos --------------*/
         } else {
-            echo "BAD_DATES"; // fechas no válidas
+            echo 3; // fechas no válidas
         }
         // fin de condicionales de fechas
     } else {
-        echo "INCOMPLET"; // campos incompletos
+        echo 4; // campos incompletos
     }
 
 ?>
