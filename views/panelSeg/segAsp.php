@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_SESSION["subMat"]) or $_SESSION["subMat"]=="PF" or $_SESSION["subMat"] == "ADM") {
+if (empty($_SESSION["subMat"]) or $_SESSION["subMat"]=="PF" or $_SESSION["subMat"] == "ASP" or $_SESSION["subMat"] == "DOC") {
     header("location:./../../index.php");
 }
 ?>
@@ -22,7 +22,7 @@ if (empty($_SESSION["subMat"]) or $_SESSION["subMat"]=="PF" or $_SESSION["subMat
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-    <title>Responsive Dashboard Using HTML CSS and Javascript</title>
+    <title>Seguimiento de Aspirantes</title>
 
 
 </head>

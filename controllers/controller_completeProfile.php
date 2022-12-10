@@ -54,17 +54,17 @@ if (!empty($_POST["btn_completarPerfil"])) {
                 $id_aspirante = $datos->id_aspirante;
 
                 //Ejecutamos la sentencia SQL para insertar los datos de Domicilio
-                $sql = $connection->query("INSERT INTO direccionAspirante (calleAspirante, numeroCalleAspirante, coloniaAspirante, estadoAspirante, ciudadAspirante	, codPostalAspirante, f_creacion_DirAspirante, id_aspirante)
-                VALUES('$callePersona', '$numeroCallePersona', '$coloniaPersona', '$estadoPersona', '$ciudadPersona','$codPostalPersona', '$f_creacion', '$id_aspirante')");
+                $sqlDirA = "INSERT INTO direccionAspirante (calleAspirante, numeroCalleAspirante, coloniaAspirante, estadoAspirante, ciudadAspirante	, codPostalAspirante, f_creacion_DirAspirante, id_aspirante)
+                VALUES('$callePersona', '$numeroCallePersona', '$coloniaPersona', '$estadoPersona', '$ciudadPersona','$codPostalPersona', '$f_creacion', '$id_aspirante')";
                 //Si los datos se envian entonces
-                if ($datos = $sql === true) {
+                if ($datos = $connection->query($sqlDirA) === true) {
                     usleep(136000);
                     //Ejecutamos la sentencia SQL para actualizar los datos del Aspirante
-                    $sql = $connection->query("UPDATE `aspirante` SET `segundo_nombreAspirante`='$seg_nombre_persona', `edad_Aspirante`='$edad',`genero_Aspirante`='$genero',`numero_tel_Aspirante`='$numero_telefonico',`fecha_nacimientoAspirante`='$fecha_nacimiento',`f_modificacion_Aspirante`='$f_creacion' WHERE `id_aspirante`='$id_aspirante'");
-                    if ($datos = $sql === true) {
+                    $sqlAUP = "UPDATE `aspirante` SET `segundo_nombreAspirante`='$seg_nombre_persona', `edad_Aspirante`='$edad',`genero_Aspirante`='$genero',`numero_tel_Aspirante`='$numero_telefonico',`fecha_nacimientoAspirante`='$fecha_nacimiento',`f_modificacion_Aspirante`='$f_creacion' WHERE `id_aspirante`='$id_aspirante'";
+                    if ($datos = $connection->query($sqlAUP) === true) {
                         //Autorizamos la redireccion a otro sitio (Dashboard)
                         $Autorizacion = true;
-                        
+
                         include '../../controllers/phpMailer/enviarCorreo.php';
 
                     }
@@ -83,13 +83,18 @@ if (!empty($_POST["btn_completarPerfil"])) {
                     //Obtenemos el ID del usuario
                     $id_padreDeFamilia = $datos->id_padreDeFamilia;
 
-
-                    //Ejecutamos la sentencia SQL para actualizar los datos del Padre de Familia
-                    $sql = $connection->query("UPDATE `padreDeFamilia` SET `segundo_nombrepadreDeFam`='$seg_nombre_persona', `edad_padreDeFam`='$edad',`genero_padreDeFam`='$genero',`numero_tel_padreDeFam`='$numero_telefonico',`fecha_nacimientopadreDeFam`='$fecha_nacimiento',`f_modificacion_padreDeFam`='$f_creacion' WHERE `id_padreDeFamilia`='$id_padreDeFamilia'");
-                    if ($datos = $sql === true) {
-                        //Autorizamos la redireccion a otro sitio (Dashboard)
-                        $Autorizacion = true;
-                        include '../../controllers/phpMailer/enviarCorreoPF.php';
+                    //Ejecutamos la sentencia SQL para insertar los datos de Domicilio
+                    $sqlDirPF = "INSERT INTO direccionPadreDeFamilia (callePadreDeFam, numeroCallePadreDeFam, coloniaPadreDeFam, estadoPadreDeFam, ciudadPadreDeFam	, codPostalPadreDeFam, f_creacion_DirPadreDeFam, id_padreDeFamilia)
+                    VALUES('$callePersona', '$numeroCallePersona', '$coloniaPersona', '$estadoPersona', '$ciudadPersona','$codPostalPersona', '$f_creacion', '$id_padreDeFamilia')";
+                    //Si los datos se envian entonces
+                    if ($datospf = $connection->query($sqlDirPF) === true) {
+                        //Ejecutamos la sentencia SQL para actualizar los datos del Padre de Familia
+                        $sqlUP = "UPDATE `padreDeFamilia` SET `segundo_nombrepadreDeFam`='$seg_nombre_persona', `edad_padreDeFam`='$edad',`genero_padreDeFam`='$genero',`numero_tel_padreDeFam`='$numero_telefonico',`fecha_nacimientopadreDeFam`='$fecha_nacimiento',`f_modificacion_padreDeFam`='$f_creacion' WHERE `id_padreDeFamilia`='$id_padreDeFamilia'";
+                        if ($datos = $connection->query($sqlUP) === true) {
+                            //Autorizamos la redireccion a otro sitio (Dashboard)
+                            $Autorizacion = true;
+                            include '../../controllers/phpMailer/enviarCorreoPF.php';
+                        }
                     }
                 }
             } else {
@@ -102,12 +107,18 @@ if (!empty($_POST["btn_completarPerfil"])) {
                         //Obtenemos el ID del usuario
                         $id_master = $datosMst->id_master;
 
-                        //Ejecutamos la sentencia SQL para actualizar los datos del Master
-                        $sqlMU = $connection->query("UPDATE `master` SET `segundo_nombreMaster`='$seg_nombre_persona', `edad_Master`='$edad',`genero_Master`='$genero',`numero_tel_Master`='$numero_telefonico',`fecha_nacimientoMaster`='$fecha_nacimiento',`f_modificacion_Master`='$f_creacion' WHERE `id_master`='$id_master'");
-                        if ($datosMU = $sqlMU === true) {
-                            //Autorizamos la redireccion a otro sitio (Dashboard)
-                            $Autorizacion = true;
-                            include '../../controllers/phpMailer/enviarCorreoMst.php';
+                        //Ejecutamos la sentencia SQL para insertar los datos de Domicilio
+                        $sqlDirM ="INSERT INTO direccionMaster (`calleMaster`, `numeroCalleMaster`, `coloniaMaster`, `estadoMaster`, `ciudadMaster`, `codPostalMaster`, `f_creacion_DirMaster`, id_master)
+                        VALUES('$callePersona', '$numeroCallePersona', '$coloniaPersona', '$estadoPersona', '$ciudadPersona','$codPostalPersona', '$f_creacion', '$id_master')";
+                        //Si los datos se envian entonces
+                        if ($datosM =  $connection->query($sqlDirM) === true) {
+                            //Ejecutamos la sentencia SQL para actualizar los datos del Master
+                            $sqlMU = "UPDATE `master` SET `segundo_nombreMaster`='$seg_nombre_persona', `edad_Master`='$edad',`genero_Master`='$genero',`numero_tel_Master`='$numero_telefonico',`fecha_nacimientoMaster`='$fecha_nacimiento',`f_modificacion_Master`='$f_creacion' WHERE `id_master`='$id_master'";
+                            if ($datosMU = $connection->query($sqlMU) === true) {
+                                //Autorizamos la redireccion a otro sitio (Dashboard)
+                                $Autorizacion = true;
+                                include '../../controllers/phpMailer/enviarCorreoMst.php';
+                            }
                         }
                     }
 
@@ -116,19 +127,26 @@ if (!empty($_POST["btn_completarPerfil"])) {
                         //Obtenemos el correo de la persona para hacer movimientos de tipo crud
                         $email_admin = $_SESSION["email_admin"];
                         //Ejecutamos una sentencia SQL para obtener el id de la persona (Administrador)
-                    $sqlADMID = $connection->query("SELECT * FROM administrador WHERE email_admin='$email_admin'");
-                    if ($datosAdm = $sqlADMID->fetch_object()) {
-                        //Obtenemos el ID del usuario
-                        $id_administrador = $datosAdm->id_administrador;
+                        $sqlADMID = $connection->query("SELECT * FROM administrador WHERE email_admin='$email_admin'");
+                        if ($datosAdm = $sqlADMID->fetch_object()) {
+                            //Obtenemos el ID del usuario
+                            $id_administrador = $datosAdm->id_administrador;
 
-                        //Ejecutamos la sentencia SQL para actualizar los datos del Master
-                        $sqlAU = $connection->query("UPDATE `administrador` SET `segundo_nombreAdmin`='$seg_nombre_persona', `edad_Admin`='$edad',`genero_Admin`='$genero',`numero_tel_Admin`='$numero_telefonico',`fecha_nacimientoAdmin`='$fecha_nacimiento',`f_modificacion_Admin`='$f_creacion' WHERE `id_administrador`='$id_administrador'");
-                        if ($datosAU = $sqlAU === true) {
-                            //Autorizamos la redireccion a otro sitio (Dashboard)
-                            $Autorizacion = true;
-                            include '../../controllers/phpMailer/enviarCorreoAdm.php';
+                            //Ejecutamos la sentencia SQL para insertar los datos de Domicilio
+                            $sqlDirAdm = "INSERT INTO direccionAdministrador (`calleAdmin`, `numeroCalleAdmin`, `coloniaAdmin`, `estadoAdmin`, `ciudadAdmin`, `codPostalAdmin`, `f_creacion_DirAdmin`, id_administrador)
+                            VALUES('$callePersona', '$numeroCallePersona', '$coloniaPersona', '$estadoPersona', '$ciudadPersona','$codPostalPersona', '$f_creacion', '$id_administrador')";
+                            //Si los datos se envian entonces
+                            if ($datosA = $connection->query($sqlDirAdm) === TRUE) {
+                                //Ejecutamos la sentencia SQL para actualizar los datos del Master
+                                $sqlAU = "UPDATE `administrador` SET `segundo_nombreAdmin`='$seg_nombre_persona', `edad_Admin`='$edad',`genero_Admin`='$genero',`numero_tel_Admin`='$numero_telefonico',`fecha_nacimientoAdmin`='$fecha_nacimiento',`f_modificacion_Admin`='$f_creacion' 
+                                WHERE `id_administrador`='$id_administrador'";
+                                if ($datosAU = $connection->query($sqlAU) === true) {
+                                    //Autorizamos la redireccion a otro sitio (Dashboard)
+                                    $Autorizacion = true;
+                                    include '../../controllers/phpMailer/enviarCorreoAdm.php';
+                                }
+                            }
                         }
-                    }
                     }
                 }
             }

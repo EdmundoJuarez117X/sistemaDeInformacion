@@ -416,15 +416,16 @@ try {
 																/* */
 																//Buscamos un aula con lugares disponibles
 																$sqlAulaAl = $connection->query("SELECT aula.id_aula, aula.numero_aula, aula.nombre_aula, aula.grupo_aula, aula.numero_asientosAula, aula.estatus_aula, aula.f_creacion_aula, aula.f_modificacion_aula , escuela_aula.id_escuela, escuela_aula.nombre_escuela, escuela_nivelEducativo.nombre_nivelEducativo, escuela_periodoEscolar.numero_periodoE, escuela_periodoEscolar.nombre_periodoE,
-																	escuela_facultad.nombre_facultad, facultad_aula.numero_aula, facultad_especializacion.nombre_esp
-																	FROM aula 
-																	INNER JOIN escuela_aula on aula.id_aula = escuela_aula.id_aula 
-																	INNER JOIN escuela_nivelEducativo on escuela_aula.id_escuela = escuela_nivelEducativo.id_escuela 
-																	INNER JOIN escuela_periodoEscolar on escuela_aula.id_escuela = escuela_periodoEscolar.id_escuela 
-																	INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
-																	INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
-																	INNER JOIN facultad_especializacion on escuela_facultad.id_facultad = facultad_especializacion.id_facultad
-																	WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_especializacion.id_especializacion='$id_especializacion' ORDER BY aula.f_creacion_aula DESC;");
+																escuela_facultad.nombre_facultad, facultad_aula.numero_aula, facultad_especializacion.nombre_esp
+																FROM aula 
+																INNER JOIN escuela_aula on aula.id_aula = escuela_aula.id_aula 
+																INNER JOIN escuela_nivelEducativo on escuela_aula.id_escuela = escuela_nivelEducativo.id_escuela 
+																INNER JOIN escuela_periodoEscolar on escuela_aula.id_escuela = escuela_periodoEscolar.id_escuela 
+																INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
+																INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
+																INNER JOIN facultad_especializacion on escuela_facultad.id_facultad = facultad_especializacion.id_facultad
+																INNER JOIN especializacion_aula on aula.id_aula = especializacion_aula.id_aula
+																	WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_especializacion.id_especializacion='$id_especializacion'  AND especializacion_aula.id_especializacion='$id_especializacion' ORDER BY aula.f_creacion_aula DESC;");
 																usleep(136000);
 																if ($resultAula = $sqlAulaAl->fetch_object()) { //Al hacer la consulta obtenemos los datos del aula
 																	$id_aula = $resultAula->id_aula;
@@ -507,12 +508,13 @@ try {
 															} else if ($nombre_carrera != "") {
 																$sqlAulaAlCarr = $connection->query("SELECT aula.id_aula, aula.numero_aula, aula.nombre_aula, aula.grupo_aula, aula.numero_asientosAula, aula.estatus_aula, aula.f_creacion_aula, aula.f_modificacion_aula , escuela_aula.id_escuela, escuela_aula.nombre_escuela, escuela_nivelEducativo.nombre_nivelEducativo, escuela_periodoEscolar.numero_periodoE, escuela_periodoEscolar.nombre_periodoE,
 																escuela_facultad.nombre_facultad, facultad_aula.numero_aula, facultad_carrera.nombre_carrera
-																	FROM aula 
-																	INNER JOIN escuela_aula on aula.id_aula = escuela_aula.id_aula INNER JOIN escuela_nivelEducativo on escuela_aula.id_escuela = escuela_nivelEducativo.id_escuela INNER JOIN escuela_periodoEscolar on escuela_aula.id_escuela = escuela_periodoEscolar.id_escuela 
-																	INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
-																	INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
-																	INNER JOIN facultad_carrera on escuela_facultad.id_facultad = facultad_carrera.id_facultad
-																	WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_carrera.id_carrera='$id_carrera' ORDER BY aula.f_creacion_aula DESC;");
+																FROM aula 
+																INNER JOIN escuela_aula on aula.id_aula = escuela_aula.id_aula INNER JOIN escuela_nivelEducativo on escuela_aula.id_escuela = escuela_nivelEducativo.id_escuela INNER JOIN escuela_periodoEscolar on escuela_aula.id_escuela = escuela_periodoEscolar.id_escuela 
+																INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
+																INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
+																INNER JOIN facultad_carrera on escuela_facultad.id_facultad = facultad_carrera.id_facultad
+																INNER JOIN carrera_aula on aula.id_aula = carrera_aula.id_aula
+																	WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_carrera.id_carrera='$id_carrera' AND carrera_aula.id_carrera='$id_carrera' ORDER BY aula.f_creacion_aula DESC;");
 																if ($resultAulaCarr = $sqlAulaAlCarr->fetch_object()) { //Al hacer la consulta obtenemos los datos del aula
 																	$id_aula = $resultAulaCarr->id_aula;
 																	$numero_aula = $resultAulaCarr->numero_aula;
@@ -841,15 +843,16 @@ try {
 															/* */
 															//Buscamos un aula con lugares disponibles
 															$sqlAulaAl = $connection->query("SELECT aula.id_aula, aula.numero_aula, aula.nombre_aula, aula.grupo_aula, aula.numero_asientosAula, aula.estatus_aula, aula.f_creacion_aula, aula.f_modificacion_aula , escuela_aula.id_escuela, escuela_aula.nombre_escuela, escuela_nivelEducativo.nombre_nivelEducativo, escuela_periodoEscolar.numero_periodoE, escuela_periodoEscolar.nombre_periodoE,
-																escuela_facultad.nombre_facultad, facultad_aula.numero_aula, facultad_especializacion.nombre_esp
-																FROM aula 
-																INNER JOIN escuela_aula on aula.id_aula = escuela_aula.id_aula 
-																INNER JOIN escuela_nivelEducativo on escuela_aula.id_escuela = escuela_nivelEducativo.id_escuela 
-																INNER JOIN escuela_periodoEscolar on escuela_aula.id_escuela = escuela_periodoEscolar.id_escuela 
-																INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
-																INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
-																INNER JOIN facultad_especializacion on escuela_facultad.id_facultad = facultad_especializacion.id_facultad
-																WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_especializacion.id_especializacion='$id_especializacion' ORDER BY aula.f_creacion_aula DESC;");
+															escuela_facultad.nombre_facultad, facultad_aula.numero_aula, facultad_especializacion.nombre_esp
+															FROM aula 
+															INNER JOIN escuela_aula on aula.id_aula = escuela_aula.id_aula 
+															INNER JOIN escuela_nivelEducativo on escuela_aula.id_escuela = escuela_nivelEducativo.id_escuela 
+															INNER JOIN escuela_periodoEscolar on escuela_aula.id_escuela = escuela_periodoEscolar.id_escuela 
+															INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
+															INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
+															INNER JOIN facultad_especializacion on escuela_facultad.id_facultad = facultad_especializacion.id_facultad
+															INNER JOIN especializacion_aula on aula.id_aula = especializacion_aula.id_aula
+																WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_especializacion.id_especializacion='$id_especializacion'  AND especializacion_aula.id_especializacion='$id_especializacion' ORDER BY aula.f_creacion_aula DESC;");
 															usleep(136000);
 															if ($resultAula = $sqlAulaAl->fetch_object()) { //Al hacer la consulta obtenemos los datos del aula
 																$id_aula = $resultAula->id_aula;
@@ -934,12 +937,13 @@ try {
 														} else if ($nombre_carrera != "") {
 															$sqlAulaAlCarr = $connection->query("SELECT aula.id_aula, aula.numero_aula, aula.nombre_aula, aula.grupo_aula, aula.numero_asientosAula, aula.estatus_aula, aula.f_creacion_aula, aula.f_modificacion_aula , escuela_aula.id_escuela, escuela_aula.nombre_escuela, escuela_nivelEducativo.nombre_nivelEducativo, escuela_periodoEscolar.numero_periodoE, escuela_periodoEscolar.nombre_periodoE,
 															escuela_facultad.nombre_facultad, facultad_aula.numero_aula, facultad_carrera.nombre_carrera
-																FROM aula 
-																INNER JOIN escuela_aula on aula.id_aula = escuela_aula.id_aula INNER JOIN escuela_nivelEducativo on escuela_aula.id_escuela = escuela_nivelEducativo.id_escuela INNER JOIN escuela_periodoEscolar on escuela_aula.id_escuela = escuela_periodoEscolar.id_escuela 
-																INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
-																INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
-																INNER JOIN facultad_carrera on escuela_facultad.id_facultad = facultad_carrera.id_facultad
-																WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_carrera.id_carrera='$id_carrera' ORDER BY aula.f_creacion_aula DESC;");
+															FROM aula 
+															INNER JOIN escuela_aula on aula.id_aula = escuela_aula.id_aula INNER JOIN escuela_nivelEducativo on escuela_aula.id_escuela = escuela_nivelEducativo.id_escuela INNER JOIN escuela_periodoEscolar on escuela_aula.id_escuela = escuela_periodoEscolar.id_escuela 
+															INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
+															INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
+															INNER JOIN facultad_carrera on escuela_facultad.id_facultad = facultad_carrera.id_facultad
+															INNER JOIN carrera_aula on aula.id_aula = carrera_aula.id_aula
+																WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_carrera.id_carrera='$id_carrera' AND carrera_aula.id_carrera='$id_carrera' ORDER BY aula.f_creacion_aula DESC;");
 															if ($resultAulaCarr = $sqlAulaAlCarr->fetch_object()) { //Al hacer la consulta obtenemos los datos del aula
 																$id_aula = $resultAulaCarr->id_aula;
 																$numero_aula = $resultAulaCarr->numero_aula;
@@ -1376,7 +1380,8 @@ try {
 																	INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
 																	INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
 																	INNER JOIN facultad_especializacion on escuela_facultad.id_facultad = facultad_especializacion.id_facultad
-																	WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_especializacion.id_especializacion='$id_especializacion' ORDER BY aula.f_creacion_aula DESC;");
+																	INNER JOIN especializacion_aula on aula.id_aula = especializacion_aula.id_aula
+																		WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_especializacion.id_especializacion='$id_especializacion' AND especializacion_aula.id_especializacion='$id_especializacion' ORDER BY aula.f_creacion_aula DESC;");
 																	usleep(136000);
 																	if ($resultAula = $sqlAulaAl->fetch_object()) { //Al hacer la consulta obtenemos los datos del aula
 																		$id_aula = $resultAula->id_aula;
@@ -1448,13 +1453,14 @@ try {
 																	/* */
 																} else if ($nombre_carrera != "") {
 																	$sqlAulaAlCarr = $connection->query("SELECT aula.id_aula, aula.numero_aula, aula.nombre_aula, aula.grupo_aula, aula.numero_asientosAula, aula.estatus_aula, aula.f_creacion_aula, aula.f_modificacion_aula , escuela_aula.id_escuela, escuela_aula.nombre_escuela, escuela_nivelEducativo.nombre_nivelEducativo, escuela_periodoEscolar.numero_periodoE, escuela_periodoEscolar.nombre_periodoE,
-																escuela_facultad.nombre_facultad, facultad_aula.numero_aula, facultad_carrera.nombre_carrera
+																	escuela_facultad.nombre_facultad, facultad_aula.numero_aula, facultad_carrera.nombre_carrera
 																	FROM aula 
 																	INNER JOIN escuela_aula on aula.id_aula = escuela_aula.id_aula INNER JOIN escuela_nivelEducativo on escuela_aula.id_escuela = escuela_nivelEducativo.id_escuela INNER JOIN escuela_periodoEscolar on escuela_aula.id_escuela = escuela_periodoEscolar.id_escuela 
 																	INNER JOIN escuela_facultad on escuela_facultad.id_escuela = escuela_aula.id_escuela
 																	INNER JOIN facultad_aula on facultad_aula.id_aula = escuela_aula.id_aula
 																	INNER JOIN facultad_carrera on escuela_facultad.id_facultad = facultad_carrera.id_facultad
-																	WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_carrera.id_carrera='$id_carrera' ORDER BY aula.f_creacion_aula DESC;");
+																	INNER JOIN carrera_aula on aula.id_aula = carrera_aula.id_aula
+																		WHERE aula.estatus_aula=b'1' AND aula.numero_asientosAula>0 AND escuela_nivelEducativo.id_nivelEducativo='$id_nivelEducativo' AND escuela_aula.id_escuela='$id_escuela'  AND escuela_periodoEscolar.numero_periodoE='1' AND escuela_facultad.id_facultad='$id_facultad' AND facultad_carrera.id_carrera='$id_carrera' AND carrera_aula.id_carrera='$id_carrera' ORDER BY aula.f_creacion_aula DESC;");
 																	if ($resultAulaCarr = $sqlAulaAlCarr->fetch_object()) { //Al hacer la consulta obtenemos los datos del aula
 																		$id_aula = $resultAulaCarr->id_aula;
 																		$numero_aula = $resultAulaCarr->numero_aula;

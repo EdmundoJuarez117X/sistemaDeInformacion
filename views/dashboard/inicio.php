@@ -541,7 +541,7 @@ if ($Autorizacion == true) {
         <main>
             <h1>Dashboard</h1>
             <div class="date">
-                <input type="date">
+                <input type="date" value="<?php echo date('Y-m-d'); ?>">
             </div>
             <div class="insights">
                 <div class="sales">
