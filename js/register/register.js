@@ -38,6 +38,7 @@ $(document).ready(function () {
                                 html: 'Se actualizará en <b></b>.',
                                 timer: 1369,
                                 timerProgressBar: true,
+                                allowOutsideClick: false,
                                 didOpen: () => {
                                     Swal.showLoading()
                                     const b = Swal.getHtmlContainer().querySelector('b')
@@ -67,6 +68,7 @@ $(document).ready(function () {
                                 html: 'Se actualizará en <b></b>.',
                                 timer: 1369,
                                 timerProgressBar: true,
+                                allowOutsideClick: false,
                                 didOpen: () => {
                                     Swal.showLoading()
                                     const b = Swal.getHtmlContainer().querySelector('b')
@@ -114,6 +116,7 @@ $(document).ready(function () {
                                     html: 'Se actualizará en <b></b>.',
                                     timer: 1369,
                                     timerProgressBar: true,
+                                    allowOutsideClick: false,
                                     didOpen: () => {
                                         Swal.showLoading()
                                         const b = Swal.getHtmlContainer().querySelector('b')
@@ -142,6 +145,7 @@ $(document).ready(function () {
                                     html: 'Se actualizará en <b></b>.',
                                     timer: 1369,
                                     timerProgressBar: true,
+                                    allowOutsideClick: false,
                                     didOpen: () => {
                                         Swal.showLoading()
                                         const b = Swal.getHtmlContainer().querySelector('b')
@@ -175,6 +179,7 @@ $(document).ready(function () {
                 html: 'Se actualizará en <b></b>.',
                 timer: 1369,
                 timerProgressBar: true,
+                allowOutsideClick: false,
                 didOpen: () => {
                     Swal.showLoading()
                     const b = Swal.getHtmlContainer().querySelector('b')
@@ -191,7 +196,6 @@ $(document).ready(function () {
                     location.href = "index.php";
                 }
             });
-            // alert('Por favor llena todos los campos !');
         }
     });
 

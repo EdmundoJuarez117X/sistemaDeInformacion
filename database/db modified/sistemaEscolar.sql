@@ -1876,7 +1876,7 @@ INSERT INTO `carrera_aula` (`id_carreraAula`, `nombre_carrera`, `numero_aula`, `
 (3,'Ingeniería Automotríz','101','Maquinaria','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',2,8);
 
 --
--- Dumping data for table `carrera_aula`
+-- Dumping data for table `especializacion_aula`
 -- 
 
 INSERT INTO `especializacion_aula` (`id_especializacionAula`, `nombre_esp`, `numero_aula`, `nombre_aula`, `grupo_aula`, `f_creacion_espAula`, `f_modificacion_espAula`, `id_especializacion`, `id_aula`) VALUES

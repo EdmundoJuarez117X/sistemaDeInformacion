@@ -64,8 +64,8 @@ if (!empty($_POST["btn_completarPerfil"])) {
                     if ($datos = $connection->query($sqlAUP) === true) {
                         //Autorizamos la redireccion a otro sitio (Dashboard)
                         $Autorizacion = true;
-
                         include '../../controllers/phpMailer/enviarCorreo.php';
+                        
 
                     }
                 }
@@ -156,6 +156,32 @@ if (!empty($_POST["btn_completarPerfil"])) {
         echo "Se detectan campos vacíos, corrobora tu información :(";
     }
     if ($Autorizacion == true) {
-        header("location:../dashboard/inicio.php");
+        // header("location:../dashboard/inicio.php");
+        echo "
+                        <script>
+                        let timerInterval
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Bienvenido!',
+                            html: 'Se actualizará en <b></b>.',
+                            timer: 1369,
+                            timerProgressBar: true,
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                const b = Swal.getHtmlContainer().querySelector('b')
+                                timerInterval = setInterval(() => {
+                                    b.textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                            }
+                        }).then((result) => {
+                            /* Read more about handling dismissals below */
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                location.href = '../dashboard/inicio.php';
+                            }
+                        }); </script>";
     }
 }

@@ -217,7 +217,8 @@ try {
 										usleep(136000);
 										if ($idAlFound = $sqlIDAlumno->fetch_object()) {
 											$id_alumno = $idAlFound->id_alumno; //id del alumno
-
+											$_SESSION["id_alumno"] = $id_alumno; //Almacenamos el id del alumno en la sesion
+											$_SESSION["email_alumno"] = $email_alumno; //Almacenamos el email del alumno en la sesion
 											//Ingresamos la direccion del alumno con los datos que tenía como aspirante
 											$sqlDirAl = "INSERT INTO `direccionAlumno`(`calleAlumno`, `numeroCalleAlumno`, `coloniaAlumno`, `estadoAlumno`, `ciudadAlumno`, `codPostalAlumno`, `f_creacion_DirAlumno`,`id_alumno`) 
 											VALUES ('$calleAlumno','$numeroCalleAlumno','$coloniaAlumno','$estadoAlumno','$ciudadAlumno','$codPostalAlumno',NOW(),'$id_alumno')";
@@ -468,7 +469,7 @@ try {
 																					$Autorizacion = true;
 																					$url = 'dashboard/inicio.php';
 
-																				
+
 																				}
 																			} else { //Mayor que 1
 																				$sqlUpdateAsAula = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
@@ -582,7 +583,7 @@ try {
 																					$Autorizacion = true;
 																					$url = 'dashboard/inicio.php';
 
-																					
+
 																				}
 																			}
 																		}
@@ -633,7 +634,8 @@ try {
 									usleep(136000);
 									if ($idAlFound = $sqlIDAlumno->fetch_object()) {
 										$id_alumno = $idAlFound->id_alumno; //id del alumno
-
+										$_SESSION["id_alumno"] = $id_alumno; //Almacenamos el id del alumno en la sesion
+										$_SESSION["email_alumno"] = $email_alumno; //Almacenamos el email del alumno en la sesion
 										//Ingresamos la direccion del alumno con los datos que tenía como aspirante
 										$sqlDirAl = "INSERT INTO `direccionAlumno`(`calleAlumno`, `numeroCalleAlumno`, `coloniaAlumno`, `estadoAlumno`, `ciudadAlumno`, `codPostalAlumno`, `f_creacion_DirAlumno`,`id_alumno`) 
 										VALUES ('$calleAlumno','$numeroCalleAlumno','$coloniaAlumno','$estadoAlumno','$ciudadAlumno','$codPostalAlumno',NOW(),'$id_alumno')";
@@ -662,17 +664,17 @@ try {
 															$grupo_aula = $resultAula->grupo_aula;
 															$nombre_aula = $resultAula->nombre_aula;
 															$numero_asientos = $resultAula->numero_asientosAula;
-															
+
 															$sqlAlUlaInsert = "INSERT INTO `alumno_aula`(`nombre_alumno`, `nombre_aula`, `grupo_aula`, `f_creacion_Al_Aula`, `id_alumno`, `id_aula`) 
 																VALUES ('$nombre_alumno','$nombre_aula','$grupo_aula', NOW(),'$id_alumno','$id_aula')";
 															usleep(136000);
-															
+
 															if (mysqli_query($connection, $sqlAlUlaInsert)) {
 																//Después de asignar al alumno a una aula
 																//Actualizamos el número de asientos que tiene el aula
-																
+
 																if ($numero_asientos > 0) { //Aseguramos que el valor sea siempre arriba o igual a 1
-																	
+
 																	if ($numero_asientos == 1) { //Es el último asiento
 																		//En caso de que se ocupe el ultimo asiento entonces actualizamos el estatus
 																		$sqlUpdateAsAulaF = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1, `estatus_aula`=b'0'
@@ -698,7 +700,7 @@ try {
 																					timer: 1963
 																				})
 																			</script>";
-																			
+
 
 																			$Autorizacion = true;
 																			$url = 'dashboard/inicio.php';
@@ -709,7 +711,7 @@ try {
 																		WHERE `id_aula` ='$id_aula'";
 																		usleep(136000);
 																		if (mysqli_query($connection, $sqlUpdateAsAula)) {
-																			echo'Se ha realizado la update';
+																			echo 'Se ha realizado la update';
 																			$_SESSION["subMat"] = "Al";
 																			$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
 																			$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
@@ -985,7 +987,7 @@ try {
 																				$Autorizacion = true;
 																				$url = 'dashboard/inicio.php';
 
-																				
+
 																			}
 																		} else { //Mayor que 1
 																			$sqlUpdateAsAulaC = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
@@ -1035,7 +1037,7 @@ try {
 							} else {
 								//Si no se agregan los datos de alumno entonces:
 							}
-						
+
 						}
 					}
 				}
@@ -1184,6 +1186,7 @@ try {
 									usleep(136000);
 									if (mysqli_query($connection, $sqlAspToAl)) {
 										//Se agregan con exito los datos del nuevo alumno
+
 										//Obtenemos la direccion del aspirante para ahora pasarla al alumno
 										$sqlDirAsp = $connection->query("SELECT `calleAspirante`, `numeroCalleAspirante`, `coloniaAspirante`, `estadoAspirante`, `ciudadAspirante`, `codPostalAspirante`, `f_creacion_DirAspirante`, `f_modificacion_DirAspirante`, `id_aspirante` FROM `direccionAspirante` 
 									WHERE `id_aspirante`='$id_aspirante'");
@@ -1203,7 +1206,8 @@ try {
 											usleep(136000);
 											if ($idAlFound = $sqlIDAlumno->fetch_object()) {
 												$id_alumno = $idAlFound->id_alumno; //id del alumno
-
+												$_SESSION["id_alumno"] = $id_alumno; //Almacenamos el id del alumno en la sesion
+												$_SESSION["email_alumno"] = $email_alumno; //Almacenamos el email del alumno en la sesion
 												//Ingresamos la direccion del alumno con los datos que tenía como aspirante
 												$sqlDirAl = "INSERT INTO `direccionAlumno`(`calleAlumno`, `numeroCalleAlumno`, `coloniaAlumno`, `estadoAlumno`, `ciudadAlumno`, `codPostalAlumno`, `f_creacion_DirAlumno`,`id_alumno`) 
 											VALUES ('$calleAlumno','$numeroCalleAlumno','$coloniaAlumno','$estadoAlumno','$ciudadAlumno','$codPostalAlumno',NOW(),'$id_alumno')";
@@ -1246,7 +1250,7 @@ try {
 																				WHERE `id_aula` ='$id_aula'";
 																				usleep(136000);
 																				if (mysqli_query($connection, $sqlUpdateAsAulaF)) {
-																					
+
 																					$_SESSION["estatus_persona"] = "ASIGPAG";
 																					echo "
 																				<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
@@ -1268,7 +1272,7 @@ try {
 																			WHERE `id_aula` ='$id_aula'";
 																				usleep(136000);
 																				if (mysqli_query($connection, $sqlUpdateAsAula)) {
-																					
+
 																					$_SESSION["estatus_persona"] = "ASIGPAG";
 																					echo "
 																				<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
@@ -1320,7 +1324,7 @@ try {
 																				WHERE `id_aula` ='$id_aula'";
 																				usleep(136000);
 																				if (mysqli_query($connection, $sqlUpdateAsAulaF)) {
-																					
+
 																					$_SESSION["estatus_persona"] = "ASIGPAG";
 																					echo "
 																				<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
@@ -1341,7 +1345,7 @@ try {
 																			WHERE `id_aula` ='$id_aula'";
 																				usleep(136000);
 																				if (mysqli_query($connection, $sqlUpdateAsAula)) {
-																					
+
 																					$_SESSION["estatus_persona"] = "ASIGPAG";
 																					echo "
 																				<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
@@ -1403,7 +1407,7 @@ try {
 																			WHERE `id_aula` ='$id_aula'";
 																					usleep(136000);
 																					if (mysqli_query($connection, $sqlUpdateAsAulaF)) {
-																						
+
 																						$_SESSION["estatus_persona"] = "ASIGPAG";
 																						echo "
 																					<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
@@ -1426,7 +1430,7 @@ try {
 																				WHERE `id_aula` ='$id_aula'";
 																					usleep(136000);
 																					if (mysqli_query($connection, $sqlUpdateAsAula)) {
-																						
+
 																						$_SESSION["estatus_persona"] = "ASIGPAG";
 																						echo "
 																					<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
@@ -1481,7 +1485,7 @@ try {
 																					WHERE `id_aula` ='$id_aula'";
 																					usleep(136000);
 																					if (mysqli_query($connection, $sqlUpdateAsAulaFC)) {
-																						
+
 																						$_SESSION["estatus_persona"] = "ASIGPAG";
 																						echo "
 																						<script src=" . "//cdn.jsdelivr.net/npm/sweetalert2@11" . "></script>
@@ -1502,7 +1506,7 @@ try {
 																					WHERE `id_aula` ='$id_aula'";
 																					usleep(136000);
 																					if (mysqli_query($connection, $sqlUpdateAsAulaC)) {
-																						
+
 
 																						$_SESSION["estatus_persona"] = "ASIGPAG";
 																						echo "
@@ -1554,7 +1558,7 @@ try {
 			}
 
 		}
-		
+
 	} else {
 		// echo "<script>alert('Error al pagar!');</script>";
 		//Core::alert("Error al realizar el pago!");
