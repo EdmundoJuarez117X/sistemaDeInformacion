@@ -774,6 +774,13 @@ if ($Autorizacion == true) {
     <!-- SCRIPT JS -->
     <script src="../../js/dashboard/orders.js"></script>
     <script src="../../js/dashboard/inicio.js"></script>
+    <?php
+    if($_SESSION['subMat'] == "Al" || $_SESSION['subMat'] == "DOC"){
+        echo '<script src="../../js/dashboard/cargar-cursos-proximos.js"></script>';
+    } else if($_SESSION['subMat'] == "ADM" || $_SESSION['subMat'] == "MST"){
+        
+    }
+    ?>
 </body>
 
 </html>
