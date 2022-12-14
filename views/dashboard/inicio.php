@@ -686,41 +686,17 @@ if ($Autorizacion == true) {
                 </div>
             </div>
             <!------------------------------- END OF top / top ------------------------>
-            <div class="recent-updates">
-                <h2>Actualizaciones Recientes</h2>
-                <div class="updates">
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./../../img/altindeximages/welcoming.svg" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of
-                                Night lion tech GPS drone.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./../../img/altindeximages/teaching.svg" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of
-                                Night lion tech GPS drone.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./../../img/altindeximages/undraw_page_not_found_re_e9o6.svg" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Myke Tyson</b> Received his order of
-                                Night lion tech GPS drone.</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
+            <?php
+            if($_SESSION['subMat'] == "Al" || $_SESSION['subMat'] == "DOC") {
+                echo '
+                <div class="recent-updates">
+                    <h2>Cursos próximos a iniciar</h2>
+                    <div class="updates" id="cursos-proximos"></div>
                 </div>
-            </div>
+                ';
+            } else if($_SESSION['subMat'] == "ADM" || $_SESSION['subMat'] == "MST") {
+            }
+            ?>
             <!-- END OF RECENT UPDATES -->
             <div class="sales-analytics">
                 <h2>Metricas de Ventas</h2>

@@ -24,65 +24,48 @@ $(function() {
         || dEnd == "") {
             swal("Datos incompletos", "Asegúrese de llenar todos los campos", "warning");
         } else {
-            // grupo de datos a enviar en la URL
-            var datas = "nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;
-            // prepramos el envío para php
-            $.ajax({
-                url: '../../../controllers/ajax/cursos-eventos/admin/registrar-curso.php',
-                type: 'POST',
-                data: datas,
-                success: function(data) {
-                    console.log(data);
-                    // verficamos y condicionamos la respuesta desde registrar-curso.php
-                    if(data == 4) {
-                        // advertencia
-                        swal("Datos incompletos", "Asegúrese de llenar todos los campos", "warning");
-                    }
-                    if(data == 3) {
-                        // error de fechas
-                        swal("Fechas incorrectas", "Debe agregar una fecha mayor o igual a la actual", "warning");
-                    }
-                    if(data == 2) {
-                        // error de transacción
-                        swal("Algo salió mal", "Inténtalo más tarde", "error");
-                    }
-                    if(data == 1) {
-                        // éxito
-                        swal({
-                            title: "Curso registrado exitosamente",
-                            text: "¿Desea notificar el nuevo curso?",
-                            icon: "success",
-                            buttons: true,
-                            true: true,
-                        })
-                        .then((willNotify) => {
-                            if (willNotify) {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '../../../controllers/ajax/cursos-eventos/admin/enviar-notificacion.php',
-                                    data: "user="+user+"&cso="+name+"&des="+description,
-                                    success: function(response) {
-                                        swal(response);
-                                        mostrarNotificaciones();
-                                        document.getElementById('course_name').value = "";
-                                        document.getElementById('course_description').value = "";
-                                        document.getElementById('course_requirements').value = "";
-                                        document.getElementById('course_responsible').value = "";
-                                        document.getElementById('total_participantes').value = "";
-                                        document.getElementById('costo_unitario').value = "";
-                                        document.getElementById('date_initial').value = "";
-                                        document.getElementById('date_end').value = "";
-                                    }
-                                });
-                                
-                            } else {
-                                console.log("Datos de envío: " , user , " ", name);
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '../../../controllers/ajax/cursos-eventos/admin/agregar-notificacion.php',
-                                    data: "user="+user+"&cso="+name,
-                                    success: function(response) {
-                                        if(response == 1) {
+            if(costo < 10) {
+                swal("Precio bajo", "Por cada compra que se realiza al comprar un curso, Stripe cobra comisiones. Ingresa un precio mayor o igual a 10 pesos.", "warning");
+            } else {
+                // grupo de datos a enviar en la URL
+                var datas = "nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;
+                // prepramos el envío para php
+                $.ajax({
+                    url: '../../../controllers/ajax/cursos-eventos/admin/registrar-curso.php',
+                    type: 'POST',
+                    data: datas,
+                    success: function(data) {
+                        console.log(data);
+                        // verficamos y condicionamos la respuesta desde registrar-curso.php
+                        if(data == 4) {
+                            // advertencia
+                            swal("Datos incompletos", "Asegúrese de llenar todos los campos", "warning");
+                        }
+                        if(data == 3) {
+                            // error de fechas
+                            swal("Fechas incorrectas", "Debe agregar una fecha mayor o igual a la actual", "warning");
+                        }
+                        if(data == 2) {
+                            // error de transacción
+                            swal("Algo salió mal", "Inténtalo más tarde", "error");
+                        }
+                        if(data == 1) {
+                            // éxito
+                            swal({
+                                title: "Curso registrado exitosamente",
+                                text: "¿Desea notificar el nuevo curso?",
+                                icon: "success",
+                                buttons: true,
+                                true: true,
+                            })
+                            .then((willNotify) => {
+                                if (willNotify) {
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '../../../controllers/ajax/cursos-eventos/admin/enviar-notificacion.php',
+                                        data: "user="+user+"&cso="+name+"&des="+description,
+                                        success: function(response) {
+                                            swal(response);
                                             mostrarNotificaciones();
                                             document.getElementById('course_name').value = "";
                                             document.getElementById('course_description').value = "";
@@ -92,16 +75,37 @@ $(function() {
                                             document.getElementById('costo_unitario').value = "";
                                             document.getElementById('date_initial').value = "";
                                             document.getElementById('date_end').value = "";
-                                        }else if(response == 2) {
-                                            swal("No pudo crear notificacion","Los datos estan vacíos","error");
                                         }
-                                    }
-                                });
-                            }
-                        });
+                                    });
+                                    
+                                } else {
+                                    console.log("Datos de envío: " , user , " ", name);
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '../../../controllers/ajax/cursos-eventos/admin/agregar-notificacion.php',
+                                        data: "user="+user+"&cso="+name,
+                                        success: function(response) {
+                                            if(response == 1) {
+                                                mostrarNotificaciones();
+                                                document.getElementById('course_name').value = "";
+                                                document.getElementById('course_description').value = "";
+                                                document.getElementById('course_requirements').value = "";
+                                                document.getElementById('course_responsible').value = "";
+                                                document.getElementById('total_participantes').value = "";
+                                                document.getElementById('costo_unitario').value = "";
+                                                document.getElementById('date_initial').value = "";
+                                                document.getElementById('date_end').value = "";
+                                            }else if(response == 2) {
+                                                swal("No pudo crear notificacion","Los datos estan vacíos","error");
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     });
 
@@ -127,43 +131,47 @@ $(function() {
         || dEnd == "") {
             swal("Datos incompletos", "Asegúrese de llenar todos los campos", "warning");
         } else {
-            // verificamos el estado del curso
-            if(status == "activo") {
-                // grupo de datos a enviar en la URL
-                var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;//+"&img="+image;
-                // llamamos la funcion de actualizacion
-                enviarActualizacion(datas, name, description, user);
-                
-            } else if(status == "inactivo") {
-                // si existen usuarios registrados
-                if(registrados > 0) {
-                    // preguntar si queremos desactivar el curso con usuario registrados
-                    swal({
-                        title: "El curso contiene usuarios registrados",
-                        text: "¿Está seguro de desactivarlo?",
-                        icon: "warning",
-                        buttons: true,
-                        true: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            // grupo de datos a enviar en la URL
-                            var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;//+"&img="+image;
-                            // si se acepta la condicion llamamos la funcion y enviamos los datos
-                            enviarActualizacion(datas, name, description, user);
-                            
-                        } else {
-                            swal("Se descartaron los cambios");
-                        }
-                    });
-                }
-                // si no existen usuarios registrados
-                else {
+            if(costo < 10) {
+                swal("Precio bajo", "Por cada compra que se realiza al comprar un curso, Stripe cobra comisiones. Ingresa un precio mayor o igual a 10 pesos.", "warning");
+            } else {
+                // verificamos el estado del curso
+                if(status == "activo") {
                     // grupo de datos a enviar en la URL
                     var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;//+"&img="+image;
-                    // si se acepta la condicion llamamos la funcion y enviamos los datos
+                    // llamamos la funcion de actualizacion
                     enviarActualizacion(datas, name, description, user);
                     
+                } else if(status == "inactivo") {
+                    // si existen usuarios registrados
+                    if(registrados > 0) {
+                        // preguntar si queremos desactivar el curso con usuario registrados
+                        swal({
+                            title: "El curso contiene usuarios registrados",
+                            text: "¿Está seguro de desactivarlo?",
+                            icon: "warning",
+                            buttons: true,
+                            true: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                // grupo de datos a enviar en la URL
+                                var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;//+"&img="+image;
+                                // si se acepta la condicion llamamos la funcion y enviamos los datos
+                                enviarActualizacion(datas, name, description, user);
+                                
+                            } else {
+                                swal("Se descartaron los cambios");
+                            }
+                        });
+                    }
+                    // si no existen usuarios registrados
+                    else {
+                        // grupo de datos a enviar en la URL
+                        var datas = "id="+id+"&nam="+name+"&des="+description+"&req="+requirements+"&res="+responsible+"&ptes="+participantes+"&cos="+costo+"&user="+user+"&dIni="+dInitial+"&dEnd="+dEnd+"&stus="+status;//+"&img="+image;
+                        // si se acepta la condicion llamamos la funcion y enviamos los datos
+                        enviarActualizacion(datas, name, description, user);
+                        
+                    }
                 }
             }
         }
@@ -700,7 +708,7 @@ $(function() {
         $.ajax({
             url: '../../../controllers/ajax/cursos-eventos/admin/desactivar-curso.php',
             success: function(response) {
-                console.log(response);
+                //console.log(response);
                 mostrarNotificaciones();
             }
         });

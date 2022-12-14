@@ -1336,177 +1336,10 @@ main .courses-catalogue {
     }
 }
 
-/*================ fORMULARIO DE INFO Y COMPRA ====================*/
-
-.container-stripe {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    padding: 25px 0;
-}
-
-.container-info-compra {
-    width: 90%;
-    height: 570px;
-    margin: auto;
-    background-color: rgb(245, 245, 245);
-    border-radius: var(--border-radius-3);
-    box-shadow: var(--box-shadow);
-    padding: 10px;
-}
-
-.info-buy-course-selected {
-    width: 50%;
-    height: 550px;
-    float: left;
-    overflow: hidden;
-    overflow-y: auto;
-}
-
-.info-buy-course-selected::-webkit-scrollbar {
-    --webkit-appearance: none;
-}
-
-.info-buy-course-selected::-webkit-scrollbar:vertical {
-    width: 3px;
-}
-
-.info-buy-course-selected::-webkit-scrollbar-thumb {
-    background: #677483;
-    border-radius: 25px;
-}
-
-.info-buy-course-selected h1 {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.info-buy-course-selected p {
-    margin-bottom: 10px;
-}
-
-.info-buy-course-selected .p-descripcion-compra-curso {
-    margin-bottom: 20px;
-    text-align: justify;
-}
-
-.info-buy-course-selected .left--section {
-    width: 50%;
-    float: left;
-    text-align: left;
-    border-right: 1px solid var(--color-light);
-}
-
-.info-buy-course-selected .right--section {
-    width: 50%;
-    padding-left: 10px;
-    float: left;
-}
-
-.info-buy-course-selected .right--section input[type=text],
-.info-buy-course-selected .left--section input[type=text] {
-    background: none;
-}
-
-.info-buy-course-selected .right--section input[type=number],
-.info-buy-course-selected .left--section input[type=number] {
-    display: none;
-}
-
-.container-for-pago {
-    width: 90%;
-    padding: 30px;
-    margin: auto;
-    padding-top: 100px;
-}
-
-.container-for-pago input {
-    width: 100%;
-    height: 35px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    padding: 5px 10px;
-    border: 1px solid rgb(226, 226, 226);
-}
-
-.container-for-pago button {
-    width: 100%;
-    height: 30px;
-    background-color: var(--color-primary);
-    border-radius: 15px;
-    color: #fff;
-    margin-top: 5px;
-    margin-bottom: 13px;
-    cursor: pointer;
-    box-shadow: 5px 5px 9px 1px rgb(209, 209, 209);
-}
-
-.container-for-pago button:hover {
-    box-shadow: none;
-}
-
-.container-for-pago .form-control {
-    width: 100%;
-    height: 35px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    padding: 5px 10px;
-    border: 1px solid rgb(226, 226, 226);
-    background-color: #fff;
-}
-
-.container-for-pago .link-stripe {
-    text-align: center;
-}
-
-.container-for-pago .link-stripe a {
-    color: var(--color-primary);
-    font-weight: 600;
-}
-
-.logotipo-stripe {
-    width: 100%;
-    height: auto;
-    text-align: center;
-    align-items: center;
-    margin-top: -50px;
-    margin-bottom: 10px;
-}
-
-.logotipo-stripe img{
-    width: 140px;
-    height: 55px;
-    margin: auto;
-}
-
-/* =============== MEDIA QUERIES ===============*/
-
-@media only screen and (max-width:900px) {
-    .container-info-compra {
-        height: 1120px;
-        width: 90%;
-    }
-
-    .info-buy-course-selected {
-        width: 100%;
-    }
-}
-
-@media only screen and (max-width:550px) {
-    .info-buy-course-selected .right--section,
-    .info-buy-course-selected .left--section {
-        width: 100%;
-    }
-
-    .info-buy-course-selected .right--section {
-        padding: 0;
-    }
-}
-
 /*============ SUCCESS .PHP SECCION DE COMPRA SATISFACTORIA ============ */
 
 .container-compra-satisfactoria {
-    width: 50%;
+    width: 90%;
     background-color: var(--color-info-light);
     height: auto;
     margin: auto;
@@ -1521,6 +1354,7 @@ main .courses-catalogue {
 .container-compra-satisfactoria h1 {
     font-size: 35px;
     margin-bottom: 10px;
+    color: #000;
 }
 
 .container-compra-satisfactoria span {
@@ -1531,6 +1365,7 @@ main .courses-catalogue {
     font-size: 20px;
     margin-top: 5px;
     margin-bottom: 20px;
+    color: #000;
 }
 
 .container-compra-satisfactoria .p-id-compra {
@@ -1641,7 +1476,7 @@ main .courses-catalogue {
 
 /*=============== ALERTA DE CURSO NO DISPONIBLE ================*/
 .curso-no-disponible {
-    width: 65%;
+    width: 90%;
     background-color: var(--color-info-light);
     margin: 150px auto;
     border-radius: var(--border-radius-3);
@@ -1669,7 +1504,7 @@ main .courses-catalogue {
     color: var(--color-primary);
 }
 
-
+/*======= MEdia Query =========*/
 
 @media only screen and (max-width:500px){
     .curso-no-disponible {
@@ -1736,4 +1571,160 @@ main .courses-catalogue {
     height: auto;
     border-radius: var(--border-radius-2);
     background-color: #eee;
+}
+
+/*========== FORMATO DE INFROMACIÓN Y COMPRA DE CURSO*/
+
+.cotainer-info-compra {
+    height: 470px;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.cotainer-info-compra::-webkit-scrollbar {
+    --webkit-appearance: none;
+}
+
+.cotainer-info-compra::-webkit-scrollbar:vertical {
+    width: 4px;
+}
+
+.cotainer-info-compra::-webkit-scrollbar-thumb {
+    background: #677483;
+    border-radius: 25px;
+}
+
+.info-curso-compra-container {
+    width: 100%;
+    height: auto;
+}
+
+.info-curso-compra-container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.info-curso-compra-container p {
+    margin-bottom: 15px;
+    text-align: justify;
+    padding-right: 15px;
+}
+
+.info-curso-compra-container .middle-section-informaction {
+    width: 50%;
+    height: auto;
+    float: left;
+}
+
+.container-for-pago {
+    width: 100%;
+    padding: 30px;
+    margin: auto;
+}
+
+.logotipo-stripe {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.logotipo-stripe img{
+    width: 140px;
+    height: 55px;
+    margin: auto;
+}
+
+.container-for-pago input {
+    width: 100%;
+    height: 35px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 1px solid rgb(226, 226, 226);
+    background-color: var(--color-white);
+    color: var(--color-dark);
+}
+
+.container-for-pago button {
+    width: 100%;
+    height: 30px;
+    background-color: var(--color-primary);
+    border-radius: 15px;
+    color: #fff;
+    margin-top: 5px;
+    margin-bottom: 13px;
+    cursor: pointer;
+}
+
+.container-for-pago button:hover {
+    box-shadow: none;
+    background-color: #1480b9;
+}
+
+.container-for-pago .form-control {
+    width: 100%;
+    height: 35px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 1px solid rgb(226, 226, 226);
+    background-color: #fff;
+}
+
+.container-for-pago .link-stripe {
+    text-align: center;
+}
+
+.container-for-pago .link-stripe a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* =============== MEDIA QUERIES ===============*/
+@media only screen and (max-width:900px) and (min-width:770px){
+    .info-curso-compra-container .middle-section-informaction {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width:374px) {
+    .info-curso-compra-container .middle-section-informaction {
+        width: 100%;
+    }
+}
+
+/*======== ACTUALIZAR PORTADA ===============*/
+
+.cambiar-portada-curso {
+    width: 100%;
+    height: auto;
+    padding: 30px 10px;
+    background-color: var(--color-background);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-3);
+    text-align: center;
+    align-items: center;
+}
+
+.cambiar-portada-curso img {
+    border-radius: var(--border-radius-2);
+    margin-bottom: 10px;
+}
+
+.cambiar-portada-curso input[type=submit] {
+    margin-top: 15px;
+    width: 150px;
+    height: auto;
+    background-color: var(--color-primary);
+    color: var(--color-info-light);
+    border-radius: var(--border-radius-2);
+    font-size: 15px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.cambiar-portada-curso input[type=submit]:hover {
+    background-color: #047ec0;
 }

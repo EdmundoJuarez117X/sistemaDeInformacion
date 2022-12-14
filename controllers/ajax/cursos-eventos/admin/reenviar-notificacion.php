@@ -86,8 +86,8 @@
                         // Autenticación con SMTP
                         $mail->Host = "smtp.gmail.com";
                         $mail->Port = "465";
-                        $mail->Username = "scode.dv@gmail.com";
-                        $mail->Password = "jgrganiqkwznwlqk";
+                        $mail->Username = "comunidad@seiko.global";
+                        $mail->Password = "zwxatsizpdwnmmgt";
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
@@ -97,7 +97,7 @@
                         // DETINATARIO Y CUERPO EL MENSAJE
                         
                         // Remitente
-                        $mail->setFrom('scode.dv@gmail.com', 'SISESCOLAR');
+                        $mail->setFrom('comunidad@seiko.global', 'SISESCOLAR');
                         
                         // Destinatario y cuerpo del mensaje
                         $mail->addAddress($destino, $nombre_user);
@@ -207,8 +207,8 @@
                          // Autenticación con SMTP
                          $mail->Host = "smtp.gmail.com";
                          $mail->Port = "465";
-                         $mail->Username = "scode.dv@gmail.com";
-                         $mail->Password = "jgrganiqkwznwlqk";
+                         $mail->Username = "comunidad@seiko.global";
+                         $mail->Password = "zwxatsizpdwnmmgt";
                          $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                          $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                          
@@ -218,7 +218,7 @@
                          // DETINATARIO Y CUERPO EL MENSAJE
                          
                          // Remitente
-                         $mail->setFrom('scode.dv@gmail.com', 'SIS-ESCOLAR');
+                         $mail->setFrom('comunidad@seiko.global', 'SIS-ESCOLAR');
                          
                          // Destinatario y cuerpo del mensaje
                          $mail->addAddress($destino, $nombre_user);

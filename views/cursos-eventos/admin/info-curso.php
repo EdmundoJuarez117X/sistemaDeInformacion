@@ -330,7 +330,7 @@
                                 </p>
                                 <div class="fields-middle third-middle">
                                     <p>
-                                        <a href="portada-curso.php?cso=<?= $cso ?>" target="_blank">VER PORTADA</a>
+                                        <a href="portada-curso.php?cso=<?= $cso ?>">VER PORTADA</a>
                                     </p>
                                 </div>
                                 <button class="btn-action-form"> <a href="actualizar-curso.php?cso='<?=$curso["id_curso"]?>'">EDITAR</a></button>

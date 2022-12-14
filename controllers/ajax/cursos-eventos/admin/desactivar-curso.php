@@ -3,6 +3,8 @@
     include('../../../../model/connection.php');
     $db = $connection;
 
+    date_default_timezone_set("America/Mexico_City");
+
     $query = "SELECT cursos.id_curso, cursos.fecha_fin_curso, cursos.estatus_curso FROM cursos";
     if(!$result = $db->query($query)) {
         die("Error al extraer información (desactivar-curso.php). Error: ". mysqli_error($db));

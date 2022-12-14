@@ -71,8 +71,8 @@
                         // Autenticación con SMTP
                         $mail->Host = "smtp.gmail.com";
                         $mail->Port = "465";
-                        $mail->Username = "scode.dv@gmail.com";
-                        $mail->Password = "jgrganiqkwznwlqk";
+                        $mail->Username = "comunidad@seiko.global";
+                        $mail->Password = "zwxatsizpdwnmmgt";
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
@@ -80,7 +80,7 @@
                         $destino = $users['email_alumno'];
                     // DETINATARIO Y CUERPO EL MENSAJE
                         // Remitente
-                        $mail->setFrom('scode.dv@gmail.com', 'SISESCOLAR');
+                        $mail->setFrom('comunidad@seiko.global', 'SISESCOLAR');
                         // Destinatario y cuerpo del mensaje
                         $mail->addAddress($destino, $nombre_user);
                         $mail->isHTML(true);
@@ -141,8 +141,8 @@
                          // Autenticación con SMTP
                          $mail->Host = "smtp.gmail.com";
                          $mail->Port = "465";
-                         $mail->Username = "scode.dv@gmail.com";
-                         $mail->Password = "jgrganiqkwznwlqk";
+                         $mail->Username = "comunidad@seiko.global";
+                        $mail->Password = "zwxatsizpdwnmmgt";
                          $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                          $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                          
@@ -150,13 +150,12 @@
                          $destino = $users['email_docente'];
                      // DETINATARIO Y CUERPO EL MENSAJE
                          // Remitente
-                         $mail->setFrom('scode.dv@gmail.com', 'SIS-ESCOLAR');
+                         $mail->setFrom('comunidad@seiko.global', 'SIS-ESCOLAR');
                          // Destinatario y cuerpo del mensaje
                          $mail->addAddress($destino, $nombre_user);
                          $mail->isHTML(true);
                          $mail->Subject = $name;
                          $mail->Body = $html;
-                         $mail->AltBody = 'El texto como elemento de texto simple';
                          // COFICACIÓN DE CARACTERES
                          $mail->CharSet = 'UTF-8';
                          $mail->Encoding = 'base64';

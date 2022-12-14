@@ -15,7 +15,7 @@ $(function() {
                 // bucle para imprimir cada dato en el template
                 cursos.forEach(curso => {
                     template += `
-                        <a href="comprar-curso.php?cso='${curso.id}'" target="_blank">
+                        <a href="comprar-curso.php?cso='${curso.id}'">
                             <div class="courses">
                                 <div class="profile-photo">
                                     <img src="../../../img/cursos-eventos/notify.svg" alt="">

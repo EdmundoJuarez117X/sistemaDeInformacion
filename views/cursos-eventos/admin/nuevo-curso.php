@@ -204,7 +204,7 @@ if (empty($_SESSION["subMat"])) {
                                             <li>
                                                 <a class="dropdown-item">
                                                     <span class="material-icons-sharp">add</span>
-                                                    <h3>Nuevo Curso</h3>
+                                                    <h3>Nuego Curso</h3>
                                                 </a>
                                             </li>
                                             <li>

@@ -305,7 +305,7 @@
                                 <div class="fields-middle first-middle">
                                     <p>Costo unitario (MXN):
                                         <input type="number" id="costo_unitario" value="<?=$curso['costo_unitario']?>" min="<?php if($curso['participantes_registrados'] > 0) {echo $curso['costo_unitario']; } 
-                                        else { echo 10; } ?>" step=".05" required>
+                                        else { echo 10; } ?>" step=".05" <?php if($curso['participantes_registrados'] > 0){echo "readonly";} ?>>
                                     </p>
                                 </div>
                                 <div class="fields-middle second-middle">
@@ -342,7 +342,7 @@
                                 </div>
                                 <div class="fields-middle second-middle">
                                     <p>Portada: <br><br>
-                                    <a href="portada-curso.php?cso=<?= $cso ?>" target="_blank">VER PORTADA ACTUAL</a>
+                                    <a href="portada-curso.php?cso=<?= $cso ?>">VER PORTADA ACTUAL</a>
                                     </p>    
                                 </div>
 

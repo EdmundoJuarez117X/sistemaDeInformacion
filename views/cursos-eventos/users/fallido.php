@@ -4,12 +4,11 @@
         header("location:../../../index.php");
     }
     // si no estan vacios los datos neviados
-    if(!empty($_GET['tid']) && !empty($_GET['product'])) {
+    if(!empty($_GET['product'])) {
         $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
-
-        $tid = $GET['tid'];
-        $product = $GET['product'];
         $correo = $GET['mail'];
+        $product = $GET['product'];
+        $date = $GET['date'];
     }else {
         header('Location: cursos.php');
     }
@@ -30,7 +29,7 @@
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         
-            <title>Compra existosa</title>
+            <title>UPS!</title>
         </head>
         <body>
             <div class="container">
@@ -114,17 +113,17 @@
                 <main>
                     <h1>Compra exitosa</h1>
                     <div class="container-alerta-compra">
-                        <div class="cotainer-info-compra">
-                            <div class="container-compra-satisfactoria">
-                                <h1>SIS<span>ESCOLAR</span> </h1>
-                                <p>te agradece por comprar</p>
-                                <h2><?= $product; ?></h2>
-                                <hr>
-                                <p>Tu ID de compra es:</p>
-                                <p class="p-id-compra"><?= $tid; ?></p>
-                                <p>Se ha enviado información sobre tu compra a <?= $correo ?>, revisa tu bandeja.</p>
-                                <p>Puedes ver tus compras en tu <strong><a href="mis-cursos.php" style="color:#47ABE2;">historial de cursos</a></strong>.</p>
-                            </div>
+                        <div class="container-compra-satisfactoria" style="background-color: #8a3940;">
+                            <h1>SIS<span>ESCOLAR</span> </h1>
+                            <p>Hubo un problema con la compra del curso:</p>
+                            <h2><?= $product ?></h2>
+                            <hr>
+                            <p>Comunícate con los administradores de tu institución, es probable que tu transferencia se ha realizado, pero tus datos no se registraron en el sistema.</p>
+                            <p>La información ha sido enviada a <?= $correo ?>, revisa tu bandeja.</p><br>
+
+                            <p style="font-size:13px;margin-top:10px;">Si te sigue apareciendo esta alerta, puedes cerrar sesión e intentarlo de nuevo.<br>
+                                Ten en cuenta que se te cobrará la compra del nuevo acceso. Gracias.
+                            </p>
                         </div>
                     </div>
                 </main>

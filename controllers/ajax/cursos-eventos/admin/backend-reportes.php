@@ -7,7 +7,7 @@
     function fetch_data(){
             
         global $db;
-            
+        date_default_timezone_set("America/Mexico_City");
         // almacenamos el periodo
         $pdo = $_POST['pdo'];
         // obtenemos la fecha actual
@@ -84,7 +84,7 @@
                 <div class='fields-middle container-info-course container-info-active-course'>
                     <p class='p-name-course-info'> <strong>".$cursos['nombre_curso']."</strong> <br>
                         <p style='text-align:center;font-size:11px'>Registrado: ". $cursos['f_creacion_curso'] ."</p>
-                        (<a href='portada-curso.php?cso=".$cursos['id_curso']."' target='_blank'>portada</a>)
+                        (<a href='portada-curso.php?cso=".$cursos['id_curso']."'>portada</a>)
                     </p>
 
                     <div class='fields-middle first-middle'>

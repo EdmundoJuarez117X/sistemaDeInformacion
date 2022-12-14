@@ -21,6 +21,7 @@
         $dInitial = $_POST['dIni'];
         $dEnd = $_POST['dEnd'];
         $status = $_POST['stus'];
+        date_default_timezone_set("America/Mexico_City");
         $date = date("y-m-d H:i:s");
 
         // Definimos la fecha actual con formato UNIX previamente formateada con date() y obtenida con time()

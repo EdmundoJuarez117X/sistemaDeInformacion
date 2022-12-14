@@ -22,7 +22,7 @@ if (empty($_SESSION["subMat"])) {
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         
-            <title>Compras</title>
+            <title>Actividad</title>
         </head>
         <body>
             <div class="container">
