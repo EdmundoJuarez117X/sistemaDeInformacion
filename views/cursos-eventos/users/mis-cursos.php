@@ -15,6 +15,7 @@ if (empty($_SESSION["subMat"])) {
         
             <!-- CSS STYLESHEET-->
             <link rel="stylesheet" href="../../../styles/css/eventos-cursos/eventos-cursos.css">
+            <link rel="shortcut icon" type="image/x-icon" href="../../../img/loginImages/EducationSchool.svg" />
             
             <!-- FOR NAVBAR SUBMENUS -->
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -40,52 +41,46 @@ if (empty($_SESSION["subMat"])) {
                     <!-- SIDEBAR / NAVBAR CODE -->
                     <div class="sidebar">
                         <ul class="">
-                            <li class="">
-                                <a class="" href="../../dashboard/inicio.php">
-                                    <span class="material-icons-sharp">grid_view</span>
-                                    <h3>Dashboard</h3>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="" href="../../stripeInscrip/public/checkout.php">
-                                    <span class="material-icons-sharp">person</span>
-                                    <h3>Inscripciones</h3>
-                                </a>
-                            </li>
-                            <li class="active">
-                                <a class="dropdown-toggleCursos">
-                                    <span class="material-icons-sharp">import_contacts</span>
-                                    <h3>Cursos</h3>
-                                    <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
-                                </a>
-                                <ul class="dropdown-menuCursos">
-                                    <li>
-                                        <a class="dropdown-item" href="cursos.php">
+                            <?php
+                                if ($_SESSION["subMat"]=="DOC" or $_SESSION["subMat"] == "Al") {
+                                    echo '
+                                    <li class="">
+                                        <a class="" href="../../dashboard/inicio.php">
+                                            <span class="material-icons-sharp">grid_view</span>
+                                            <h3>Dashboard</h3>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a class="dropdown-toggleCursos">
                                             <span class="material-icons-sharp">import_contacts</span>
                                             <h3>Cursos</h3>
+                                            <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
+                                        </a>
+                                        <ul class="dropdown-menuCursos">
+                                            <li>
+                                                <a class="dropdown-item" href="cursos.php">
+                                                    <span class="material-icons-sharp">import_contacts</span>
+                                                    <h3>Cursos</h3>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item">
+                                                    <span class="material-icons-sharp">history</span>
+                                                    <h3>Mis cursos</h3>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="CloseSession">
+                                        <a href="../../../controllers/controller_logout.php">
+                                            <span class="material-icons-sharp">logout</span>
+                                            <h3>Cerrar Sesión</h3>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item">
-                                            <span class="material-icons-sharp">history</span>
-                                            <h3>Mis cursos</h3>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <a class="" href="#">
-                                    <span class="material-icons-sharp">mail_outline</span>
-                                    <h3>Mensajes</h3>
-                                    <span class="message-count">26</span>
-                                </a>
-                            </li>
-                            <li class="CloseSession">
-                                <a href="../../../controllers/controller_logout.php">
-                                    <span class="material-icons-sharp">logout</span>
-                                    <h3>Cerrar Sesión</h3>
-                                </a>
-                            </li>
+                                    ';
+                                }
+                            ?>
+                            
                         </ul>
                     </div>
                     <!-- END OF SIDEBAR / NAVBAR -->

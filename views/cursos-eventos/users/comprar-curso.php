@@ -46,6 +46,7 @@
         
             <!-- CSS STYLESHEET-->
             <link rel="stylesheet" href="../../../styles/css/eventos-cursos/eventos-cursos.css">
+            <link rel="shortcut icon" type="image/x-icon" href="../../../img/loginImages/EducationSchool.svg" />
             
             <!-- FOR NAVBAR SUBMENUS -->
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -72,7 +73,7 @@
                     <div class="sidebar">
                         <ul class="">
                             <?php
-                                if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"]=="DOC" or $_SESSION["subMat"] == "Al") {
+                                if ($_SESSION["subMat"]=="DOC" or $_SESSION["subMat"] == "Al") {
                                     echo '
                                     <li class="">
                                         <a class="" href="../../dashboard/inicio.php">
@@ -80,13 +81,6 @@
                                             <h3>Dashboard</h3>
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a class="" href="../../stripeInscrip/pago/index.php">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Inscripciones</h3>
-                                        </a>
-                                    </li>
-                                    
                                     <li class="active">
                                         <a class="dropdown-toggleCursos">
                                             <span class="material-icons-sharp">import_contacts</span>
@@ -108,15 +102,6 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">mail_outline</span>
-                                            <h3>Mensajes</h3>
-                                            <span class="message-count">26</span>
-                                        </a>
-                                    </li>
-                                    
                                     <li class="CloseSession">
                                         <a href="../../../controllers/controller_logout.php">
                                             <span class="material-icons-sharp">logout</span>

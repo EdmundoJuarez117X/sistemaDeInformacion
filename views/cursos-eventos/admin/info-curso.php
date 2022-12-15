@@ -20,6 +20,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <!-- Material Icons CDN -->
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+            <link rel="shortcut icon" type="image/x-icon" href="../../../img/loginImages/EducationSchool.svg" />
         
             <!-- CSS STYLESHEET-->
             <link rel="stylesheet" href="../../../styles/css/eventos-cursos/eventos-cursos.css">
@@ -49,89 +50,7 @@
                     <div class="sidebar">
                         <ul class="">
                             <?php
-                                if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"]=="DOC" or $_SESSION["subMat"] == "Al") {
-                                    echo '
-                                    <li class="active">
-                                        <a class="" href="inicio.php">
-                                            <span class="material-icons-sharp">grid_view</span>
-                                            <h3>Dashboard</h3>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a class="" href="../stripeInscrip/pago/index.php">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Inscripciones</h3>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="">
-                                        <a class="dropdown-toggleCursos">
-                                            <span class="material-icons-sharp">import_contacts</span>
-                                            <h3>Cursos</h3>
-                                            <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
-                                        </a>
-                                        <ul class="dropdown-menuCursos">
-                                            <li>
-                                                <a class="dropdown-item" href="../cursos-eventos/users/cursos.php">
-                                                    <span class="material-icons-sharp">import_contacts</span>
-                                                    <h3>Cursos</h3>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="../cursos-eventos/users/mis-cursos.php">
-                                                    <span class="material-icons-sharp">history</span>
-                                                    <h3>Mis cursos</h3>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">mail_outline</span>
-                                            <h3>Mensajes</h3>
-                                            <span class="message-count">26</span>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="CloseSession">
-                                        <a href="./../../controllers/controller_logout.php">
-                                            <span class="material-icons-sharp">logout</span>
-                                            <h3>Cerrar Sesión</h3>
-                                        </a>
-                                    </li>
-                                    ';
-                                }else if($_SESSION["subMat"] == "PF"){
-                                    echo '
-                                    <li class="active">
-                                        <a class="" href="inicio.php">
-                                            <span class="material-icons-sharp">grid_view</span>
-                                            <h3>Dashboard</h3>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a class="" href="../stripeInscrip/pago/index.php">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Inscripciones</h3>
-                                        </a>
-                                    </li>                            
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">mail_outline</span>
-                                            <h3>Mensajes</h3>
-                                            <span class="message-count">26</span>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="CloseSession">
-                                        <a href="./../../controllers/controller_logout.php">
-                                            <span class="material-icons-sharp">logout</span>
-                                            <h3>Cerrar Sesión</h3>
-                                        </a>
-                                    </li>
-                                    ';
-                                }
-                                else{
+                                if ($_SESSION["subMat"]=="ADM" or $_SESSION["subMat"] == "MST") {
                                     echo '
                                     <li class="">
                                         <a class="" href="../../dashboard/inicio.php">
@@ -139,68 +58,6 @@
                                             <h3>Dashboard</h3>
                                         </a>
                                     </li>
-
-                                    <li class="">
-                                        <a class="" href="../../stripeInscrip/public/checkout.php">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Incripciones</h3>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Clientes</h3>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">report</span>
-                                            <h3>Reportes</h3>
-                                        </a>
-                                    </li>
-
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">add</span>
-                                            <h3>Agregar Producto</h3>
-                                        </a>
-                                    </li>
-
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">settings</span>
-                                            <h3>Ajustes</h3>
-                                        </a>
-                                    </li>
-
-                                    <li class="">
-                                        <a class="dropdown-toggle" href="#">
-                                            <span class="material-icons-sharp">paid</span>
-                                            <h3>Pagos</h3>
-                                            <span class="material-icons-sharp arrow_down first-arrow">keyboard_arrow_down</span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="#">
-                                                    <span class="material-icons-sharp">credit_card</span>
-                                                    <h3>Tarjeta de Crédito</h3>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">
-                                                    <span class="material-icons-sharp">local_atm</span>
-                                                    <h3>Efectivo</h3>
-                                                </a>
-                                            </li>
-
-                                            <!-- <li>
-                                                <hr class="dropdown-divider">
-                                            </li> -->
-
-                                        </ul>
-                                    </li>
-
                                     <li class="active">
                                         <a class="dropdown-toggleCursos" href="#">
                                             <span class="material-icons-sharp">import_contacts</span>
@@ -239,14 +96,6 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">mail_outline</span>
-                                            <h3>Mensajes</h3>
-                                            <span class="message-count">26</span>
-                                        </a>
                                     </li>
                                     <li class="">
                                         <a class="" href="../../panelSeg/segAsp.php">
@@ -402,66 +251,9 @@
                             </div>
                     </div> 
                     <!-- END OF RECENT UPDATES -->
-                    <div class="sales-analytics">
-                        <h2>Metricas de Ventas</h2>
-                        <div class="item online">
-                            <div class="icon">
-                                <span class="material-icons-sharp">shopping_cart</span>
-                            </div>
-                            <div class="right">
-                                <div class="info">
-                                    <h3>Pedidos en línea</h3>
-                                    <small class="text-muted">Last 24 Hours</small>
-                                </div>
-                                <h5 class="success">+39%</h5>
-                                <h3>3849</h3>
-                            </div>
-                        </div>
-                        <div class="item offline">
-                            <div class="icon">
-                                <span class="material-icons-sharp">local_mall</span>
-                            </div>
-                            <div class="right">
-                                <div class="info">
-                                    <h3>Pedidos presenciales</h3>
-                                    <small class="text-muted">Last 24 Hours</small>
-                                </div>
-                                <h5 class="danger">+17%</h5>
-                                <h3>1100</h3>
-                            </div>
-                        </div>
-                        <div class="item customers">
-                            <div class="icon">
-                                <span class="material-icons-sharp">person</span>
-                            </div>
-                            <div class="right">
-                                <div class="info">
-                                    <h3>Nuevos clientes</h3>
-                                    <small class="text-muted">Last 24 Hours</small>
-                                </div>
-                                <h5 class="success">+25%</h5>
-                                <h3>849</h3>
-                            </div>
-                        </div>
-                        <div class="item add-product">
-                            <div>
-                                <span class="material-icons-sharp">add</span>
-                                <h3>Agregar Producto</h3>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- Script for navbar arrows and show the elements -->
-            <script>
-                $('.dropdown-toggle').click(function(){
-                    $('aside .sidebar ul .dropdown-menu').toggleClass("show");
-                    $('aside .sidebar ul .first-arrow').toggleClass("rotate");
-                });
-                $('aside .sidebar ul li').click(function(){
-                    $(this).addClass("active").siblings().removeClass("active");
-                });
-            </script>
             <script>
                 $('.dropdown-toggleCursos').click(function() {
                     $('aside .sidebar ul .dropdown-menuCursos').toggleClass("show");
