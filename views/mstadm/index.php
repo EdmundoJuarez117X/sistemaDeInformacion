@@ -57,7 +57,7 @@
                         </a>
                     </div>
                 </form>
-                <!-- Formulario de registro -->
+                <!-- Formulario de registro
                 <form id="register_form" name="form1" method="post" class="sign-up-form">
                     <h2 class="title">Registrarse</h2>
                     
@@ -107,7 +107,7 @@
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
-                </form>
+                </form> -->
 
             </div>
         </div>
@@ -115,9 +115,9 @@
             <div class="panel left-panel">
                 <div class="content">
                     <h3>¿Master o Administrador?</h3>
-                    <p>Regístrate a través de este apartado
-                    </p>
-                    <button class="btn transparent" id="sign-up-btn">Registrarse</button>
+                    <!-- <p>Regístrate a través de este apartado
+                    </p> -->
+                    <!-- <button class="btn transparent" id="sign-up-btn">Registrarse</button> -->
                 </div>
                 <img src="./../../img/loginImages/log.svg" class="image" alt="">
             </div>

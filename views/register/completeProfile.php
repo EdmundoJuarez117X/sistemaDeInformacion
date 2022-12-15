@@ -65,7 +65,7 @@ if (empty($_SESSION["subMat"])) {
                     <div class="input-field">
                         <i class="material-icons-sharp">location_city</i>
                         <input type="text" placeholder="Código Postal" name="codPostalPersona" required
-                            autocomplete="off">
+                            autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyPress="if(this.value.length==5) return false;">
                     </div>
                     <div>
                         <label>Fecha de Nacimiento</label>
@@ -81,12 +81,14 @@ if (empty($_SESSION["subMat"])) {
                             <option value="">Selecciona tu Género</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
+                            <option value="Otro">Otro</option>
+                            <option value="Prefiero No Decir">Prefiero No Decir</option>
                         </select>
                     </div>
                     <div class="input-field">
                         <i class="material-icons-sharp">phone_iphone</i>
                         <input type="number" placeholder="Número de teléfono móvil" name="numero_telefonico" required
-                            autocomplete="off">
+                            autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyPress="if(this.value.length==10) return false;">
                     </div>
                     <input type="submit" name="btn_completarPerfil" value="Finalizar" class="btn solid">
                 </form>

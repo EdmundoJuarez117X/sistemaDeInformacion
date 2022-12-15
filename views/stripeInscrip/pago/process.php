@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<head>
+	<!-- Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
 <html>
 
 <body>
@@ -12,8 +16,8 @@ require_once('stripe-php-master/init.php');
 
 session_start(); //Activamos la sesion
 $Autorizacion = false; //Para activar cuando se cumpla las condiciones y poder redirigir
-$url = ''; //Para escribir la url dependiendo de la situacion (Condicion)
-
+$url = ''; //Para escribir la url dependiendo de la situacion (Pago de Exámen de Admisión)
+$urlPI = '';
 $token = $_POST['stripeToken'];
 $total = $_POST['total'];
 $email = $_POST['email'];
@@ -45,7 +49,6 @@ try {
 	if ($charge->status == "succeeded") {
 		// Antigua alerta, usar en caso de que sweet alert no funcione
 		//echo "<script>alert('Pagado exitosamente! ');</script>";
-
 
 		include "./../../../model/connection.php";
 		if ($_SESSION["subMat"] == "ASP") { //Preguntamos si es aspirante
@@ -280,7 +283,7 @@ try {
 																					})
 																				</script>";
 																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
+																				$urlPI = 'dashboard/inicio.php';
 
 																			}
 																		} else { //Mayor que 1
@@ -306,7 +309,7 @@ try {
 																					})
 																				</script>";
 																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
+																				$urlPI = 'dashboard/inicio.php';
 
 																			}
 																		}
@@ -362,10 +365,7 @@ try {
 																					})
 																				</script>";
 																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
-
-																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
+																				$urlPI = 'dashboard/inicio.php';
 																			}
 																		} else { //Mayor que 1
 																			$sqlUpdateAsAula = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
@@ -390,7 +390,7 @@ try {
 																					})
 																				</script>";
 																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
+																				$urlPI = 'dashboard/inicio.php';
 
 																			}
 																		}
@@ -402,16 +402,7 @@ try {
 
 															}
 														} else if ($nombre_nivelEducativo == "Superior") { //Caso de querer ingresar a la universidad
-															//Variables a usar (Borrar después)
-
-															// $nombre_facultad = $admAspData->nombre_facultad;
-															// $nombre_esp = $admAspData->nombre_esp;
-															// $nombre_carrera = $admAspData->nombre_carrera;
-															// $id_escuela = $admAspData->id_escuela;
-															// $id_nivelEducativo = $admAspData->id_nivelEducativo;
-															// $id_facultad = $admAspData->id_facultad;
-															// $id_carrera = $admAspData->id_carrera;
-															// $id_especializacion = $admAspData->id_especializacion;
+															//Variables a usar (Borrar después);
 
 															if ($nombre_esp != "") {
 																/* */
@@ -467,7 +458,7 @@ try {
 																						})
 																					</script>";
 																					$Autorizacion = true;
-																					$url = 'dashboard/inicio.php';
+																					$urlPI = 'dashboard/inicio.php';
 
 
 																				}
@@ -495,7 +486,7 @@ try {
 																						})
 																					</script>";
 																					$Autorizacion = true;
-																					$url = 'dashboard/inicio.php';
+																					$urlPI = 'dashboard/inicio.php';
 																				}
 																			}
 																		}
@@ -555,7 +546,7 @@ try {
 																							})
 																						</script>";
 																					$Autorizacion = true;
-																					$url = 'dashboard/inicio.php';
+																					$urlPI = 'dashboard/inicio.php';
 																				}
 																			} else { //Mayor que 1
 																				$sqlUpdateAsAulaC = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
@@ -581,7 +572,7 @@ try {
 																							})
 																						</script>";
 																					$Autorizacion = true;
-																					$url = 'dashboard/inicio.php';
+																					$urlPI = 'dashboard/inicio.php';
 
 
 																				}
@@ -703,15 +694,15 @@ try {
 
 
 																			$Autorizacion = true;
-																			$url = 'dashboard/inicio.php';
+																			$urlPI = 'dashboard/inicio.php';
 																		}
 																	} else { //Mayor que 1
-																		echo "Mayor que 1";
+																		
 																		$sqlUpdateAsAula = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
 																		WHERE `id_aula` ='$id_aula'";
 																		usleep(136000);
 																		if (mysqli_query($connection, $sqlUpdateAsAula)) {
-																			echo 'Se ha realizado la update';
+																			// echo 'Se ha realizado la update';
 																			$_SESSION["subMat"] = "Al";
 																			$_SESSION["nombre_alumno"] = $_SESSION["nombre_aspirante"];
 																			$_SESSION["apellido_paternoAlumno"] = $_SESSION["apellido_paternoAspirante"];
@@ -731,7 +722,7 @@ try {
 																				})
 																			</script>";
 																			$Autorizacion = true;
-																			$url = 'dashboard/inicio.php';
+																			$urlPI = 'dashboard/inicio.php';
 																		}
 																	}
 																}
@@ -787,10 +778,8 @@ try {
 																				})
 																			</script>";
 																			$Autorizacion = true;
-																			$url = 'dashboard/inicio.php';
+																			$urlPI = 'dashboard/inicio.php';
 
-																			$Autorizacion = true;
-																			$url = 'dashboard/inicio.php';
 																		}
 																	} else { //Mayor que 1
 																		$sqlUpdateAsAula = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
@@ -816,10 +805,7 @@ try {
 																				})
 																			</script>";
 																			$Autorizacion = true;
-																			$url = 'dashboard/inicio.php';
-
-																			$Autorizacion = true;
-																			$url = 'dashboard/inicio.php';
+																			$urlPI = 'dashboard/inicio.php';
 																		}
 																	}
 																}
@@ -830,17 +816,7 @@ try {
 
 														}
 													} else if ($nombre_nivelEducativo == "Superior") { //Caso de querer ingresar a la universidad
-														//Variables a usar (Borrar después)
-
-														// $nombre_facultad = $admAspData->nombre_facultad;
-														// $nombre_esp = $admAspData->nombre_esp;
-														// $nombre_carrera = $admAspData->nombre_carrera;
-														// $id_escuela = $admAspData->id_escuela;
-														// $id_nivelEducativo = $admAspData->id_nivelEducativo;
-														// $id_facultad = $admAspData->id_facultad;
-														// $id_carrera = $admAspData->id_carrera;
-														// $id_especializacion = $admAspData->id_especializacion;
-
+														//Preguntamos si es especialidad lo que se escogio
 														if ($nombre_esp != "") {
 															/* */
 															//Buscamos un aula con lugares disponibles
@@ -895,10 +871,8 @@ try {
 																					})
 																				</script>";
 																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
+																				$urlPI = 'dashboard/inicio.php';
 
-																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
 																			}
 																		} else { //Mayor que 1
 																			$sqlUpdateAsAula = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
@@ -924,7 +898,7 @@ try {
 																			})
 																		</script>";
 																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
+																				$urlPI = 'dashboard/inicio.php';
 
 																			}
 																		}
@@ -985,7 +959,7 @@ try {
 																						})
 																					</script>";
 																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
+																				$urlPI = 'dashboard/inicio.php';
 
 
 																			}
@@ -1014,7 +988,7 @@ try {
 																						})
 																					</script>";
 																				$Autorizacion = true;
-																				$url = 'dashboard/inicio.php';
+																				$urlPI = 'dashboard/inicio.php';
 																			}
 																		}
 																	}
@@ -1264,7 +1238,7 @@ try {
 																					})
 																				</script>";
 																					$Autorizacion = true;
-																					$url = 'dashboard/inicio.php';
+																					$urlPI = 'dashboard/inicio.php';
 
 																				}
 																			} else { //Mayor que 1
@@ -1286,7 +1260,7 @@ try {
 																					})
 																				</script>";
 																					$Autorizacion = true;
-																					$url = 'dashboard/inicio.php';
+																					$urlPI = 'dashboard/inicio.php';
 
 																				}
 																			}
@@ -1338,7 +1312,7 @@ try {
 																					})
 																				</script>";
 																					$Autorizacion = true;
-																					$url = 'dashboard/inicio.php';
+																					$urlPI = 'dashboard/inicio.php';
 																				}
 																			} else { //Mayor que 1
 																				$sqlUpdateAsAula = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
@@ -1359,7 +1333,7 @@ try {
 																					})
 																				</script>";
 																					$Autorizacion = true;
-																					$url = 'dashboard/inicio.php';
+																					$urlPI = 'dashboard/inicio.php';
 
 																				}
 																			}
@@ -1421,7 +1395,7 @@ try {
 																						})
 																					</script>";
 																						$Autorizacion = true;
-																						$url = 'dashboard/inicio.php';
+																						$urlPI = 'dashboard/inicio.php';
 
 
 																					}
@@ -1444,7 +1418,7 @@ try {
 																						})
 																					</script>";
 																						$Autorizacion = true;
-																						$url = 'dashboard/inicio.php';
+																						$urlPI = 'dashboard/inicio.php';
 																					}
 																				}
 																			}
@@ -1499,7 +1473,7 @@ try {
 																							})
 																						</script>";
 																						$Autorizacion = true;
-																						$url = 'dashboard/inicio.php';
+																						$urlPI = 'dashboard/inicio.php';
 																					}
 																				} else { //Mayor que 1
 																					$sqlUpdateAsAulaC = "UPDATE `aula` SET  `numero_asientosAula`=`numero_asientosAula`-1
@@ -1521,7 +1495,7 @@ try {
 																							})
 																						</script>";
 																						$Autorizacion = true;
-																						$url = 'dashboard/inicio.php';
+																						$urlPI = 'dashboard/inicio.php';
 
 
 																					}
@@ -1575,6 +1549,9 @@ try {
 			</script>";
 		$Autorizacion = true;
 		$url = 'dashboard/inicio.php';
+	
+	
+	
 	}
 } catch (Exception $e) {
 	echo "
@@ -1593,8 +1570,68 @@ try {
 	// echo "<script>alert('" . $e->getMessage() . "');</script>";
 }
 if ($Autorizacion == true) {
+	if($urlPI !=""){ //Pago de inscripción
+		echo "<script>
+                //Sweet Alert 2 and locate to index
+            let timerInterval
+            Swal.fire({
+                icon: 'success',
+                title: 'Pago exitoso, Bienvenido :), ahora eres un Alumno!!',
+                html: 'Se actualizará en <b></b>.',
+                timer: 3699,
+                timerProgressBar: true,
+                allowOutsideClick: false,
+				allowEscapeKey: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    location.href = './../../../views/".$urlPI."';
+                }
+            });
+                </script>";
+	}else{//Pago de Exámen de Admisión
+		echo "<script>
+                //Sweet Alert 2 and locate to index
+            let timerInterval
+            Swal.fire({
+                icon: 'success',
+                title: 'Pago exitoso, Se pagará ahora el Pago de Inscripción :)',
+                html: 'Se actualizará en <b></b>.',
+                timer: 3699,
+                timerProgressBar: true,
+                allowOutsideClick: false,
+				allowEscapeKey: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    location.href = './../../../views/".$url."';
+                }
+            });
+                </script>";
+	}
+	
 	//                   ./Views/
-	header("location:./../../../views/$url");
+	// header("location:./../../../views/$url");
 }
 // print_r($change);
 ?>

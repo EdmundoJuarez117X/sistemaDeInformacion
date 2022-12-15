@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<head>
+        <!-- CSS STYLESHEET-->
+        <link rel="stylesheet" href="../../styles/css/dashstyle.css">
+	<!-- Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<html>
+
+<body>
+	<!-- Aquí se dará espacio para los sweet alerts -->
+</body>
+
+</html>
 <?php
 session_start();
 
@@ -111,8 +125,34 @@ if ($nombre_nivelEducativo == "Basica") {
 
 }
 if ($Autorizacion == true) {
-
-    header("location:./../../../$url");
+    echo "
+                        <script>
+                        let timerInterval
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Excelente Decisión!!',
+                            html: 'Se actualizará en <b></b>.',
+                            timer: 1369,
+                            timerProgressBar: true,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                const b = Swal.getHtmlContainer().querySelector('b')
+                                timerInterval = setInterval(() => {
+                                    b.textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                            }
+                        }).then((result) => {
+                            /* Read more about handling dismissals below */
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                location.href = './../../../".$url."';
+                            }
+                        }); </script>";
+    // header("location:./../../../$url");
 }
 
 

@@ -21,7 +21,8 @@ if (empty($_SESSION["subMat"])) {
     <!-- FOR NAVBAR SUBMENUS -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
+    <!-- Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Ofeta Académica</title>
 
 
@@ -381,18 +382,18 @@ if (empty($_SESSION["subMat"])) {
                                 required></textarea>
                         </p> -->
                     <?php
-                        // $query = "SELECT * FROM `escuela`;";
-                        // $result = mysqli_query($connection, $query);
-                        ?>
+                    // $query = "SELECT * FROM `escuela`;";
+                    // $result = mysqli_query($connection, $query);
+                    ?>
 
                     <!-- <div class="fields-middle second-middle">
                         <p>Nombre de la escuela:
                             <select name="select_school" id="select_school" required>
                                 <option value="">Click aquí para seleccionar una escuela</option>
                                 <?php
-                                    // while ($row = mysqli_fetch_array($result)):
-                                    //     ;
-                                    // ?>
+                                // while ($row = mysqli_fetch_array($result)):
+                                //     ;
+                                // ?>
                                 <option>
                                     <?php //echo $row[1]; ?>
                                 </optiondwhile; ?>
@@ -403,59 +404,59 @@ if (empty($_SESSION["subMat"])) {
                     </div> -->
                     <!-- End of School select option -->
                     <?php
-                        $querySc = "SELECT * FROM `nivelEducativo`;";
-                        $resultSc = mysqli_query($connection, $querySc);
-                        ?>
+                    $querySc = "SELECT * FROM `nivelEducativo`;";
+                    $resultSc = mysqli_query($connection, $querySc);
+                    ?>
                     <div class="fields-middle second-middle">
                         <p>Escuela de Nivel Educativo</p>
                         <select name="select_nivelEdu" id="select_nivelEdu">
                             <option value="">Click aquí para seleccionar un nivel educativo</option>
                             <?php
-                                    while ($row = mysqli_fetch_array($resultSc)):
-                                        ;
-                                    ?>
+                            while ($row = mysqli_fetch_array($resultSc)):
+                                ;
+                            ?>
                                 <option>
                                     <?php echo $row[1]; ?>
                                 </optiondwhile; ?>
-                                <?php endwhile;?>
+                                <?php endwhile; ?>
                         </select>
                     </div>
                     <!-- End of nivel Educativo select option -->
                     <?php
-                        $queryPe = "SELECT * FROM `periodoEscolar`;";
-                        $resultPe = mysqli_query($connection, $queryPe);
-                        ?>
+                    $queryPe = "SELECT * FROM `periodoEscolar`;";
+                    $resultPe = mysqli_query($connection, $queryPe);
+                    ?>
                     <div class="fields-middle second-middle">
                         <p>Periodo Escolar</p>
                         <select name="select_periodoE" id="select_periodoE">
                             <option value="">Click aquí para seleccionar un periodo escolar</option>
                             <?php
-                                    while ($row = mysqli_fetch_array($resultPe)):
-                                        ;
-                                    ?>
-                                <option>
-                                    <?php echo $row[1]; ?>
+                            while ($row = mysqli_fetch_array($resultPe)):
+                                ;
+                            ?>
+                            <option>
+                                <?php echo $row[1]; ?>
                                 </optiondwhile; ?>
-                                <?php endwhile;?>
+                                <?php endwhile; ?>
                         </select>
                     </div>
                     <!-- End of Schoolar Period select option -->
                     <?php
-                        $queryMe = "SELECT * FROM `modalidadEscolar`;";
-                        $resultMe = mysqli_query($connection, $queryMe);
-                        ?>
+                    $queryMe = "SELECT * FROM `modalidadEscolar`;";
+                    $resultMe = mysqli_query($connection, $queryMe);
+                    ?>
                     <div class="fields-middle second-middle">
                         <p>Modalidad Escolar</p>
                         <select name="select_modalidadE" id="select_modalidadE">
                             <option value="">Click aquí para seleccionar un periodo académico</option>
                             <?php
-                                    while ($row = mysqli_fetch_array($resultMe)):
-                                        ;
-                                    ?>
-                                <option>
-                                    <?php echo $row[1]; ?>
+                            while ($row = mysqli_fetch_array($resultMe)):
+                                ;
+                            ?>
+                            <option>
+                                <?php echo $row[1]; ?>
                                 </optiondwhile; ?>
-                                <?php endwhile;?>
+                                <?php endwhile; ?>
                         </select>
                     </div>
                     <!-- End of Schoolar modality select option -->
@@ -521,64 +522,23 @@ if (empty($_SESSION["subMat"])) {
                         </small>
                     </div>
                     <div class="profile-photo">
-                        <img src="./../../img/altindeximages/avatar.svg" alt="">
+                        <a href="./../register/completeProfileDash.php">
+                            <img src="./../../img/altindeximages/avatar.svg" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
             <!------------------------------- END OF top / top ------------------------>
             <div class="recent-updates">
-                <h2>Publicidad</h2>
+                <h2>Notificaciones</h2>
+                <div class="info-noticaciones-cursos" id="notificaciones-de-cursos">
+                </div>
 
             </div>
             <!-- END OF RECENT UPDATES -->
-            <div class="sales-analytics">
+            <!-- <div class="sales-analytics">
                 <h2>Otro apartado</h2>
-                <!-- <div class="item online">
-                                    <div class="icon">
-                                        <span class="material-icons-sharp">shopping_cart</span>
-                                    </div>
-                                    <div class="right">
-                                        <div class="info">
-                                            <h3>Pedidos en línea</h3>
-                                            <small class="text-muted">Last 24 Hours</small>
-                                        </div>
-                                        <h5 class="success">+39%</h5>
-                                        <h3>3849</h3>
-                                    </div>
-                                </div>
-                                <div class="item offline">
-                                    <div class="icon">
-                                        <span class="material-icons-sharp">local_mall</span>
-                                    </div>
-                                    <div class="right">
-                                        <div class="info">
-                                            <h3>Pedidos Presenciales</h3>
-                                            <small class="text-muted">Last 24 Hours</small>
-                                        </div>
-                                        <h5 class="danger">+17%</h5>
-                                        <h3>1100</h3>
-                                    </div>
-                                </div>
-                                <div class="item customers">
-                                    <div class="icon">
-                                        <span class="material-icons-sharp">person</span>
-                                    </div>
-                                    <div class="right">
-                                        <div class="info">
-                                            <h3>Nuevos clientes</h3>
-                                            <small class="text-muted">Last 24 Hours</small>
-                                        </div>
-                                        <h5 class="success">+25%</h5>
-                                        <h3>849</h3>
-                                    </div>
-                                </div>
-                                <div class="item add-product">
-                                    <div>
-                                        <span class="material-icons-sharp">add</span>
-                                        <h3>Agregar Producto</h3>
-                                    </div>
-                                </div> -->
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Script for navbar arrows and show the elements -->
@@ -607,10 +567,13 @@ if (empty($_SESSION["subMat"])) {
     <!-- SCRIPT JS -->
     <!-- <script src="../../js/dashboard/orders.js"></script> -->
     <script src="../../js/changeTheme/theme.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
     <script type="text/javascript" src="./../../js/aspAdmision/ajax-script.js"></script>
+    <!-- SCRIPT DE LAS FUNCIONES DE ADMINISTRADOR-->
+    <script src="../../js/notificaciones/actions-admin.js"></script>
 </body>
 
 </html>

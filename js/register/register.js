@@ -39,6 +39,7 @@ $(document).ready(function () {
                                 timer: 1369,
                                 timerProgressBar: true,
                                 allowOutsideClick: false,
+                                allowEscapeKey: false,
                                 didOpen: () => {
                                     Swal.showLoading()
                                     const b = Swal.getHtmlContainer().querySelector('b')
@@ -69,6 +70,7 @@ $(document).ready(function () {
                                 timer: 1369,
                                 timerProgressBar: true,
                                 allowOutsideClick: false,
+                                allowEscapeKey: false,
                                 didOpen: () => {
                                     Swal.showLoading()
                                     const b = Swal.getHtmlContainer().querySelector('b')
@@ -117,6 +119,7 @@ $(document).ready(function () {
                                     timer: 1369,
                                     timerProgressBar: true,
                                     allowOutsideClick: false,
+                                    allowEscapeKey: false,
                                     didOpen: () => {
                                         Swal.showLoading()
                                         const b = Swal.getHtmlContainer().querySelector('b')
@@ -146,6 +149,7 @@ $(document).ready(function () {
                                     timer: 1369,
                                     timerProgressBar: true,
                                     allowOutsideClick: false,
+                                    allowEscapeKey: false,
                                     didOpen: () => {
                                         Swal.showLoading()
                                         const b = Swal.getHtmlContainer().querySelector('b')
@@ -180,6 +184,7 @@ $(document).ready(function () {
                 timer: 1369,
                 timerProgressBar: true,
                 allowOutsideClick: false,
+                allowEscapeKey: false,
                 didOpen: () => {
                     Swal.showLoading()
                     const b = Swal.getHtmlContainer().querySelector('b')

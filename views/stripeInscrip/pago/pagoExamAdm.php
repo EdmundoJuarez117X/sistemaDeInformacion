@@ -115,7 +115,6 @@ if ($Autorizacion == true) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Material Icons CDN -->
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet"> 
 
     <!-- shorcut icon-->
@@ -126,10 +125,11 @@ if ($Autorizacion == true) {
         <!-- <link rel="stylesheet" href="./../../../styles/css/stripePayment/stripeForm.css">-->
     <link rel="stylesheet" href="./../../../styles/css/stripePayment/stripeForm.css"> 
     <!-- <link rel="stylesheet" href="../../../styles/css/eventos-cursos/eventos-cursos.css"> -->
-    <!-- FOR NAVBAR SUBMENUS -->
+    <!-- JQUERY FOR AJAX -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
+    <!-- Sweet Alert2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>

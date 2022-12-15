@@ -57,6 +57,7 @@ if (!empty($_POST["btn_ingresar"])) {
                 timer: 1369,
                 timerProgressBar: true,
                 allowOutsideClick: false,
+                allowEscapeKey: false,
                 didOpen: () => {
                     Swal.showLoading()
                     const b = Swal.getHtmlContainer().querySelector('b')

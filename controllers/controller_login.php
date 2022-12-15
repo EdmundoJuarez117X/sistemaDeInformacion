@@ -91,7 +91,7 @@ if (!empty($_POST["btn_ingresar"])) {
 
                         } else {
                             //Ejecutamos la sentencia SQL
-                            $sql = $connection->query("SELECT * FROM master WHERE email_master	='$email' AND password_master='$md5EncryptionP4ss'");
+                            $sql = $connection->query("SELECT * FROM master WHERE email_master	='$email' AND password_master='$password'");
                             //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                             if ($datos = $sql->fetch_object()) {
                                 $_SESSION["id_master"] = $datos->id_master;
@@ -114,6 +114,7 @@ if (!empty($_POST["btn_ingresar"])) {
                                     timer: 1369,
                                     timerProgressBar: true,
                                     allowOutsideClick: false,
+                                    allowEscapeKey: false,
                                     didOpen: () => {
                                         Swal.showLoading()
                                         const b = Swal.getHtmlContainer().querySelector('b')
@@ -144,7 +145,6 @@ if (!empty($_POST["btn_ingresar"])) {
         echo "Correo o Contraseña no ingresados";
     }
     if ($Autorizacion == true) {
-
         //Redireccionamos al enlace proporcionado dependiendoe el usuario
         header("location:./views/$url");
     }
