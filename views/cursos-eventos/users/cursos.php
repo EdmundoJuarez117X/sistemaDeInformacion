@@ -41,7 +41,7 @@ if (empty($_SESSION["subMat"])) {
                     <div class="sidebar">
                         <ul class="">
                             <?php
-                                if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"]=="DOC" or $_SESSION["subMat"] == "Al") {
+                                if ($_SESSION["subMat"]=="DOC" or $_SESSION["subMat"] == "Al") {
                                     echo '
                                     <li class="">
                                         <a class="" href="../../dashboard/inicio.php">
@@ -49,13 +49,6 @@ if (empty($_SESSION["subMat"])) {
                                             <h3>Dashboard</h3>
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a class="" href="../../stripeInscrip/pago/index.php">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Inscripciones</h3>
-                                        </a>
-                                    </li>
-                                    
                                     <li class="active">
                                         <a class="dropdown-toggleCursos">
                                             <span class="material-icons-sharp">import_contacts</span>
@@ -77,15 +70,6 @@ if (empty($_SESSION["subMat"])) {
                                             </li>
                                         </ul>
                                     </li>
-                                    
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">mail_outline</span>
-                                            <h3>Mensajes</h3>
-                                            <span class="message-count">26</span>
-                                        </a>
-                                    </li>
-                                    
                                     <li class="CloseSession">
                                         <a href="../../../controllers/controller_logout.php">
                                             <span class="material-icons-sharp">logout</span>

@@ -42,89 +42,7 @@ if (empty($_SESSION["subMat"])) {
                     <div class="sidebar">
                         <ul class="">
                             <?php
-                                if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"]=="DOC" or $_SESSION["subMat"] == "Al") {
-                                    echo '
-                                    <li class="active">
-                                        <a class="" href="inicio.php">
-                                            <span class="material-icons-sharp">grid_view</span>
-                                            <h3>Dashboard</h3>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a class="" href="../stripeInscrip/pago/index.php">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Inscripciones</h3>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="">
-                                        <a class="dropdown-toggleCursos">
-                                            <span class="material-icons-sharp">import_contacts</span>
-                                            <h3>Cursos</h3>
-                                            <span class="material-icons-sharp arrow_down second-arrow">keyboard_arrow_down</span>
-                                        </a>
-                                        <ul class="dropdown-menuCursos">
-                                            <li>
-                                                <a class="dropdown-item" href="../../cursos-eventos/users/cursos.php">
-                                                    <span class="material-icons-sharp">import_contacts</span>
-                                                    <h3>Cursos</h3>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="../../cursos-eventos/users/mis-cursos.php">
-                                                    <span class="material-icons-sharp">history</span>
-                                                    <h3>Mis cursos</h3>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">mail_outline</span>
-                                            <h3>Mensajes</h3>
-                                            <span class="message-count">26</span>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="CloseSession">
-                                        <a href="./../../controllers/controller_logout.php">
-                                            <span class="material-icons-sharp">logout</span>
-                                            <h3>Cerrar Sesión</h3>
-                                        </a>
-                                    </li>
-                                    ';
-                                }else if($_SESSION["subMat"] == "PF"){
-                                    echo '
-                                    <li class="active">
-                                        <a class="" href="inicio.php">
-                                            <span class="material-icons-sharp">grid_view</span>
-                                            <h3>Dashboard</h3>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a class="" href="../stripeInscrip/pago/index.php">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Inscripciones</h3>
-                                        </a>
-                                    </li>                            
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">mail_outline</span>
-                                            <h3>Mensajes</h3>
-                                            <span class="message-count">26</span>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="CloseSession">
-                                        <a href="./../../controllers/controller_logout.php">
-                                            <span class="material-icons-sharp">logout</span>
-                                            <h3>Cerrar Sesión</h3>
-                                        </a>
-                                    </li>
-                                    ';
-                                }
-                                else{
+                                if ($_SESSION["subMat"]=="ADM" or $_SESSION["subMat"] == "MST") {
                                     echo '
                                     <li class="">
                                         <a class="" href="../../dashboard/inicio.php">
@@ -132,68 +50,6 @@ if (empty($_SESSION["subMat"])) {
                                             <h3>Dashboard</h3>
                                         </a>
                                     </li>
-
-                                    <li class="">
-                                        <a class="" href="../../stripeInscrip/public/checkout.php">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Incripciones</h3>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">person</span>
-                                            <h3>Clientes</h3>
-                                        </a>
-                                    </li>
-                                    
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">report</span>
-                                            <h3>Reportes</h3>
-                                        </a>
-                                    </li>
-
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">add</span>
-                                            <h3>Agregar Producto</h3>
-                                        </a>
-                                    </li>
-
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">settings</span>
-                                            <h3>Ajustes</h3>
-                                        </a>
-                                    </li>
-
-                                    <li class="">
-                                        <a class="dropdown-toggle" href="#">
-                                            <span class="material-icons-sharp">paid</span>
-                                            <h3>Pagos</h3>
-                                            <span class="material-icons-sharp arrow_down first-arrow">keyboard_arrow_down</span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="#">
-                                                    <span class="material-icons-sharp">credit_card</span>
-                                                    <h3>Tarjeta de Crédito</h3>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">
-                                                    <span class="material-icons-sharp">local_atm</span>
-                                                    <h3>Efectivo</h3>
-                                                </a>
-                                            </li>
-
-                                            <!-- <li>
-                                                <hr class="dropdown-divider">
-                                            </li> -->
-
-                                        </ul>
-                                    </li>
-
                                     <li class="active">
                                         <a class="dropdown-toggleCursos" href="#">
                                             <span class="material-icons-sharp">import_contacts</span>
@@ -232,14 +88,6 @@ if (empty($_SESSION["subMat"])) {
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    
-                                    <li class="">
-                                        <a class="" href="#">
-                                            <span class="material-icons-sharp">mail_outline</span>
-                                            <h3>Mensajes</h3>
-                                            <span class="message-count">26</span>
-                                        </a>
                                     </li>
                                     <li class="">
                                         <a class="" href="../../panelSeg/segAsp.php">
@@ -400,15 +248,6 @@ if (empty($_SESSION["subMat"])) {
                 </div>
             </div>
             <!-- Script for navbar arrows and show the elements -->
-            <script>
-                $('.dropdown-toggle').click(function(){
-                    $('aside .sidebar ul .dropdown-menu').toggleClass("show");
-                    $('aside .sidebar ul .first-arrow').toggleClass("rotate");
-                });
-                $('aside .sidebar ul li').click(function(){
-                    $(this).addClass("active").siblings().removeClass("active");
-                });
-            </script>
             <script>
                 $('.dropdown-toggleCursos').click(function() {
                     $('aside .sidebar ul .dropdown-menuCursos').toggleClass("show");
