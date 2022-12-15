@@ -16,6 +16,7 @@ if (empty($_SESSION["subMat"])) {
         
             <!-- CSS STYLESHEET-->
             <link rel="stylesheet" href="../../../styles/css/eventos-cursos/eventos-cursos.css">
+            <link rel="shortcut icon" type="image/x-icon" href="../../../img/loginImages/EducationSchool.svg" />
             
             <!-- FOR NAVBAR SUBMENUS -->
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
