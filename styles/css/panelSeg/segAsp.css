@@ -409,43 +409,43 @@ main .insights small {
 /* ***********************RECENT ORDERS ******************************/
 main .recent-orders{
     margin-top: 2rem;
+    overflow-x:auto;
 }
 
 main .recent-orders h2{
     margin-bottom: 0.8rem;
 }
 
-main .recent-orders table{
-    background: var(--color-white);
-    width: 100%;
-    border-radius: var(--card-border-radius);
-    padding: var(--card-padding);
-    text-align: center;
-    box-shadow: var(--box-shadow);
-    transition: all 300ms ease;
-    overflow: hidden;
-    overflow-y: scroll;
+main .recent-orders .a-curso-info {
+    font-weight:500;
+    text-decoration-line:underline;
 }
 
-main .recent-orders table:hover{
-    box-shadow: none;
+main .recent-orders .a-span-edit,
+main .recent-orders .btn-visible-course {
+    background: none;
+    color: var(--color-dark);
+    cursor: pointer;
 }
 
-main table tbody td{
-    height: 2.8rem;
-    border-bottom: 1px solid var(--color-light);
-    color: var(--color-dark-variant);
-}
-
-main table tbody tr:last-child td{
+.btnSeg{
+    background-color: var(--color-dark); 
     border: none;
+    color: var(--color-white);
+    margin-top: 19px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    border-radius:25px;
+    box-shadow: var(--box-shadow);
+    transition: all 369ms ease;
+    cursor: pointer;
 }
 
-main .recent-orders a{
-    text-align: center;
-    display: block;
-    margin: 1rem auto;
-    color: var(--color-primary);
+.btnSeg:hover{
+    box-shadow: none;
 }
 
 /* ======================== RIGHT ============================== */
@@ -464,7 +464,7 @@ main .recent-orders a{
 }
 
 .right .theme-toggler{
-    background: var(--color-info-light);
+    background: var(--color-light);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -594,6 +594,404 @@ main .recent-orders a{
     font-weight: 600;
 }
 
+/* -------------- TABLA --------------- */
+main .insights-table{
+    display: grid;
+    align-items: center;
+    text-align: center;
+    gap: 1.6rem;
+    height: 590px;
+}
+
+.table-fixed {
+    background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    height: 500px;
+}
+
+.table-fixed tbody {
+    height: 400px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed td,
+.table-fixed th {
+    display: block;
+}
+
+.table-fixed tbody td,
+.table-fixed thead > tr > th {
+    float: left;
+}
+
+.table-fixed tr th,
+.table-fixed tr td {
+    width: 95px;
+    height: 4rem;
+    padding: 15px 0 0 0;
+}
+
+.table-fixed tbody td{
+    border-bottom: 1px solid var(--color-light);
+    color: var(--color-dark-variant);
+}
+
+.table-fixed tbody tr:last-child td{
+    border: none;
+}
+
+.table-fixed tbody td a {
+    font-size: 12px;
+}
+
+.table-fixed tbody td a:hover {
+    color: var(--color-primary);
+}
+
+.table-fixed tbody td a span,
+.table-fixed tbody td button {
+    background: var(--color-white);
+    border-radius: 50%;
+    color: var(--color-dark);
+}
+
+/* --------- MEDIA QUERY ----------*/
+
+@media only screen and (max-width:1074px) {
+    .table-fixed tr th,
+    .table-fixed tr td {
+        width: 70px;
+        height: 4rem;
+        padding: 10px 0 0 0;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .table-fixed tr th,
+    .table-fixed tr td {
+        width: 110px;
+        height: 4rem;
+        padding: 10px 0 0 0;
+    }
+}
+
+@media only screen and (max-width:280px) {
+    .table-fixed tr th {
+        margin-bottom: 10px;
+    }
+    .table-fixed tr th,
+    .table-fixed tr td {
+        width: 62px;
+        height: 3rem;
+        padding: 15px 0 0 0;
+    }
+}
+/* ------------- FIN HISTORIAL -------------*/
+
+/* =============== FORMULARIO =================*/
+main .insights-form{
+    display: grid;
+    align-items: center;
+    text-align: center;
+    gap: 1.6rem;
+    margin-bottom: 20px;
+}
+
+main .insights-form > div{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    width: 100%
+}
+
+main .insights-form > div span{
+    background: var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--color-white);
+    font-size: 3rem;
+    float: left;
+    margin-right: 25px;
+    height: 60px;
+    width: 60px;
+}
+
+.sales-form .fields-middle {
+    width: 48%;
+    height: auto;
+    float: left;
+    margin-bottom: 7px;
+}
+
+.sales-form .first-middle {
+    margin-right: 20px;
+}
+
+.sales-form .third-middle {
+    width: 100%;
+}
+
+main .insights-form .sales-form h1 {
+    font-size: 22px;
+    margin-top: 15px;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.sales-form p {
+    margin-top: 10px;
+    text-align: left;
+    color: var(--color-dark);
+    font-family: 'poppins', sans-serif;
+}
+
+.sales-form .fields-middle a {
+    color: #47ABE2;
+}
+
+.sales-form input[type=text],
+input[type=number] {
+    width: 100%;
+    height: 25px;
+    margin-top: 5px;
+    border: 1px solid hsla(210, 4%, 80%, 0.993);
+    border-radius: 10px;
+    padding: 10px 15px;
+    background: var(--color-white);
+    color: var(--color-dark);
+    font-size: 13px;
+}
+
+.sales-form input[type=file] {
+    width: 100%;
+    height: 25px;
+    margin-top: 5px;
+}
+
+.sales-form .btn-action-form {
+    width: 200px;
+    height: 30px;
+    background-color: #47ABE2;
+    color: #fff;
+    border-radius: 13px;
+    margin-top: 25px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.sales-form .btn-action-form a {
+    color: #fff;
+}
+
+.sales-form textarea {
+    width: 100%;
+    height: 70px;
+    margin-top: 5px;
+    border: 1px solid hsla(210, 4%, 80%, 0.993);
+    border-radius: 10px;
+    padding: 10px 15px;
+    resize: none;
+    background: var(--color-white);
+    color: var(--color-dark);
+    font-size: 12px;
+}
+
+.sales-form select {
+    width: 100%;
+    height: 25px;
+    margin-top: 5px;
+    border: 1px solid hsla(210, 4%, 80%, 0.993);
+    border-radius: 10px;
+    padding: 0 15px;
+    background: var(--color-white);
+    color: var(--color-dark);
+    font-size: 13px;
+}
+
+.sales-form img {
+    width: 200px;
+    height: 100px;
+}
+
+/* =============== FORMATO REPORTES ===============*/
+main .sales-form .p-instructions {
+    font-weight: 600;
+}
+
+main .sales-form .p-resume-course {
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+}
+
+main .sales-form .p-resume-course-cantidad {
+    text-align: center;
+}
+
+.sales-form .p-courses-info {
+    font-size: 18px;
+}
+
+.third-middle p {
+    text-align: center;
+}
+
+main .sales-form .btn-action-see {
+    width: 130px;
+    height: 28px;
+    background-color: #47ABE2;
+    color: #fff;
+    border-radius: 13px;
+    margin-top: 32px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+main .sales-form .fields-thirds {
+    width: 30%;
+    height: auto;
+    float: left;
+    margin-bottom: 7px;
+}
+
+main .sales-form .third-thirds {
+    margin-top: 12px;
+}
+
+.sales-form .container-reportes-cursos {
+    background-color: var(--color-background);
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+.container-reportes-cursos .section-download-report {
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    margin-top: -8px;
+}
+
+.section-download-report button {
+    background: var(--color-white);
+    width: 100%;
+    height: 25px;
+    font-size: 12px;
+    color: var(--color-dark);
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.section-download-report button:hover {
+    box-shadow: 0 0 5px 0 grey;
+}
+
+main .sales-form .container-info-course {
+    width: 100%;
+    border-radius: 8px;
+    padding: 0 10px;
+    font-size: 12px;
+    box-shadow: 0 0 6px 0 rgb(99, 99, 99);
+    background: var(--color-white);
+}
+
+.sales-form .p-name-course-info {
+    text-align: center;
+    font-size: 14px;
+}
+
+.p-name-course-info a {
+    font-size: 12px;
+}
+
+.first-middle .first-date-info {
+    text-align: left;
+}
+
+.second-middle .second-date-info {
+    text-align: right;
+}
+
+.sales-form .p-description-course-info {
+    text-align: justify;
+}
+
+/* ================== USUARIOS REGISTRADOS PDF =====================*/
+.container-info-pdf {
+    margin: 50px auto;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 5px 0;
+    background-color: none;
+}
+
+.container-info-pdf .text-about-course {
+    margin-bottom: 20px;
+}
+
+.text-about-course h1 {
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+.container-info-pdf .table-register-user {
+    font-size: 12px;
+    width: 80%;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 25px;
+    box-shadow: 0 0 8px 0 grey;
+    background-color: #fff;
+    margin: auto;
+}
+
+.table-register-user tr th {
+    height: 3.5rem;
+}
+
+.table-register-user tr td {
+    height: 2.5rem;
+    border-bottom: 1px solid var(--color-light);
+
+}
+
+.table-register-user tr:last-child td{
+    border: none;
+}
+
+/* =============== MEDIA QUERIES ===============*/
+@media only screen and (min-width:150px) and (max-width:1074px){
+    /* ------------- REPORTES ------------ */
+	main .sales-form .third-thirds,
+    main .sales-form .first-thirds,
+    main .sales-form .second-thirds {
+		width: 100%;
+	}
+
+    .first-middle .first-date-info,
+    .second-middle .second-date-info {
+        width: 100%;
+        text-align: left;
+    }
+}
+
 /* =============== MEDIA QUERIES ===============*/
 @media screen and (max-width:1200px) {
     .container{
@@ -629,20 +1027,6 @@ main .recent-orders a{
         left: 50%;
         transform: translateX(-50%);
         margin: 2rem 0 0 8.8rem;
-    }
-
-    main .recent-orders table{
-        width: 83vw;
-    }
-
-    main table thead tr th:last-child, 
-    main table thead tr th:first-child{
-        display: none;
-    }
-
-    main table tbody tr td:last-child, 
-    main table tbody tr td:first-child{
-        display: none;
     }
 
 }
@@ -707,17 +1091,13 @@ main .recent-orders a{
 
     main .insights > div {
         width: 100%;
+        
     }
 
     main .recent-orders{
         position: relative;
         margin: 3rem 0 0 0;
         width: 100%;
-    }
-    
-    main .recent-orders table{
-        width: 100%;
-        margin: 0;
     }
 
     .right {
@@ -753,7 +1133,6 @@ main .recent-orders a{
         display: inline-block;
         background: transparent;
         cursor: pointer;
-        color: var(--color-dark);
         position: absolute;
         left: 1rem;
         font-size: 2rem;
@@ -762,29 +1141,112 @@ main .recent-orders a{
     .right .top button span{
         font-size: 2rem;
     }
+
+    .sales-form .fields-middle {
+        width: 100%;
+    }
 }
-
-
-.btnSeg{
-    background-color: var(--color-dark); 
-    border: none;
-    color: var(--color-white);
-    margin-top: 36px;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius:25px;
-    box-shadow: var(--box-shadow);
-    transition: all 369ms ease;
-    cursor: pointer;
-}
-
-.btnSeg:hover{
-    box-shadow: none;
-}
-
-.tableResp{
-    overflow-x:scroll;
+    /* 
+a:hover {
+    color: var(--color-success);
+  } */
+  .tableAspOf:hover, .tableAspOf:active {
+    background-color: var(--color-success);
+    color: white;
+    border-radius: var(--border-radius-1);
   }
+  table{
+    background-color: var(--color-dark);
+    border-radius: var(--border-radius-1);
+  }
+  th{
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    border: 1px solid var(--color-dark);
+    /* border-radius: var(--border-radius-1); */
+  }
+  tr{
+    color:var(--color-white);
+  }
+  tr:hover{
+    background-color: #D6EEEE;
+    color: var(--color-primary-variant);
+    /* border-radius: var(--border-radius-1); */
+  }
+  /* tr:hover {
+    background-color: #D6EEEE;
+    color: var(--color-primary-variant);
+    border-radius: var(--border-radius-1);
+  } */
+  /*For each row in a table with a border radius*/
+  /* td{
+    border-radius: var(--border-radius-1);
+  } */
+
+/*   
+  th:nth-child(even),td:nth-child(even) {
+    background-color: rgba(150, 212, 212, 0.4);
+  } */
+  .tableResp{
+    overflow-x:auto;
+  }
+
+  .input-field {
+    max-width: 333px;
+    width: 50%;
+    background-color: var(--color-white);
+    margin: 4px 0;
+    height: 39px;
+    border-radius: 55px;
+    display: grid;
+    padding: 0 0.3rem;
+    position: relative;
+  }
+  
+  /* .input-field i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+  } */
+  
+  /* .input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+  } */
+  .input-field {
+    background-color: var(--color-info-light);
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+  }
+  
+  .input-field input::placeholder {
+    color: rgb(99, 99, 99);
+    font-weight: 500;
+  }
+
+  .sales-form .fields-middle {
+    width: 48%;
+    height: auto;
+    float: left;
+    margin-bottom: 7px;
+}
+
+.sales-form .first-middle {
+    margin-right: 20px;
+}
+
+.second-middle .second-date-info {
+    text-align: right;
+}
+
