@@ -1,7 +1,8 @@
 <?php
-include '../model/connection.php';
 
 session_start();
+include '../model/connection.php';
+
 if ($_POST['type'] == 1) {
 	$nombre_persona = $_POST['nombre_persona'];
 	$apellido_paterno = $_POST['apellido_paterno'];
@@ -36,13 +37,14 @@ if ($_POST['type'] == 1) {
 				$sqlToGetID = $connection->query("SELECT * FROM `master` WHERE `email_master`='$email'");
 				//Obtenemos el registro de los datos y guardamos algunos para control de acceso
 				if ($datosID = $sqlToGetID->fetch_object()) {
-					$_SESSION["id_master"] = $datosID->id_master;
-					$_SESSION["estatus_persona"] = $datosID->estatus_Master;
-					$_SESSION["subMat"] = "MST";
-					$_SESSION["nombre_master"] = $nombre_persona;
-					$_SESSION["apellido_paternoMaster"] = $apellido_paterno;
-					$_SESSION["email_master"] = $email;
+					// $_SESSION["id_master"] = $datosID->id_master;
+					// $_SESSION["estatus_persona"] = $datosID->estatus_Master;
+					// $_SESSION["subMat"] = "MST";
+					// $_SESSION["nombre_master"] = $nombre_persona;
+					// $_SESSION["apellido_paternoMaster"] = $apellido_paterno;
+					$_SESSION["email_masterC"] = $email;
 					// $_SESSION["enviar_correo"] = "ENV";
+					include './../controllers/phpMailer/enviarCorreoMst.php';
 					echo json_encode(array("statusCode" => 200));
 				}else{
 					echo json_encode(array("statusCode" => 201));

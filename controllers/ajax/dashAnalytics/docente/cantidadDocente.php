@@ -1,9 +1,6 @@
 <?php
-
-
 include("../../../../model/connection.php");
-// $connection = new mysqli("localhost", "root", "", "sistema_escolar");
-// $connection->set_charset('utf8');
+
 $db = $connection;
 $sn = 0;
 
@@ -13,8 +10,8 @@ function fetch_data()
     
     
 
-    $query = "SELECT `genero_Alumno` 
-     FROM `alumno`";
+    $query = "SELECT `genero_Docente` 
+     FROM `docente`";
 
     $exec = mysqli_query($db, $query);
     if (mysqli_num_rows($exec) > 0) {

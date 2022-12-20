@@ -21,19 +21,18 @@ show_data($fetchData);
 
 function show_data($fetchData)
 {
-  echo '<table border="1">
+  echo '<table >
         <tr>
-            <th>#</th>
-            <th>Primer Nombre</th>
-            <th>Apellido Paterno</th>
+            
+            <th>Nombre</th>
+            <!--<th>Apellido</th>-->
             <th>Edad</th>
             <th>Género</th>
-            <th>Correo Electronico</th>
-            <th>Numero de Teléfono</th>
+            <th>No. Tel</th>
             <th>Nombre de la Escuela</th>
-            <th>Nivel Educativo</th>
+            <!--<th>Nivel Educativo</th>-->
             <th>Oferta Académica</th>
-            <th>Acción</th>
+            <!--<th>Acción</th>-->
             <th>Descartar</th>
             
         </tr>';
@@ -44,48 +43,48 @@ function show_data($fetchData)
       if ($data['nombre_nivelEducativo'] == 'Superior') {
         if ($data['nombre_esp'] != "") {
           echo "<tr>
-          <td>" . $sn . "</td>
-          <td>" . $data['nombre_aspirante'] . "</td>
-          <td>" . $data['apellido_paternoAspirante'] . "</td>
+          
+          <td>" . $data['nombre_aspirante'] . " ". $data['apellido_paternoAspirante'] ."</td>
+          <!--<td>" . $data['apellido_paternoAspirante'] . "</td>-->
           <td>" . $data['edad_Aspirante'] . "</td>
           <td>" . $data['genero_Aspirante'] . "</td>
-          <td class='primary'>" . $data['email_aspirante'] . "</td>
-          <td>" . $data['numero_tel_Aspirante'] . "</td>
+          <!--<td class='primary'>" . $data['email_aspirante'] . "</td>-->
+          <td class='primary'>" . $data['numero_tel_Aspirante'] . "</td>
           <td>" . $data['nombre_escuela'] . "</td>
-          <td>" . $data['nombre_nivelEducativo'] . "</td>
+          <!--<td>" . $data['nombre_nivelEducativo'] . "</td>-->
           <td>" . $data['nombre_facultad'] . " ".$data['nombre_esp']."</td>
-          <td><a style='color:var(--color-success);'href='crud-form.php?edit=" . $data['id_aspirante'] . "'>Actualizar</a></td>
+          <!--<td><a style='color:var(--color-success);'href='crud-form.php?edit=" . $data['id_aspirante'] . "'>Actualizar</a></td>-->
           <td class='danger'><a style='color:var(--color-danger);' href='crud-form.php?delete=" . $data['id_aspirante'] . "'>Eliminar</a></td>
         </tr>";
         } else if ($data['nombre_carrera'] != "") {
           echo "<tr>
-          <td>" . $sn . "</td>
-          <td>" . $data['nombre_aspirante'] . "</td>
-          <td>" . $data['apellido_paternoAspirante'] . "</td>
+          
+          <td>" . $data['nombre_aspirante'] . " ". $data['apellido_paternoAspirante'] ."</td>
+          <!--<td>" . $data['apellido_paternoAspirante'] . "</td>-->
           <td>" . $data['edad_Aspirante'] . "</td>
           <td>" . $data['genero_Aspirante'] . "</td>
-          <td class='primary'>" . $data['email_aspirante'] . "</td>
-          <td>" . $data['numero_tel_Aspirante'] . "</td>
+          <!--<td class='primary'>" . $data['email_aspirante'] . "</td>-->
+          <td class='primary'>" . $data['numero_tel_Aspirante'] . "</td>
           <td>" . $data['nombre_escuela'] . "</td>
-          <td>" . $data['nombre_nivelEducativo'] . "</td>
+          <!--<td>" . $data['nombre_nivelEducativo'] . "</td>-->
           <td>" . $data['nombre_facultad'] . " ".$data['nombre_carrera']."</td>
-          <td><a style='color:var(--color-success);'href='crud-form.php?edit=" . $data['id_aspirante'] . "'>Actualizar</a></td>
+          <!--<td><a style='color:var(--color-success);'href='crud-form.php?edit=" . $data['id_aspirante'] . "'>Actualizar</a></td>-->
           <td class='danger'><a style='color:var(--color-danger);' href='crud-form.php?delete=" . $data['id_aspirante'] . "'>Eliminar</a></td>
         </tr>";
         }
       } else {
         echo "<tr>
-          <td>" . $sn . "</td>
-          <td>" . $data['nombre_aspirante'] . "</td>
-          <td>" . $data['apellido_paternoAspirante'] . "</td>
+          
+          <td>" . $data['nombre_aspirante'] . " ". $data['apellido_paternoAspirante'] ."</td>
+          <!--<td>" . $data['apellido_paternoAspirante'] . "</td>-->
           <td>" . $data['edad_Aspirante'] . "</td>
           <td>" . $data['genero_Aspirante'] . "</td>
-          <td class='primary'>" . $data['email_aspirante'] . "</td>
-          <td>" . $data['numero_tel_Aspirante'] . "</td>
+          <!--<td class='primary'>" . $data['email_aspirante'] . "</td>-->
+          <td class='primary'>" . $data['numero_tel_Aspirante'] . "</td>
           <td>" . $data['nombre_escuela'] . "</td>
-          <td>" . $data['nombre_nivelEducativo'] . "</td>
+          <!--<td>" . $data['nombre_nivelEducativo'] . "</td>-->
           <td><--</td>
-          <td><a style='color:var(--color-success);'href='./../../controllers/ajax/segAsp/backend-scriptUpgrade.php?edit=" . $data['id_aspirante'] . "'>Actualizar</a></td>
+          <!--<td><a style='color:var(--color-success);'href='./../../controllers/ajax/segAsp/backend-scriptUpgrade.php?edit=" . $data['id_aspirante'] . "'>Actualizar</a></td>-->
           <td class='danger'><a style='color:var(--color-danger);' href='./../../controllers/ajax/segAsp/backend-scriptDelete.php?delete=" . $data['id_aspirante'] . "'>Eliminar</a></td>
         </tr>";
       }

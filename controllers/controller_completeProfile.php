@@ -236,7 +236,6 @@ if (!empty($_POST["btn_completarPerfil"])) {
                         if ($datos = $connection->query($sqlAUP) === true) {
                             //Autorizamos la redireccion a otro sitio (Dashboard)
                             $Autorizacion = true;
-                            include '../../controllers/phpMailer/enviarCorreo.php';
 
 
                         }
@@ -266,7 +265,6 @@ if (!empty($_POST["btn_completarPerfil"])) {
                             if ($datos = $connection->query($sqlAlUP) === true) {
                                 //Autorizamos la redireccion a otro sitio (Dashboard)
                                 $Autorizacion = true;
-                                include '../../controllers/phpMailer/enviarCorreoAl.php';
 
 
                             }
@@ -294,7 +292,6 @@ if (!empty($_POST["btn_completarPerfil"])) {
                                 if ($datos = $connection->query($sqlUP) === true) {
                                     //Autorizamos la redireccion a otro sitio (Dashboard)
                                     $Autorizacion = true;
-                                    include '../../controllers/phpMailer/enviarCorreoPF.php';
                                 }
                             }
                         }
@@ -343,7 +340,7 @@ if (!empty($_POST["btn_completarPerfil"])) {
                                         if ($datosMU = $connection->query($sqlMU) === true) {
                                             //Autorizamos la redireccion a otro sitio (Dashboard)
                                             $Autorizacion = true;
-                                            include '../../controllers/phpMailer/enviarCorreoMst.php';
+                                            
                                         }
                                     }
                                 }
@@ -369,7 +366,7 @@ if (!empty($_POST["btn_completarPerfil"])) {
                                             if ($datosAU = $connection->query($sqlAU) === true) {
                                                 //Autorizamos la redireccion a otro sitio (Dashboard)
                                                 $Autorizacion = true;
-                                                include '../../controllers/phpMailer/enviarCorreoAdm.php';
+                                                
                                             }
                                         }
                                     }

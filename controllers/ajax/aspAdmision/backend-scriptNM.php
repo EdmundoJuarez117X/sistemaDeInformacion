@@ -30,9 +30,9 @@ function show_data($fetchData){
             <th>Nombre de la Escuela</th>
             <th>Dirección</th>
             <th>Número de teléfono</th>
-            <th>Sector</th> 
-            <th>Periodo  Escolar</th> 
-            <th>Modalidad Escolar</th> 
+            <!--<th>Sector</th> -->
+            <!--<th>Periodo  Escolar</th> -->
+            <!--<th>Modalidad Escolar</th> -->
             <th>Exámen de Admisión</th>
             <th>Preinscripción</th> 
         </tr>';
@@ -45,9 +45,9 @@ function show_data($fetchData){
           <td>".$data['nombre_escuela']."</td>
           <td>".$data['direccion_escuela']."</td>
           <td>".$data['numero_telefonico']."</td>
-          <td>".$data['sector_escuela']."</td>
-          <td>".$data['nombre_periodoE']."</td>
-          <td>".$data['nombre_modalidad']."</td>
+          <!--<td>".$data['sector_escuela']."</td>-->
+          <!--<td>".$data['nombre_periodoE']."</td>-->
+          <!--<td>".$data['nombre_modalidad']."</td>-->
           <td>$".$data['monto'] ."</td>
           <td><a class='primary tableAspOf' href='./../../controllers/ajax/aspAdmision/backPeregistro-script.php?id_escuela=".$data['id_escuela']."&nombre_escuela=".$data['nombre_escuela']."&id_nivelEducativo=".$data['id_nivelEducativo']."&nombre_nivelEducativo=".$data['nombre_nivelEducativo']."'>Preinscribirme</a></td>
           

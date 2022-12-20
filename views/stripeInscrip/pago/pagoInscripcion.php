@@ -124,9 +124,9 @@ if ($Autorizacion == true) {
     <link rel="shortcut icon" type="image/x-icon" href="./../../img/loginImages/EducationSchool.svg" />
 
     <!-- CSS only -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
-    <!-- <link rel="stylesheet" href="./../../../styles/css/stripePayment/stripeForm.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> 
+    
     <link rel="stylesheet" href="./../../../styles/css/stripePayment/stripeForm.css">
     <!-- <link rel="stylesheet" href="../../../styles/css/eventos-cursos/eventos-cursos.css"> -->
     <!-- jquery for ajax -->
@@ -596,17 +596,17 @@ if ($Autorizacion == true) {
                 <div class="insights-form">
                     <div class="sales-form">
                         <div>
-                            <h1>Antes de pagar espera a que un agente de la escuela se comunique contigo</h1>
+                            <!-- <h1>Antes de pagar espera a que un agente de la escuela se comunique contigo</h1> -->
                             <h2 class="success">Pago de Inscripción</h2>
                         </div>
 
-                        <label for="exampleInputEmail1">Correo de tu cuenta escolar</label>
+                        <p for="exampleInputEmail1">Correo de tu cuenta escolar</p>
 
                         <input type="email" required name="email" class="form-control" id="exampleInputEmail1"
                             placeholder="Correo electrónico" value="<?php echo $emailPag;?>">
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Monto total</label>
+                            <p for="exampleInputPassword1">Monto total</p>
                             <?php
                             include "./../../../model/connection.php";//DB Connection
                             if ($_SESSION["subMat"] == "ASP") {//Busqueda de aspirante
@@ -759,7 +759,7 @@ if ($Autorizacion == true) {
                         <div><input class="unselectable" type="number" value="<?php echo monto ?>" name="total"
                                 id="exampleInputPassword1" readonly="readonly" hidden></div>
 
-                        <label for="card-element">Tarjeta de crédito o debito</label>
+                        <p for="card-element">Tarjeta de crédito o debito</p>
                         <div id="card-element">
                             <!-- a Stripe Element will be inserted here. -->
                         </div>
@@ -826,18 +826,36 @@ if ($Autorizacion == true) {
                         </small>
                     </div>
                     <div class="profile-photo">
-                        <img src="./../../../img/altindeximages/avatar.svg" alt="">
+                    <a href="./../../register/completeProfileDash.php">
+                            <img src="./../../../img/altindeximages/avatar.svg" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
             <!------------------------------- END OF top / top ------------------------>
             <div class="recent-updates">
-                <h2>Publicidad</h2>
+            <?php
+            if ($_SESSION['subMat'] == "Al" || $_SESSION["subMat"]=="ASP" || $_SESSION['subMat'] == "DOC") {
+                echo '
+                <div class="recent-updates">
+                    <h2>Cursos próximos a iniciar</h2>
+                    <div class="updates" id="cursos-proximos"></div>
+                </div>
+                ';
+            } else if ($_SESSION['subMat'] == "ADM" || $_SESSION['subMat'] == "MST") {
+                echo '
+                <div class="recent-updates">
+                    <h2>Cursos próximos a iniciar</h2>
+                    <div class="updates" id="cursos-proximos"></div>
+                </div>
+                ';
+            }
+            ?>
 
             </div>
             <!-- END OF RECENT UPDATES -->
             <div class="sales-analytics">
-                <h2>Otro apartado</h2>
+                <!-- <h2>Otro apartado</h2> -->
                 <!-- <div class="item online">
                                     <div class="icon">
                                         <span class="material-icons-sharp">shopping_cart</span>
@@ -916,6 +934,7 @@ if ($Autorizacion == true) {
 
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript" src="charge.js"></script>
+    <script src="../../../js/dashboard/cargar-cursos-proximosPagos.js"></script>
 
 </body>
 

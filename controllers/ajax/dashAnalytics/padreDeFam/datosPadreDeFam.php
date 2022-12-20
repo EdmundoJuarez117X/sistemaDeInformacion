@@ -26,8 +26,8 @@ function fetch_data()
     
     
 
-    $query = "SELECT `genero_Alumno` 
-     FROM `alumno`";
+    $query = "SELECT `genero_padreDeFam` 
+     FROM `padreDeFamilia`";
 
     $exec = mysqli_query($db, $query);
     if (mysqli_num_rows($exec) > 0) {
@@ -51,13 +51,13 @@ function show_data($fetchData)
     if (count($fetchData) > 0) {
         $sn = 0;
         foreach ($fetchData as $data) {
-            if ($data['genero_Alumno'] == "Masculino") {
+            if ($data['genero_padreDeFam'] == "Masculino") {
                 $masculino ++;
-            } else if ($data['genero_Alumno'] == "Femenino") {
+            } else if ($data['genero_padreDeFam'] == "Femenino") {
                 $femenino ++;
-            } else if ($data['genero_Alumno'] == "Otro") {
+            } else if ($data['genero_padreDeFam'] == "Otro") {
                 $otro ++;
-            } else if ($data['genero_Alumno'] == "Prefiero No Decir") {
+            } else if ($data['genero_padreDeFam'] == "Prefiero No Decir") {
                 $prefieroNoDecir++;
             }
 
@@ -72,9 +72,9 @@ function show_data($fetchData)
 
 
 echo "<script>
-const ctx = document.getElementById('myChart');
+const ctx3 = document.getElementById('myChartPadreDeFam');
 
-new Chart(ctx, {
+new Chart(ctx3, {
     type: 'doughnut',
     data: {
         labels: ['Masculino','Femenino','Otro','Pref. No Decir'],

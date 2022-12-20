@@ -423,6 +423,8 @@ main .recent-orders table{
     text-align: center;
     box-shadow: var(--box-shadow);
     transition: all 300ms ease;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 main .recent-orders table:hover{

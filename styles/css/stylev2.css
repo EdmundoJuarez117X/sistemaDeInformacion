@@ -398,3 +398,56 @@ form.sign-in-form {
     left: 50%;
   }
 }
+
+.info-noticaciones-cursos {
+  height: 490px;
+  width: 100%;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-3);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 15px;
+}
+
+.info-noticaciones-cursos::-webkit-scrollbar {
+  --webkit-appearance: none;
+}
+
+.info-noticaciones-cursos::-webkit-scrollbar:vertical {
+  width: 5px;
+}
+
+.info-noticaciones-cursos::-webkit-scrollbar-thumb {
+  background: #677483;
+  border-radius: 25px;
+}
+
+.info-noticaciones-cursos .update {
+  height: auto;
+  padding: 5px;
+}
+
+.info-noticaciones-cursos .profile-photo {
+  width: 10px;
+  height: 10px;
+}
+
+.info-noticaciones-cursos .message {
+  text-align: justify;
+}
+
+.info-noticaciones-cursos .btn-actions-notify {
+  background: none;
+  color: var(--color-dark);
+  cursor: pointer;
+}
+
+.info-noticaciones-cursos .btn-actions-notify span {
+  font-size: 17px;
+  margin-left: 0px;
+}
+
+.info-noticaciones-cursos .btn-actions-notify span:hover {
+  color: red;
+}

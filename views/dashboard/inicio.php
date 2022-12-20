@@ -105,7 +105,7 @@ if (empty($_SESSION["subMat"])) {
             // $url = 'aspOfertaAcadem/index.php';
         }
 
-    } else if ($_SESSION["estatus_persona"] == /*Cambiar ese status por el deseado*/"PROCADM") {
+    } else if ($_SESSION["estatus_persona"] == "PROCADM") {
         //Agregar que sucede 
         if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
             // last request was more than 30 minutes ago
@@ -120,7 +120,7 @@ if (empty($_SESSION["subMat"])) {
             $url = 'stripeInscrip/pago/pagoInscripcion.php';
         }
 
-    } else if ($_SESSION["estatus_persona"] == /*Cambiar ese status por el deseado*/"INSCRITO") {
+    } else if ($_SESSION["estatus_persona"] == "INSCRITO") {
         if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
             // last request was more than 30 minutes ago
             session_unset(); // unset $_SESSION variable for the run-time 
@@ -175,7 +175,7 @@ if ($Autorizacion == true) {
 <html lang="es-MX">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Material Icons CDN -->
@@ -226,7 +226,7 @@ if ($Autorizacion == true) {
                     if ($_SESSION["subMat"] == "ASP") {
                         echo '
                             <li class="active">
-                                <a class="" href="inicio.php">
+                                <a class="" href="#">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
@@ -238,13 +238,13 @@ if ($Autorizacion == true) {
                                 </a>
                             </li>
                             
-                            <li class="">
+                            <!--<li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">mail_outline</span>
                                     <h3>Mensajes</h3>
                                     <span class="message-count">26</span>
                                 </a>
-                            </li>
+                            </li>-->
                             
                             <li class="CloseSession">
                                 <a href="./../../controllers/controller_logout.php">
@@ -256,7 +256,7 @@ if ($Autorizacion == true) {
                     } else if ($_SESSION["subMat"] == "PF" and $_SESSION["estatus_persona"] == "ASIGPREIN") {
                         echo '
                             <li class="active">
-                                <a class="" href="inicio.php">
+                                <a class="" href="#">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
@@ -267,13 +267,13 @@ if ($Autorizacion == true) {
                                 <h3>Inscripciones</h3>
                             </a>
                             </li>                
-                            <li class="">
+                            <!--<li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">mail_outline</span>
                                     <h3>Mensajes</h3>
                                     <span class="message-count">26</span>
                                 </a>
-                            </li>
+                            </li>-->
                             
                             <li class="CloseSession">
                                 <a href="./../../controllers/controller_logout.php">
@@ -285,19 +285,19 @@ if ($Autorizacion == true) {
                     } else if ($_SESSION["subMat"] == "PF" and $_SESSION["estatus_persona"] == "ASIGPAG") {
                         echo '
                             <li class="active">
-                                <a class="" href="inicio.php">
+                                <a class="" href="#">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
                             </li>
                                                      
-                            <li class="">
+                            <!--<li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">mail_outline</span>
                                     <h3>Mensajes</h3>
                                     <span class="message-count">26</span>
                                 </a>
-                            </li>
+                            </li>-->
                             
                             <li class="CloseSession">
                                 <a href="./../../controllers/controller_logout.php">
@@ -309,7 +309,7 @@ if ($Autorizacion == true) {
                     } else if ($_SESSION["subMat"] == "DOC") {
                         echo '
                             <li class="active">
-                                <a class="" href="inicio.php">
+                                <a class="" href="#">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
@@ -337,13 +337,13 @@ if ($Autorizacion == true) {
                                 </ul>
                             </li>
                             
-                            <li class="">
+                            <!--<li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">mail_outline</span>
                                     <h3>Mensajes</h3>
                                     <span class="message-count">26</span>
                                 </a>
-                            </li>
+                            </li>-->
                             
                             <li class="CloseSession">
                                 <a href="./../../controllers/controller_logout.php">
@@ -355,7 +355,7 @@ if ($Autorizacion == true) {
                     } else if ($_SESSION["subMat"] == "Al") {
                         echo '
                             <li class="active">
-                                <a class="" href="inicio.php">
+                                <a class="" href="#">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
@@ -383,13 +383,13 @@ if ($Autorizacion == true) {
                                 </ul>
                             </li>
                             
-                            <li class="">
+                            <!--<li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">mail_outline</span>
                                     <h3>Mensajes</h3>
                                     <span class="message-count">26</span>
                                 </a>
-                            </li>
+                            </li>-->
                             
                             <li class="CloseSession">
                                 <a href="./../../controllers/controller_logout.php">
@@ -401,7 +401,7 @@ if ($Autorizacion == true) {
                     } else {
                         echo '
                             <li class="active">
-                                <a class="" href="inicio.php">
+                                <a class="" href="#">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
@@ -415,17 +415,12 @@ if ($Autorizacion == true) {
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="./admmst/createAdm.php">
                                             <span class="material-icons-sharp">people</span>
-                                            <h3>Administradores</h3>
+                                            <h3>Admin/Master</h3>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="material-icons-sharp">people</span>
-                                            <h3>Masters</h3>
-                                        </a>
-                                    </li>
+                                    
                                     <!-- <li class="">
                                          <a class="" href="../stripeInscrip/pago/pagoExamAdm.php">
                                              <span class="material-icons-sharp">person</span>
@@ -450,7 +445,7 @@ if ($Autorizacion == true) {
                                     <li>
                                         <a class="dropdown-item" href="../cursos-eventos/admin/nuevo-curso.php">
                                             <span class="material-icons-sharp">add</span>
-                                            <h3>Nuego Curso</h3>
+                                            <h3>Nuevo Curso</h3>
                                         </a>
                                     </li>
                                     <li>
@@ -480,13 +475,13 @@ if ($Autorizacion == true) {
                                 </ul>
                             </li>
                             
-                            <li class="">
+                            <!--<li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">mail_outline</span>
                                     <h3>Mensajes</h3>
                                     <span class="message-count">26</span>
                                 </a>
-                            </li>
+                            </li>-->
                             <li class="">
                                 <a class="" href="./../panelSeg/segAsp.php">
                                     <span class="material-icons-sharp">admin_panel_settings</span>
@@ -547,12 +542,15 @@ if ($Autorizacion == true) {
                             <h1 id="docentesCantidad">0</h1>
                         </div>
                         <div class="progress">
-                            <svg class="svgCircle">
+                            <div>
+                                <canvas id="myChartDoc"></canvas>
+                            </div>
+                            <!-- <svg class="svgCircle">
                                 <circle cx='38' cy="38" r='36'></circle>
                             </svg>
                             <div class="number">
                                 <p>16%</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <small class="text-muted">Ultimas 24 horas</small>
@@ -566,12 +564,15 @@ if ($Autorizacion == true) {
                             <h1 id="padresDeFamCantidad">0</h1>
                         </div>
                         <div class="progress">
-                            <svg class="svgCircle">
+                            <div>
+                                <canvas id="myChartPadreDeFam"></canvas>
+                            </div>
+                            <!-- <svg class="svgCircle">
                                 <circle cx='38' cy="38" r='36'></circle>
                             </svg>
                             <div class="number">
                                 <p>44%</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <small class="text-muted">Ultimas 24 horas</small>
@@ -580,29 +581,39 @@ if ($Autorizacion == true) {
             </div>
             <!--------------------- END OF INSIGHTS ---------------------->
             <div class="recent-orders">
-                <h2>Pedidos Recientes</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre del Producto</th>
-                            <th>Número del Producto</th>
-                            <th>Método de Pago</th>
-                            <th>Estado</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--Example but now with js file
-                             <tr>
-                            <td>Foldable Mini Drone</td>
-                            <td>8564</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                    </tbody> -->
-                </table>
-                <a href="">Show All</a>
+                <?php
+                if ($_SESSION['subMat'] == "ADM" || $_SESSION['subMat'] == "MST") {
+                    //Desmarcar cuando se ocupe la plantilla de Pedidos recientes con el script de js "orders.js"
+                //     echo '
+                //     <h2>Pedidos Recientes</h2>
+                // <table>
+                //     <thead>
+                //         <tr>
+                //             <th>Nombre del Producto</th>
+                //             <th>Número del Producto</th>
+                //             <th>Método de Pago</th>
+                //             <th>Estado</th>
+                //             <th></th>
+                //         </tr>
+                //     </thead>
+                //     <tbody>
+                //         <!--Example but now with js file
+                //              <tr>
+                //             <td>Foldable Mini Drone</td>
+                //             <td>8564</td>
+                //             <td>Due</td>
+                //             <td class="warning">Pending</td>
+                //             <td class="primary">Details</td>
+                //         </tr>
+                //     </tbody> -->
+                // </table>
+                // <a href="">Show All</a>
+                //     ';
+                } else if ($_SESSION['subMat'] == "ASP" AND $_SESSION['estatus_persona'] == "ACTIVO" ) {
+
+                }
+                ?>
+
             </div>
         </main>
         <!---------------------------- END OF MAIN ------------------->
@@ -668,61 +679,75 @@ if ($Autorizacion == true) {
             if ($_SESSION['subMat'] == "Al" || $_SESSION['subMat'] == "DOC") {
                 echo '
                 <div class="recent-updates">
-                    <h2>Cursos próximos a iniciar</h2>
-                    <div class="updates" id="cursos-proximos"></div>
+                    <h2>Notificaciones</h2>
+                    <div class="info-noticaciones-cursos"  id="notificaciones-de-cursos"></div>
                 </div>
                 ';
             } else if ($_SESSION['subMat'] == "ADM" || $_SESSION['subMat'] == "MST") {
+                echo '
+                <div class="recent-updates">
+                    <h2>Notificaciones</h2>
+                    <div class="info-noticaciones-cursos"  id="notificaciones-de-cursos"></div>
+                </div>
+                ';
             }
             ?>
             <!-- END OF RECENT UPDATES -->
             <div class="sales-analytics">
-                <h2>Metricas de Ventas</h2>
-                <div class="item online">
-                    <div class="icon">
-                        <span class="material-icons-sharp">shopping_cart</span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>Pedidos en línea</h3>
-                            <small class="text-muted">Ultimas 24 horas</small>
-                        </div>
-                        <h5 class="success">+39%</h5>
-                        <h3>3849</h3>
-                    </div>
-                </div>
-                <div class="item offline">
-                    <div class="icon">
-                        <span class="material-icons-sharp">local_mall</span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>Pedidos Presenciales</h3>
-                            <small class="text-muted">Ultimas 24 horas</small>
-                        </div>
-                        <h5 class="danger">+17%</h5>
-                        <h3>1100</h3>
-                    </div>
-                </div>
-                <div class="item customers">
-                    <div class="icon">
-                        <span class="material-icons-sharp">person</span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>Nuevos clientes</h3>
-                            <small class="text-muted">Ultimas 24 horas</small>
-                        </div>
-                        <h5 class="success">+25%</h5>
-                        <h3>849</h3>
-                    </div>
-                </div>
-                <div class="item add-product">
-                    <div>
-                        <span class="material-icons-sharp">add</span>
-                        <h3>Agregar Producto</h3>
-                    </div>
-                </div>
+                <?php
+                if ($_SESSION['subMat'] == "ADM" || $_SESSION['subMat'] == "MST") {
+                    //Desmarcar cuando se ocupen metricas para ventas
+                //     echo '
+                //     <h2>Metricas de Ventas</h2>
+                // <div class="item online">
+                //     <div class="icon">
+                //         <span class="material-icons-sharp">shopping_cart</span>
+                //     </div>
+                //     <div class="right">
+                //         <div class="info">
+                //             <h3>Pedidos en línea</h3>
+                //             <small class="text-muted">Ultimas 24 horas</small>
+                //         </div>
+                //         <h5 class="success">+39%</h5>
+                //         <h3>3849</h3>
+                //     </div>
+                // </div>
+                // <div class="item offline">
+                //     <div class="icon">
+                //         <span class="material-icons-sharp">local_mall</span>
+                //     </div>
+                //     <div class="right">
+                //         <div class="info">
+                //             <h3>Pedidos Presenciales</h3>
+                //             <small class="text-muted">Ultimas 24 horas</small>
+                //         </div>
+                //         <h5 class="danger">+17%</h5>
+                //         <h3>1100</h3>
+                //     </div>
+                // </div>
+                // <div class="item customers">
+                //     <div class="icon">
+                //         <span class="material-icons-sharp">person</span>
+                //     </div>
+                //     <div class="right">
+                //         <div class="info">
+                //             <h3>Nuevos clientes</h3>
+                //             <small class="text-muted">Ultimas 24 horas</small>
+                //         </div>
+                //         <h5 class="success">+25%</h5>
+                //         <h3>849</h3>
+                //     </div>
+                // </div>
+                // <!--<div class="item add-product">
+                //     <div>
+                //         <span class="material-icons-sharp">add</span>
+                //         <h3>Agregar Producto</h3>
+                //     </div>
+                // </div>-->
+                //     ';
+                }
+                ?>
+
             </div>
         </div>
     </div>
@@ -749,16 +774,25 @@ if ($Autorizacion == true) {
         });
     </script>
 
-    <!-- SCRIPT JS -->
-    <script src="../../js/dashboard/orders.js"></script>
+    
     <script src="../../js/dashboard/inicio.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php
     if ($_SESSION['subMat'] == "Al" || $_SESSION['subMat'] == "DOC") {
-        echo '<script src="../../js/dashboard/cargar-cursos-proximos.js"></script>';
+        // echo '';
     } else if ($_SESSION['subMat'] == "ADM" || $_SESSION['subMat'] == "MST") {
-        echo ' <script id="alumnosChart"></script>
-        <script src="../../js/dashboardAnalytics/alumnos.js"></script>';
+        echo ' 
+        <script src="../../js/dashboard/cargar-cursos-proximos.js"></script>
+        <script id="alumnosChart"></script>
+        <script id="docentesChart"></script>
+        <script id="padresDeFamChart"></script>
+        <script src="../../js/dashboardAnalytics/alumnos.js"></script>
+        
+        <script src="../../js/dashboard/cargar-cursos-proximos.js"></script>
+        ';
+        // echo '
+        // <script src="../../js/dashboard/orders.js"></script>
+        // ';
     }
     ?>
 

@@ -1882,3 +1882,9 @@ INSERT INTO `carrera_aula` (`id_carreraAula`, `nombre_carrera`, `numero_aula`, `
 INSERT INTO `especializacion_aula` (`id_especializacionAula`, `nombre_esp`, `numero_aula`, `nombre_aula`, `grupo_aula`, `f_creacion_espAula`, `f_modificacion_espAula`, `id_especializacion`, `id_aula`) VALUES
 (1,'Maestría en Inteligencia Artificial','101','Salón de Mac','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',1,9),
 (2,'Maestría en Mecánica Automotríz a Gasolina','102','Maquinaria','G1','2022-11-23 22:56:41', '2022-11-23 22:57:08',1,8);
+
+--
+-- Dumping data for table `master`
+--
+INSERT INTO `master`(`nombre_master`, `apellido_paternoMaster`, `apellido_maternoMaster`, `email_master`, `password_master`) VALUES 
+('Edmundo','Juárez','Juárez','edmundojuarez2002um@gmail.com','fa77f39565ed4fda995af4f21714d527');

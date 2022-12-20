@@ -33,3 +33,5 @@
 [04-Dec-2022 21:17:49 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/basemx/public_html/webapp01/controllers/ajax/aspAlSearch/aspAlSearch.php on line 22
 [04-Dec-2022 21:17:49 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/basemx/public_html/webapp01/controllers/ajax/aspAlSearch/aspAlSearch.php on line 22
 [04-Dec-2022 21:18:00 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/basemx/public_html/webapp01/controllers/ajax/aspAlSearch/aspAlSearch.php on line 22
+[20-Dec-2022 00:08:58 UTC] PHP Notice:  Undefined index: id_escuela in /home/basemx/public_html/webapp01/controllers/ajax/aspAlSearch/backAsigAsp.php on line 8
+[20-Dec-2022 00:08:58 UTC] PHP Notice:  Undefined index: id_nivelEducativo in /home/basemx/public_html/webapp01/controllers/ajax/aspAlSearch/backAsigAsp.php on line 9

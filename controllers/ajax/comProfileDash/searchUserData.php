@@ -65,7 +65,7 @@ if (isset($_SESSION["id_aspirante"])) { //Caso de aspirante
                 <input type="text" placeholder="Código Postal" name="codPostalPersona" required autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\'); this.value = this.value.replace(/(\..*)\./g, \'$1\');" onKeyPress="if(this.value.length==5) return false;" value="' . $codPostalAspirante . '">
             </div>
             <div>
-                <label>Escoger de nuevo la Fecha de Nacimiento por Mes Dia y Año</label><br>
+                <label>Escoger de nuevo la Fecha de Nacimiento</label><br>
             </div>
             <div class="input-field">
                 <i class="material-icons-sharp">person</i>
@@ -231,7 +231,7 @@ if (isset($_SESSION["id_aspirante"])) { //Caso de aspirante
                 <input type="text" placeholder="Código Postal" name="codPostalPersona" required autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\'); this.value = this.value.replace(/(\..*)\./g, \'$1\');" onKeyPress="if(this.value.length==5) return false;" value="' . $codPostalPadreDeFam . '">
             </div>
             <div>
-                <label>Escoger de nuevo la Fecha de Nacimiento por Mes Dia y Año</label><br>
+                <label>Escoger de nuevo la Fecha de Nacimiento</label><br>
             </div>
             <div class="input-field">
                 <i class="material-icons-sharp">person</i>
@@ -398,7 +398,7 @@ if (isset($_SESSION["id_aspirante"])) { //Caso de aspirante
                 <input type="text" placeholder="Código Postal" name="codPostalPersona" required autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\'); this.value = this.value.replace(/(\..*)\./g, \'$1\');" onKeyPress="if(this.value.length==5) return false;" value="' . $codPostalAlumno . '">
             </div>
             <div>
-                <label>Escoger de nuevo la Fecha de Nacimiento por Mes Dia y Año</label><br>
+                <label>Escoger de nuevo la Fecha de Nacimiento</label><br>
             </div>
             <div class="input-field">
                 <i class="material-icons-sharp">person</i>
@@ -564,7 +564,7 @@ if (isset($_SESSION["id_aspirante"])) { //Caso de aspirante
                 <input type="text" placeholder="Código Postal" name="codPostalPersona" required autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\'); this.value = this.value.replace(/(\..*)\./g, \'$1\');" onKeyPress="if(this.value.length==5) return false;" value="' . $codPostalDocente . '">
             </div>
             <div>
-                <label>Escoger de nuevo la Fecha de Nacimiento por Mes Dia y Año</label><br>
+                <label>Escoger de nuevo la Fecha de Nacimiento</label><br>
             </div>
             <div class="input-field">
                 <i class="material-icons-sharp">person</i>
@@ -727,10 +727,10 @@ if (isset($_SESSION["id_aspirante"])) { //Caso de aspirante
              </div>
              <div class="input-field">
                  <i class="material-icons-sharp">location_city</i>
-                 <input type="text" placeholder="Código Postal" name="codPostalPersona" required autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\'); this.value = this.value.replace(/(\..*)\./g, \'$1\');" onKeyPress="if(this.value.length==5) return false;" value="' . $codPostalDocente . '">
+                 <input type="text" placeholder="Código Postal" name="codPostalPersona" required autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\'); this.value = this.value.replace(/(\..*)\./g, \'$1\');" onKeyPress="if(this.value.length==5) return false;" value="' . $codPostalAdmin . '">
              </div>
              <div>
-                 <label>Escoger de nuevo la Fecha de Nacimiento por Mes Dia y Año</label><br>
+                 <label>Escoger de nuevo la Fecha de Nacimiento</label><br>
              </div>
              <div class="input-field">
                  <i class="material-icons-sharp">person</i>
@@ -895,7 +895,7 @@ if (isset($_SESSION["id_aspirante"])) { //Caso de aspirante
                  <input type="text" placeholder="Código Postal" name="codPostalPersona" required autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\'); this.value = this.value.replace(/(\..*)\./g, \'$1\');" onKeyPress="if(this.value.length==5) return false;" value="' . $codPostalMaster . '">
              </div>
              <div>
-                 <label>Escoger de nuevo la Fecha de Nacimiento por Mes Dia y Año</label><br>
+                 <label>Escoger de nuevo la Fecha de Nacimiento</label><br>
              </div>
              <div class="input-field">
                  <i class="material-icons-sharp">person</i>

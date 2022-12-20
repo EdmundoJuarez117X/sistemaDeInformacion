@@ -36,13 +36,13 @@ if ($_POST['type'] == 1) {
 				$sqlToGetID = $connection->query("SELECT * FROM administrador WHERE email_admin='$email'");
 				//Obtenemos el registro de los datos y guardamos algunos para control de acceso
 				if ($datosID = $sqlToGetID->fetch_object()) {
-					$_SESSION["id_administrador"] = $datosID->id_administrador;
-					$_SESSION["estatus_persona"] = $datosID->estatus_Admin;
-					$_SESSION["subMat"] = "ADM";
-					$_SESSION["nombre_admin"] = $nombre_persona;
-					$_SESSION["apellido_paternoAdmin"] = $apellido_paterno;
-					$_SESSION["email_admin"] = $email;
-					// $_SESSION["enviar_correo"] = "ENV";
+					// $_SESSION["id_administrador"] = $datosID->id_administrador;
+					// $_SESSION["estatus_persona"] = $datosID->estatus_Admin;
+					// $_SESSION["subMat"] = "ADM";
+					// $_SESSION["nombre_admin"] = $nombre_persona;
+					// $_SESSION["apellido_paternoAdmin"] = $apellido_paterno;
+					$_SESSION["email_adminC"] = $email;
+					include './../controllers/phpMailer/enviarCorreoAdm.php';
 					echo json_encode(array("statusCode" => 200));
 				}else{
 					echo json_encode(array("statusCode" => 201));

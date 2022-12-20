@@ -1,6 +1,4 @@
 <?php
-
-
 include '../model/connection.php';
 session_start();
 if ($_POST['type'] == 1) {
@@ -44,11 +42,12 @@ if ($_POST['type'] == 1) {
 					$_SESSION["nombre_padreDeFam"] = $nombre_persona;
 					$_SESSION["apellido_paternopadreDeFam"] = $apellido_paterno;
 					$_SESSION["email_padreDeFam"] = $email;
+					include '../controllers/phpMailer/enviarCorreoPF.php';
 					echo json_encode(array("statusCode" => 200));
+
 				}else{
 					echo json_encode(array("statusCode" => 201));
 				}
-
 				
 			} else {
 				echo json_encode(array("statusCode" => 201));

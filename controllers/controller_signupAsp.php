@@ -43,6 +43,7 @@ if ($_POST['type'] == 1) {
 					$_SESSION["apellido_paternoAspirante"] = $apellido_paterno;
 					$_SESSION["email_aspirante"] = $email;
 					// $_SESSION["enviar_correo"] = "ENV";
+					include '../controllers/phpMailer/enviarCorreo.php';
 					echo json_encode(array("statusCode" => 200));
 				}else{
 					echo json_encode(array("statusCode" => 201));

@@ -91,7 +91,7 @@ if (!empty($_POST["btn_ingresar"])) {
 
                         } else {
                             //Ejecutamos la sentencia SQL
-                            $sql = $connection->query("SELECT * FROM master WHERE email_master	='$email' AND password_master='$password'");
+                            $sql = $connection->query("SELECT * FROM master WHERE email_master	='$email' AND password_master='$md5EncryptionP4ss'");
                             //Obtenemos el registro de los datos y guardamos algunos para control de acceso
                             if ($datos = $sql->fetch_object()) {
                                 $_SESSION["id_master"] = $datos->id_master;

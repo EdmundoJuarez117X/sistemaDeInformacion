@@ -738,12 +738,28 @@ if ($Autorizacion == true) {
             </div>
             <!------------------------------- END OF top / top ------------------------>
             <div class="recent-updates">
-                <h2>Publicidad</h2>
+            <?php
+            if ($_SESSION['subMat'] == "Al" || $_SESSION["subMat"]=="ASP" || $_SESSION['subMat'] == "DOC") {
+                echo '
+                <div class="recent-updates">
+                    <h2>Cursos próximos a iniciar</h2>
+                    <div class="updates" id="cursos-proximos"></div>
+                </div>
+                ';
+            } else if ($_SESSION['subMat'] == "ADM" || $_SESSION['subMat'] == "MST") {
+                echo '
+                <div class="recent-updates">
+                    <h2>Cursos próximos a iniciar</h2>
+                    <div class="updates" id="cursos-proximos"></div>
+                </div>
+                ';
+            }
+            ?>
 
             </div>
             <!-- END OF RECENT UPDATES -->
             <div class="sales-analytics">
-                <h2>Otro apartado</h2>
+                <!-- <h2>Otro apartado</h2> -->
                 <!-- <div class="item online">
                                     <div class="icon">
                                         <span class="material-icons-sharp">shopping_cart</span>
@@ -822,6 +838,7 @@ if ($Autorizacion == true) {
 
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript" src="charge.js"></script>
+    <script src="../../../js/dashboard/cargar-cursos-proximosPagos.js"></script>
 
 </body>
 
