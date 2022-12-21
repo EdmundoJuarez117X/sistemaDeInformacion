@@ -98,13 +98,13 @@ if (empty($_SESSION["subMat"])) {
                                 </ul>
                             </li>-->
                             
-                            <li class="">
+                            <!--<li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">mail_outline</span>
                                     <h3>Mensajes</h3>
                                     <span class="message-count">26</span>
                                 </a>
-                            </li>
+                            </li>-->
                             
                             <li class="CloseSession">
                                 <a href="./../../controllers/controller_logout.php">

@@ -37,7 +37,7 @@ if (empty($_SESSION["subMat"])) {
             $Autorizacion = true;
             $url = 'dashboard/inicio.php';
         }
-    }else if ($_SESSION["estatus_persona"] == "ASIGPREIN") {
+    } else if ($_SESSION["estatus_persona"] == "ASIGPREIN") {
         if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
             // last request was more than 30 minutes ago
             session_unset(); // unset $_SESSION variable for the run-time 
@@ -133,7 +133,7 @@ if ($Autorizacion == true) {
                     if ($_SESSION["subMat"] == "PF") {
                         echo '
                             <li class="active">
-                                <a class="" href="">
+                                <a class="" href="#">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
@@ -145,13 +145,13 @@ if ($Autorizacion == true) {
                                 </a>
                             </li>
                             
-                            <li class="">
+                            <!--<li class="">
                                 <a class="" href="#">
                                     <span class="material-icons-sharp">mail_outline</span>
                                     <h3>Mensajes</h3>
                                     <span class="message-count">26</span>
                                 </a>
-                            </li>
+                            </li>-->
                             
                             <li class="CloseSession">
                                 <a href="./../../controllers/controller_logout.php">
@@ -452,10 +452,10 @@ if ($Autorizacion == true) {
                 <button class="btnSeg" id="btnAsig">Buscar</button>
             </div>
             <div id="container">
-                
+
             </div>
 
-            
+
         </main>
         <!---------------------------- END OF MAIN ------------------->
         <div class="right">
@@ -497,7 +497,9 @@ if ($Autorizacion == true) {
                         </small>
                     </div>
                     <div class="profile-photo">
-                        <img src="./../../img/altindeximages/avatar.svg" alt="">
+                        <a href="./../register/completeProfileDash.php">
+                            <img src="./../../img/altindeximages/avatar.svg" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -586,37 +588,37 @@ if ($Autorizacion == true) {
                     </div>
                 </div>
             </div>-->
+            </div>
         </div>
-    </div>
-    <!-- Script for navbar arrows and show the elements -->
+        <!-- Script for navbar arrows and show the elements -->
 
-    <script>
-        $('.dropdown-toggle').click(function () {
-            $('aside .sidebar ul .dropdown-menu').toggleClass("show");
+        <script>
+            $('.dropdown-toggle').click(function () {
+                $('aside .sidebar ul .dropdown-menu').toggleClass("show");
 
-            $('aside .sidebar ul .first-arrow').toggleClass("rotate");
-        });
-        $('aside .sidebar ul li').click(function () {
-            $(this).addClass("active").siblings().removeClass("active");
-        });
-    </script>
+                $('aside .sidebar ul .first-arrow').toggleClass("rotate");
+            });
+            $('aside .sidebar ul li').click(function () {
+                $(this).addClass("active").siblings().removeClass("active");
+            });
+        </script>
 
-    <script>
-        $('.dropdown-toggleCursos').click(function () {
-            $('aside .sidebar ul .dropdown-menuCursos').toggleClass("show");
-            $('aside .sidebar ul .second-arrow').toggleClass("rotate");
-        });
-        $('aside .sidebar ul li').click(function () {
-            $(this).addClass("active").siblings().removeClass("active");
-        });
-    </script>
+        <script>
+            $('.dropdown-toggleCursos').click(function () {
+                $('aside .sidebar ul .dropdown-menuCursos').toggleClass("show");
+                $('aside .sidebar ul .second-arrow').toggleClass("rotate");
+            });
+            $('aside .sidebar ul li').click(function () {
+                $(this).addClass("active").siblings().removeClass("active");
+            });
+        </script>
 
-    <!-- SCRIPT JS -->
-    <script src="../../js/dashboard/inicio.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./../../js/segAsp/ajax-script.js"></script>
-    <script type="text/javascript" src="./../../js/padreFamHijo/app.js"></script>
+        <!-- SCRIPT JS -->
+        <script src="../../js/dashboard/inicio.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./../../js/segAsp/ajax-script.js"></script>
+        <script type="text/javascript" src="./../../js/padreFamHijo/app.js"></script>
 </body>
 
 </html>
