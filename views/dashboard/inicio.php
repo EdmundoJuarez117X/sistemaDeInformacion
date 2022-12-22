@@ -17,8 +17,8 @@ if (empty($_SESSION["subMat"])) {
             $url = '../index.php';
         } else {
             $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
-            $Autorizacion = true;
-            $url = 'aspOfertaAcadem/index.php';
+            $Autorizacion = false;
+            // $url = 'aspOfertaAcadem/index.php';
         }
 
     } else if ($_SESSION["estatus_persona"] == "PROCADM") {
@@ -58,8 +58,8 @@ if (empty($_SESSION["subMat"])) {
             $url = '../index.php';
         } else {
             $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
-            $Autorizacion = true;
-            $url = 'padreFamiliaHijo/paFamHijo.php';
+            $Autorizacion = false;
+            // $url = 'padreFamiliaHijo/paFamHijo.php';
         }
 
     } else if ($_SESSION["estatus_persona"] == "ASIGNADO") {
@@ -253,7 +253,37 @@ if ($Autorizacion == true) {
                                 </a>
                             </li>
                             ';
-                    } else if ($_SESSION["subMat"] == "PF" and $_SESSION["estatus_persona"] == "ASIGPREIN") {
+                    } else if($_SESSION["subMat"] == "PF" and $_SESSION["estatus_persona"] == "ACTIVO"){
+                        echo '
+                            <li class="active">
+                                <a class="" href="./../dashboard/inicio.php">
+                                    <span class="material-icons-sharp">grid_view</span>
+                                    <h3>Dashboard</h3>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="" href="../padreFamiliaHijo/paFamHijo.php">
+                                    <span class="material-icons-sharp">person</span>
+                                    <h3>Asignar Hijo</h3>
+                                </a>
+                            </li>
+                            
+                            <!--<li class="">
+                                <a class="" href="#">
+                                    <span class="material-icons-sharp">mail_outline</span>
+                                    <h3>Mensajes</h3>
+                                    <span class="message-count">26</span>
+                                </a>
+                            </li>-->
+                            
+                            <li class="CloseSession">
+                                <a href="./../../controllers/controller_logout.php">
+                                    <span class="material-icons-sharp">logout</span>
+                                    <h3>Cerrar Sesión</h3>
+                                </a>
+                            </li>
+                            ';
+                    }else if ($_SESSION["subMat"] == "PF" and $_SESSION["estatus_persona"] == "ASIGPREIN") {
                         echo '
                             <li class="active">
                                 <a class="" href="#">
@@ -523,12 +553,7 @@ if ($Autorizacion == true) {
                             <div>
                                 <canvas id="myChart"></canvas>
                             </div>
-                            <!-- <svg class="svgCircle">
-                                <circle cx='38' cy="38" r='36'></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div> -->
+                           
                         </div>
                     </div>
                     <small class="text-muted">Ultimas 24 horas</small>
@@ -545,12 +570,7 @@ if ($Autorizacion == true) {
                             <div>
                                 <canvas id="myChartDoc"></canvas>
                             </div>
-                            <!-- <svg class="svgCircle">
-                                <circle cx='38' cy="38" r='36'></circle>
-                            </svg>
-                            <div class="number">
-                                <p>16%</p>
-                            </div> -->
+                           
                         </div>
                     </div>
                     <small class="text-muted">Ultimas 24 horas</small>
@@ -654,7 +674,7 @@ if ($Autorizacion == true) {
                             } elseif ($_SESSION["subMat"] == "Al") {
                                 echo 'Alumno';
                             } elseif ($_SESSION["subMat"] == "PF") {
-                                echo 'Padre de Fam';
+                                echo 'Padre de Familia';
                             } elseif ($_SESSION["subMat"] == "DOC") {
                                 echo 'Docente';
                             } elseif ($_SESSION["subMat"] == "ADM") {
@@ -676,7 +696,19 @@ if ($Autorizacion == true) {
             </div>
             <!------------------------------- END OF top / top ------------------------>
             <?php
-            if ($_SESSION['subMat'] == "Al" || $_SESSION['subMat'] == "DOC") {
+            if (isset($_SESSION["estatus_persona"])) {
+                if($_SESSION["estatus_persona"] == "ACTIVO"){
+                    echo '
+                <div class="recent-updates">
+                    <h2>Notificaciones</h2>
+                    <div class="info-noticaciones-cursos" >
+                    <p class="danger">No se ha realizado el pago de inscripción</p>
+                    </div>
+                </div>
+                ';
+                }
+                
+            }else if ($_SESSION['subMat'] == "Al" || $_SESSION['subMat'] == "DOC") {
                 echo '
                 <div class="recent-updates">
                     <h2>Notificaciones</h2>
@@ -778,8 +810,20 @@ if ($Autorizacion == true) {
     <script src="../../js/dashboard/inicio.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php
-    if ($_SESSION['subMat'] == "Al" || $_SESSION['subMat'] == "DOC") {
-        // echo '';
+    if ($_SESSION['subMat'] == "ASP" || $_SESSION['subMat'] == "PF") {
+        echo '
+        <script id="alumnosChart"></script>
+        <script id="docentesChart"></script>
+        <script id="padresDeFamChart"></script>
+        <script src="../../js/dashboardAnalytics/alumnos.js"></script>
+        ';
+    }else if ($_SESSION['subMat'] == "Al" || $_SESSION['subMat'] == "DOC") {
+        echo '
+        <script id="alumnosChart"></script>
+        <script id="docentesChart"></script>
+        <script id="padresDeFamChart"></script>
+        <script src="../../js/dashboardAnalytics/alumnos.js"></script>
+        ';
     } else if ($_SESSION['subMat'] == "ADM" || $_SESSION['subMat'] == "MST") {
         echo ' 
         <script src="../../js/dashboard/cargar-cursos-proximos.js"></script>

@@ -146,7 +146,35 @@ if (!empty($_POST["btn_ingresar"])) {
     }
     if ($Autorizacion == true) {
         //Redireccionamos al enlace proporcionado dependiendoe el usuario
-        header("location:./views/$url");
+        echo "<script>
+                                //Sweet Alert 2 and locate to index
+                                let timerInterval
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Bienvenido :)',
+                                    html: 'Accediendo en <b></b>.',
+                                    timer: 1369,
+                                    timerProgressBar: true,
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                    didOpen: () => {
+                                        Swal.showLoading()
+                                        const b = Swal.getHtmlContainer().querySelector('b')
+                                        timerInterval = setInterval(() => {
+                                            b.textContent = Swal.getTimerLeft()
+                                        }, 100)
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval)
+                                }
+                                }).then((result) => {
+                                    /* Read more about handling dismissals below */
+                                    if (result.dismiss === Swal.DismissReason.timer) {
+                                        location.href = './views/$url';
+                                    }
+                                });
+                                </script>";
+        // header("location:./views/$url");
     }
 
 }

@@ -132,16 +132,16 @@ if ($Autorizacion == true) {
                     <?php
                     if ($_SESSION["subMat"] == "PF") {
                         echo '
-                            <li class="active">
-                                <a class="" href="#">
+                            <li class="">
+                                <a class="" href="../dashboard/inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
                             </li>
-                            <li class="">
-                                <a class="" href="../stripeInscrip/pago/pagoExamAdm.php">
+                            <li class="active">
+                                <a class="" href="#">
                                     <span class="material-icons-sharp">person</span>
-                                    <h3>Inscripciones</h3>
+                                    <h3>Asignar Hijo</h3>
                                 </a>
                             </li>
                             
@@ -504,8 +504,23 @@ if ($Autorizacion == true) {
                 </div>
             </div>
             <!------------------------------- END OF top / top ------------------------>
-            <div class="recent-updates">
-                <!-- <h2>Actualizaciones Recientes</h2>
+            <?php
+            if (isset($_SESSION["estatus_persona"])) {
+                if($_SESSION["estatus_persona"] == "ACTIVO"){
+                    echo '
+                <div class="recent-updates">
+                    <h2>Notificaciones</h2>
+                    <div class="info-noticaciones-cursos" >
+                    <p class="danger">No se ha realizado el pago de inscripción</p>
+                    </div>
+                </div>
+                ';
+                }
+                
+            }
+            ?>
+            <!--<div class="recent-updates">
+                <h2>Actualizaciones Recientes</h2>
                 <div class="updates">
                     <div class="update">
                         <div class="profile-photo">
@@ -537,8 +552,8 @@ if ($Autorizacion == true) {
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
                     </div>
-                </div>-->
-            </div>
+                </div>
+            </div>-->
             <!-- END OF RECENT UPDATES -->
             <div class="sales-analytics">
                 <!--<h2>Metricas de Ventas</h2>

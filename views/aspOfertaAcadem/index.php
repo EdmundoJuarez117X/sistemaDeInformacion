@@ -58,14 +58,14 @@ if (empty($_SESSION["subMat"])) {
                     <?php
                     if ($_SESSION["subMat"] == "ASP" or $_SESSION["subMat"] == "DOC") {
                         echo '
-                            <li class="active">
-                                <a class="" href="index.php">
+                            <li class="">
+                                <a class="" href="./../dashboard/inicio.php">
                                     <span class="material-icons-sharp">grid_view</span>
                                     <h3>Dashboard</h3>
                                 </a>
                             </li>
-                            <li class="">
-                                <a class="" href="../stripeInscrip/pago/pagoExamAdm.php">
+                            <li class="active">
+                                <a class="" href="index.php">
                                     <span class="material-icons-sharp">person</span>
                                     <h3>Inscripciones</h3>
                                 </a>
@@ -432,12 +432,31 @@ if (empty($_SESSION["subMat"])) {
                 </div>
             </div>
             <!------------------------------- END OF top / top ------------------------>
-            <div class="recent-updates">
+            <?php
+            if (isset($_SESSION["estatus_persona"])) {
+                if($_SESSION["estatus_persona"] == "ACTIVO"){
+                    echo '
+                <div class="recent-updates">
+                    <h2>Notificaciones</h2>
+                    <div class="info-noticaciones-cursos" >
+                    <p class="danger">No se ha realizado el pago de inscripción</p>
+                    </div>
+                </div>
+                ';
+                }
+                
+            }else{
+                echo '
+                <div class="recent-updates">
                 <h2>Notificaciones</h2>
                 <div class="info-noticaciones-cursos" id="notificaciones-de-cursos">
                 </div>
 
             </div>
+                ';
+            }
+            ?>
+            
             <!-- END OF RECENT UPDATES -->
             <!-- <div class="sales-analytics">
                 <h2>Otro apartado</h2>
